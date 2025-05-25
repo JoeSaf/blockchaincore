@@ -15,7 +15,7 @@ namespace blockchain {
 // ----- Enhanced Blockchain Core with P2P Integration -----
 class NetworkedBlockchainCore {
 private:
-    std::unique_ptr<BlockchainCore> blockchainCore_;
+    BlockchainCore* blockchainCore_;  // Fixed: removed unique_ptr wrapper
     std::unique_ptr<p2p::P2PNetworkManager> networkManager_;
     
     // Transaction mempool
@@ -40,7 +40,7 @@ public:
     NetworkedBlockchainCore(uint16_t p2pPort = p2p::DEFAULT_P2P_PORT) 
         : p2pPort_(p2pPort), enableP2P_(true), syncInProgress_(false), running_(false) {
         
-        blockchainCore_ = std::make_unique<BlockchainCore>(BlockchainCore::get_instance());
+        blockchainCore_ = &BlockchainCore::get_instance();  // Fixed: direct assignment
         
         if (enableP2P_) {
             networkManager_ = std::make_unique<p2p::P2PNetworkManager>(p2pPort_);
@@ -55,7 +55,7 @@ public:
     // ----- Core Blockchain Operations (Delegated) -----
     
     bool initialize() {
-        if (!blockchainCore_->initialize()) {
+        if (!blockchainCore_->initialize()) {  // Fixed: direct pointer access
             return false;
         }
         
@@ -67,34 +67,34 @@ public:
     }
     
     bool registerUser(const std::string& username, const std::string& role, const std::string& password) {
-        return blockchainCore_->register_user(username, role, password);
+        return blockchainCore_->register_user(username, role, password);  // Fixed: direct pointer access
     }
     
     std::pair<std::string, std::string> authenticate(const std::string& username, const std::string& password) {
-        return blockchainCore_->authenticate(username, password);
+        return blockchainCore_->authenticate(username, password);  // Fixed: direct pointer access
     }
     
     std::vector<std::string> listUsers() const {
-        return blockchainCore_->list_users();
+        return blockchainCore_->list_users();  // Fixed: direct pointer access
     }
     
     bool verifyBlockchain() const {
-        return blockchainCore_->verify_blockchain();
+        return blockchainCore_->verify_blockchain();  // Fixed: direct pointer access
     }
     
     size_t getChainLength() const {
-        return blockchainCore_->get_chain_length();
+        return blockchainCore_->get_chain_length();  // Fixed: direct pointer access
     }
     
     json getBlockchainData() const {
-        return blockchainCore_->get_blockchain_data();
+        return blockchainCore_->get_blockchain_data();  // Fixed: direct pointer access
     }
     
     // ----- Enhanced Network Operations -----
     
     bool addBlock(const json& blockData, bool broadcast = true) {
         // Add block to local blockchain
-        if (!blockchainCore_->add_custom_block(blockData)) {
+        if (!blockchainCore_->add_custom_block(blockData)) {  // Fixed: direct pointer access
             return false;
         }
         
@@ -191,7 +191,7 @@ public:
         stopP2PNetwork();
         
         if (blockchainCore_) {
-            blockchainCore_->stop_block_adjuster();
+            blockchainCore_->stop_block_adjuster();  // Fixed: direct pointer access
         }
     }
     
@@ -404,7 +404,8 @@ private:
         auto latestBlock = getLatestBlock();
         size_t expectedIndex = getChainLength();
         
-        if (block.value("index", 0) == expectedIndex) {
+        // Fixed: cast to size_t to avoid signed/unsigned comparison warnings
+        if (static_cast<size_t>(block.value("index", 0)) == expectedIndex) {
             // This block extends our chain
             if (addBlock(block, false)) { // Don't re-broadcast
                 std::cout << "Added block " << expectedIndex << " to blockchain" << std::endl;
@@ -414,7 +415,7 @@ private:
                     removeTransactionsFromMempool(block["transactions"]);
                 }
             }
-        } else if (block.value("index", 0) > expectedIndex) {
+        } else if (static_cast<size_t>(block.value("index", 0)) > expectedIndex) {
             // We're behind, request sync
             if (!syncInProgress_) {
                 syncInProgress_ = true;
@@ -441,12 +442,13 @@ private:
         
         // Check if block index is sequential
         size_t expectedIndex = getChainLength();
-        if (block["index"] != expectedIndex && block["index"] != 0) { // Allow genesis block
+        // Fixed: cast to size_t for comparison
+        if (static_cast<size_t>(block["index"]) != expectedIndex && static_cast<size_t>(block["index"]) != 0) { 
             return false;
         }
         
         // Validate previous hash (except for genesis)
-        if (block["index"] != 0) {
+        if (static_cast<size_t>(block["index"]) != 0) {
             auto latestBlock = getLatestBlock();
             if (block["previous_hash"] != latestBlock.value("hash", "")) {
                 return false;

@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <filesystem>
 #include <thread>
+#include <atomic>
 
 // JSON library
 #include <nlohmann/json.hpp>
@@ -228,9 +229,12 @@ std::mutex BlockchainCore::instance_mutex_;
 std::string CryptoUtils::sha256(const std::string& data) {
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_CTX sha256;
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, data.c_str(), data.length());
-    SHA256_Final(hash, &sha256);
+    EVP_MD_CTX* ctx = EVP_MD_CTX_new();
+    EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
+    EVP_DigestUpdate(ctx, data.c_str(), data.length());
+    unsigned int hash_len;
+    EVP_DigestFinal_ex(ctx, hash, &hash_len);
+    EVP_MD_CTX_free(ctx);
     
     std::string result;
     result.reserve(64);
