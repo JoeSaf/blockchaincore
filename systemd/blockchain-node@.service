@@ -1,0 +1,36 @@
+[Unit]
+Description=Blockchain P2P Node (Instance %i)
+Documentation=https://github.com/JoeSaf/blockchain-core
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=blockchain
+Group=blockchain
+WorkingDirectory=/opt/blockchain
+ExecStart=/usr/bin/python -m polymorphicblock_p2p --daemon --config /etc/blockchain/node-%i.conf --instance %i
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+
+# Instance-specific logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=blockchain-node-%i
+
+# Security (same as main service)
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectSystem=strict
+ReadWritePaths=/opt/blockchain /var/lib/blockchain/%i
+PrivateTmp=yes
+
+# Instance-specific environment
+Environment=BLOCKCHAIN_CONFIG=/etc/blockchain/node-%i.conf
+Environment=BLOCKCHAIN_DATA_DIR=/var/lib/blockchain/%i
+Environment=BLOCKCHAIN_INSTANCE=%i
+
+[Install]
+WantedBy=multi-user.target

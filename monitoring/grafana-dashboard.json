@@ -1,0 +1,81 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Blockchain Core - Arch Linux",
+    "tags": ["blockchain", "arch-linux"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Blockchain Height",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "blockchain_height",
+            "refId": "A"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "unit": "short"
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Connected Peers",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "blockchain_peer_count",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "System Resources",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "blockchain_cpu_usage_percent",
+            "legendFormat": "CPU Usage %",
+            "refId": "A"
+          },
+          {
+            "expr": "blockchain_memory_usage_bytes / 1024 / 1024 / 1024",
+            "legendFormat": "Memory Usage GB",
+            "refId": "B"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8}
+      },
+      {
+        "id": 4,
+        "title": "Network Activity",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(blockchain_messages_received_total[5m])",
+            "legendFormat": "Messages Received/sec",
+            "refId": "A"
+          },
+          {
+            "expr": "rate(blockchain_messages_sent_total[5m])",
+            "legendFormat": "Messages Sent/sec",
+            "refId": "B"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 16}
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "refresh": "10s"
+  }
+}

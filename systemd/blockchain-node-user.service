@@ -1,0 +1,27 @@
+[Unit]
+Description=Blockchain P2P Node (User Service)
+Documentation=https://github.com/JoeSaf/blockchain-core
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/blockchain-node --user-mode
+Restart=always
+RestartSec=10
+TimeoutStartSec=30
+
+# User service logging
+StandardOutput=journal
+StandardError=journal
+
+# Minimal security for user service
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+# User environment
+Environment=BLOCKCHAIN_DATA_DIR=%h/.local/share/blockchain
+Environment=BLOCKCHAIN_CONFIG=%h/.config/blockchain/node.conf
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,63 @@
+[Unit]
+Description=Blockchain P2P Node
+Documentation=https://github.com/JoeSaf/blockchain-core
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=blockchain
+Group=blockchain
+WorkingDirectory=/opt/blockchain
+ExecStart=/usr/bin/python -m polymorphicblock_p2p --daemon --config /etc/blockchain/node.conf
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+TimeoutStartSec=60
+TimeoutStopSec=30
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=blockchain-node
+
+# Security hardening
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectSystem=strict
+ReadWritePaths=/opt/blockchain /var/lib/blockchain
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RemoveIPC=yes
+PrivateMounts=yes
+
+# Network restrictions
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+IPAddressDeny=any
+IPAddressAllow=localhost
+IPAddressAllow=10.0.0.0/8
+IPAddressAllow=172.16.0.0/12
+IPAddressAllow=192.168.0.0/16
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=32768
+MemoryMax=2G
+TasksMax=4096
+
+# Environment
+Environment=PYTHONPATH=/usr/lib/python3.12/site-packages
+Environment=BLOCKCHAIN_CONFIG=/etc/blockchain/node.conf
+Environment=BLOCKCHAIN_DATA_DIR=/var/lib/blockchain
+
+[Install]
+WantedBy=multi-user.target
