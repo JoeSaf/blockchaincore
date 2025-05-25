@@ -464,7 +464,7 @@ void add_p2p_bindings(py::module& m) {
 }
 
 // Main module binding function
-PYBIND11_MODULE(blockchain_p2p, m) {
+PYBIND11_MODULE(blockchain_core, m) {
     m.doc() = "Enhanced Blockchain with Complete P2P Networking Support";
     
     // Add P2P-specific bindings

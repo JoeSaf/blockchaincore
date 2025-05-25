@@ -21,7 +21,7 @@ High-performance C++ blockchain core with P2P networking, optimized for Arch Lin
 
 4. **Start blockchain:**
    ```bash
-   python polymorphicblock_p2p.py
+   python polymorphicblock.py
    ```
 
 ## System Service

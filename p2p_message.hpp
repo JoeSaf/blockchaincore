@@ -10,7 +10,8 @@
 #include <random>
 #include <sstream>
 #include <iomanip>
-
+#include <queue>
+#include <condition_variable>
 namespace blockchain {
 namespace p2p {
 

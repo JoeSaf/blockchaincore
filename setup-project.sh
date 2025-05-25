@@ -973,7 +973,7 @@ High-performance C++ blockchain core with P2P networking, optimized for Arch Lin
 
 4. **Start blockchain:**
    ```bash
-   python polymorphicblock_p2p.py
+   python polymorphicblock.py
    ```
 
 ## System Service
@@ -1278,7 +1278,7 @@ BANNER
             echo
             log_info "Next steps:"
             echo "  • Test: python -c 'import blockchain_core'"
-            echo "  • Run: python polymorphicblock_p2p.py"
+            echo "  • Run: python polymorphicblock.py"
             echo "  • Monitor: http://localhost:9090/metrics"
             echo "  • Service: sudo systemctl status blockchain-node.service"
             ;;

@@ -68,7 +68,7 @@ sudo systemctl enable --now blockchain-node.service
 ┌─────────────────────────────────────────────────────────────┐
 │                   Arch Linux Integration                    │
 ├─────────────────────────────────────────────────────────────┤
-│  Python Layer (polymorphicblock_p2p.py)                   │
+│  Python Layer (polymorphicblock.py)                   │
 │  ├── Enhanced CLI with P2P management                      │
 │  ├── Network status monitoring                             │
 │  └── Backwards compatibility                               │
@@ -98,7 +98,7 @@ blockchain/
 ├── python_bindings.cpp             # Updated Python bindings
 ├── p2p_python_bindings.cpp         # P2P-specific bindings
 ├── polymorphicblock.py             # Original wrapper (unchanged)
-├── polymorphicblock_p2p.py         # Enhanced P2P wrapper
+├── polymorphicblock.py         # Enhanced P2P wrapper
 ├── CMakeLists.txt                  # Arch-optimized build
 ├── setup.py                       # Enhanced setup script
 ├── build_arch.sh                  # Comprehensive build script
@@ -239,7 +239,7 @@ flake8 *.py
 ### **1. Single Node Development**
 ```bash
 ./build_arch.sh --all
-python polymorphicblock_p2p.py
+python polymorphicblock.py
 ```
 
 ### **2. Multi-Node Local Testing**
@@ -281,7 +281,7 @@ sudo ./scripts/arch-performance-tuning.sh
 
 1. **Test the build**: `./build_arch.sh --all`
 2. **Run basic tests**: `python -c "import blockchain_core; print('Success!')"`
-3. **Start a test network**: `python polymorphicblock_p2p.py`
+3. **Start a test network**: `python polymorphicblock.py`
 4. **Set up monitoring**: `python monitoring/prometheus-exporter.py &`
 5. **Deploy to production**: `sudo ./scripts/setup-systemd.sh install`
 

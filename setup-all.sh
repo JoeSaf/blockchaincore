@@ -190,7 +190,7 @@ BANNER
             echo
             log_info "Next steps:"
             echo "  • Test: python -c 'import blockchain_core'"
-            echo "  • Run: python polymorphicblock_p2p.py"
+            echo "  • Run: python polymorphicblock.py"
             echo "  • Monitor: http://localhost:9090/metrics"
             echo "  • Service: sudo systemctl status blockchain-node.service"
             ;;

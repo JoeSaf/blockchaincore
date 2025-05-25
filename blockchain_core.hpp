@@ -228,7 +228,7 @@ std::mutex BlockchainCore::instance_mutex_;
 // CryptoUtils implementation
 std::string CryptoUtils::sha256(const std::string& data) {
     unsigned char hash[SHA256_DIGEST_LENGTH];
-    SHA256_CTX sha256;
+    // SHA256_CTX sha256;
     EVP_MD_CTX* ctx = EVP_MD_CTX_new();
     EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
     EVP_DigestUpdate(ctx, data.c_str(), data.length());
