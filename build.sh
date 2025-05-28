@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Blockchain Node Build Script
-# This script builds the C++ blockchain node with all dependencies
+# Blockchain Node Build Script - Fixed Version
+# This script builds the C++ blockchain node with warning suppression
 
 set -e  # Exit on any error
 
@@ -69,8 +69,7 @@ install_dependencies() {
                     ninja \
                     gdb \
                     valgrind \
-                    boost \
-                    boost-libs
+                    ccache
                 print_success "Arch Linux dependencies installed"
             elif command -v apt-get &> /dev/null; then
                 # Debian/Ubuntu
@@ -84,33 +83,21 @@ install_dependencies() {
                     libssl-dev \
                     libcurl4-openssl-dev \
                     wget \
-                    ninja-build
+                    ninja-build \
+                    ccache
                 print_success "Debian/Ubuntu dependencies installed"
             elif command -v yum &> /dev/null; then
                 # Red Hat/CentOS/Fedora
                 print_status "Detected Red Hat/CentOS/Fedora - using yum"
                 sudo yum groupinstall -y "Development Tools"
-                sudo yum install -y cmake git openssl-devel libcurl-devel wget ninja-build
+                sudo yum install -y cmake git openssl-devel libcurl-devel wget ninja-build ccache
                 print_success "Red Hat/CentOS/Fedora dependencies installed"
             elif command -v dnf &> /dev/null; then
                 # Modern Fedora
                 print_status "Detected Fedora - using dnf"
                 sudo dnf groupinstall -y "Development Tools"
-                sudo dnf install -y cmake git openssl-devel libcurl-devel wget ninja-build
+                sudo dnf install -y cmake git openssl-devel libcurl-devel wget ninja-build ccache
                 print_success "Fedora dependencies installed"
-            elif command -v zypper &> /dev/null; then
-                # openSUSE
-                print_status "Detected openSUSE - using zypper"
-                sudo zypper install -y \
-                    patterns-devel-base-devel_basis \
-                    cmake \
-                    git \
-                    pkg-config \
-                    libopenssl-devel \
-                    libcurl-devel \
-                    wget \
-                    ninja
-                print_success "openSUSE dependencies installed"
             else
                 print_error "Unsupported package manager. Please install dependencies manually:"
                 print_error "Required packages: base-devel cmake git pkg-config openssl curl wget"
@@ -125,7 +112,7 @@ install_dependencies() {
             fi
             print_status "Detected macOS - using Homebrew"
             brew update
-            brew install cmake openssl curl wget ninja
+            brew install cmake openssl curl wget ninja ccache
             print_success "macOS dependencies installed"
             ;;
         "windows")
@@ -133,11 +120,6 @@ install_dependencies() {
             print_warning "1. Visual Studio 2019+ with C++ workload"
             print_warning "2. vcpkg package manager"
             print_warning "3. Git for Windows"
-            print_warning ""
-            print_warning "Install dependencies with vcpkg:"
-            print_warning "vcpkg install openssl:x64-windows curl:x64-windows"
-            print_warning ""
-            print_warning "Or use MSYS2/MinGW-w64 for a Unix-like environment"
             ;;
     esac
     
@@ -161,9 +143,11 @@ check_requirements() {
     if command -v g++ &> /dev/null; then
         GCC_VERSION=$(g++ --version | head -n1)
         print_success "GCC found: $GCC_VERSION"
+        COMPILER="gcc"
     elif command -v clang++ &> /dev/null; then
         CLANG_VERSION=$(clang++ --version | head -n1)
         print_success "Clang found: $CLANG_VERSION"
+        COMPILER="clang"
     else
         print_error "No C++ compiler found. Please install GCC or Clang."
         exit 1
@@ -204,36 +188,40 @@ configure_build() {
     
     BUILD_TYPE=${BUILD_TYPE:-Release}
     
-    # Arch Linux specific configurations
-    if command -v pacman &> /dev/null; then
-        print_status "Applying Arch Linux specific configurations..."
-        
-        # Use Ninja generator if available for faster builds
-        if command -v ninja &> /dev/null; then
-            GENERATOR="-G Ninja"
-            print_status "Using Ninja build system"
-        else
-            GENERATOR=""
-            print_status "Using Make build system"
-        fi
-        
-        # Set proper OpenSSL paths for Arch
-        CMAKE_ARGS=(
-            $GENERATOR
-            -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-            -DCMAKE_INSTALL_PREFIX=/usr/local
-            -DCMAKE_CXX_STANDARD=17
-            -DCMAKE_CXX_FLAGS="-Wall -Wextra -O3 -march=native"
-            -DOPENSSL_ROOT_DIR=/usr
-            -DOPENSSL_LIBRARIES=/usr/lib
-            -DOPENSSL_INCLUDE_DIR=/usr/include/openssl
+    # Set compiler-specific flags to suppress warnings
+    CMAKE_ARGS=(
+        -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        -DCMAKE_INSTALL_PREFIX=/usr/local
+        -DCMAKE_CXX_STANDARD=17
+    )
+    
+    # Add warning suppression flags
+    if [ "$COMPILER" == "gcc" ]; then
+        CMAKE_ARGS+=(
+            -DCMAKE_CXX_FLAGS="-Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter"
         )
+    elif [ "$COMPILER" == "clang" ]; then
+        CMAKE_ARGS+=(
+            -DCMAKE_CXX_FLAGS="-Wall -Wextra -O3 -Wno-unused-parameter"
+        )
+    fi
+    
+    # Use Ninja generator if available for faster builds
+    if command -v ninja &> /dev/null; then
+        CMAKE_ARGS+=(-G Ninja)
+        print_status "Using Ninja build system"
+        BUILD_TOOL="ninja"
     else
-        # Default configuration for other distributions
-        CMAKE_ARGS=(
-            -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-            -DCMAKE_INSTALL_PREFIX=/usr/local
+        print_status "Using Make build system"
+        BUILD_TOOL="make"
+    fi
+    
+    # Enable ccache if available
+    if command -v ccache &> /dev/null; then
+        CMAKE_ARGS+=(
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
         )
+        print_status "Using ccache for faster rebuilds"
     fi
     
     cmake .. "${CMAKE_ARGS[@]}"
@@ -262,8 +250,8 @@ build_project() {
     
     print_status "Building with $CORES cores..."
     
-    # Use ninja if available (much faster on Arch), otherwise use make
-    if command -v ninja &> /dev/null && [ -f "build.ninja" ]; then
+    # Build based on the selected build tool
+    if [ "$BUILD_TOOL" == "ninja" ]; then
         print_status "Using Ninja build system..."
         ninja -j$CORES
     else
@@ -278,13 +266,14 @@ build_project() {
         if [ -f "bin/blockchain_node" ]; then
             BINARY_SIZE=$(du -h bin/blockchain_node | cut -f1)
             print_success "Binary size: $BINARY_SIZE"
+            print_success "Binary location: $(pwd)/bin/blockchain_node"
         fi
     else
         print_error "Build failed"
-        print_error "Common issues on Arch Linux:"
-        print_error "1. Missing base-devel group: sudo pacman -S base-devel"
-        print_error "2. Missing cmake: sudo pacman -S cmake"
-        print_error "3. Missing OpenSSL: sudo pacman -S openssl"
+        print_error "Common issues:"
+        print_error "1. Missing dependencies"
+        print_error "2. Compiler version too old"
+        print_error "3. OpenSSL development headers missing"
         exit 1
     fi
 }
@@ -314,14 +303,18 @@ run_tests() {
 install_binary() {
     if [ "$INSTALL" == "1" ]; then
         print_status "Installing binary..."
-        sudo make install
+        if [ "$BUILD_TOOL" == "ninja" ]; then
+            ninja install
+        else
+            make install
+        fi
         print_success "Binary installed to /usr/local/bin/"
     fi
 }
 
 # Print usage information
 print_usage() {
-    echo "Blockchain Node Build Script"
+    echo "Blockchain Node Build Script - Fixed Version"
     echo ""
     echo "Usage: $0 [options]"
     echo ""
@@ -332,6 +325,7 @@ print_usage() {
     echo "  --skip-tests          Skip running tests"
     echo "  --install             Install binary after building"
     echo "  --clean               Clean build directory before building"
+    echo "  --suppress-warnings   Suppress compiler warnings (default: enabled)"
     echo ""
     echo "Environment variables:"
     echo "  BUILD_TYPE           Build type (default: Release)"
@@ -339,23 +333,18 @@ print_usage() {
     echo "  INSTALL              Install binary if set to 1"
     echo ""
     echo "Examples:"
-    echo "  $0                                    # Standard build"
+    echo "  $0                                    # Standard build with warning suppression"
     echo "  $0 --install-deps                     # Install dependencies first"
     echo "  $0 --build-type Debug                 # Debug build"
     echo "  $0 --skip-tests --install             # Build and install without tests"
     echo ""
-    echo "Arch Linux specific:"
-    echo "  # Install AUR helper (yay) for additional packages if needed:"
-    echo "  # sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si"
-    echo ""
-    echo "  # For development with debugging tools:"
-    echo "  $0 --install-deps --build-type Debug  # Install deps and build debug version"
 }
 
 # Main function
 main() {
     echo "════════════════════════════════════════════════════════"
-    echo "           Blockchain Node Build Script v1.0"
+    echo "      Blockchain Node Build Script - Fixed v1.1"
+    echo "        (with warning suppression and optimizations)"
     echo "════════════════════════════════════════════════════════"
     echo ""
     
@@ -384,6 +373,10 @@ main() {
                 ;;
             --clean)
                 CLEAN=1
+                shift
+                ;;
+            --suppress-warnings)
+                SUPPRESS_WARNINGS=1
                 shift
                 ;;
             *)
@@ -431,6 +424,11 @@ main() {
     echo "P2P ports: TCP 8333, UDP 8334"
     echo ""
     print_status "Happy mining! 🚀"
+    echo ""
+    print_status "Quick test commands:"
+    echo "  curl http://localhost:8080/api/status"
+    echo "  curl http://localhost:8080/api/blockchain"
+    echo ""
 }
 
 # Run main function

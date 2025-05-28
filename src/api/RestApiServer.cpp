@@ -202,117 +202,7 @@ void RestApiServer::handleGetBlockchain(const httplib::Request& req, httplib::Re
         response["length"] = blockchain_->getChainHeight();
         setSuccessResponse(res, response);
     } catch (const std::exception& e) {
-        setErrorResponse(res, 500, "Failed to get statistics: " + std::string(e.what()));
-    }
-}
-
-void RestApiServer::handleGetBalance(const httplib::Request& req, httplib::Response& res) {
-    try {
-        std::string address = req.matches[1];
-        if (address.empty()) {
-            setErrorResponse(res, 400, "Address is required");
-            return;
-        }
-        
-        if (!isValidAddress(address)) {
-            setErrorResponse(res, 400, "Invalid address format");
-            return;
-        }
-        
-        double balance = blockchain_->getBalance(address);
-        
-        nlohmann::json response;
-        response["address"] = address;
-        response["balance"] = balance;
-        
-        setSuccessResponse(res, response);
-        
-    } catch (const std::exception& e) {
-        setErrorResponse(res, 500, "Failed to get balance: " + std::string(e.what()));
-    }
-}
-
-void RestApiServer::handleGenerateAddress(const httplib::Request& req, httplib::Response& res) {
-    try {
-        auto keyPair = Crypto::generateKeyPair();
-        std::string address = Crypto::generateAddress(keyPair.second);
-        
-        nlohmann::json response;
-        response["address"] = address;
-        response["publicKey"] = keyPair.second;
-        response["privateKey"] = keyPair.first;
-        
-        setSuccessResponse(res, response);
-    } catch (const std::exception& e) {
-        setErrorResponse(res, 500, "Failed to generate address: " + std::string(e.what()));
-    }
-}
-
-void RestApiServer::setErrorResponse(httplib::Response& res, int code, const std::string& message) {
-    nlohmann::json response;
-    response["success"] = false;
-    response["error"] = message;
-    response["timestamp"] = std::time(nullptr);
-    
-    res.status = code;
-    res.set_header("Content-Type", "application/json");
-    res.body = response.dump();
-    
-    addCORSHeaders(res);
-}
-
-void RestApiServer::setSuccessResponse(httplib::Response& res, const nlohmann::json& data) {
-    nlohmann::json response;
-    response["success"] = true;
-    response["data"] = data;
-    response["timestamp"] = std::time(nullptr);
-    
-    res.status = 200;
-    res.set_header("Content-Type", "application/json");
-    res.body = response.dump();
-    
-    addCORSHeaders(res);
-}
-
-void RestApiServer::addCORSHeaders(httplib::Response& res) {
-    if (corsEnabled_) {
-        res.set_header("Access-Control-Allow-Origin", "*");
-        res.set_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        res.set_header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    }
-}
-
-void RestApiServer::logRequest(const httplib::Request& req) {
-    requestCount_++;
-    spdlog::debug("API Request: {} {}", req.method, req.path);
-}
-
-bool RestApiServer::validateJsonRequest(const httplib::Request& req, nlohmann::json& json) {
-    try {
-        json = nlohmann::json::parse(req.body);
-        return true;
-    } catch (const nlohmann::json::parse_error& e) {
-        spdlog::error("JSON parse error: {}", e.what());
-        return false;
-    }
-}
-
-bool RestApiServer::isValidAddress(const std::string& address) {
-    return !address.empty() && address.length() >= 10 && address.length() <= 100;
-}
-
-bool RestApiServer::isValidAmount(double amount) {
-    return amount > 0 && amount <= 1000000;
-}
-
-bool RestApiServer::isValidBlockIndex(const std::string& indexStr, uint32_t& index) {
-    try {
-        index = std::stoul(indexStr);
-        return true;
-    } catch (const std::exception&) {
-        return false;
-    }
-} 500, "Failed to get blockchain: " + std::string(e.what()));
+        setErrorResponse(res, 500, "Failed to get blockchain: " + std::string(e.what()));
     }
 }
 
@@ -642,4 +532,114 @@ void RestApiServer::handleGetStatistics(const httplib::Request& req, httplib::Re
         
         setSuccessResponse(res, response);
     } catch (const std::exception& e) {
-        setErrorResponse(res,
+        setErrorResponse(res, 500, "Failed to get statistics: " + std::string(e.what()));
+    }
+}
+
+void RestApiServer::handleGetBalance(const httplib::Request& req, httplib::Response& res) {
+    try {
+        std::string address = req.matches[1];
+        if (address.empty()) {
+            setErrorResponse(res, 400, "Address is required");
+            return;
+        }
+        
+        if (!isValidAddress(address)) {
+            setErrorResponse(res, 400, "Invalid address format");
+            return;
+        }
+        
+        double balance = blockchain_->getBalance(address);
+        
+        nlohmann::json response;
+        response["address"] = address;
+        response["balance"] = balance;
+        
+        setSuccessResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        setErrorResponse(res, 500, "Failed to get balance: " + std::string(e.what()));
+    }
+}
+
+void RestApiServer::handleGenerateAddress(const httplib::Request& req, httplib::Response& res) {
+    try {
+        auto keyPair = Crypto::generateKeyPair();
+        std::string address = Crypto::generateAddress(keyPair.second);
+        
+        nlohmann::json response;
+        response["address"] = address;
+        response["publicKey"] = keyPair.second;
+        response["privateKey"] = keyPair.first;
+        
+        setSuccessResponse(res, response);
+    } catch (const std::exception& e) {
+        setErrorResponse(res, 500, "Failed to generate address: " + std::string(e.what()));
+    }
+}
+
+void RestApiServer::setErrorResponse(httplib::Response& res, int code, const std::string& message) {
+    nlohmann::json response;
+    response["success"] = false;
+    response["error"] = message;
+    response["timestamp"] = std::time(nullptr);
+    
+    res.status = code;
+    res.set_header("Content-Type", "application/json");
+    res.body = response.dump();
+    
+    addCORSHeaders(res);
+}
+
+void RestApiServer::setSuccessResponse(httplib::Response& res, const nlohmann::json& data) {
+    nlohmann::json response;
+    response["success"] = true;
+    response["data"] = data;
+    response["timestamp"] = std::time(nullptr);
+    
+    res.status = 200;
+    res.set_header("Content-Type", "application/json");
+    res.body = response.dump();
+    
+    addCORSHeaders(res);
+}
+
+void RestApiServer::addCORSHeaders(httplib::Response& res) {
+    if (corsEnabled_) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    }
+}
+
+void RestApiServer::logRequest(const httplib::Request& req) {
+    requestCount_++;
+    spdlog::debug("API Request: {} {}", req.method, req.path);
+}
+
+bool RestApiServer::validateJsonRequest(const httplib::Request& req, nlohmann::json& json) {
+    try {
+        json = nlohmann::json::parse(req.body);
+        return true;
+    } catch (const nlohmann::json::parse_error& e) {
+        spdlog::error("JSON parse error: {}", e.what());
+        return false;
+    }
+}
+
+bool RestApiServer::isValidAddress(const std::string& address) {
+    return !address.empty() && address.length() >= 10 && address.length() <= 100;
+}
+
+bool RestApiServer::isValidAmount(double amount) {
+    return amount > 0 && amount <= 1000000;
+}
+
+bool RestApiServer::isValidBlockIndex(const std::string& indexStr, uint32_t& index) {
+    try {
+        index = std::stoul(indexStr);
+        return true;
+    } catch (const std::exception&) {
+        return false;
+    }
+}

@@ -249,7 +249,7 @@ void printUsageInstructions() {
     std::cout << "\n==========================================\n" << std::endl;
 }
 
-int main(int argc, char* argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
     try {
         // Setup logging first
         setupLogging();
