@@ -1,0 +1,302 @@
+#include <iostream>
+#include <memory>
+#include <signal.h>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/rotating_file_sink.h>
+
+#include "blockchain/Blockchain.h"
+#include "p2p/P2PNetwork.h"
+#include "api/RestApiServer.h"
+#include "utils/Crypto.h"
+
+// Global variables for clean shutdown
+std::shared_ptr<Blockchain> g_blockchain;
+std::shared_ptr<P2PNetwork> g_p2pNetwork;
+std::shared_ptr<RestApiServer> g_apiServer;
+std::atomic<bool> g_running(true);
+
+void setupLogging() {
+    // Create console sink
+    auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+    console_sink->set_level(spdlog::level::info);
+    
+    // Create file sink
+    auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>(
+        "blockchain_node.log", 1024 * 1024 * 10, 3);
+    file_sink->set_level(spdlog::level::debug);
+    
+    // Create logger with both sinks
+    std::vector<spdlog::sink_ptr> sinks {console_sink, file_sink};
+    auto logger = std::make_shared<spdlog::logger>("blockchain", sinks.begin(), sinks.end());
+    logger->set_level(spdlog::level::debug);
+    
+    spdlog::set_default_logger(logger);
+    spdlog::info("Logging system initialized");
+}
+
+void signalHandler(int signal) {
+    spdlog::info("Received signal {}, initiating shutdown...", signal);
+    g_running = false;
+    
+    if (g_apiServer) {
+        g_apiServer->stop();
+    }
+    
+    if (g_p2pNetwork) {
+        g_p2pNetwork->stop();
+    }
+    
+    spdlog::info("Shutdown complete");
+    exit(0);
+}
+
+void setupSignalHandlers() {
+    signal(SIGINT, signalHandler);
+    signal(SIGTERM, signalHandler);
+    #ifndef _WIN32
+    signal(SIGQUIT, signalHandler);
+    #endif
+}
+
+void printStartupBanner() {
+    std::cout << R"(
+╔════════════════════════════════════════════════════════════════╗
+║                    Blockchain Node v1.0.0                      ║
+║                                                                ║
+║  A full-featured blockchain implementation with:               ║
+║  • Proof-of-Work consensus                                     ║
+║  • P2P broadcast networking                                    ║
+║  • REST API interface                                          ║
+║  • Transaction mempool                                         ║
+║  • UTXO model                                                  ║
+╚════════════════════════════════════════════════════════════════╝
+)" << std::endl;
+}
+
+void printNodeInfo() {
+    spdlog::info("Node Configuration:");
+    spdlog::info("  Blockchain file: blockchain.json");
+    spdlog::info("  P2P TCP Port: 8333");
+    spdlog::info("  P2P UDP Port: 8334");
+    spdlog::info("  REST API Port: 8080");
+    spdlog::info("  Mining Reward: {} coins", Blockchain::MINING_REWARD);
+    spdlog::info("  Block Time Target: {} seconds", Blockchain::BLOCK_TIME_TARGET);
+}
+
+bool initializeBlockchain() {
+    try {
+        g_blockchain = std::make_shared<Blockchain>();
+        
+        // Try to load existing blockchain
+        if (g_blockchain->loadFromFile("blockchain.json")) {
+            spdlog::info("Loaded existing blockchain with {} blocks", 
+                        g_blockchain->getChainHeight());
+        } else {
+            spdlog::info("Created new blockchain with genesis block");
+        }
+        
+        return true;
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to initialize blockchain: {}", e.what());
+        return false;
+    }
+}
+
+bool initializeP2PNetwork() {
+    try {
+        g_p2pNetwork = std::make_shared<P2PNetwork>(8333, 8334);
+        
+        // Set callbacks for network events
+        g_p2pNetwork->setBlockReceivedCallback([](const Block& block, const std::string& peerId) {
+            spdlog::info("Received new block {} from peer {}", block.getIndex(), peerId);
+            
+            if (g_blockchain->addBlock(block)) {
+                spdlog::info("Added block {} to blockchain", block.getIndex());
+                g_blockchain->saveToFile("blockchain.json");
+            } else {
+                spdlog::warn("Rejected invalid block {} from peer {}", block.getIndex(), peerId);
+            }
+        });
+        
+        g_p2pNetwork->setTransactionReceivedCallback([](const Transaction& tx, const std::string& peerId) {
+            spdlog::info("Received transaction {} from peer {}", tx.getId(), peerId);
+            
+            if (g_blockchain->addTransaction(tx)) {
+                spdlog::info("Added transaction {} to mempool", tx.getId());
+            } else {
+                spdlog::warn("Rejected invalid transaction {} from peer {}", tx.getId(), peerId);
+            }
+        });
+        
+        g_p2pNetwork->setChainSyncRequestCallback([](uint32_t fromHeight) -> std::vector<Block> {
+            spdlog::info("Chain sync requested from height {}", fromHeight);
+            
+            std::vector<Block> blocks;
+            const auto& chain = g_blockchain->getChain();
+            
+            for (uint32_t i = fromHeight; i < chain.size(); ++i) {
+                blocks.push_back(chain[i]);
+            }
+            
+            return blocks;
+        });
+        
+        g_p2pNetwork->setPeerConnectedCallback([](const PeerInfo& peer) {
+            spdlog::info("New peer connected: {} ({}:{})", peer.peerId, peer.ipAddress, peer.port);
+        });
+        
+        g_p2pNetwork->setPeerDisconnectedCallback([](const std::string& peerId) {
+            spdlog::info("Peer disconnected: {}", peerId);
+        });
+        
+        // Set current chain height
+        g_p2pNetwork->setChainHeight(g_blockchain->getChainHeight());
+        
+        return true;
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to initialize P2P network: {}", e.what());
+        return false;
+    }
+}
+
+bool initializeApiServer() {
+    try {
+        g_apiServer = std::make_shared<RestApiServer>(8080);
+        g_apiServer->setBlockchain(g_blockchain);
+        g_apiServer->setP2PNetwork(g_p2pNetwork);
+        g_apiServer->enableCORS(true);
+        
+        return true;
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to initialize API server: {}", e.what());
+        return false;
+    }
+}
+
+void startServices() {
+    spdlog::info("Starting blockchain node services...");
+    
+    // Start P2P network
+    if (!g_p2pNetwork->start()) {
+        spdlog::error("Failed to start P2P network");
+        return;
+    }
+    spdlog::info("P2P network started successfully");
+    
+    // Start API server
+    if (!g_apiServer->start()) {
+        spdlog::error("Failed to start REST API server");
+        return;
+    }
+    spdlog::info("REST API server started successfully");
+    
+    // Discover peers
+    g_p2pNetwork->discoverPeers();
+    spdlog::info("Peer discovery initiated");
+}
+
+void runMainLoop() {
+    spdlog::info("Blockchain node is running. Press Ctrl+C to stop.");
+    
+    auto lastSave = std::chrono::steady_clock::now();
+    auto lastStats = std::chrono::steady_clock::now();
+    
+    while (g_running) {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        
+        auto now = std::chrono::steady_clock::now();
+        
+        // Save blockchain periodically
+        if (std::chrono::duration_cast<std::chrono::minutes>(now - lastSave).count() >= 5) {
+            g_blockchain->saveToFile("blockchain.json");
+            lastSave = now;
+            spdlog::debug("Blockchain saved to file");
+        }
+        
+        // Print statistics periodically
+        if (std::chrono::duration_cast<std::chrono::minutes>(now - lastStats).count() >= 1) {
+            spdlog::info("Node Status - Height: {}, Peers: {}, Mempool: {}", 
+                        g_blockchain->getChainHeight(),
+                        g_p2pNetwork->getPeerCount(),
+                        g_blockchain->getTransactionPool().getTransactionCount());
+            lastStats = now;
+        }
+        
+        // Update P2P network with current chain height
+        g_p2pNetwork->setChainHeight(g_blockchain->getChainHeight());
+    }
+}
+
+void printUsageInstructions() {
+    std::cout << "\n=== Blockchain Node Usage Instructions ===\n" << std::endl;
+    std::cout << "REST API Endpoints:" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/status           - Node status" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/blockchain       - Full blockchain" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/block/latest     - Latest block" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/mempool          - Transaction pool" << std::endl;
+    std::cout << "  POST http://localhost:8080/api/transactions     - Create transaction" << std::endl;
+    std::cout << "  POST http://localhost:8080/api/mine             - Mine new block" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/peers            - Connected peers" << std::endl;
+    std::cout << "\nExample transaction creation:" << std::endl;
+    std::cout << R"(  curl -X POST http://localhost:8080/api/transactions \)" << std::endl;
+    std::cout << R"(    -H "Content-Type: application/json" \)" << std::endl;
+    std::cout << R"(    -d '{"from":"address1","to":"address2","amount":10}')" << std::endl;
+    std::cout << "\nExample mining:" << std::endl;
+    std::cout << R"(  curl -X POST http://localhost:8080/api/mine \)" << std::endl;
+    std::cout << R"(    -H "Content-Type: application/json" \)" << std::endl;
+    std::cout << R"(    -d '{"minerAddress":"your_address"}')" << std::endl;
+    std::cout << "\n==========================================\n" << std::endl;
+}
+
+int main(int argc, char* argv[]) {
+    try {
+        // Setup logging first
+        setupLogging();
+        
+        // Print startup banner
+        printStartupBanner();
+        
+        // Setup signal handlers for clean shutdown
+        setupSignalHandlers();
+        
+        // Print node configuration
+        printNodeInfo();
+        
+        // Initialize components
+        spdlog::info("Initializing blockchain node components...");
+        
+        if (!initializeBlockchain()) {
+            spdlog::error("Failed to initialize blockchain");
+            return 1;
+        }
+        
+        if (!initializeP2PNetwork()) {
+            spdlog::error("Failed to initialize P2P network");
+            return 1;
+        }
+        
+        if (!initializeApiServer()) {
+            spdlog::error("Failed to initialize API server");
+            return 1;
+        }
+        
+        // Start all services
+        startServices();
+        
+        // Print usage instructions
+        printUsageInstructions();
+        
+        // Run main event loop
+        runMainLoop();
+        
+    } catch (const std::exception& e) {
+        spdlog::error("Fatal error: {}", e.what());
+        return 1;
+    } catch (...) {
+        spdlog::error("Unknown fatal error occurred");
+        return 1;
+    }
+    
+    return 0;
+}
