@@ -1,0 +1,31 @@
+{
+  "original_name": "1748453529_54477955_index.html",
+  "stored_name": "1748453529_1748453529_54477955_index.html",
+  "stored_path": "blockchain_databases/databases/trial_db/files/1748453529_1748453529_54477955_index.html",
+  "uploaded_by": "admin",
+  "uploaded_at": 1748453529.9164512,
+  "size": 2434,
+  "hash": "2781af996e7127fc8e6c79b27975fe202b8e85d459f432b682292add0e69b0b6",
+  "metadata": {
+    "upload_id": "544779553366144329009a9ee6343eaf4a6ee758bac59c23036f53202b68388f",
+    "original_name": "index.html",
+    "stored_name": "1748453529_54477955_index.html",
+    "stored_path": "secure_uploads/approved/1748453529_54477955_index.html",
+    "uploaded_by": "admin",
+    "uploaded_at": 1748453529.9152753,
+    "status": "approved",
+    "database": "trial_db",
+    "scan_result": {
+      "safe": true,
+      "threats": [],
+      "file_type": "text/html",
+      "size": 2434,
+      "hash": "2781af996e7127fc8e6c79b27975fe202b8e85d459f432b682292add0e69b0b6"
+    },
+    "metadata": {
+      "gui_upload": true,
+      "upload_session": 1748453529.9141514
+    },
+    "blockchain_verified": false
+  }
+}

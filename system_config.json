@@ -1,0 +1,23 @@
+{
+  "cpp_node": {
+    "executable": "./build/bin/blockchain_node",
+    "api_url": "http://localhost:8080",
+    "tcp_port": 8333,
+    "udp_port": 8334
+  },
+  "storage": {
+    "database_root": "blockchain_databases",
+    "security_root": "security_storage",
+    "upload_root": "secure_uploads"
+  },
+  "security": {
+    "session_timeout": 3600,
+    "max_login_attempts": 5,
+    "enable_file_scanning": true
+  },
+  "features": {
+    "enable_gui": true,
+    "enable_web_dashboard": false,
+    "enable_p2p": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "data": {
+    "chain": [
+      {
+        "hash": "34a1fc3f549a2f9827729c16c0685cb9a434ff0f75256ad5d18dfaa344fa92fb",
+        "index": 0,
+        "merkleRoot": "d2c483211db41c6da1eb06bb87c7afc4485cd4bd8dc4a1737331b54472eb0f8d",
+        "nonce": 0,
+        "previousHash": "0",
+        "timestamp": 1748428537,
+        "transactions": [
+          {
+            "id": "genesis",
+            "inputs": [],
+            "outputs": [],
+            "signature": "",
+            "timestamp": 94081285619424
+          }
+        ]
+      }
+    ],
+    "length": 1
+  },
+  "success": true,
+  "timestamp": 1748453232
+}

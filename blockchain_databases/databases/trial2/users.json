@@ -1,0 +1,13 @@
+{
+  "users": {
+    "admin": {
+      "role": "owner",
+      "added_at": 1748439747.3975906,
+      "permissions": [
+        "read",
+        "write",
+        "admin"
+      ]
+    }
+  }
+}

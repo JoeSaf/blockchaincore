@@ -1,0 +1,129 @@
+[
+  {
+    "index": 0,
+    "timestamp": 1748437637.0856464,
+    "data": {
+      "action": "genesis",
+      "message": "Security Genesis Block"
+    },
+    "previous_hash": "0",
+    "hash": "ec10d771ddd881469b7b5cbef0ea6759a4a999adaad6e162d113db4284e3f02a"
+  },
+  {
+    "index": 1,
+    "timestamp": 1748439428.7598994,
+    "data": {
+      "action": "register_user",
+      "username": "admin",
+      "role": "admin",
+      "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxMcw3vUT9QDygPuRpF1I\n4ApKtXIXmE+mtn4PacT4x5Q9G8TLhAofig5mj9ObKxHCAC9367ZKeC6RHSzrld4W\nou8aULGJU4714D/gTH9zy9L+M9QnibzfcEMKW5lvC/SC1drqUwFZaX32g96GCblI\nApfmVJ7I1Rwn/9WYRN4LHPT2e3su+/8ExNJ4ECEwWzwrvJbz857CcMHUtDas6lmP\nz3QoChMZhKRvP4tyXR9cpL5D5JPtRH2JRf5mkygcZBwUZCud1FEoCw0uTpCof8oY\nbPis2eIs7YFNaohysJIZMUxq/HUCo7noL8/gtO+r8wxq03ZW+4B2yki8h8dFQL7e\ntQIDAQAB\n-----END PUBLIC KEY-----\n",
+      "private_key_pem": "-----BEGIN ENCRYPTED PRIVATE KEY-----\nMIIFNTBfBgkqhkiG9w0BBQ0wUjAxBgkqhkiG9w0BBQwwJAQQqgH5wdO2da9Xju1F\ntXPvUQICCAAwDAYIKoZIhvcNAgkFADAdBglghkgBZQMEASoEENqme3L43X+fboNo\n9K/b4f4EggTQeSA8W7T/VhRE2sU9kSaP3F3RqgNVfreevYLYzlSyU/D/V9fcj/2Y\nla3jPcpN2ua/ZHtGOXEyvViprSzoPqgBavtAISZgTdzYblQ+dyynN0Rzdh7TyUvq\n/Gntt4S6TPxS55O66mnqy6K4BJCN+RsSWTa42rzZ5h27x1QeKBMa0o7EKdk2N5PG\nsqXCPB9pG1gfFQhGkUSnhRE4aeW5UdcJl4XXhYqofjX6+q8YauczKg7iaygYSa3G\nuY+FslykQZ9zAwdkj8SgwwagGQVdKZn+dbR3lFKp5Rj8eTthZXrakCMVjFMbmFQh\n262eEA4f9QNEIcLvk41HrClyBOGo+BQALU241c1iDtZWzU1H6JX/tIpFPewKxs4z\nkYCupowvzHzGKlvlXMhyq7KuCNHK6rgWfVn0vbDKHaAiL6Jy42U+teJBd60asoF2\nQvDGBsN+bCKS1A5HAlsr5l0LnCCIGrjOpDTRWO3fbsdzbQw+SlApajl/LtnISaqO\nalH1Pb6epTKRX+vTE+PhxLTQsamUOTLOz4EJ73ol3zKC0NGSbHNRkzA7QZzBY8E4\nKLjDo4k8phfgo3DuDjxdBxHRpt19UzPoyhKPatFiALUZaVEZ6WwR7wIqvDL2Or6V\nYW2fcfW6Uy8CkcqweRFRtOaa7s0k8LXrKlZEUkHPDRLcl3y/XEJW+BhlZZc0RPOV\nw/jj3TN2ee77VSqNdCvdQjpAxWySJtv9lPXXuHSj0nN0KGunUtOgapzvuMpTcIGO\nb1iC/Yz1khWKL9OcZXNFG7bBn5T+LnJ+Wo2pS8nudYZKIcwyvL48O75j85VVfgEW\ncMb3RGNIbeX7wz8NkTtzpxxhD5j53p0SV1cQgi2+1ZoFdAS7n2FK/P4+QCuQBwMS\nmK/4v96cD9pfBcnlTDLpBc4aOFTCh1iEHtHyM33IQndgNHgoHudqOMxExyamKnhe\nqn+ME9gUxzRsViERQooCkbsJIiKDBjdumKZfZMZIDuQ4DSc/Wrh7zrfTuN+rMayM\nl3d8V5Joq9caxfhPKOdNeae59sMo76At3GNf72cj8WmL22YgFYf2aCorGZCAUOin\ndypQKqET/P4yb716p4j95Y0BO8E3MJiyN65H84zHTpATfyJmCvoUAu/42Gjjjxno\npnWfBBax/ESFbL63gFc3u7QhQwBp/r0+b4EtnFwZZ6xrbikKX8DF4+BwIU2MGI4d\n6soDo3VKLjrdqHlgqKwL2JTdwPfVPgiviuBVIrEYjfLGCluJxIjRAvw9ttjuf6O6\nMOYoFyyHBQV9O9V5wwe7Jf1IV7hYGKMv7+X48p6KqW8l7EAmN1qAcwoGomEZDP+8\n3jRJTCB9rdf+hBPbm57ixgZuqe5wQdfLg5uGnA02xTu81tEDpZf/6NeDjG79g4YE\nP7VkpX79NsYERImMWI/WO95z60ME+72NseY708rTcREZ2sX5AXvvZR38J55W3G3D\n2fDEjY3uIak4O3gsstClgq9zsGVK2FriskVrXN1U3FcwkDWujy6K3vGVOkOLmTO4\nrhS436YkGPF8ByfYOFe/jzkrhYO49zsxkLf2YGQ1O10213PzLHr3l4nArNv5uli/\nUPkO34jkPm3rQ5ESCBJGdMPVKJSRlJwNO9pY5jVb9j945VWJraljuts=\n-----END ENCRYPTED PRIVATE KEY-----\n",
+      "timestamp": 1748439428.7598948,
+      "security_level": "maximum"
+    },
+    "previous_hash": "ec10d771ddd881469b7b5cbef0ea6759a4a999adaad6e162d113db4284e3f02a",
+    "hash": "05439b5c79cb90d9b8fed423f407d15cdc125261e9f61543fa05e5280f034eec"
+  },
+  {
+    "index": 2,
+    "timestamp": 1748439494.389444,
+    "data": {
+      "action": "authenticate",
+      "username": "admin",
+      "session_id": "2c6ea7238f02920c27f84683611ea0f7dd2729f9df3f715aec9596706c81d3c8",
+      "timestamp": 1748439494.3894405,
+      "ip_address": "localhost"
+    },
+    "previous_hash": "05439b5c79cb90d9b8fed423f407d15cdc125261e9f61543fa05e5280f034eec",
+    "hash": "6e07ffd09d78c98a50793658f96601a718da44dee6c54c9cf220272341124f3b"
+  },
+  {
+    "index": 3,
+    "timestamp": 1748439494.391201,
+    "data": {
+      "action": "successful_login",
+      "username": "admin",
+      "timestamp": 1748439494.3912003,
+      "session_id": "ca1a2cc097a9184a80112157e7633634c5669eb84958d9548a7a06968b258e5a"
+    },
+    "previous_hash": "6e07ffd09d78c98a50793658f96601a718da44dee6c54c9cf220272341124f3b",
+    "hash": "a602a4904f277c11ea08911ab33d5be787bb8bd65c57cd76fd163812d5de986c"
+  },
+  {
+    "index": 4,
+    "timestamp": 1748439808.7784786,
+    "data": {
+      "action": "logout",
+      "username": "admin",
+      "session_id": "ca1a2cc097a9184a80112157e7633634c5669eb84958d9548a7a06968b258e5a",
+      "timestamp": 1748439808.778472
+    },
+    "previous_hash": "a602a4904f277c11ea08911ab33d5be787bb8bd65c57cd76fd163812d5de986c",
+    "hash": "c316b9b988e939a29bc85a2d0aa5298cc7dd99e87507278dfb6cb1b7ed09dabf"
+  },
+  {
+    "index": 5,
+    "timestamp": 1748453245.900006,
+    "data": {
+      "action": "authenticate",
+      "username": "admin",
+      "session_id": "0be20998937570b940019a3597d55f847ebc63cf23784f6cd1b5b0587595908b",
+      "timestamp": 1748453245.9000034,
+      "ip_address": "localhost"
+    },
+    "previous_hash": "c316b9b988e939a29bc85a2d0aa5298cc7dd99e87507278dfb6cb1b7ed09dabf",
+    "hash": "212cf26e04672c1c3342e327cbdb36188d66624dd7b8bbfeca26fa352b9bd3f8"
+  },
+  {
+    "index": 6,
+    "timestamp": 1748453245.9020846,
+    "data": {
+      "action": "successful_login",
+      "username": "admin",
+      "timestamp": 1748453245.9020834,
+      "session_id": "026f6ffc7a1c287f46307ab973e243ad7f679940edb8c8e1ee293a5e1b7ca87f"
+    },
+    "previous_hash": "212cf26e04672c1c3342e327cbdb36188d66624dd7b8bbfeca26fa352b9bd3f8",
+    "hash": "3d5052a8d4345e3f18728ced2c6deacdb8a763ef6a57edf7b3b9219256856839"
+  },
+  {
+    "index": 7,
+    "timestamp": 1748453472.3515403,
+    "data": {
+      "action": "block_mined",
+      "miner": "miner_admin_1748453470",
+      "block_index": 0,
+      "reward": null,
+      "timestamp": 1748453472.3515372
+    },
+    "previous_hash": "3d5052a8d4345e3f18728ced2c6deacdb8a763ef6a57edf7b3b9219256856839",
+    "hash": "2e729d52eb1459989773e30470d2d99a232001ee8b1dbac1e4077cdfb1fb4acc"
+  },
+  {
+    "index": 8,
+    "timestamp": 1748453529.9192371,
+    "data": {
+      "action": "file_upload",
+      "upload_id": "544779553366144329009a9ee6343eaf4a6ee758bac59c23036f53202b68388f",
+      "filename": "index.html",
+      "username": "admin",
+      "status": "approved",
+      "threats": [],
+      "timestamp": 1748453529.9192343
+    },
+    "previous_hash": "2e729d52eb1459989773e30470d2d99a232001ee8b1dbac1e4077cdfb1fb4acc",
+    "hash": "dcab1d665092cd989cbbfbc4ea768d25339d5af0b6fe1be5bc31478b7d1e4e4f"
+  },
+  {
+    "index": 9,
+    "timestamp": 1748454532.4617553,
+    "data": {
+      "action": "logout",
+      "username": "admin",
+      "session_id": "026f6ffc7a1c287f46307ab973e243ad7f679940edb8c8e1ee293a5e1b7ca87f",
+      "timestamp": 1748454532.461749
+    },
+    "previous_hash": "dcab1d665092cd989cbbfbc4ea768d25339d5af0b6fe1be5bc31478b7d1e4e4f",
+    "hash": "d03a14dcb16151fd441c2512e7b67b8c0d3abe30556e627ea7f622e997359fe5"
+  }
+]
