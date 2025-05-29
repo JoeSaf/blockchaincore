@@ -1,0 +1,27 @@
+{
+  "total_databases": 2,
+  "security_score": 100,
+  "critical_issues": [],
+  "warnings": [
+    "trial_db: High admin-to-user ratio (100.0%)",
+    "trial_db: No backup directory found",
+    "trial2: Single point of failure - only one admin",
+    "trial2: High admin-to-user ratio (100.0%)",
+    "trial2: No backup directory found"
+  ],
+  "recommendations": [
+    "trial_db: No access restrictions configured",
+    "trial_db: No activity logging configured",
+    "trial_db: Verify data encryption status",
+    "trial2: No access restrictions configured",
+    "trial2: No activity logging configured",
+    "trial2: Verify data encryption status"
+  ],
+  "compliant_databases": [
+    "trial_db",
+    "trial2"
+  ],
+  "non_compliant_databases": [],
+  "audit_timestamp": 1748524921.517109,
+  "audited_by": "admin"
+}

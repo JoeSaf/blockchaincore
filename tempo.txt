@@ -48,6 +48,11 @@ Functions without attribute (i.e., body) implementations:
 
     db_manager
 
+    Database_access_control/manage_time_based_access
+                            /manage_ip_based_access
+
+    database_security_monitoring                        
+
 🔐 Security Management
 
     user_management_menu
