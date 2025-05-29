@@ -1,0 +1,1143 @@
+def manage_database_users(self):
+    """Manage users across all databases"""
+    while True:
+        print("\n👥 Database User Management")
+        print("=" * 35)
+        print("1. 📋 View All Database Users")
+        print("2. ➕ Add User to Database")
+        print("3. ❌ Remove User from Database")
+        print("4. 🔧 Modify User Permissions")
+        print("5. 👤 View User Database Access")
+        print("6. 📊 User Access Statistics")
+        print("7. 🔒 Lock/Unlock Database Access")
+        print("8. 📈 User Activity Report")
+        print("9. 🔙 Back to Database Menu")
+        
+        choice = input("\nEnter your choice (1-9): ").strip()
+        
+        if choice == "1":
+            self.view_all_database_users()
+        elif choice == "2":
+            self.add_user_to_database_wizard()
+        elif choice == "3":
+            self.remove_user_from_database()
+        elif choice == "4":
+            self.modify_user_permissions()
+        elif choice == "5":
+            self.view_user_database_access()
+        elif choice == "6":
+            self.show_user_access_statistics()
+        elif choice == "7":
+            self.lock_unlock_database_access()
+        elif choice == "8":
+            self.show_user_activity_report()
+        elif choice == "9":
+            break
+        else:
+            print("❌ Invalid choice.")
+
+def view_all_database_users(self):
+    """View all users across all databases"""
+    try:
+        databases = self.db_manager.list_databases(
+            self.current_user["username"], 
+            self.current_user["role"]
+        )
+        
+        if not databases:
+            print("\n📁 No databases available.")
+            input("Press Enter to continue...")
+            return
+        
+        print(f"\n👥 Database Users Overview")
+        print("=" * 50)
+        
+        all_users = {}  # Track users across databases
+        
+        for db in databases:
+            try:
+                db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+                users_file = os.path.join(db_path, "users.json")
+                
+                if os.path.exists(users_file):
+                    with open(users_file, "r") as f:
+                        users_data = json.load(f)
+                    
+                    db_users = users_data.get("users", {})
+                    
+                    print(f"\n📁 {db['name']} ({len(db_users)} users):")
+                    print(f"   {'Username':<15} {'Role':<12} {'Permissions':<25} {'Added':<17}")
+                    print(f"   {'-'*69}")
+                    
+                    for username, user_info in db_users.items():
+                        role = user_info.get("role", "unknown")
+                        permissions = ", ".join(user_info.get("permissions", []))[:24]
+                        added_at = user_info.get("added_at", 0)
+                        added_time = datetime.fromtimestamp(added_at).strftime("%Y-%m-%d %H:%M") if added_at else "Unknown"
+                        
+                        print(f"   {username:<15} {role:<12} {permissions:<25} {added_time:<17}")
+                        
+                        # Track user across databases
+                        if username not in all_users:
+                            all_users[username] = []
+                        all_users[username].append({
+                            "database": db["name"],
+                            "role": role,
+                            "permissions": user_info.get("permissions", []),
+                            "added_at": added_at
+                        })
+                
+                else:
+                    print(f"\n📁 {db['name']}: No user data available")
+            
+            except Exception as e:
+                print(f"\n📁 {db['name']}: ❌ Error reading user data - {str(e)}")
+        
+        # Show user summary
+        if all_users:
+            print(f"\n📊 User Summary:")
+            print(f"   Total unique users: {len(all_users)}")
+            
+            # Show users with access to multiple databases
+            multi_db_users = {user: dbs for user, dbs in all_users.items() if len(dbs) > 1}
+            if multi_db_users:
+                print(f"   Users with multi-database access: {len(multi_db_users)}")
+                for user, dbs in multi_db_users.items():
+                    db_names = [db["database"] for db in dbs]
+                    print(f"      {user}: {', '.join(db_names)}")
+            
+            # Show role distribution
+            role_count = {}
+            for user_dbs in all_users.values():
+                for db_access in user_dbs:
+                    role = db_access["role"]
+                    role_count[role] = role_count.get(role, 0) + 1
+            
+            print(f"   Role distribution:")
+            for role, count in sorted(role_count.items()):
+                print(f"      {role}: {count}")
+        
+    except Exception as e:
+        print(f"❌ Error viewing database users: {str(e)}")
+    
+    input("\nPress Enter to continue...")
+
+def add_user_to_database_wizard(self):
+    """Wizard to add a user to a database"""
+    if self.current_user["role"] != "admin":
+        print("❌ Only administrators can add users to databases.")
+        input("Press Enter to continue...")
+        return
+    
+    try:
+        # Select database
+        databases = self.db_manager.list_databases()
+        
+        if not databases:
+            print("❌ No databases available.")
+            input("Press Enter to continue...")
+            return
+        
+        print(f"\n➕ Add User to Database")
+        print("=" * 30)
+        
+        # Show available databases
+        print("Available databases:")
+        for i, db in enumerate(databases, 1):
+            print(f"  {i}. {db['name']} (Owner: {db['owner']})")
+        
+        # Select database
+        while True:
+            try:
+                db_choice = input(f"Select database (1-{len(databases)}): ").strip()
+                db_index = int(db_choice) - 1
+                if 0 <= db_index < len(databases):
+                    selected_db = databases[db_index]
+                    break
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(databases)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        print(f"✅ Selected database: {selected_db['name']}")
+        
+        # Get username
+        username = input("Username to add: ").strip()
+        if not username:
+            print("❌ Username cannot be empty.")
+            input("Press Enter to continue...")
+            return
+        
+        # Check if user already has access
+        if self.db_manager.check_user_database_access(selected_db["name"], username):
+            print(f"❌ User '{username}' already has access to database '{selected_db['name']}'")
+            input("Press Enter to continue...")
+            return
+        
+        # Select role
+        print(f"\nAvailable roles:")
+        roles = ["owner", "admin", "user", "readonly"]
+        role_descriptions = {
+            "owner": "Full control including deletion",
+            "admin": "Administrative access (read, write, admin)",
+            "user": "Standard user access (read, write)",
+            "readonly": "Read-only access"
+        }
+        
+        for i, role in enumerate(roles, 1):
+            print(f"  {i}. {role} - {role_descriptions[role]}")
+        
+        while True:
+            try:
+                role_choice = input(f"Select role (1-{len(roles)}): ").strip()
+                role_index = int(role_choice) - 1
+                if 0 <= role_index < len(roles):
+                    selected_role = roles[role_index]
+                    break
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(roles)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        # Confirm addition
+        print(f"\n📋 User Addition Summary:")
+        print(f"   Database: {selected_db['name']}")
+        print(f"   Username: {username}")
+        print(f"   Role: {selected_role}")
+        print(f"   Permissions: {', '.join(self.db_manager.get_role_permissions(selected_role))}")
+        
+        confirm = input("\nAdd this user? (y/n): ").lower()
+        if confirm == 'y':
+            success = self.db_manager.add_user_to_database(
+                selected_db["name"], 
+                username, 
+                selected_role, 
+                self.current_user["username"]
+            )
+            
+            if success:
+                print(f"✅ User '{username}' added to database '{selected_db['name']}' with role '{selected_role}'")
+                
+                # Log the action
+                self.security_system.add_security_block({
+                    "action": "user_added_to_database",
+                    "database": selected_db["name"],
+                    "username": username,
+                    "role": selected_role,
+                    "admin": self.current_user["username"],
+                    "timestamp": time.time()
+                })
+            else:
+                print(f"❌ Failed to add user '{username}' to database '{selected_db['name']}'")
+        else:
+            print("❌ User addition cancelled.")
+    
+    except Exception as e:
+        print(f"❌ Error adding user to database: {str(e)}")
+    
+    input("\nPress Enter to continue...")
+
+def remove_user_from_database(self):
+    """Remove a user from a database"""
+    if self.current_user["role"] != "admin":
+        print("❌ Only administrators can remove users from databases.")
+        input("Press Enter to continue...")
+        return
+    
+    try:
+        print(f"\n❌ Remove User from Database")
+        print("=" * 35)
+        
+        # Get all databases with users
+        databases = self.db_manager.list_databases()
+        db_users = {}
+        
+        for db in databases:
+            try:
+                db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+                users_file = os.path.join(db_path, "users.json")
+                
+                if os.path.exists(users_file):
+                    with open(users_file, "r") as f:
+                        users_data = json.load(f)
+                    
+                    users = users_data.get("users", {})
+                    if users:
+                        db_users[db["name"]] = users
+            
+            except Exception:
+                continue
+        
+        if not db_users:
+            print("❌ No databases with users found.")
+            input("Press Enter to continue...")
+            return
+        
+        # Show databases and users
+        print("Databases with users:")
+        db_list = list(db_users.keys())
+        
+        for i, db_name in enumerate(db_list, 1):
+            users = db_users[db_name]
+            user_list = list(users.keys())
+            print(f"  {i}. {db_name} ({len(user_list)} users): {', '.join(user_list)}")
+        
+        # Select database
+        while True:
+            try:
+                db_choice = input(f"Select database (1-{len(db_list)}): ").strip()
+                db_index = int(db_choice) - 1
+                if 0 <= db_index < len(db_list):
+                    selected_db_name = db_list[db_index]
+                    break
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(db_list)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        # Show users in selected database
+        users = db_users[selected_db_name]
+        user_list = list(users.keys())
+        
+        print(f"\nUsers in database '{selected_db_name}':")
+        for i, username in enumerate(user_list, 1):
+            user_info = users[username]
+            role = user_info.get("role", "unknown")
+            print(f"  {i}. {username} ({role})")
+        
+        # Select user to remove
+        while True:
+            try:
+                user_choice = input(f"Select user to remove (1-{len(user_list)}): ").strip()
+                user_index = int(user_choice) - 1
+                if 0 <= user_index < len(user_list):
+                    selected_username = user_list[user_index]
+                    break
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(user_list)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        # Check if trying to remove owner
+        user_info = users[selected_username]
+        if user_info.get("role") == "owner":
+            print(f"❌ Cannot remove database owner '{selected_username}'")
+            print("💡 Transfer ownership first or delete the database")
+            input("Press Enter to continue...")
+            return
+        
+        # Confirm removal
+        print(f"\n⚠️  Remove User Confirmation:")
+        print(f"   Database: {selected_db_name}")
+        print(f"   Username: {selected_username}")
+        print(f"   Role: {user_info.get('role', 'unknown')}")
+        
+        confirm = input("\nRemove this user? (y/n): ").lower()
+        if confirm == 'y':
+            try:
+                # Remove user from database
+                db_path = os.path.join(self.config["storage"]["database_root"], "databases", selected_db_name)
+                users_file = os.path.join(db_path, "users.json")
+                
+                with open(users_file, "r") as f:
+                    users_data = json.load(f)
+                
+                if selected_username in users_data["users"]:
+                    del users_data["users"][selected_username]
+                    
+                    with open(users_file, "w") as f:
+                        json.dump(users_data, f, indent=2)
+                    
+                    print(f"✅ User '{selected_username}' removed from database '{selected_db_name}'")
+                    
+                    # Log the action
+                    self.security_system.add_security_block({
+                        "action": "user_removed_from_database",
+                        "database": selected_db_name,
+                        "username": selected_username,
+                        "admin": self.current_user["username"],
+                        "timestamp": time.time()
+                    })
+                else:
+                    print(f"❌ User '{selected_username}' not found in database")
+            
+            except Exception as e:
+                print(f"❌ Error removing user: {str(e)}")
+        else:
+            print("❌ User removal cancelled.")
+    
+    except Exception as e:
+        print(f"❌ Error in remove user operation: {str(e)}")
+    
+    input("\nPress Enter to continue...")
+
+def modify_user_permissions(self):
+    """Modify user permissions for a database"""
+    if self.current_user["role"] != "admin":
+        print("❌ Only administrators can modify user permissions.")
+        input("Press Enter to continue...")
+        return
+    
+    try:
+        print(f"\n🔧 Modify User Permissions")
+        print("=" * 35)
+        
+        # Get databases with users (same logic as remove_user_from_database)
+        databases = self.db_manager.list_databases()
+        db_users = {}
+        
+        for db in databases:
+            try:
+                db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+                users_file = os.path.join(db_path, "users.json")
+                
+                if os.path.exists(users_file):
+                    with open(users_file, "r") as f:
+                        users_data = json.load(f)
+                    
+                    users = users_data.get("users", {})
+                    if users:
+                        db_users[db["name"]] = users
+            
+            except Exception:
+                continue
+        
+        if not db_users:
+            print("❌ No databases with users found.")
+            input("Press Enter to continue...")
+            return
+        
+        # Select database and user (similar to remove_user_from_database)
+        print("Databases with users:")
+        db_list = list(db_users.keys())
+        
+        for i, db_name in enumerate(db_list, 1):
+            users = db_users[db_name]
+            user_count = len(users)
+            print(f"  {i}. {db_name} ({user_count} users)")
+        
+        # Select database
+        while True:
+            try:
+                db_choice = input(f"Select database (1-{len(db_list)}): ").strip()
+                db_index = int(db_choice) - 1
+                if 0 <= db_index < len(db_list):
+                    selected_db_name = db_list[db_index]
+                    break
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(db_list)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        # Show users in selected database
+        users = db_users[selected_db_name]
+        user_list = list(users.keys())
+        
+        print(f"\nUsers in database '{selected_db_name}':")
+        for i, username in enumerate(user_list, 1):
+            user_info = users[username]
+            role = user_info.get("role", "unknown")
+            permissions = ", ".join(user_info.get("permissions", []))
+            print(f"  {i}. {username} ({role}) - {permissions}")
+        
+        # Select user
+        while True:
+            try:
+                user_choice = input(f"Select user to modify (1-{len(user_list)}): ").strip()
+                user_index = int(user_choice) - 1
+                if 0 <= user_index < len(user_list):
+                    selected_username = user_list[user_index]
+                    break
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(user_list)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        current_user_info = users[selected_username]
+        current_role = current_user_info.get("role", "user")
+        current_permissions = current_user_info.get("permissions", [])
+        
+        print(f"\nCurrent permissions for '{selected_username}':")
+        print(f"   Role: {current_role}")
+        print(f"   Permissions: {', '.join(current_permissions)}")
+        
+        # Select new role
+        print(f"\nAvailable roles:")
+        roles = ["owner", "admin", "user", "readonly"]
+        role_descriptions = {
+            "owner": "Full control including deletion",
+            "admin": "Administrative access (read, write, admin)",
+            "user": "Standard user access (read, write)",
+            "readonly": "Read-only access"
+        }
+        
+        for i, role in enumerate(roles, 1):
+            indicator = " (current)" if role == current_role else ""
+            print(f"  {i}. {role} - {role_descriptions[role]}{indicator}")
+        
+        while True:
+            try:
+                role_choice = input(f"Select new role (1-{len(roles)}, or Enter to keep current): ").strip()
+                if not role_choice:
+                    new_role = current_role
+                    break
+                
+                role_index = int(role_choice) - 1
+                if 0 <= role_index < len(roles):
+                    new_role = roles[role_index]
+                    break
+                else:
+                    print(f"❌ Please enter a number between 1 and {len(roles)}")
+            except ValueError:
+                print("❌ Please enter a valid number")
+        
+        new_permissions = self.db_manager.get_role_permissions(new_role)
+        
+        # Show changes
+        print(f"\n📋 Permission Change Summary:")
+        print(f"   Database: {selected_db_name}")
+        print(f"   Username: {selected_username}")
+        print(f"   Current Role: {current_role}")
+        print(f"   New Role: {new_role}")
+        print(f"   Current Permissions: {', '.join(current_permissions)}")
+        print(f"   New Permissions: {', '.join(new_permissions)}")
+        
+        if new_role == current_role:
+            print("   No changes will be made.")
+            input("Press Enter to continue...")
+            return
+        
+        # Confirm changes
+        confirm = input("\nApply these changes? (y/n): ").lower()
+        if confirm == 'y':
+            try:
+                # Update user permissions
+                db_path = os.path.join(self.config["storage"]["database_root"], "databases", selected_db_name)
+                users_file = os.path.join(db_path, "users.json")
+                
+                with open(users_file, "r") as f:
+                    users_data = json.load(f)
+                
+                if selected_username in users_data["users"]:
+                    users_data["users"][selected_username]["role"] = new_role
+                    users_data["users"][selected_username]["permissions"] = new_permissions
+                    users_data["users"][selected_username]["modified_at"] = time.time()
+                    users_data["users"][selected_username]["modified_by"] = self.current_user["username"]
+                    
+                    with open(users_file, "w") as f:
+                        json.dump(users_data, f, indent=2)
+                    
+                    print(f"✅ Permissions updated for user '{selected_username}'")
+                    
+                    # Log the action
+                    self.security_system.add_security_block({
+                        "action": "user_permissions_modified",
+                        "database": selected_db_name,
+                        "username": selected_username,
+                        "old_role": current_role,
+                        "new_role": new_role,
+                        "admin": self.current_user["username"],
+                        "timestamp": time.time()
+                    })
+                else:
+                    print(f"❌ User '{selected_username}' not found in database")
+            
+            except Exception as e:
+                print(f"❌ Error updating permissions: {str(e)}")
+        else:
+            print("❌ Permission changes cancelled.")
+    
+    except Exception as e:
+        print(f"❌ Error modifying user permissions: {str(e)}")
+    
+    input("\nPress Enter to continue...")
+
+def view_user_database_access(self):
+    """View database access for a specific user"""
+    try:
+        print(f"\n👤 User Database Access Report")
+        print("=" * 40)
+        
+        username = input("Enter username to check: ").strip()
+        if not username:
+            print("❌ Username cannot be empty.")
+            input("Press Enter to continue...")
+            return
+        
+        # Check across all databases
+        databases = self.db_manager.list_databases()
+        user_access = []
+        
+        for db in databases:
+            try:
+                if self.db_manager.check_user_database_access(db["name"], username):
+                    # Get detailed access info
+                    db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+                    users_file = os.path.join(db_path, "users.json")
+                    
+                    if os.path.exists(users_file):
+                        with open(users_file, "r") as f:
+                            users_data = json.load(f)
+                        
+                        if username in users_data.get("users", {}):
+                            user_info = users_data["users"][username]
+                            user_access.append({
+                                "database": db["name"],
+                                "owner": db["owner"],
+                                "role": user_info.get("role", "unknown"),
+                                "permissions": user_info.get("permissions", []),
+                                "added_at": user_info.get("added_at", 0),
+                                "added_by": user_info.get("added_by", "unknown")
+                            })
+            
+            except Exception:
+                continue
+        
+        if user_access:
+            print(f"✅ User '{username}' has access to {len(user_access)} database(s):")
+            print("-" * 80)
+            print(f"{'Database':<20} {'Role':<12} {'Permissions':<25} {'Added':<17}")
+            print("-" * 80)
+            
+            for access in user_access:
+                permissions_str = ", ".join(access["permissions"])[:24]
+                added_time = datetime.fromtimestamp(access["added_at"]).strftime("%Y-%m-%d %H:%M") if access["added_at"] else "Unknown"
+                
+                print(f"{access['database']:<20} {access['role']:<12} {permissions_str:<25} {added_time:<17}")
+            
+            print("-" * 80)
+            
+            # Show summary statistics
+            role_count = {}
+            for access in user_access:
+                role = access["role"]
+                role_count[role] = role_count.get(role, 0) + 1
+            
+            print(f"\nAccess Summary:")
+            print(f"   Total databases: {len(user_access)}")
+            print(f"   Role distribution:")
+            for role, count in sorted(role_count.items()):
+                print(f"      {role}: {count}")
+        
+        else:
+            print(f"❌ User '{username}' has no database access.")
+            
+            # Check if user exists in security system
+            if username in self.security_system.users:
+                print(f"💡 User '{username}' exists in the security system but has no database permissions.")
+                if self.current_user["role"] == "admin":
+                    add_access = input("Would you like to add database access for this user? (y/n): ").lower()
+                    if add_access == 'y':
+                        self.add_user_to_database_wizard()
+            else:
+                print(f"💡 User '{username}' does not exist in the security system.")
+    
+    except Exception as e:
+        print(f"❌ Error viewing user database access: {str(e)}")
+    
+    input("\nPress Enter to continue...")
+
+def show_user_access_statistics(self):
+    """Show statistics about user access across databases"""
+    try:
+        print(f"\n📊 User Access Statistics")
+        print("=" * 35)
+        
+        databases = self.db_manager.list_databases()
+        
+        if not databases:
+            print("❌ No databases available.")
+            input("Press Enter to continue...")
+            return
+        
+        # Collect all user access data
+        all_users = {}
+        total_access_grants = 0
+        role_distribution = {}
+        
+        for db in databases:
+            try:
+                db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+                users_file = os.path.join(db_path, "users.json")
+                
+                if os.path.exists(users_file):
+                    with open(users_file, "r") as f:
+                        users_data = json.load(f)
+                    
+                    db_users = users_data.get("users", {})
+                    
+                    for username, user_info in db_users.items():
+                        if username not in all_users:
+                            all_users[username] = {
+                                "databases": [],
+                                "roles": set(),
+                                "total_permissions": set()
+                            }
+                        
+                        role = user_info.get("role", "unknown")
+                        permissions = user_info.get("permissions", [])
+                        
+                        all_users[username]["databases"].append(db["name"])
+                        all_users[username]["roles"].add(role)
+                        all_users[username]["total_permissions"].update(permissions)
+                        
+                        # Count role distribution
+                        role_distribution[role] = role_distribution.get(role, 0) + 1
+                        total_access_grants += 1
+            
+            except Exception:
+                continue
+        
+        # Display statistics
+        print(f"📊 Overall Statistics:")
+        print(f"   Total databases: {len(databases)}")
+        print(f"   Total unique users: {len(all_users)}")
+        print(f"   Total access grants: {total_access_grants}")
+        print(f"   Average users per database: {total_access_grants / max(1, len(databases)):.1f}")
+        print(f"   Average database access per user: {total_access_grants / max(1, len(all_users)):.1f}")
+        
+        print(f"\n🎭 Role Distribution:")
+        for role, count in sorted(role_distribution.items()):
+            percentage = (count / max(1, total_access_grants)) * 100
+            print(f"   {role}: {count} ({percentage:.1f}%)")
+        
+        # Multi-database users
+        multi_db_users = {user: data for user, data in all_users.items() if len(data["databases"]) > 1}
+        if multi_db_users:
+            print(f"\n🔗 Multi-Database Users ({len(multi_db_users)}):")
+            for user, data in sorted(multi_db_users.items(), key=lambda x: len(x[1]["databases"]), reverse=True):
+                db_count = len(data["databases"])
+                roles = ", ".join(data["roles"])
+                print(f"   {user}: {db_count} databases ({roles})")
+        
+        # Power users (users with admin/owner roles)
+        power_users = {user: data for user, data in all_users.items() 
+                      if any(role in ["admin", "owner"] for role in data["roles"])}
+        if power_users:
+            print(f"\n👑 Power Users ({len(power_users)}):")
+            for user, data in power_users.items():
+                admin_roles = [role for role in data["roles"] if role in ["admin", "owner"]]
+                print(f"   {user}: {', '.join(admin_roles)} on {len(data['databases'])} database(s)")
+        
+        # Database access summary
+        print(f"\n📁 Database Access Summary:")
+        print(f"   {'Database':<20} {'Users':<8} {'Owners':<8} {'Admins':<8}")
+        print(f"   {'-'*44}")
+        
+        for db in databases:
+            try:
+                db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+                users_file = os.path.join(db_path, "users.json")
+                
+                if os.path.exists(users_file):
+                    with open(users_file, "r") as f:
+                        users_data = json.load(f)
+                    
+                    db_users = users_data.get("users", {})
+                    total_users = len(db_users)
+                    owners = len([u for u in db_users.values() if u.get("role") == "owner"])
+                    admins = len([u for u in db_users.values() if u.get("role") == "admin"])
+                    print(f"   {db['name']:<20} {total_users:<8} {owners:<8} {admins:<8}")
+               else:
+                   print(f"   {db['name']:<20} {'0':<8} {'0':<8} {'0':<8}")
+           
+           except Exception:
+               print(f"   {db['name']:<20} {'Error':<8} {'Error':<8} {'Error':<8}")
+       
+       print(f"   {'-'*44}")
+       
+       # Permission analysis
+       all_permissions = set()
+       for user_data in all_users.values():
+           all_permissions.update(user_data["total_permissions"])
+       
+       if all_permissions:
+           print(f"\n🔐 Permission Analysis:")
+           permission_count = {}
+           for user_data in all_users.values():
+               for perm in user_data["total_permissions"]:
+                   permission_count[perm] = permission_count.get(perm, 0) + 1
+           
+           print(f"   Most common permissions:")
+           for perm, count in sorted(permission_count.items(), key=lambda x: x[1], reverse=True):
+               percentage = (count / max(1, len(all_users))) * 100
+               print(f"      {perm}: {count} users ({percentage:.1f}%)")
+       
+       # Security insights
+       print(f"\n🛡️ Security Insights:")
+       
+       # Users with excessive permissions
+       excessive_users = [user for user, data in all_users.items() 
+                         if len(data["databases"]) > 3 or "owner" in data["roles"]]
+       if excessive_users:
+           print(f"   ⚠️  Users with extensive access: {len(excessive_users)}")
+           print(f"      Review: {', '.join(excessive_users[:5])}")
+           if len(excessive_users) > 5:
+               print(f"      ... and {len(excessive_users) - 5} more")
+       
+       # Orphaned databases (no active admins)
+       orphaned_dbs = []
+       for db in databases:
+           try:
+               db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+               users_file = os.path.join(db_path, "users.json")
+               
+               if os.path.exists(users_file):
+                   with open(users_file, "r") as f:
+                       users_data = json.load(f)
+                   
+                   db_users = users_data.get("users", {})
+                   has_admin = any(u.get("role") in ["owner", "admin"] for u in db_users.values())
+                   
+                   if not has_admin:
+                       orphaned_dbs.append(db["name"])
+           
+           except Exception:
+               continue
+       
+       if orphaned_dbs:
+           print(f"   🚨 Databases without admins: {len(orphaned_dbs)}")
+           print(f"      {', '.join(orphaned_dbs)}")
+       else:
+           print(f"   ✅ All databases have administrative oversight")
+       
+       # Recommendations
+       print(f"\n💡 Recommendations:")
+       if len(multi_db_users) > len(all_users) * 0.3:
+           print("   • Consider role consolidation for users with multiple database access")
+       
+       if total_access_grants > len(databases) * 5:
+           print("   • Review access grants - high user-to-database ratio detected")
+       
+       if role_distribution.get("readonly", 0) < total_access_grants * 0.2:
+           print("   • Consider more readonly access for better security")
+       
+       if not multi_db_users:
+           print("   • Good: Users have focused database access")
+       
+       print("   • Regular access reviews recommended")
+       print("   • Monitor for inactive users")
+   
+   except Exception as e:
+       print(f"❌ Error generating user access statistics: {str(e)}")
+   
+   input("\nPress Enter to continue...")
+
+def lock_unlock_database_access(self):
+   """Lock or unlock database access for users"""
+   if self.current_user["role"] != "admin":
+       print("❌ Only administrators can lock/unlock database access.")
+       input("Press Enter to continue...")
+       return
+   
+   try:
+       print(f"\n🔒 Lock/Unlock Database Access")
+       print("=" * 40)
+       
+       print("1. Lock user database access")
+       print("2. Unlock user database access")
+       print("3. View locked users")
+       
+       choice = input("Select option (1-3): ").strip()
+       
+       if choice == "1":
+           self.lock_user_database_access()
+       elif choice == "2":
+           self.unlock_user_database_access()
+       elif choice == "3":
+           self.view_locked_users()
+       else:
+           print("❌ Invalid choice.")
+   
+   except Exception as e:
+       print(f"❌ Error in lock/unlock operation: {str(e)}")
+   
+   input("\nPress Enter to continue...")
+
+def lock_user_database_access(self):
+   """Lock database access for a user"""
+   try:
+       username = input("Enter username to lock: ").strip()
+       if not username:
+           print("❌ Username cannot be empty.")
+           return
+       
+       reason = input("Reason for locking (optional): ").strip()
+       
+       # Find all databases where user has access
+       databases = self.db_manager.list_databases()
+       user_databases = []
+       
+       for db in databases:
+           if self.db_manager.check_user_database_access(db["name"], username):
+               user_databases.append(db["name"])
+       
+       if not user_databases:
+           print(f"❌ User '{username}' has no database access to lock.")
+           return
+       
+       print(f"\nUser '{username}' has access to {len(user_databases)} database(s):")
+       for db_name in user_databases:
+           print(f"   • {db_name}")
+       
+       confirm = input(f"\nLock access to all {len(user_databases)} database(s)? (y/n): ").lower()
+       if confirm == 'y':
+           locked_count = 0
+           
+           for db_name in user_databases:
+               try:
+                   db_path = os.path.join(self.config["storage"]["database_root"], "databases", db_name)
+                   users_file = os.path.join(db_path, "users.json")
+                   
+                   with open(users_file, "r") as f:
+                       users_data = json.load(f)
+                   
+                   if username in users_data["users"]:
+                       users_data["users"][username]["locked"] = True
+                       users_data["users"][username]["locked_at"] = time.time()
+                       users_data["users"][username]["locked_by"] = self.current_user["username"]
+                       if reason:
+                           users_data["users"][username]["lock_reason"] = reason
+                       
+                       with open(users_file, "w") as f:
+                           json.dump(users_data, f, indent=2)
+                       
+                       locked_count += 1
+               
+               except Exception as e:
+                   print(f"❌ Error locking access to {db_name}: {str(e)}")
+           
+           if locked_count > 0:
+               print(f"✅ Locked database access for '{username}' on {locked_count} database(s)")
+               
+               # Log the action
+               self.security_system.add_security_block({
+                   "action": "database_access_locked",
+                   "username": username,
+                   "databases": user_databases,
+                   "reason": reason,
+                   "admin": self.current_user["username"],
+                   "timestamp": time.time()
+               })
+           else:
+               print(f"❌ Failed to lock database access for '{username}'")
+       else:
+           print("❌ Lock operation cancelled.")
+   
+   except Exception as e:
+       print(f"❌ Error locking user access: {str(e)}")
+
+def unlock_user_database_access(self):
+   """Unlock database access for a user"""
+   try:
+       username = input("Enter username to unlock: ").strip()
+       if not username:
+           print("❌ Username cannot be empty.")
+           return
+       
+       # Find locked databases for user
+       databases = self.db_manager.list_databases()
+       locked_databases = []
+       
+       for db in databases:
+           try:
+               db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+               users_file = os.path.join(db_path, "users.json")
+               
+               if os.path.exists(users_file):
+                   with open(users_file, "r") as f:
+                       users_data = json.load(f)
+                   
+                   if username in users_data.get("users", {}) and users_data["users"][username].get("locked", False):
+                       locked_databases.append(db["name"])
+           
+           except Exception:
+               continue
+       
+       if not locked_databases:
+           print(f"❌ User '{username}' has no locked database access.")
+           return
+       
+       print(f"\nUser '{username}' has locked access to {len(locked_databases)} database(s):")
+       for db_name in locked_databases:
+           print(f"   • {db_name}")
+       
+       confirm = input(f"\nUnlock access to all {len(locked_databases)} database(s)? (y/n): ").lower()
+       if confirm == 'y':
+           unlocked_count = 0
+           
+           for db_name in locked_databases:
+               try:
+                   db_path = os.path.join(self.config["storage"]["database_root"], "databases", db_name)
+                   users_file = os.path.join(db_path, "users.json")
+                   
+                   with open(users_file, "r") as f:
+                       users_data = json.load(f)
+                   
+                   if username in users_data["users"]:
+                       users_data["users"][username]["locked"] = False
+                       users_data["users"][username]["unlocked_at"] = time.time()
+                       users_data["users"][username]["unlocked_by"] = self.current_user["username"]
+                       
+                       # Remove lock-related fields
+                       users_data["users"][username].pop("lock_reason", None)
+                       
+                       with open(users_file, "w") as f:
+                           json.dump(users_data, f, indent=2)
+                       
+                       unlocked_count += 1
+               
+               except Exception as e:
+                   print(f"❌ Error unlocking access to {db_name}: {str(e)}")
+           
+           if unlocked_count > 0:
+               print(f"✅ Unlocked database access for '{username}' on {unlocked_count} database(s)")
+               
+               # Log the action
+               self.security_system.add_security_block({
+                   "action": "database_access_unlocked",
+                   "username": username,
+                   "databases": locked_databases,
+                   "admin": self.current_user["username"],
+                   "timestamp": time.time()
+               })
+           else:
+               print(f"❌ Failed to unlock database access for '{username}'")
+       else:
+           print("❌ Unlock operation cancelled.")
+   
+   except Exception as e:
+       print(f"❌ Error unlocking user access: {str(e)}")
+
+def view_locked_users(self):
+   """View all locked users across databases"""
+   try:
+       print(f"\n🔒 Locked Users Report")
+       print("=" * 30)
+       
+       databases = self.db_manager.list_databases()
+       locked_users = {}
+       
+       for db in databases:
+           try:
+               db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+               users_file = os.path.join(db_path, "users.json")
+               
+               if os.path.exists(users_file):
+                   with open(users_file, "r") as f:
+                       users_data = json.load(f)
+                   
+                   for username, user_info in users_data.get("users", {}).items():
+                       if user_info.get("locked", False):
+                           if username not in locked_users:
+                               locked_users[username] = []
+                           
+                           locked_users[username].append({
+                               "database": db["name"],
+                               "locked_at": user_info.get("locked_at", 0),
+                               "locked_by": user_info.get("locked_by", "unknown"),
+                               "reason": user_info.get("lock_reason", "No reason provided")
+                           })
+           
+           except Exception:
+               continue
+       
+       if locked_users:
+           print(f"Found {len(locked_users)} locked user(s):\n")
+           
+           for username, locks in locked_users.items():
+               print(f"👤 {username} (locked on {len(locks)} database(s)):")
+               
+               for lock in locks:
+                   locked_time = datetime.fromtimestamp(lock["locked_at"]).strftime("%Y-%m-%d %H:%M") if lock["locked_at"] else "Unknown"
+                   print(f"   🔒 {lock['database']}")
+                   print(f"      Locked: {locked_time} by {lock['locked_by']}")
+                   print(f"      Reason: {lock['reason']}")
+               
+               print()  # Empty line between users
+       else:
+           print("✅ No locked users found.")
+   
+   except Exception as e:
+       print(f"❌ Error viewing locked users: {str(e)}")
+
+def show_user_activity_report(self):
+   """Show user activity report across databases"""
+   try:
+       print(f"\n📈 User Activity Report")
+       print("=" * 30)
+       
+       print("🔄 Generating activity report...")
+       print("(Note: This is a mock report - full implementation would track actual user activities)")
+       
+       # Mock activity data based on available users
+       databases = self.db_manager.list_databases()
+       all_users = set()
+       
+       for db in databases:
+           try:
+               db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
+               users_file = os.path.join(db_path, "users.json")
+               
+               if os.path.exists(users_file):
+                   with open(users_file, "r") as f:
+                       users_data = json.load(f)
+                   
+                   all_users.update(users_data.get("users", {}).keys())
+           
+           except Exception:
+               continue
+       
+       if all_users:
+           print(f"\n📊 Activity Summary (Last 30 Days):")
+           print(f"   {'Username':<15} {'Logins':<8} {'DB Access':<10} {'Files':<8} {'Last Active':<17}")
+           print(f"   {'-'*58}")
+           
+           for i, username in enumerate(sorted(all_users)):
+               # Mock data generation
+               logins = random.randint(1, 30) if username != "admin" else random.randint(10, 50)
+               db_accesses = random.randint(5, 100)
+               files_uploaded = random.randint(0, 20)
+               
+               # Mock last active time (within last 30 days)
+               days_ago = random.randint(0, 30)
+               last_active = time.time() - (days_ago * 24 * 3600)
+               last_active_str = datetime.fromtimestamp(last_active).strftime("%Y-%m-%d %H:%M")
+               
+               print(f"   {username:<15} {logins:<8} {db_accesses:<10} {files_uploaded:<8} {last_active_str:<17}")
+           
+           print(f"   {'-'*58}")
+           
+           # Activity insights
+           print(f"\n🔍 Activity Insights:")
+           print(f"   • Most active user: {max(all_users)} (mock)")
+           print(f"   • Average logins per user: {random.randint(10, 25)}")
+           print(f"   • Total database operations: {random.randint(500, 1500)}")
+           print(f"   • Peak activity hours: 9-11 AM, 2-4 PM (mock)")
+           
+           # Inactive users
+           inactive_threshold = 7  # days
+           print(f"\n⚠️  Users inactive for >{inactive_threshold} days:")
+           inactive_count = random.randint(0, max(1, len(all_users) // 3))
+           if inactive_count > 0:
+               inactive_users = random.sample(list(all_users), min(inactive_count, len(all_users)))
+               for user in inactive_users:
+                   days_inactive = random.randint(8, 30)
+                   print(f"   • {user}: {days_inactive} days inactive")
+           else:
+               print("   ✅ All users are active")
+           
+           # Security events
+           print(f"\n🛡️ Security Events (Last 30 Days):")
+           print(f"   • Failed login attempts: {random.randint(5, 25)}")
+           print(f"   • Password changes: {random.randint(2, 8)}")
+           print(f"   • Permission changes: {random.randint(1, 5)}")
+           print(f"   • Account lockouts: {random.randint(0, 3)}")
+       
+       else:
+           print("❌ No user data available for activity report.")
+   
+   except Exception as e:
+       print(f"❌ Error generating user activity report: {str(e)}")
+   
+   input("\nPress Enter to continue...")

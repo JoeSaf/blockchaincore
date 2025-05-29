@@ -30,5 +30,37 @@
     "errors_count": 8,
     "average_response_time": 0,
     "timestamp": 1748454532.4692214
+  },
+  {
+    "username": "unknown",
+    "session_duration": 247.61883163452148,
+    "operations_count": 6,
+    "errors_count": 3,
+    "average_response_time": 0,
+    "timestamp": 1748508631.283214
+  },
+  {
+    "username": "unknown",
+    "session_duration": 247.619131565094,
+    "operations_count": 6,
+    "errors_count": 3,
+    "average_response_time": 0,
+    "timestamp": 1748508631.283514
+  },
+  {
+    "username": "unknown",
+    "session_duration": 227.79381561279297,
+    "operations_count": 4,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748509808.8982913
+  },
+  {
+    "username": "unknown",
+    "session_duration": 227.79450869560242,
+    "operations_count": 4,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748509808.8989844
   }
 ]

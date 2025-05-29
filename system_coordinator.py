@@ -1198,7 +1198,203 @@ class BlockchainSystemCoordinator:
             print("❌ Invalid input, creating empty schema.")
         
         return schema
+    def show_database_details(self):
+        """Show detailed information for a selected database"""
+        try:
+            databases = self.db_manager.list_databases(
+                self.current_user["username"], 
+                self.current_user["role"]
+            )
+        
+            if not databases:
+                print("\n📁 No databases available.")
+                input("Press Enter to continue...")
+                return
+        
+        # Show database selection
+            print(f"\n📊 Database Details - Select Database")
+            print("=" * 45)
+            print(f"{'#':<3} {'Name':<20} {'Owner':<15} {'Created':<17}")
+            print("-" * 45)
+        
+            for i, db in enumerate(databases, 1):
+                created_at = datetime.fromtimestamp(db["created_at"]).strftime("%Y-%m-%d %H:%M")
+                print(f"{i:<3} {db['name']:<20} {db['owner']:<15} {created_at:<17}")
+        
+            print("-" * 45)
+        
+            # Get user selection
+            while True:
+                try:
+                    choice = input(f"\nSelect database (1-{len(databases)}) or 'q' to quit: ").strip().lower()
+                    if choice == 'q':
+                        return
+                
+                    db_index = int(choice) - 1
+                    if 0 <= db_index < len(databases):
+                        selected_db = databases[db_index]
+                        break
+                    else:
+                        print(f"❌ Please enter a number between 1 and {len(databases)}")
+                except ValueError:
+                    print("❌ Please enter a valid number or 'q' to quit")
+        
+        # Display detailed information
+            print(f"\n📊 Detailed Information: {selected_db['name']}")
+            print("=" * 60)
+        
+        # Basic Information
+            print("📋 Basic Information:")
+            print(f"   Name: {selected_db['name']}")
+            print(f"   Owner: {selected_db['owner']}")
+            print(f"   Created: {datetime.fromtimestamp(selected_db['created_at']).strftime('%Y-%m-%d %H:%M:%S')}")
+            print(f"   Path: {selected_db.get('path', 'Unknown')}")
+        
+        # Statistics
+            stats = self.db_manager.get_database_stats(selected_db["name"])
+            print(f"\n📊 Statistics:")
+            print(f"   Total Files: {stats.get('total_files', 0)}")
+            print(f"   Total Size: {self.format_size(stats.get('total_size', 0))}")
+            print(f"   Users: {stats.get('users', 0)}")
+            print(f"   Operations: {stats.get('operations', 0)}")
+        
+            if stats.get('created_at'):
+                created_time = datetime.fromtimestamp(stats['created_at']).strftime('%Y-%m-%d %H:%M:%S')
+                print(f"   Created: {created_time}")
+        
+            if stats.get('last_activity'):
+                last_activity = datetime.fromtimestamp(stats['last_activity']).strftime('%Y-%m-%d %H:%M:%S')
+                print(f"   Last Activity: {last_activity}")
+        
+            # Schema Information
+            print(f"\n📋 Schema Information:")
+            if 'schema' in selected_db and selected_db['schema']:
+                schema = selected_db['schema']
+            
+                if schema.get('description'):
+                    print(f"   Description: {schema['description']}")
+            
+                if 'tables' in schema and schema['tables']:
+                    print(f"   Tables ({len(schema['tables'])}):")
+                    for table_name, table_info in schema['tables'].items():
+                        print(f"      📋 {table_name}")
+                        if isinstance(table_info, dict) and 'fields' in table_info:
+                            field_count = len(table_info['fields'])
+                            print(f"         Fields: {field_count}")
+                            for field_name, field_type in table_info['fields'].items():
+                                print(f"           • {field_name}: {field_type}")
+                        else:
+                            print(f"         (No field information)")
+                else:
+                    print("   No tables defined")
+            else:
+                print("   No schema information available")
+        
+        # File Information
+            try:
+                files = self.db_manager.list_database_files(selected_db["name"], self.current_user["username"])
+                print(f"\n📄 Files ({len(files)}):")
+            
+                if files:
+                # Show summary
+                    total_size = sum(f.get('size', 0) for f in files)
+                    print(f"   Total Files: {len(files)}")
+                    print(f"   Total Size: {self.format_size(total_size)}")
+                
+                # Show recent files (last 10)
+                    recent_files = sorted(files, key=lambda x: x.get("uploaded_at", 0), reverse=True)[:10]
+                    print(f"   Recent Files (showing last {min(10, len(files))}):")
+                    print(f"   {'#':<3} {'Filename':<25} {'Size':<10} {'Uploaded':<17} {'By':<12}")
+                    print(f"   {'-'*67}")
+                
+                    for i, file_info in enumerate(recent_files, 1):
+                        filename = file_info.get('original_name', 'Unknown')
+                        if len(filename) > 24:
+                            filename = filename[:21] + "..."
+                    
+                        size_str = self.format_size(file_info.get('size', 0))
+                        uploaded_time = datetime.fromtimestamp(file_info.get('uploaded_at', 0)).strftime('%Y-%m-%d %H:%M')
+                        uploaded_by = file_info.get('uploaded_by', 'Unknown')
+                        if len(uploaded_by) > 11:
+                            uploaded_by = uploaded_by[:8] + "..."
+                    
+                        print(f"   {i:<3} {filename:<25} {size_str:<10} {uploaded_time:<17} {uploaded_by:<12}")
+                
+                    if len(files) > 10:
+                        print(f"   ... and {len(files) - 10} more files")
+                else:
+                    print("   No files uploaded yet")
+        
+            except Exception as e:
+                print(f"   ❌ Error retrieving file information: {str(e)}")
+        
+        # User Access Information
+            try:
+                print(f"\n👥 User Access:")
+            # This would require a method to get database users
+            # For now, show basic info
+                print(f"   Owner: {selected_db['owner']} (Full Access)")
+                if self.current_user["role"] == "admin":
+                    print("   Admin: Full administrative access")
+                print("   💡 Use 'Manage Database Users' for detailed user management")
+        
+            except Exception as e:
+                print(f"   ❌ Error retrieving user information: {str(e)}")
+        
+        # Integrity Check
+            print(f"\n🔍 Integrity Check:")
+            try:
+                integrity = self.db_manager.verify_database_integrity(selected_db["name"])
+                if integrity.get('valid', False):
+                    print("   ✅ Database integrity: Valid")
+                    print(f"   📁 Files checked: {integrity.get('checked_files', 0)}")
+                    if integrity.get('issues'):
+                        print(f"   ⚠️  Minor issues: {len(integrity['issues'])}")
+                else:
+                    print("   ❌ Database integrity: Issues found")
+                    print(f"   🔍 Files checked: {integrity.get('checked_files', 0)}")
+                    print(f"   ❌ Corrupted files: {integrity.get('corrupted_files', 0)}")
+                    print(f"   📁 Missing files: {integrity.get('missing_files', 0)}")
+                
+                    if integrity.get('issues'):
+                        print("   Issues:")
+                        for issue in integrity['issues'][:5]:  # Show first 5 issues
+                            print(f"      • {issue}")
+                        if len(integrity['issues']) > 5:
+                            print(f"      ... and {len(integrity['issues']) - 5} more issues")
+        
+            except Exception as e:
+                print(f"   ❌ Error checking integrity: {str(e)}")
+        
+        # Action options
+            print(f"\n🔧 Available Actions:")
+            print("1. Export database")
+            print("2. Verify integrity (detailed)")
+            print("3. View all files")
+            print("4. Manage users")
+            print("5. Back to database menu")
+        
+            action = input("Select action (1-5, or Enter to continue): ").strip()
+        
+            if action == "1":
+                self.export_single_database(selected_db)
+            elif action == "2":
+                self.verify_single_database_integrity(selected_db)
+            elif action == "3":
+                self.view_database_files_detailed(selected_db)
+            elif action == "4":
+                self.manage_single_database_users(selected_db)
+        # Option 5 or Enter will just continue to the end
+        
+        except Exception as e:
+            print(f"❌ Error showing database details: {str(e)}")
     
+    input("\nPress Enter to continue...")
+    
+    #manage db users
+        
+    
+    # file management
     def file_management_menu(self):
         """Comprehensive file management menu"""
         while True:
