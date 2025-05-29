@@ -62,5 +62,85 @@
     "errors_count": 1,
     "average_response_time": 0,
     "timestamp": 1748509808.8989844
+  },
+  {
+    "username": "admin",
+    "session_duration": 59.16023349761963,
+    "operations_count": 3,
+    "errors_count": 2,
+    "average_response_time": 0,
+    "timestamp": 1748520991.1007674
+  },
+  {
+    "username": "admin",
+    "session_duration": 60.317994594573975,
+    "operations_count": 3,
+    "errors_count": 2,
+    "average_response_time": 0,
+    "timestamp": 1748520992.258523
+  },
+  {
+    "username": "unknown",
+    "session_duration": 270.6160056591034,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748521380.3568022
+  },
+  {
+    "username": "unknown",
+    "session_duration": 270.61722898483276,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748521380.3580258
+  },
+  {
+    "username": "unknown",
+    "session_duration": 69.99012303352356,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748521487.9059906
+  },
+  {
+    "username": "unknown",
+    "session_duration": 69.9906837940216,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748521487.906527
+  },
+  {
+    "username": "admin",
+    "session_duration": 38.6806800365448,
+    "operations_count": 5,
+    "errors_count": 2,
+    "average_response_time": 0,
+    "timestamp": 1748521601.9100425
+  },
+  {
+    "username": "admin",
+    "session_duration": 38.96558594703674,
+    "operations_count": 5,
+    "errors_count": 2,
+    "average_response_time": 0,
+    "timestamp": 1748521602.1949482
+  },
+  {
+    "username": "unknown",
+    "session_duration": 460.25678300857544,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748523296.1153805
+  },
+  {
+    "username": "unknown",
+    "session_duration": 460.25722336769104,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748523296.115822
   }
 ]

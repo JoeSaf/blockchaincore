@@ -199,5 +199,180 @@
     },
     "previous_hash": "ab026e4be24ace5e9dc7306a46ddf3abd9f5c8805f06d661f03e8ef9466cbb31",
     "hash": "dee9f28be67f09ec6c8d575b95ac071e1459b53201bb38573a86f0d9c011eb59"
+  },
+  {
+    "index": 16,
+    "timestamp": 1748520945.1004076,
+    "data": {
+      "action": "authenticate",
+      "username": "admin",
+      "session_id": "f1f91f5a79337ce29107fa217d1f370aaa96ee633d28935a7e48472306f2f7b6",
+      "timestamp": 1748520945.1004047,
+      "ip_address": "localhost"
+    },
+    "previous_hash": "dee9f28be67f09ec6c8d575b95ac071e1459b53201bb38573a86f0d9c011eb59",
+    "hash": "e5621a9a972ea83d38d2acb8a0b551b5268856d33deea76ffd06a9b5a794da75"
+  },
+  {
+    "index": 17,
+    "timestamp": 1748520945.1027799,
+    "data": {
+      "action": "successful_login",
+      "username": "admin",
+      "timestamp": 1748520945.1027782,
+      "session_id": "8a012ca0f8bc6df5afed9649cc466ce6cd75a4fd9f1b6f93efd614ad0860e3aa"
+    },
+    "previous_hash": "e5621a9a972ea83d38d2acb8a0b551b5268856d33deea76ffd06a9b5a794da75",
+    "hash": "7d176d151e742f2ddcd44eaed7bccd46b4fd4a282fee9afb722dc86f0c621b74"
+  },
+  {
+    "index": 18,
+    "timestamp": 1748521119.1939466,
+    "data": {
+      "action": "authenticate",
+      "username": "admin",
+      "session_id": "ca8fdc3393c7d9099def77809f5eb4d6d33d9e61e2113c34f53e6dab31c28a6e",
+      "timestamp": 1748521119.1939437,
+      "ip_address": "localhost"
+    },
+    "previous_hash": "7d176d151e742f2ddcd44eaed7bccd46b4fd4a282fee9afb722dc86f0c621b74",
+    "hash": "f9f3ab5aa0802432fec4b427900681070b51391bcbb0a615f06ac7ebcbb3dac6"
+  },
+  {
+    "index": 19,
+    "timestamp": 1748521119.1962006,
+    "data": {
+      "action": "successful_login",
+      "username": "admin",
+      "timestamp": 1748521119.1961992,
+      "session_id": "d80e1454d5fdbc9a2d3159f98f1588c9df716268b56f13f650586f940eb7bebf"
+    },
+    "previous_hash": "f9f3ab5aa0802432fec4b427900681070b51391bcbb0a615f06ac7ebcbb3dac6",
+    "hash": "c47d34533214413b52dd4641de513f965716bbfc635e91377430792b2f1bb5b9"
+  },
+  {
+    "index": 20,
+    "timestamp": 1748521380.3495398,
+    "data": {
+      "action": "logout",
+      "username": "admin",
+      "session_id": "d80e1454d5fdbc9a2d3159f98f1588c9df716268b56f13f650586f940eb7bebf",
+      "timestamp": 1748521380.3495328
+    },
+    "previous_hash": "c47d34533214413b52dd4641de513f965716bbfc635e91377430792b2f1bb5b9",
+    "hash": "97224b1886a1474c8443894708c20dc825a737c1e7dba16f4f6bfa842597a933"
+  },
+  {
+    "index": 21,
+    "timestamp": 1748521426.772453,
+    "data": {
+      "action": "authenticate",
+      "username": "admin",
+      "session_id": "8c8c539a23dc3a53e55d011d5625c32b2924a2e6927f2a2bd7b7fcf8c096e78e",
+      "timestamp": 1748521426.77245,
+      "ip_address": "localhost"
+    },
+    "previous_hash": "97224b1886a1474c8443894708c20dc825a737c1e7dba16f4f6bfa842597a933",
+    "hash": "65b732326f6ff3c68c49d2127db47f5544e2e5f755e5eec5922eba9abc3b2808"
+  },
+  {
+    "index": 22,
+    "timestamp": 1748521426.7753954,
+    "data": {
+      "action": "successful_login",
+      "username": "admin",
+      "timestamp": 1748521426.7753937,
+      "session_id": "5b4ccad178415492b3108cfc8c49a63b59b9769f8e9ab9866f3dba129beb7431"
+    },
+    "previous_hash": "65b732326f6ff3c68c49d2127db47f5544e2e5f755e5eec5922eba9abc3b2808",
+    "hash": "2b721343be47a8a9b75a03c6b6a7d06c2aa920c1ddec12524e1ab574ea518179"
+  },
+  {
+    "index": 23,
+    "timestamp": 1748521487.9027655,
+    "data": {
+      "action": "logout",
+      "username": "admin",
+      "session_id": "5b4ccad178415492b3108cfc8c49a63b59b9769f8e9ab9866f3dba129beb7431",
+      "timestamp": 1748521487.902762
+    },
+    "previous_hash": "2b721343be47a8a9b75a03c6b6a7d06c2aa920c1ddec12524e1ab574ea518179",
+    "hash": "602b9a02ccddfe8b3fc791d05937f8c108700d18b80e6e381ab97c06ea133024"
+  },
+  {
+    "index": 24,
+    "timestamp": 1748521577.2802517,
+    "data": {
+      "action": "authenticate",
+      "username": "admin",
+      "session_id": "452485c9e1b00c8d03992579065d7889bf0b3e08a955eaa926398450bd457540",
+      "timestamp": 1748521577.280249,
+      "ip_address": "localhost"
+    },
+    "previous_hash": "602b9a02ccddfe8b3fc791d05937f8c108700d18b80e6e381ab97c06ea133024",
+    "hash": "563d36102d2fb45b6f13af17ebedee87c8deedf3aca7d53f8031be8d92f5b9ec"
+  },
+  {
+    "index": 25,
+    "timestamp": 1748521577.2828217,
+    "data": {
+      "action": "successful_login",
+      "username": "admin",
+      "timestamp": 1748521577.2828205,
+      "session_id": "9b43e2caa86e7a289eead51d55dda0b42c993d659e2173f1500314151367fc75"
+    },
+    "previous_hash": "563d36102d2fb45b6f13af17ebedee87c8deedf3aca7d53f8031be8d92f5b9ec",
+    "hash": "b897961b47d679c58ca2d13d5b5d5a8939007257f61f182b4d527483dc914e91"
+  },
+  {
+    "index": 26,
+    "timestamp": 1748522844.8244967,
+    "data": {
+      "action": "authenticate",
+      "username": "admin",
+      "session_id": "49623a5e8ad217e4e72f6399c36e61a82c95eda4854eb492048079665797a711",
+      "timestamp": 1748522844.824494,
+      "ip_address": "localhost"
+    },
+    "previous_hash": "b897961b47d679c58ca2d13d5b5d5a8939007257f61f182b4d527483dc914e91",
+    "hash": "e9d820641f401d81c2eec42c2da2ab3a69de220714f6886211573306b04ee0ef"
+  },
+  {
+    "index": 27,
+    "timestamp": 1748522844.8268833,
+    "data": {
+      "action": "successful_login",
+      "username": "admin",
+      "timestamp": 1748522844.8268821,
+      "session_id": "00cc89140f48f639761557d07e28560e4d44efa46a4c3e264f47a2d8eda7290d"
+    },
+    "previous_hash": "e9d820641f401d81c2eec42c2da2ab3a69de220714f6886211573306b04ee0ef",
+    "hash": "f01b6fe632827309b17a2f0bd6a6e3245d8f6e19012531a9177aab538c988e4a"
+  },
+  {
+    "index": 28,
+    "timestamp": 1748522929.120019,
+    "data": {
+      "action": "user_added_to_database",
+      "database": "trial_db",
+      "username": "senjo",
+      "role": "owner",
+      "admin": "admin",
+      "timestamp": 1748522929.120013
+    },
+    "previous_hash": "f01b6fe632827309b17a2f0bd6a6e3245d8f6e19012531a9177aab538c988e4a",
+    "hash": "f2a5de5235dcaaaee92ea159ed3481b1d3ae0c68fc4ca13a388d9c85d5d517cf"
+  },
+  {
+    "index": 29,
+    "timestamp": 1748523296.1128998,
+    "data": {
+      "action": "logout",
+      "username": "admin",
+      "session_id": "00cc89140f48f639761557d07e28560e4d44efa46a4c3e264f47a2d8eda7290d",
+      "timestamp": 1748523296.1128967
+    },
+    "previous_hash": "f2a5de5235dcaaaee92ea159ed3481b1d3ae0c68fc4ca13a388d9c85d5d517cf",
+    "hash": "70631b76f31b6839d77152b5a7a5371306c79f02e66e1ab19b7c38895fc5571f"
   }
 ]

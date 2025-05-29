@@ -28,9 +28,9 @@ Functions without attribute (i.e., body) implementations:
 
     show_database_details----done
 
-    manage_database_users
+    manage_database_users----done
 
-    manage_database_security
+    manage_database_security----done
 
     database_maintenance_menu
 
@@ -45,6 +45,8 @@ Functions without attribute (i.e., body) implementations:
     view_database_files_detailed
 
     manage_single_database_users
+
+    db_manager
 
 🔐 Security Management
 

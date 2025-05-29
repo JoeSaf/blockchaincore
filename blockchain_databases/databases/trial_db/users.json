@@ -8,6 +8,17 @@
         "write",
         "admin"
       ]
+    },
+    "senjo": {
+      "role": "owner",
+      "added_by": "admin",
+      "added_at": 1748522929.1130512,
+      "permissions": [
+        "read",
+        "write",
+        "admin",
+        "delete"
+      ]
     }
   }
 }

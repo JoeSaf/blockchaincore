@@ -59,5 +59,20 @@
     "storage_path": "blockchain_databases/databases/trial_db/files/1748453529_1748453529_54477955_index.html",
     "previous_hash": "4f13dfd85036cade033455b9fa10d7f05a5d39483b3d8977a5278e541cef08aa",
     "hash": "78811b0d06e2f4940612261395c56d85f3db28c4ec987a114ad82f3b29a31500"
+  },
+  {
+    "index": 4,
+    "timestamp": 1748522929.1139617,
+    "data": {
+      "action": "add_user_to_database",
+      "database": "trial_db",
+      "username": "senjo",
+      "role": "owner",
+      "admin": "admin",
+      "timestamp": 1748522929.113952
+    },
+    "storage_path": "blockchain_databases/databases/trial_db/users.json",
+    "previous_hash": "78811b0d06e2f4940612261395c56d85f3db28c4ec987a114ad82f3b29a31500",
+    "hash": "9384772487f52b8f9eb0ffa96c343403fb89938736274ffe752e407e01994d30"
   }
 ]
