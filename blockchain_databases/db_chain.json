@@ -74,5 +74,69 @@
     "storage_path": "blockchain_databases/databases/trial_db/users.json",
     "previous_hash": "78811b0d06e2f4940612261395c56d85f3db28c4ec987a114ad82f3b29a31500",
     "hash": "9384772487f52b8f9eb0ffa96c343403fb89938736274ffe752e407e01994d30"
+  },
+  {
+    "index": 5,
+    "timestamp": 1748593391.915281,
+    "data": {
+      "action": "store_file",
+      "database": "trial_db",
+      "filename": "1748593391_df6d03e6_package-lock.json",
+      "stored_name": "1748593391_1748593391_df6d03e6_package-lock.json",
+      "uploaded_by": "admin",
+      "file_hash": "bddd43924de2c8f07078e4ef0b6d3a027740a86aebc820e4dac03996878bcdbe",
+      "timestamp": 1748593391.9152772
+    },
+    "storage_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_df6d03e6_package-lock.json",
+    "previous_hash": "9384772487f52b8f9eb0ffa96c343403fb89938736274ffe752e407e01994d30",
+    "hash": "9dad520cdfe9ad9ffe453b2dee02daa1602233af2bd20052e487ff30ab71e865"
+  },
+  {
+    "index": 6,
+    "timestamp": 1748593391.9262424,
+    "data": {
+      "action": "store_file",
+      "database": "trial_db",
+      "filename": "1748593391_c9727894_package.json",
+      "stored_name": "1748593391_1748593391_c9727894_package.json",
+      "uploaded_by": "admin",
+      "file_hash": "8d8020b6cbbc960a88390c1054bfa2a94cfd5a8a8e4beb8d3ef16579aa01b4b1",
+      "timestamp": 1748593391.926239
+    },
+    "storage_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_c9727894_package.json",
+    "previous_hash": "9dad520cdfe9ad9ffe453b2dee02daa1602233af2bd20052e487ff30ab71e865",
+    "hash": "9e390ad71bdbc37d61d2833e9701cac7e0959c048e86657876f1649692817628"
+  },
+  {
+    "index": 7,
+    "timestamp": 1748593391.9350345,
+    "data": {
+      "action": "store_file",
+      "database": "trial_db",
+      "filename": "1748593391_9a18e85b_READme.md",
+      "stored_name": "1748593391_1748593391_9a18e85b_READme.md",
+      "uploaded_by": "admin",
+      "file_hash": "8049661cbb52e2e144e736e2be41a247c02112b32e01de324f9b55178068b5bc",
+      "timestamp": 1748593391.9350326
+    },
+    "storage_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_9a18e85b_READme.md",
+    "previous_hash": "9e390ad71bdbc37d61d2833e9701cac7e0959c048e86657876f1649692817628",
+    "hash": "f14fd68038f40866954a28b8f64c2d8506e3f50345caeff9c38360fa4caf97ee"
+  },
+  {
+    "index": 8,
+    "timestamp": 1748593391.9435346,
+    "data": {
+      "action": "store_file",
+      "database": "trial_db",
+      "filename": "1748593391_3346a3c2_treeStructure.mdx",
+      "stored_name": "1748593391_1748593391_3346a3c2_treeStructure.mdx",
+      "uploaded_by": "admin",
+      "file_hash": "1266a73c4a2c14f0f4372fd5095b60e11838f9f5e62a57bced78d8c5907601ef",
+      "timestamp": 1748593391.9435322
+    },
+    "storage_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_3346a3c2_treeStructure.mdx",
+    "previous_hash": "f14fd68038f40866954a28b8f64c2d8506e3f50345caeff9c38360fa4caf97ee",
+    "hash": "1fe3b374dd56bf82fef1e231928b5f16a738cc00b2521ea110c52ec5ecba804c"
   }
 ]

@@ -20,5 +20,125 @@
       "upload_session": 1748453529.9141514
     },
     "blockchain_verified": false
+  },
+  {
+    "upload_id": "df6d03e6fb03241edf2a8a507ae071bddc1bb630ceb554a79a8936668c3f0294",
+    "original_name": "package-lock.json",
+    "stored_name": "1748593391_df6d03e6_package-lock.json",
+    "stored_path": "secure_uploads/approved/1748593391_df6d03e6_package-lock.json",
+    "uploaded_by": "admin",
+    "uploaded_at": 1748593391.9138865,
+    "status": "approved",
+    "database": "trial_db",
+    "scan_result": {
+      "safe": true,
+      "threats": [],
+      "file_type": "application/json",
+      "size": 41024,
+      "hash": "bddd43924de2c8f07078e4ef0b6d3a027740a86aebc820e4dac03996878bcdbe"
+    },
+    "metadata": {
+      "gui_upload": true,
+      "upload_session": 1748593391.904289
+    },
+    "blockchain_verified": false,
+    "database_stored": true,
+    "database_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_df6d03e6_package-lock.json"
+  },
+  {
+    "upload_id": "c9727894ca9d750663af79140b2980f6a4a02a9c06f889312092e9d797df9e99",
+    "original_name": "package.json",
+    "stored_name": "1748593391_c9727894_package.json",
+    "stored_path": "secure_uploads/approved/1748593391_c9727894_package.json",
+    "uploaded_by": "admin",
+    "uploaded_at": 1748593391.9252772,
+    "status": "approved",
+    "database": "trial_db",
+    "scan_result": {
+      "safe": true,
+      "threats": [],
+      "file_type": "application/json",
+      "size": 506,
+      "hash": "8d8020b6cbbc960a88390c1054bfa2a94cfd5a8a8e4beb8d3ef16579aa01b4b1"
+    },
+    "metadata": {
+      "gui_upload": true,
+      "upload_session": 1748593391.924895
+    },
+    "blockchain_verified": false,
+    "database_stored": true,
+    "database_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_c9727894_package.json"
+  },
+  {
+    "upload_id": "9a18e85b6c81b0fca1610b5b0cacdc01a22346df7e4fe993c1f7538baa3a1012",
+    "original_name": "READme.md",
+    "stored_name": "1748593391_9a18e85b_READme.md",
+    "stored_path": "secure_uploads/approved/1748593391_9a18e85b_READme.md",
+    "uploaded_by": "admin",
+    "uploaded_at": 1748593391.9341304,
+    "status": "approved",
+    "database": "trial_db",
+    "scan_result": {
+      "safe": true,
+      "threats": [],
+      "file_type": "text/markdown",
+      "size": 76,
+      "hash": "8049661cbb52e2e144e736e2be41a247c02112b32e01de324f9b55178068b5bc"
+    },
+    "metadata": {
+      "gui_upload": true,
+      "upload_session": 1748593391.9337354
+    },
+    "blockchain_verified": false,
+    "database_stored": true,
+    "database_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_9a18e85b_READme.md"
+  },
+  {
+    "upload_id": "3346a3c2d75f270b2e15603fe31a078c1dd360bbf6028ab050fea04de02471e0",
+    "original_name": "treeStructure.mdx",
+    "stored_name": "1748593391_3346a3c2_treeStructure.mdx",
+    "stored_path": "secure_uploads/approved/1748593391_3346a3c2_treeStructure.mdx",
+    "uploaded_by": "admin",
+    "uploaded_at": 1748593391.942578,
+    "status": "approved",
+    "database": "trial_db",
+    "scan_result": {
+      "safe": true,
+      "threats": [],
+      "file_type": "unknown",
+      "size": 503,
+      "hash": "1266a73c4a2c14f0f4372fd5095b60e11838f9f5e62a57bced78d8c5907601ef"
+    },
+    "metadata": {
+      "gui_upload": true,
+      "upload_session": 1748593391.9422646
+    },
+    "blockchain_verified": false,
+    "database_stored": true,
+    "database_path": "blockchain_databases/databases/trial_db/files/1748593391_1748593391_3346a3c2_treeStructure.mdx"
+  },
+  {
+    "upload_id": "fb3208b2bde0ed3a39e080b35f525e3fc3ae0d282c7134420f64b4e66f208181",
+    "original_name": "vite.config.js",
+    "stored_name": "1748593391_fb3208b2_vite.config.js",
+    "stored_path": "secure_uploads/quarantine/1748593391_fb3208b2_vite.config.js",
+    "uploaded_by": "admin",
+    "uploaded_at": 1748593391.9504306,
+    "status": "quarantined",
+    "database": "trial_db",
+    "scan_result": {
+      "safe": false,
+      "threats": [
+        "dangerous_file_type"
+      ],
+      "file_type": "text/javascript",
+      "size": 164,
+      "hash": "22a2bc48ce4574cf36fa4d50781eef998cd9c3b705ac0c6955389e2fa809a834"
+    },
+    "metadata": {
+      "gui_upload": true,
+      "upload_session": 1748593391.950118
+    },
+    "blockchain_verified": false
   }
 ]

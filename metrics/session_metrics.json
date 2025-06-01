@@ -222,5 +222,53 @@
     "errors_count": 3,
     "average_response_time": 0,
     "timestamp": 1748555724.0785038
+  },
+  {
+    "username": "unknown",
+    "session_duration": 1716.5409307479858,
+    "operations_count": 19,
+    "errors_count": 14,
+    "average_response_time": 0,
+    "timestamp": 1748594541.4515393
+  },
+  {
+    "username": "unknown",
+    "session_duration": 1716.5424818992615,
+    "operations_count": 19,
+    "errors_count": 14,
+    "average_response_time": 0,
+    "timestamp": 1748594541.4530897
+  },
+  {
+    "username": "unknown",
+    "session_duration": 60.311800479888916,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748799056.1874325
+  },
+  {
+    "username": "unknown",
+    "session_duration": 60.31491541862488,
+    "operations_count": 3,
+    "errors_count": 1,
+    "average_response_time": 0,
+    "timestamp": 1748799056.1905487
+  },
+  {
+    "username": "unknown",
+    "session_duration": 484.4041910171509,
+    "operations_count": 2,
+    "errors_count": 0,
+    "average_response_time": 0,
+    "timestamp": 1748800706.8149123
+  },
+  {
+    "username": "unknown",
+    "session_duration": 484.4061725139618,
+    "operations_count": 2,
+    "errors_count": 0,
+    "average_response_time": 0,
+    "timestamp": 1748800706.8168929
   }
 ]

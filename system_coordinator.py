@@ -20,6 +20,7 @@ import getpass
 import logging
 import threading
 import subprocess
+import random
 from typing import Dict, List, Optional, Any
 from pathlib import Path
 from datetime import datetime
@@ -3773,39 +3774,7 @@ class BlockchainSystemCoordinator:
             print(f"❌ Error during bulk export: {str(e)}")
         
         input("\nPress Enter to continue...")
-                    self.perform_storage_compaction(largest_db["name"])
-            return True
             
-            elif operation == "remove_orphaned_files":
-                # Remove orphaned files from databases
-                databases = self.db_manager.list_databases()
-                total_removed = 0
-                for db in databases:
-                    db_path = os.path.join(self.config["storage"]["database_root"], "databases", db["name"])
-                    orphaned_files = self.find_orphaned_files(db_path)
-                    for orphaned_file in orphaned_files[:5]:  # Limit to 5 files per database
-                        try:
-                            full_path = os.path.join(db_path, orphaned_file)
-                            os.remove(full_path)
-                            total_removed += 1
-                        except:
-                            continue
-                return total_removed > 0
-            
-            elif operation == "rebuild_indexes":
-                # Rebuild indexes for databases
-                databases = self.db_manager.list_databases()
-                for db in databases[:2]:  # Limit to 2 databases
-                    self.rebuild_single_database_indexes(db["name"])
-                return True
-            
-            else:
-                logger.warning(f"Unknown maintenance operation: {operation}")
-                return False
-            
-        except Exception as e:
-            logger.error(f"Error executing maintenance operation {operation}: {str(e)}")
-            return False
 
     def view_maintenance_history(self):
         """View maintenance execution history"""
@@ -4478,6 +4447,12 @@ class BlockchainSystemCoordinator:
                 print(f"✅ Database exported successfully to: {export_path}")
             else:
                 print(f"❌ Export failedef database_maintenance_menu(self):")
+                
+        except Exception as e:
+            print(f"❌ Error exporting database: {str(e)}")
+        
+        input("\nPress Enter to continue...")
+        
         """Database maintenance and optimization menu"""
         while True:
             print("\n🔧 Database Maintenance & Optimization")
