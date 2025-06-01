@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20250529-0733-Experimental"
+	Name="(empty)"
+	Generator="ctest-4.0.2-dirty"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="senjoe"
+	OSRelease="6.14.7-zen2-1-zen"
+	OSVersion="#1 ZEN SMP PREEMPT_DYNAMIC Thu, 22 May 2025 05:37:13 +0000"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="165"
+	ModelName="Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz"
+	ProcessorCacheSize="16384"
+	NumberOfLogicalCPU="16"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="49965"
+	TotalPhysicalMemory="23789"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="3200"
+	>
+	<Testing>
+		<StartDateTime>Jun 01 08:50 EAT</StartDateTime>
+		<StartTestTime>1748757035</StartTestTime>
+		<TestList/>
+		<EndDateTime>Jun 01 08:50 EAT</EndDateTime>
+		<EndTestTime>1748757035</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

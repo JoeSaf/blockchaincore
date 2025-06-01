@@ -1,0 +1,138 @@
+<!-- templates/files/upload.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Upload Files - Blockchain Dashboard{% endblock %}
+{% block page_title %}File Upload{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-upload me-2"></i>
+                    Upload Files to Blockchain Storage
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" id="uploadForm">
+                    {% csrf_token %}
+                    {% crispy form %}
+                </form>
+                
+                <!-- Upload Progress -->
+                <div id="uploadProgress" class="mt-3" style="display: none;">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted mt-1 d-block">Uploading and scanning files...</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Uploads -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Recent Uploads</h5>
+            </div>
+            <div class="card-body">
+                {% if recent_uploads %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Size</th>
+                                    <th>Status</th>
+                                    <th>Uploaded</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for upload in recent_uploads %}
+                                <tr>
+                                    <td>
+                                        <i class="fas fa-file me-2"></i>
+                                        {{ upload.original_filename }}
+                                    </td>
+                                    <td>{{ upload.file_size|filesizeformat }}</td>
+                                    <td>
+                                        {% if upload.status == 'approved' %}
+                                            <span class="badge bg-success">Approved</span>
+                                        {% elif upload.status == 'pending' %}
+                                            <span class="badge bg-warning">Pending</span>
+                                        {% elif upload.status == 'quarantined' %}
+                                            <span class="badge bg-danger">Quarantined</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ upload.uploaded_at|timesince }} ago</td>
+                                    <td>
+                                        <a href="{% url 'files:detail' upload.id %}" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        {% if upload.status == 'approved' %}
+                                            <a href="{% url 'files:download' upload.id %}" class="btn btn-sm btn-outline-success">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">No files uploaded yet</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const progressDiv = document.getElementById('uploadProgress');
+    const progressBar = progressDiv.querySelector('.progress-bar');
+    
+    progressDiv.style.display = 'block';
+    
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            progressBar.style.width = '100%';
+            progressBar.classList.add('bg-success');
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        } else {
+            progressBar.classList.add('bg-danger');
+            alert('Upload failed: ' + data.error);
+        }
+    })
+    .catch(error => {
+        progressBar.classList.add('bg-danger');
+        console.error('Error:', error);
+    });
+});
+</script>
+{% endblock %}

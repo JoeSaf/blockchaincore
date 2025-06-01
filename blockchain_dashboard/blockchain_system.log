@@ -1,0 +1,11 @@
+2025-06-01 21:57:00,398 - __main__ - INFO - Blockchain System Coordinator initialized
+2025-06-01 21:57:00,398 - __main__ - INFO - 🚀 Initializing Integrated Blockchain System...
+2025-06-01 21:57:00,398 - __main__ - ERROR - System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+2025-06-01 21:58:13,413 - __main__ - INFO - Blockchain System Coordinator initialized
+2025-06-01 21:58:13,414 - __main__ - INFO - 🚀 Initializing Integrated Blockchain System...
+2025-06-01 21:58:13,414 - database_manager - INFO - Database storage initialized at blockchain_databases
+2025-06-01 21:58:13,415 - file_upload_system - INFO - Secure upload storage initialized at secure_uploads
+2025-06-01 21:58:13,416 - __main__ - INFO - 🎉 All systems initialized successfully!
+2025-06-01 21:58:25,903 - __main__ - INFO - User admin authenticated successfully
+2025-06-01 21:59:13,386 - database_manager - INFO - Database operation recorded in C++ blockchain: {'data': {'transaction': {'id': 'tx_1748804353', 'from': 'admin', 'to': 'database_system', 'amount': 0.001, 'timestamp': 1748804353.3868628}}}
+2025-06-01 21:59:13,387 - database_manager - INFO - Database 'dashboard_test_db' created successfully at blockchain_databases/databases/dashboard_test_db

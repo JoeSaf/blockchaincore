@@ -1,0 +1,228 @@
+<!-- templates/mining/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block title %}Mining Dashboard - Blockchain Dashboard{% endblock %}
+{% block page_title %}Mining Operations{% endblock %}
+
+{% block content %}
+<!-- Mining Status Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card metric-card {% if mining_status.is_mining %}success{% else %}secondary{% endif %}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Mining Status</h6>
+                        <h4 class="mb-0">{% if mining_status.is_mining %}Active{% else %}Inactive{% endif %}</h4>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-hammer fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card metric-card warning">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Blocks Mined</h6>
+                        <h4 class="mb-0">{{ mining_stats.blocks_mined }}</h4>
+                        <small>Total rewards: {{ mining_stats.total_rewards }}</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-cube fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card metric-card info">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Hash Rate</h6>
+                        <h4 class="mb-0">{{ mining_stats.hashrate|default:"0 H/s" }}</h4>
+                        <small>Current difficulty: {{ mining_stats.current_difficulty }}</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-tachometer-alt fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card metric-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Avg Block Time</h6>
+                        <h4 class="mb-0">{{ mining_stats.average_time|default:"--" }}s</h4>
+                        <small>Last 10 blocks</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-clock fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mining Controls -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Mining Controls</h5>
+            </div>
+            <div class="card-body">
+                {% if not mining_status.is_mining %}
+                    <form method="post" action="{% url 'mining:start' %}">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Miner Address</label>
+                                <input type="text" class="form-control" name="miner_address" 
+                                       value="{{ user.userprofile.wallet_address|default:user.username }}" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">CPU Threads</label>
+                                <select class="form-select" name="cpu_threads">
+                                    <option value="1">1 Thread</option>
+                                    <option value="2" selected>2 Threads</option>
+                                    <option value="4">4 Threads</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Mining Mode</label>
+                                <select class="form-select" name="mining_mode">
+                                    <option value="single">Single Block</option>
+                                    <option value="continuous">Continuous</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-play me-2"></i>Start Mining
+                            </button>
+                        </div>
+                    </form>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <i class="fas fa-hammer me-2"></i>
+                        Mining is currently active with {{ mining_status.cpu_threads }} CPU threads.
+                    </div>
+                    <form method="post" action="{% url 'mining:stop' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-stop me-2"></i>Stop Mining
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Mining Pool Info</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <strong>Pool Status:</strong>
+                    <span class="badge bg-success">Connected</span>
+                </div>
+                <div class="mb-2">
+                    <strong>Pool Fee:</strong> 2.5%
+                </div>
+                <div class="mb-2">
+                    <strong>Payout Threshold:</strong> 0.1 BTC
+                </div>
+                <div class="mb-2">
+                    <strong>Next Payout:</strong> ~24 hours
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mining History -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Mining Activity</h5>
+                <a href="{% url 'mining:history' %}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body">
+                {% if recent_blocks %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Block</th>
+                                    <th>Timestamp</th>
+                                    <th>Reward</th>
+                                    <th>Hash</th>
+                                    <th>Difficulty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for block in recent_blocks %}
+                                <tr>
+                                    <td><strong>#{{ block.index }}</strong></td>
+                                    <td>{{ block.timestamp|timesince }} ago</td>
+                                    <td>{{ block.reward }} BTC</td>
+                                    <td><code>{{ block.hash|slice:":16" }}...</code></td>
+                                    <td>{{ block.difficulty }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-cube fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">No blocks mined yet</p>
+                        <p class="small">Start mining to see your activity here</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-refresh mining status every 30 seconds
+setInterval(function() {
+    fetch('{% url "mining:status_api" %}')
+        .then(response => response.json())
+        .then(data => {
+            // Update mining status indicators
+            if (data.is_mining) {
+                document.querySelector('.mining-status').textContent = 'Active';
+                document.querySelector('.mining-status').className = 'badge bg-success';
+            } else {
+                document.querySelector('.mining-status').textContent = 'Inactive';
+                document.querySelector('.mining-status').className = 'badge bg-secondary';
+            }
+            
+            // Update hash rate
+            if (data.hashrate) {
+                document.querySelector('.hashrate').textContent = data.hashrate;
+            }
+        })
+        .catch(error => console.error('Error updating mining status:', error));
+}, 30000);
+</script>
+{% endblock %}

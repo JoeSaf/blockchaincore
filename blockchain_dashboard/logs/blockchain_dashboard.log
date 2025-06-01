@@ -1,0 +1,1015 @@
+INFO 2025-05-30 09:51:15,478 autoreload 379297 140704000703424 Watching for file changes with StatReloader
+INFO 2025-05-30 09:51:31,130 autoreload 379418 139632629373888 Watching for file changes with StatReloader
+INFO 2025-05-30 09:52:12,816 autoreload 379829 140228801625024 Watching for file changes with StatReloader
+INFO 2025-05-30 10:05:47,412 autoreload 385722 140009663613888 Watching for file changes with StatReloader
+INFO 2025-06-01 17:37:00,195 autoreload 332825 139645291883456 Watching for file changes with StatReloader
+INFO 2025-06-01 17:42:03,378 autoreload 334915 140254428732352 Watching for file changes with StatReloader
+INFO 2025-06-01 17:43:12,634 autoreload 335405 140592321264576 Watching for file changes with StatReloader
+INFO 2025-06-01 17:44:11,420 autoreload 335828 140359332498368 Watching for file changes with StatReloader
+INFO 2025-06-01 17:46:31,581 autoreload 337051 140628869041088 Watching for file changes with StatReloader
+INFO 2025-06-01 17:48:37,008 autoreload 338049 139918966115264 Watching for file changes with StatReloader
+INFO 2025-06-01 17:49:27,515 autoreload 338427 140281165044672 Watching for file changes with StatReloader
+INFO 2025-06-01 17:52:08,745 autoreload 339711 140442629073856 Watching for file changes with StatReloader
+INFO 2025-06-01 17:57:42,592 autoreload 341982 140639685823424 Watching for file changes with StatReloader
+INFO 2025-06-01 17:57:43,516 system_coordinator 341982 140639685823424 Blockchain System Coordinator initialized
+INFO 2025-06-01 17:57:43,516 system_coordinator 341982 140639685823424 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 17:57:43,516 system_coordinator 341982 140639685823424 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 17:57:43,516 utils 341982 140639685823424 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:00:51,085 autoreload 343952 140367848393664 Watching for file changes with StatReloader
+INFO 2025-06-01 18:00:51,870 system_coordinator 343952 140367848393664 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:00:51,870 system_coordinator 343952 140367848393664 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:00:51,870 system_coordinator 343952 140367848393664 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:00:51,870 utils 343952 140367848393664 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:01:09,147 autoreload 344089 139896568359872 Watching for file changes with StatReloader
+INFO 2025-06-01 18:01:10,009 system_coordinator 344089 139896520525504 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:01:10,009 system_coordinator 344089 139896520525504 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:01:10,009 system_coordinator 344089 139896520525504 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:01:10,009 utils 344089 139896520525504 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:01:38,319 autoreload 344347 139647902903232 Watching for file changes with StatReloader
+INFO 2025-06-01 18:01:39,286 system_coordinator 344347 139647902903232 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:01:39,286 system_coordinator 344347 139647902903232 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:01:39,286 system_coordinator 344347 139647902903232 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:01:39,286 utils 344347 139647902903232 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:03:24,418 autoreload 345212 139729645833152 Watching for file changes with StatReloader
+INFO 2025-06-01 18:03:25,478 system_coordinator 345212 139729645833152 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:03:25,478 system_coordinator 345212 139729645833152 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:03:25,478 system_coordinator 345212 139729645833152 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:03:25,478 utils 345212 139729645833152 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:04:30,839 autoreload 345718 140207007329216 Watching for file changes with StatReloader
+INFO 2025-06-01 18:04:32,090 system_coordinator 345718 140206959429312 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:04:32,090 system_coordinator 345718 140206959429312 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:04:32,090 system_coordinator 345718 140206959429312 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:04:32,090 utils 345718 140206959429312 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:04:50,173 basehttp 345718 140206946920128 "GET / HTTP/1.1" 302 0
+WARNING 2025-06-01 18:04:50,186 log 345718 140206946920128 Not Found: /accounts/login/
+WARNING 2025-06-01 18:04:50,187 basehttp 345718 140206946920128 "GET /accounts/login/?next=/ HTTP/1.1" 404 4139
+WARNING 2025-06-01 18:04:50,302 log 345718 140206946920128 Not Found: /favicon.ico
+WARNING 2025-06-01 18:04:50,302 basehttp 345718 140206946920128 "GET /favicon.ico HTTP/1.1" 404 4120
+INFO 2025-06-01 18:08:26,173 autoreload 347600 140506323831744 Watching for file changes with StatReloader
+INFO 2025-06-01 18:08:28,616 system_coordinator 347600 140506323831744 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:08:28,616 system_coordinator 347600 140506323831744 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:08:28,616 system_coordinator 347600 140506323831744 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:08:28,616 utils 347600 140506323831744 Blockchain system coordinator initialization failed, using mock mode
+WARNING 2025-06-01 18:08:34,505 log 347600 140506264487616 Not Found: /accounts/login/
+WARNING 2025-06-01 18:08:34,505 basehttp 347600 140506264487616 "GET /accounts/login/?next=/ HTTP/1.1" 404 4139
+WARNING 2025-06-01 18:08:34,536 log 347600 140506264487616 Not Found: /favicon.ico
+WARNING 2025-06-01 18:08:35,358 log 347600 140506264487616 Not Found: /accounts/login/
+WARNING 2025-06-01 18:08:35,358 basehttp 347600 140506264487616 "GET /accounts/login/?next=/ HTTP/1.1" 404 4139
+WARNING 2025-06-01 18:08:35,881 log 347600 140506264487616 Not Found: /accounts/login/
+WARNING 2025-06-01 18:08:35,881 basehttp 347600 140506264487616 "GET /accounts/login/?next=/ HTTP/1.1" 404 4139
+WARNING 2025-06-01 18:08:35,900 log 347600 140506264487616 Not Found: /favicon.ico
+ERROR 2025-06-01 18:08:49,127 log 347600 140506255046336 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: core/login.html
+ERROR 2025-06-01 18:08:49,128 basehttp 347600 140506255046336 "GET /login/?next=/ HTTP/1.1" 500 87718
+INFO 2025-06-01 18:15:52,308 autoreload 350513 140605143673792 Watching for file changes with StatReloader
+INFO 2025-06-01 18:16:01,733 autoreload 350607 140297318984640 Watching for file changes with StatReloader
+INFO 2025-06-01 18:16:21,191 autoreload 350814 140526808628160 Watching for file changes with StatReloader
+INFO 2025-06-01 18:16:56,391 autoreload 350814 140526808628160 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/blockchain_dashboard/settings.py changed, reloading.
+INFO 2025-06-01 18:16:56,751 autoreload 351064 140472198278080 Watching for file changes with StatReloader
+INFO 2025-06-01 18:17:01,210 system_coordinator 351064 140472198278080 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:17:01,210 system_coordinator 351064 140472198278080 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:17:01,210 system_coordinator 351064 140472198278080 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:17:01,210 utils 351064 140472198278080 Blockchain system coordinator initialization failed, using mock mode
+ERROR 2025-06-01 18:17:05,677 log 351064 140472071747264 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:17:05,680 basehttp 351064 140472071747264 "GET /login/?next=/ HTTP/1.1" 500 132752
+WARNING 2025-06-01 18:17:05,737 log 351064 140472071747264 Not Found: /favicon.ico
+ERROR 2025-06-01 18:17:06,622 log 351064 140472071747264 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:17:06,625 basehttp 351064 140472071747264 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:17:07,321 log 351064 140472071747264 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:17:07,323 basehttp 351064 140472071747264 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:17:07,968 log 351064 140472071747264 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:17:07,971 basehttp 351064 140472071747264 "GET /login/?next=/ HTTP/1.1" 500 132752
+INFO 2025-06-01 18:19:10,332 autoreload 351967 139937028189120 Watching for file changes with StatReloader
+INFO 2025-06-01 18:19:11,096 system_coordinator 351967 139936982349504 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:19:11,096 system_coordinator 351967 139936982349504 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:19:11,097 system_coordinator 351967 139936982349504 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:19:11,097 utils 351967 139936982349504 Blockchain system coordinator initialization failed, using mock mode
+ERROR 2025-06-01 18:19:17,092 log 351967 139936968951488 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:17,095 basehttp 351967 139936968951488 "GET /login/?next=/ HTTP/1.1" 500 132752
+WARNING 2025-06-01 18:19:17,127 log 351967 139936968951488 Not Found: /favicon.ico
+ERROR 2025-06-01 18:19:17,992 log 351967 139936968951488 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:17,994 basehttp 351967 139936968951488 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:19:18,495 log 351967 139936968951488 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:18,496 basehttp 351967 139936968951488 "GET /login/?next=/ HTTP/1.1" 500 132752
+WARNING 2025-06-01 18:19:18,527 log 351967 139936968951488 Not Found: /favicon.ico
+ERROR 2025-06-01 18:19:19,014 log 351967 139936959510208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:19,016 basehttp 351967 139936959510208 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:19:19,429 log 351967 139936959510208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:19,431 basehttp 351967 139936959510208 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:19:19,626 log 351967 139936959510208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:19,628 basehttp 351967 139936959510208 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:19:19,812 log 351967 139936959510208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:19,814 basehttp 351967 139936959510208 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:19:19,976 log 351967 139936959510208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:19,978 basehttp 351967 139936959510208 "GET /login/?next=/ HTTP/1.1" 500 132752
+ERROR 2025-06-01 18:19:20,154 log 351967 139936959510208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 100, in login_view
+    return render(request, 'core/login.html', {'form': form})
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/base.py", line 169, in render
+    with context.bind_template(self):
+         ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/context.py", line 256, in bind_template
+    processors = template.engine.template_context_processors + self._processors
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in template_context_processors
+    return tuple(import_string(path) for path in context_processors)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/engine.py", line 118, in <genexpr>
+    return tuple(import_string(path) for path in context_processors)
+                 ~~~~~~~~~~~~~^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.context_processors'
+ERROR 2025-06-01 18:19:20,156 basehttp 351967 139936959510208 "GET /login/?next=/ HTTP/1.1" 500 132752
+INFO 2025-06-01 18:19:32,277 autoreload 351967 139937028189120 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/blockchain_dashboard/settings.py changed, reloading.
+INFO 2025-06-01 18:19:32,588 autoreload 352115 139632962096064 Watching for file changes with StatReloader
+INFO 2025-06-01 18:19:38,063 system_coordinator 352115 139632962096064 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:19:38,063 system_coordinator 352115 139632962096064 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:19:38,063 system_coordinator 352115 139632962096064 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:19:38,063 utils 352115 139632962096064 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:19:41,000 basehttp 352115 139632902883008 "GET /login/?next=/ HTTP/1.1" 200 5847
+ERROR 2025-06-01 18:19:53,924 log 352115 139632902883008 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 66, in login_view
+    failed_user = User.objects.get(username=username)
+                  ^^^^
+NameError: name 'User' is not defined. Did you mean: 'user'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 94, in login_view
+    except User.DoesNotExist:
+           ^^^^
+NameError: name 'User' is not defined. Did you mean: 'user'?
+ERROR 2025-06-01 18:19:53,926 basehttp 352115 139632902883008 "POST /login/?next=/ HTTP/1.1" 500 79397
+WARNING 2025-06-01 18:19:53,963 log 352115 139632902883008 Not Found: /favicon.ico
+INFO 2025-06-01 18:21:44,662 basehttp 352115 139632902883008 "GET /login/?next=/ HTTP/1.1" 200 5847
+INFO 2025-06-01 18:22:27,885 autoreload 352115 139632962096064 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py changed, reloading.
+INFO 2025-06-01 18:22:28,197 autoreload 353271 140254120360896 Watching for file changes with StatReloader
+INFO 2025-06-01 18:22:29,033 system_coordinator 353271 140254120360896 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:22:29,033 system_coordinator 353271 140254120360896 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:22:29,033 system_coordinator 353271 140254120360896 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:22:29,033 utils 353271 140254120360896 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:22:31,963 basehttp 353271 140254059943616 "GET /login/?next=/ HTTP/1.1" 200 5847
+ERROR 2025-06-01 18:22:35,288 log 353271 140254059943616 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 66, in login_view
+    failed_user = User.objects.get(username=username)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 96, in login_view
+    log_activity(request, 'login_attempt_failed', f"Failed login for non-existent user {username}", success=False)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: log_activity() got an unexpected keyword argument 'success'
+ERROR 2025-06-01 18:22:35,290 basehttp 353271 140254059943616 "POST /login/?next=/ HTTP/1.1" 500 88688
+INFO 2025-06-01 18:28:21,498 autoreload 353271 140254120360896 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py changed, reloading.
+INFO 2025-06-01 18:28:21,838 autoreload 356359 139734811065280 Watching for file changes with StatReloader
+INFO 2025-06-01 18:28:23,596 system_coordinator 356359 139734811065280 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:28:23,596 system_coordinator 356359 139734811065280 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:28:23,596 system_coordinator 356359 139734811065280 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:28:23,596 utils 356359 139734811065280 Blockchain system coordinator initialization failed, using mock mode
+ERROR 2025-06-01 18:28:34,853 log 356359 139734680598208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 66, in login_view
+    failed_user = User.objects.get(username=username)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 96, in login_view
+    log_activity(request, 'login_attempt_failed', f"Failed login for non-existent user {username}", success=False)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: log_activity() got an unexpected keyword argument 'success'
+ERROR 2025-06-01 18:28:34,855 basehttp 356359 139734680598208 "POST /login/?next=/ HTTP/1.1" 500 88935
+INFO 2025-06-01 18:28:38,500 basehttp 356359 139734680598208 "GET /login/?next=/ HTTP/1.1" 200 6389
+ERROR 2025-06-01 18:28:45,592 log 356359 139734680598208 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 66, in login_view
+    failed_user = User.objects.get(username=username)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+django.contrib.auth.models.User.DoesNotExist: User matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 96, in login_view
+    log_activity(request, 'login_attempt_failed', f"Failed login for non-existent user {username}", success=False)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: log_activity() got an unexpected keyword argument 'success'
+ERROR 2025-06-01 18:28:45,593 basehttp 356359 139734680598208 "POST /login/?next=/ HTTP/1.1" 500 88688
+INFO 2025-06-01 18:31:36,644 system_coordinator 357490 140204663430080 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:31:36,645 system_coordinator 357490 140204663430080 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:31:36,645 system_coordinator 357490 140204663430080 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:31:36,645 utils 357490 140204663430080 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:32:17,393 autoreload 357771 140401989819328 Watching for file changes with StatReloader
+INFO 2025-06-01 18:32:18,277 system_coordinator 357771 140401989819328 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:32:18,277 system_coordinator 357771 140401989819328 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:32:18,278 system_coordinator 357771 140401989819328 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:32:18,278 utils 357771 140401989819328 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:32:22,017 basehttp 357771 140401930618560 "GET /login/?next=/ HTTP/1.1" 200 6129
+ERROR 2025-06-01 18:32:26,433 log 357771 140401930618560 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/fields/related_descriptors.py", line 513, in __get__
+    rel_obj = self.related.get_cached_value(instance)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/fields/mixins.py", line 37, in get_cached_value
+    return instance._state.fields_cache[self.cache_name]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'userprofile'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: core_userprofile
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 45, in login_view
+    profile = user.userprofile
+              ^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/fields/related_descriptors.py", line 520, in __get__
+    rel_obj = self.get_queryset(instance=instance).get(**filter_args)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/query.py", line 629, in get
+    num = len(clone)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/query.py", line 1945, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: core_userprofile
+ERROR 2025-06-01 18:32:26,437 basehttp 357771 140401930618560 "POST /login/?next=/ HTTP/1.1" 500 160230
+INFO 2025-06-01 18:34:09,392 system_coordinator 358483 140623591709632 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:34:09,392 system_coordinator 358483 140623591709632 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:34:09,392 system_coordinator 358483 140623591709632 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:34:09,392 utils 358483 140623591709632 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:34:19,436 system_coordinator 358584 140313414613952 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:34:19,436 system_coordinator 358584 140313414613952 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:34:19,436 system_coordinator 358584 140313414613952 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:34:19,437 utils 358584 140313414613952 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:34:28,206 autoreload 358675 140068646013888 Watching for file changes with StatReloader
+INFO 2025-06-01 18:34:29,430 system_coordinator 358675 140068599187136 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:34:29,430 system_coordinator 358675 140068599187136 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:34:29,430 system_coordinator 358675 140068599187136 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:34:29,430 utils 358675 140068599187136 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:34:32,822 basehttp 358675 140068586677952 "GET /login/?next=/ HTTP/1.1" 200 5847
+ERROR 2025-06-01 18:34:36,531 log 358675 140068586677952 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 59, in login_view
+    log_activity(request, 'login', f"User {username} logged in successfully")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py", line 35, in log_activity
+    status = "SUCCESS" if success else "FAILED"
+                          ^^^^^^^
+NameError: name 'success' is not defined
+ERROR 2025-06-01 18:34:36,533 basehttp 358675 140068586677952 "POST /login/?next=/ HTTP/1.1" 500 78757
+INFO 2025-06-01 18:43:51,577 autoreload 358675 140068646013888 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py changed, reloading.
+INFO 2025-06-01 18:43:51,896 autoreload 362171 140538642508736 Watching for file changes with StatReloader
+INFO 2025-06-01 18:43:52,872 system_coordinator 362171 140538642508736 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:43:52,872 system_coordinator 362171 140538642508736 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:43:52,872 system_coordinator 362171 140538642508736 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:43:52,872 utils 362171 140538642508736 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:43:56,016 basehttp 362171 140538510571200 "GET /login/?next=/ HTTP/1.1" 200 5847
+ERROR 2025-06-01 18:44:00,105 log 362171 140538510571200 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 59, in login_view
+    log_activity(request, 'login', f"User {username} logged in successfully")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py", line 35, in log_activity
+    status = "SUCCESS" if success else "FAILED"
+                          ^^^^^^^
+NameError: name 'success' is not defined
+ERROR 2025-06-01 18:44:00,107 basehttp 362171 140538510571200 "POST /login/?next=/ HTTP/1.1" 500 78757
+INFO 2025-06-01 18:49:57,435 autoreload 362171 140538642508736 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py changed, reloading.
+INFO 2025-06-01 18:49:57,722 autoreload 364639 140683657120704 Watching for file changes with StatReloader
+INFO 2025-06-01 18:50:07,528 system_coordinator 364639 140683657120704 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:50:07,528 system_coordinator 364639 140683657120704 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:50:07,528 system_coordinator 364639 140683657120704 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:50:07,528 utils 364639 140683657120704 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:50:10,583 basehttp 364639 140683596736192 "GET /login/?next=/ HTTP/1.1" 200 5847
+ERROR 2025-06-01 18:50:14,219 log 364639 140683596736192 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 59, in login_view
+    log_activity(request, 'login', f"User {username} logged in successfully")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py", line 36, in log_activity
+    print(f"Activity: {user} - {action} - {details}")
+                       ^^^^
+NameError: name 'user' is not defined. Did you mean: 'super'?
+ERROR 2025-06-01 18:50:14,220 basehttp 364639 140683596736192 "POST /login/?next=/ HTTP/1.1" 500 79090
+INFO 2025-06-01 18:51:03,893 autoreload 364639 140683657120704 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py changed, reloading.
+INFO 2025-06-01 18:51:04,191 autoreload 365093 140442386049984 Watching for file changes with StatReloader
+INFO 2025-06-01 18:51:13,045 system_coordinator 365093 140442339190464 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:51:13,045 system_coordinator 365093 140442339190464 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:51:13,045 system_coordinator 365093 140442339190464 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:51:13,045 utils 365093 140442339190464 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:51:16,335 basehttp 365093 140442326681280 "GET /login/?next=/ HTTP/1.1" 200 5847
+ERROR 2025-06-01 18:51:19,667 log 365093 140442326681280 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 59, in login_view
+    log_activity(request, 'login', f"User {username} logged in successfully")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py", line 37, in log_activity
+NameError: name 'user' is not defined. Did you mean: 'super'?
+ERROR 2025-06-01 18:51:19,669 basehttp 365093 140442326681280 "POST /login/?next=/ HTTP/1.1" 500 79018
+INFO 2025-06-01 18:52:42,529 autoreload 365093 140442386049984 /home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/utils.py changed, reloading.
+INFO 2025-06-01 18:52:42,839 autoreload 365729 140352744664000 Watching for file changes with StatReloader
+INFO 2025-06-01 18:52:44,336 system_coordinator 365729 140352744664000 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:52:44,336 system_coordinator 365729 140352744664000 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:52:44,336 system_coordinator 365729 140352744664000 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:52:44,336 utils 365729 140352744664000 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:52:47,386 basehttp 365729 140352617182912 "GET /login/?next=/ HTTP/1.1" 200 5847
+INFO 2025-06-01 18:52:51,089 basehttp 365729 140352617182912 "POST /login/?next=/ HTTP/1.1" 302 0
+ERROR 2025-06-01 18:52:51,119 log 365729 140352617182912 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/senjoe/Documents/p2pblockchain/blockchain_dashboard/core/views.py", line 168, in dashboard
+    return render(request, 'core/dashboard.html', context)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/senjoe/Documents/p2pblockchain/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: core/dashboard.html
+ERROR 2025-06-01 18:52:51,121 basehttp 365729 140352617182912 "GET / HTTP/1.1" 500 97620
+WARNING 2025-06-01 18:55:48,725 log 365729 140352605816512 Forbidden (CSRF token from POST incorrect.): /login/
+WARNING 2025-06-01 18:55:48,725 basehttp 365729 140352605816512 "POST /login/?next=/ HTTP/1.1" 403 2503
+INFO 2025-06-01 18:55:54,725 basehttp 365729 140352605816512 "GET /login/?next=/ HTTP/1.1" 302 0
+WARNING 2025-06-01 18:55:55,738 log 365729 140352605816512 Not Found: /accounts/login/
+WARNING 2025-06-01 18:55:55,738 basehttp 365729 140352605816512 "GET /accounts/login/?next=/ HTTP/1.1" 404 4139
+INFO 2025-06-01 18:56:03,079 autoreload 366635 140108977945536 Watching for file changes with StatReloader
+INFO 2025-06-01 18:56:04,134 system_coordinator 366635 140108977945536 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:56:04,135 system_coordinator 366635 140108977945536 🚀 Initializing Integrated Blockchain System...
+ERROR 2025-06-01 18:56:04,135 system_coordinator 366635 140108977945536 System initialization failed: MockDatabaseManager.__init__() takes 2 positional arguments but 3 were given
+WARNING 2025-06-01 18:56:04,135 utils 366635 140108977945536 Blockchain system coordinator initialization failed, using mock mode
+INFO 2025-06-01 18:56:12,418 basehttp 366635 140108918724288 "GET /login/ HTTP/1.1" 302 0
+INFO 2025-06-01 18:56:12,434 basehttp 366635 140108918724288 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:56:33,276 basehttp 366635 140108918724288 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-06-01 18:56:33,284 basehttp 366635 140108918724288 "GET /login/ HTTP/1.1" 200 6411
+INFO 2025-06-01 18:56:42,088 basehttp 366635 140108918724288 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-06-01 18:56:42,098 basehttp 366635 140108918724288 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:48,004 autoreload 367438 140631687236544 Watching for file changes with StatReloader
+INFO 2025-06-01 18:59:49,293 system_coordinator 367438 140631687236544 Blockchain System Coordinator initialized
+INFO 2025-06-01 18:59:49,293 system_coordinator 367438 140631687236544 🚀 Initializing Integrated Blockchain System...
+INFO 2025-06-01 18:59:49,294 database_manager 367438 140631687236544 Database storage initialized at blockchain_databases
+INFO 2025-06-01 18:59:49,294 database_manager 367438 140631687236544 Loaded 2 database operations from chain
+INFO 2025-06-01 18:59:49,295 file_upload_system 367438 140631687236544 Secure upload storage initialized at secure_uploads
+INFO 2025-06-01 18:59:49,295 file_upload_system 367438 140631687236544 Loaded 0 upload operations
+INFO 2025-06-01 18:59:49,296 system_coordinator 367438 140631687236544 🎉 All systems initialized successfully!
+INFO 2025-06-01 18:59:49,296 utils 367438 140631687236544 Blockchain system coordinator initialized successfully
+INFO 2025-06-01 18:59:52,959 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:54,781 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:55,346 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:55,593 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:55,782 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:55,969 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:56,156 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 18:59:56,314 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 19:00:06,607 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608
+INFO 2025-06-01 19:00:11,497 basehttp 367438 140631618680512 "GET /login/ HTTP/1.1" 302 0
+INFO 2025-06-01 19:00:11,508 basehttp 367438 140631618680512 "GET / HTTP/1.1" 200 3608

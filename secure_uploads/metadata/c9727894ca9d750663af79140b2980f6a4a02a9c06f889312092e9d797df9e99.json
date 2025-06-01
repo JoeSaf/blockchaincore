@@ -1,0 +1,22 @@
+{
+  "upload_id": "c9727894ca9d750663af79140b2980f6a4a02a9c06f889312092e9d797df9e99",
+  "original_name": "package.json",
+  "stored_name": "1748593391_c9727894_package.json",
+  "stored_path": "secure_uploads/approved/1748593391_c9727894_package.json",
+  "uploaded_by": "admin",
+  "uploaded_at": 1748593391.9252772,
+  "status": "approved",
+  "database": "trial_db",
+  "scan_result": {
+    "safe": true,
+    "threats": [],
+    "file_type": "application/json",
+    "size": 506,
+    "hash": "8d8020b6cbbc960a88390c1054bfa2a94cfd5a8a8e4beb8d3ef16579aa01b4b1"
+  },
+  "metadata": {
+    "gui_upload": true,
+    "upload_session": 1748593391.924895
+  },
+  "blockchain_verified": false
+}

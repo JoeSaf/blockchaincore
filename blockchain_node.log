@@ -1,0 +1,1594 @@
+[2025-05-28 13:35:37.267] [blockchain] [info] Logging system initialized
+[2025-05-28 13:35:37.267] [blockchain] [info] Node Configuration:
+[2025-05-28 13:35:37.267] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 13:35:37.267] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 13:35:37.267] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 13:35:37.267] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 13:35:37.267] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 13:35:37.267] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 13:35:37.267] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 13:35:37.267] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 13:35:37.267] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 13:35:37.267] [blockchain] [info] Created genesis block
+[2025-05-28 13:35:37.267] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 13:35:37.267] [blockchain] [info] Blockchain file blockchain.json does not exist
+[2025-05-28 13:35:37.267] [blockchain] [info] Created new blockchain with genesis block
+[2025-05-28 13:35:37.269] [blockchain] [info] P2P Network initialized - Node ID: eeafe2a7c9e4fd2f1d62e0aa4a7fec5d, TCP: 8333, UDP: 8334
+[2025-05-28 13:35:37.269] [blockchain] [debug] API routes configured
+[2025-05-28 13:35:37.269] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 13:35:37.269] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 13:35:37.269] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 13:35:37.269] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 13:35:37.269] [blockchain] [info] P2P Network started successfully
+[2025-05-28 13:35:37.269] [blockchain] [info] P2P network started successfully
+[2025-05-28 13:35:37.269] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 13:35:37.369] [blockchain] [info] REST API Server started successfully
+[2025-05-28 13:35:37.369] [blockchain] [info] REST API server started successfully
+[2025-05-28 13:35:37.369] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-28 13:35:37.369] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 13:35:37.369] [blockchain] [info] Peer discovery initiated
+[2025-05-28 13:35:37.369] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 13:36:37.373] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:37:03.080] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:18.384] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:19.489] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:20.512] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:21.233] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:21.934] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:22.579] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:23.200] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:24.559] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:25.267] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:37:37.378] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:37:40.568] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-28 13:37:57.124] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-28 13:38:00.793] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-28 13:38:19.691] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 13:38:37.383] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:39:37.388] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:40:37.393] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 13:40:37.393] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:41:37.398] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:42:37.402] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:43:37.407] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:44:37.412] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:45:37.416] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 13:45:37.416] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:46:37.421] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:47:37.426] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:48:37.431] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:49:37.437] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:50:37.444] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 13:50:37.444] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:51:37.450] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:52:37.456] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:53:37.463] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:54:37.470] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:55:37.475] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 13:55:37.475] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:56:37.481] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:57:37.486] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:58:37.491] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 13:59:37.496] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:00:37.502] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:00:37.502] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:01:37.508] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:02:37.512] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:03:37.518] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:04:37.524] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:05:37.529] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:05:37.529] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:06:37.533] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:07:37.541] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:08:37.549] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:09:37.556] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:10:37.563] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:10:37.563] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:11:37.572] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:12:37.582] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:13:37.589] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:14:37.595] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:15:37.602] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:15:37.602] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:16:37.609] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:17:37.615] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:18:37.622] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:19:37.629] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:20:37.636] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:20:37.636] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:21:37.643] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:22:37.650] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:23:37.658] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:24:37.665] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:25:37.672] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:25:37.672] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:26:37.679] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:27:37.686] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:28:37.694] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:29:37.701] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:30:37.708] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:30:37.708] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:31:37.716] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:32:37.725] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:33:37.733] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:34:37.741] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:35:37.749] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:35:37.749] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:36:37.759] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:37:37.766] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:38:37.772] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:39:37.779] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:40:37.785] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 14:40:37.785] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 14:40:50.376] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-05-28 14:40:50.378] [blockchain] [info] REST API Server stopped
+[2025-05-28 14:41:37.277] [blockchain] [info] P2P Network stopped
+[2025-05-28 14:41:37.277] [blockchain] [info] Shutdown complete
+[2025-05-28 14:45:54.269] [blockchain] [info] Logging system initialized
+[2025-05-28 14:45:54.269] [blockchain] [info] Node Configuration:
+[2025-05-28 14:45:54.269] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 14:45:54.269] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 14:45:54.269] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 14:45:54.269] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 14:45:54.269] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 14:45:54.269] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 14:45:54.269] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 14:45:54.269] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 14:45:54.269] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 14:45:54.269] [blockchain] [info] Created genesis block
+[2025-05-28 14:45:54.269] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 14:45:54.269] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-28 14:45:54.269] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-28 14:45:54.272] [blockchain] [info] P2P Network initialized - Node ID: 0ccf3c00c5b22ee13e89c5149f182ce3, TCP: 8333, UDP: 8334
+[2025-05-28 14:45:54.272] [blockchain] [debug] API routes configured
+[2025-05-28 14:45:54.272] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 14:45:54.272] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 14:45:54.272] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 14:45:54.272] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 14:45:54.272] [blockchain] [info] P2P Network started successfully
+[2025-05-28 14:45:54.272] [blockchain] [info] P2P network started successfully
+[2025-05-28 14:45:54.272] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 14:45:54.372] [blockchain] [info] REST API Server started successfully
+[2025-05-28 14:45:54.372] [blockchain] [info] REST API server started successfully
+[2025-05-28 14:45:54.372] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-28 14:45:54.372] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 14:45:54.372] [blockchain] [info] Peer discovery initiated
+[2025-05-28 14:45:54.372] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 14:45:57.267] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-28 14:45:57.269] [blockchain] [info] REST API Server stopped
+[2025-05-28 14:46:54.272] [blockchain] [info] P2P Network stopped
+[2025-05-28 14:46:54.272] [blockchain] [info] Shutdown complete
+[2025-05-28 15:00:53.509] [blockchain] [info] Logging system initialized
+[2025-05-28 15:00:53.509] [blockchain] [info] Node Configuration:
+[2025-05-28 15:00:53.509] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 15:00:53.509] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 15:00:53.509] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 15:00:53.509] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 15:00:53.509] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 15:00:53.509] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 15:00:53.509] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 15:00:53.509] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 15:00:53.509] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 15:00:53.509] [blockchain] [info] Created genesis block
+[2025-05-28 15:00:53.509] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 15:00:53.509] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-28 15:00:53.509] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-28 15:00:53.511] [blockchain] [info] P2P Network initialized - Node ID: ac358682179d36843427fd659765baed, TCP: 8333, UDP: 8334
+[2025-05-28 15:00:53.511] [blockchain] [debug] API routes configured
+[2025-05-28 15:00:53.511] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 15:00:53.511] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 15:00:53.511] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 15:00:53.511] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 15:00:53.511] [blockchain] [info] P2P Network started successfully
+[2025-05-28 15:00:53.511] [blockchain] [info] P2P network started successfully
+[2025-05-28 15:00:53.511] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 15:00:53.611] [blockchain] [info] REST API Server started successfully
+[2025-05-28 15:00:53.611] [blockchain] [info] REST API server started successfully
+[2025-05-28 15:00:53.612] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-28 15:00:53.612] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 15:00:53.612] [blockchain] [info] Peer discovery initiated
+[2025-05-28 15:00:53.612] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 15:00:56.508] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-28 15:00:56.509] [blockchain] [info] REST API Server stopped
+[2025-05-28 15:01:53.512] [blockchain] [info] P2P Network stopped
+[2025-05-28 15:01:53.512] [blockchain] [info] Shutdown complete
+[2025-05-28 15:19:19.972] [blockchain] [info] Logging system initialized
+[2025-05-28 15:19:19.972] [blockchain] [info] Node Configuration:
+[2025-05-28 15:19:19.972] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 15:19:19.972] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 15:19:19.972] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 15:19:19.972] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 15:19:19.972] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 15:19:19.972] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 15:19:19.972] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 15:19:19.972] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 15:19:19.972] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 15:19:19.972] [blockchain] [info] Created genesis block
+[2025-05-28 15:19:19.972] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 15:19:19.972] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-28 15:19:19.972] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-28 15:19:19.973] [blockchain] [info] P2P Network initialized - Node ID: 308a40869cc9064b1f096fb0ca593659, TCP: 8333, UDP: 8334
+[2025-05-28 15:19:19.974] [blockchain] [debug] API routes configured
+[2025-05-28 15:19:19.974] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 15:19:19.974] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 15:19:19.974] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 15:19:19.974] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 15:19:19.974] [blockchain] [info] P2P Network started successfully
+[2025-05-28 15:19:19.974] [blockchain] [info] P2P network started successfully
+[2025-05-28 15:19:19.974] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 15:19:20.074] [blockchain] [info] REST API Server started successfully
+[2025-05-28 15:19:20.074] [blockchain] [info] REST API server started successfully
+[2025-05-28 15:19:20.074] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-28 15:19:20.074] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 15:19:20.074] [blockchain] [info] Peer discovery initiated
+[2025-05-28 15:19:20.074] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 15:19:25.498] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-05-28 15:19:25.501] [blockchain] [info] REST API Server stopped
+[2025-05-28 15:20:19.974] [blockchain] [info] P2P Network stopped
+[2025-05-28 15:20:19.974] [blockchain] [info] Shutdown complete
+[2025-05-28 15:38:22.777] [blockchain] [info] Logging system initialized
+[2025-05-28 15:38:22.777] [blockchain] [info] Node Configuration:
+[2025-05-28 15:38:22.777] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 15:38:22.777] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 15:38:22.777] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 15:38:22.777] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 15:38:22.777] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 15:38:22.777] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 15:38:22.777] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 15:38:22.777] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 15:38:22.778] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 15:38:22.778] [blockchain] [info] Created genesis block
+[2025-05-28 15:38:22.778] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 15:38:22.778] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-28 15:38:22.778] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-28 15:38:22.779] [blockchain] [info] P2P Network initialized - Node ID: 90fbbe6abaad1a66b6b67be9ce35dd01, TCP: 8333, UDP: 8334
+[2025-05-28 15:38:22.779] [blockchain] [debug] API routes configured
+[2025-05-28 15:38:22.779] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 15:38:22.779] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 15:38:22.779] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 15:38:22.779] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 15:38:22.779] [blockchain] [info] P2P Network started successfully
+[2025-05-28 15:38:22.779] [blockchain] [info] P2P network started successfully
+[2025-05-28 15:38:22.779] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 15:38:22.879] [blockchain] [info] REST API Server started successfully
+[2025-05-28 15:38:22.879] [blockchain] [info] REST API server started successfully
+[2025-05-28 15:38:22.879] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-28 15:38:22.879] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 15:38:22.879] [blockchain] [info] Peer discovery initiated
+[2025-05-28 15:38:22.879] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 15:38:25.776] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-28 15:38:25.779] [blockchain] [info] REST API Server stopped
+[2025-05-28 15:39:22.779] [blockchain] [info] P2P Network stopped
+[2025-05-28 15:39:22.779] [blockchain] [info] Shutdown complete
+[2025-05-28 16:06:16.797] [blockchain] [info] Logging system initialized
+[2025-05-28 16:06:16.797] [blockchain] [info] Node Configuration:
+[2025-05-28 16:06:16.797] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 16:06:16.797] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 16:06:16.797] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 16:06:16.797] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 16:06:16.797] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 16:06:16.797] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 16:06:16.797] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 16:06:16.797] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 16:06:16.797] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 16:06:16.797] [blockchain] [info] Created genesis block
+[2025-05-28 16:06:16.797] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 16:06:16.797] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-28 16:06:16.797] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-28 16:06:16.798] [blockchain] [info] P2P Network initialized - Node ID: 4b264c010bdb7b528f961324555919b5, TCP: 8333, UDP: 8334
+[2025-05-28 16:06:16.799] [blockchain] [debug] API routes configured
+[2025-05-28 16:06:16.799] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 16:06:16.799] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 16:06:16.799] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 16:06:16.799] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 16:06:16.799] [blockchain] [info] P2P Network started successfully
+[2025-05-28 16:06:16.799] [blockchain] [info] P2P network started successfully
+[2025-05-28 16:06:16.799] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 16:06:16.899] [blockchain] [info] REST API Server started successfully
+[2025-05-28 16:06:16.899] [blockchain] [info] REST API server started successfully
+[2025-05-28 16:06:16.899] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-28 16:06:16.899] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 16:06:16.899] [blockchain] [info] Peer discovery initiated
+[2025-05-28 16:06:16.899] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 16:06:19.795] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-28 16:06:19.798] [blockchain] [info] REST API Server stopped
+[2025-05-28 16:07:16.799] [blockchain] [info] P2P Network stopped
+[2025-05-28 16:07:16.799] [blockchain] [info] Shutdown complete
+[2025-05-28 16:37:00.160] [blockchain] [info] Logging system initialized
+[2025-05-28 16:37:00.160] [blockchain] [info] Node Configuration:
+[2025-05-28 16:37:00.160] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 16:37:00.160] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 16:37:00.160] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 16:37:00.160] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 16:37:00.160] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 16:37:00.160] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 16:37:00.160] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 16:37:00.160] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 16:37:00.160] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 16:37:00.160] [blockchain] [info] Created genesis block
+[2025-05-28 16:37:00.160] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 16:37:00.160] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-28 16:37:00.160] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-28 16:37:00.161] [blockchain] [info] P2P Network initialized - Node ID: 8dff5a521412da1c2e9c7ae844c3079a, TCP: 8333, UDP: 8334
+[2025-05-28 16:37:00.161] [blockchain] [debug] API routes configured
+[2025-05-28 16:37:00.161] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 16:37:00.161] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 16:37:00.161] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 16:37:00.161] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 16:37:00.162] [blockchain] [info] P2P Network started successfully
+[2025-05-28 16:37:00.162] [blockchain] [info] P2P network started successfully
+[2025-05-28 16:37:00.162] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 16:37:00.262] [blockchain] [info] REST API Server started successfully
+[2025-05-28 16:37:00.262] [blockchain] [info] REST API server started successfully
+[2025-05-28 16:37:00.262] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-28 16:37:00.262] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 16:37:00.262] [blockchain] [info] Peer discovery initiated
+[2025-05-28 16:37:00.262] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 16:37:03.177] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 16:37:05.179] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 16:37:05.180] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-28 16:37:08.761] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 16:37:08.763] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 16:38:00.268] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 16:38:14.390] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 16:38:14.434] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 16:38:51.091] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 16:38:51.095] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-28 16:38:51.096] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 16:39:00.275] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 16:40:00.282] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 16:40:37.105] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 16:41:00.290] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 16:42:00.486] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 16:42:00.486] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 16:42:27.401] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 16:43:00.492] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 16:43:28.783] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 16:43:28.786] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-28 16:43:28.787] [blockchain] [info] REST API Server stopped
+[2025-05-28 16:44:00.163] [blockchain] [info] P2P Network stopped
+[2025-05-28 16:44:00.163] [blockchain] [info] Shutdown complete
+[2025-05-28 20:27:07.529] [blockchain] [info] Logging system initialized
+[2025-05-28 20:27:07.530] [blockchain] [info] Node Configuration:
+[2025-05-28 20:27:07.530] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-28 20:27:07.530] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-28 20:27:07.530] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-28 20:27:07.530] [blockchain] [info]   REST API Port: 8080
+[2025-05-28 20:27:07.530] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-28 20:27:07.530] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-28 20:27:07.530] [blockchain] [info] Initializing blockchain node components...
+[2025-05-28 20:27:07.530] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-28 20:27:07.530] [blockchain] [debug] OpenSSL initialized
+[2025-05-28 20:27:07.530] [blockchain] [info] Created genesis block
+[2025-05-28 20:27:07.530] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-28 20:27:07.530] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-28 20:27:07.530] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-28 20:27:07.531] [blockchain] [info] P2P Network initialized - Node ID: bafba9cb8a6424da2a779983aef2082b, TCP: 8333, UDP: 8334
+[2025-05-28 20:27:07.531] [blockchain] [debug] API routes configured
+[2025-05-28 20:27:07.531] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-28 20:27:07.531] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-28 20:27:07.531] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-28 20:27:07.531] [blockchain] [info] Starting blockchain node services...
+[2025-05-28 20:27:07.531] [blockchain] [info] P2P Network started successfully
+[2025-05-28 20:27:07.531] [blockchain] [info] P2P network started successfully
+[2025-05-28 20:27:07.531] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-28 20:27:07.632] [blockchain] [info] REST API Server started successfully
+[2025-05-28 20:27:07.632] [blockchain] [info] REST API server started successfully
+[2025-05-28 20:27:07.632] [blockchain] [debug] Failed to send UDP message: send_to: Network is unreachable
+[2025-05-28 20:27:07.632] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-28 20:27:07.632] [blockchain] [info] Peer discovery initiated
+[2025-05-28 20:27:07.632] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-28 20:27:10.534] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:27:12.539] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:27:12.543] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-28 20:27:12.555] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:27:25.901] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 20:27:25.944] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 20:28:07.642] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:29:07.651] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:30:07.660] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:30:08.264] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:30:08.267] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-28 20:30:08.268] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:31:07.669] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:31:12.343] [blockchain] [debug] API Request: POST /api/mine
+[2025-05-28 20:31:12.344] [blockchain] [debug] Created coinbase transaction for miner: miner_admin_1748453470 (reward: 50)
+[2025-05-28 20:31:12.344] [blockchain] [debug] Created new block with index: 1
+[2025-05-28 20:31:12.344] [blockchain] [info] Mining block 1 with difficulty 4
+[2025-05-28 20:31:12.350] [blockchain] [info] Block 1 mined successfully! Nonce: 1162, Time: 6ms
+[2025-05-28 20:31:12.350] [blockchain] [info] Block hash: 00000183169c8f2dfb32d37d82b2fa567e04063a64e47a68ac33fc9722b87525
+[2025-05-28 20:31:12.350] [blockchain] [error] Transaction c6b58e3cbcec700e6212d275a0eb73715339eefad4fd73425c6ca63ceb9d4091 has insufficient input amount
+[2025-05-28 20:31:12.350] [blockchain] [error] Block 1 contains invalid transactions
+[2025-05-28 20:31:12.350] [blockchain] [error] Invalid block rejected: 1
+[2025-05-28 20:31:12.350] [blockchain] [error] Failed to add mined block to blockchain
+[2025-05-28 20:31:12.350] [blockchain] [info] Created genesis block
+[2025-05-28 20:31:12.350] [blockchain] [debug] Block 0 broadcasted to network
+[2025-05-28 20:31:12.353] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 20:31:12.353] [blockchain] [debug] Created transaction: security_system -> security_system (0.001)
+[2025-05-28 20:31:12.353] [blockchain] [error] Transaction a4858a4b2bfb0604b605f8d8ba413abda12c973232476bba43e98501519839dc has insufficient input amount
+[2025-05-28 20:31:12.353] [blockchain] [warning] Invalid transaction rejected: a4858a4b2bfb0604b605f8d8ba413abda12c973232476bba43e98501519839dc
+[2025-05-28 20:32:07.679] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 20:32:07.679] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:32:09.918] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 20:32:09.921] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 20:33:07.688] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:34:07.696] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:35:07.703] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:36:07.711] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:37:07.719] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 20:37:07.719] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:38:07.726] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:39:07.733] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:39:31.289] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-28 20:40:07.741] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:41:07.749] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:42:07.759] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 20:42:07.759] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:42:44.157] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:42:44.163] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-28 20:42:44.164] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:42:51.861] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:42:51.867] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-28 20:42:51.872] [blockchain] [debug] API Request: GET /api/status
+[2025-05-28 20:43:07.766] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:43:45.677] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 20:44:07.775] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:45:07.782] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:46:07.790] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:47:07.801] [blockchain] [debug] Blockchain saved to file
+[2025-05-28 20:47:07.801] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:48:07.808] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-28 20:48:52.466] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-28 20:48:52.470] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-28 20:48:52.471] [blockchain] [info] REST API Server stopped
+[2025-05-28 20:49:07.539] [blockchain] [info] P2P Network stopped
+[2025-05-28 20:49:07.539] [blockchain] [info] Shutdown complete
+[2025-05-29 11:46:23.667] [blockchain] [info] Logging system initialized
+[2025-05-29 11:46:23.668] [blockchain] [info] Node Configuration:
+[2025-05-29 11:46:23.668] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 11:46:23.668] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 11:46:23.668] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 11:46:23.668] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 11:46:23.668] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 11:46:23.668] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 11:46:23.668] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 11:46:23.668] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 11:46:23.668] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 11:46:23.668] [blockchain] [info] Created genesis block
+[2025-05-29 11:46:23.668] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 11:46:23.668] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 11:46:23.668] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 11:46:23.669] [blockchain] [info] P2P Network initialized - Node ID: ef637d07fc00fd8c6e22b51e902547a0, TCP: 8333, UDP: 8334
+[2025-05-29 11:46:23.669] [blockchain] [debug] API routes configured
+[2025-05-29 11:46:23.669] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 11:46:23.669] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 11:46:23.669] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 11:46:23.669] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 11:46:23.669] [blockchain] [info] P2P Network started successfully
+[2025-05-29 11:46:23.669] [blockchain] [info] P2P network started successfully
+[2025-05-29 11:46:23.669] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 11:46:23.769] [blockchain] [info] REST API Server started successfully
+[2025-05-29 11:46:23.769] [blockchain] [info] REST API server started successfully
+[2025-05-29 11:46:23.770] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 11:46:23.770] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 11:46:23.770] [blockchain] [info] Peer discovery initiated
+[2025-05-29 11:46:23.770] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 11:46:26.677] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 11:46:28.682] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 11:46:28.686] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 11:46:28.697] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 11:46:43.130] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 11:46:43.146] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 11:46:46.135] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 11:46:46.137] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-29 11:46:46.138] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 11:47:23.777] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 11:48:23.785] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 11:49:23.792] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 11:50:23.798] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 11:50:31.282] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 11:50:31.283] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 11:50:31.284] [blockchain] [info] REST API Server stopped
+[2025-05-29 11:51:23.670] [blockchain] [info] P2P Network stopped
+[2025-05-29 11:51:23.670] [blockchain] [info] Shutdown complete
+[2025-05-29 12:06:21.106] [blockchain] [info] Logging system initialized
+[2025-05-29 12:06:21.106] [blockchain] [info] Node Configuration:
+[2025-05-29 12:06:21.106] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 12:06:21.106] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 12:06:21.106] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 12:06:21.106] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 12:06:21.106] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 12:06:21.106] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 12:06:21.106] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 12:06:21.106] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 12:06:21.107] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 12:06:21.107] [blockchain] [info] Created genesis block
+[2025-05-29 12:06:21.107] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 12:06:21.107] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 12:06:21.107] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 12:06:21.108] [blockchain] [info] P2P Network initialized - Node ID: bd1cedfabe97d5bd282982073d9b1138, TCP: 8333, UDP: 8334
+[2025-05-29 12:06:21.108] [blockchain] [debug] API routes configured
+[2025-05-29 12:06:21.108] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 12:06:21.108] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 12:06:21.108] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 12:06:21.108] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 12:06:21.108] [blockchain] [info] P2P Network started successfully
+[2025-05-29 12:06:21.108] [blockchain] [info] P2P network started successfully
+[2025-05-29 12:06:21.108] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 12:06:21.208] [blockchain] [info] REST API Server started successfully
+[2025-05-29 12:06:21.209] [blockchain] [info] REST API server started successfully
+[2025-05-29 12:06:21.209] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 12:06:21.209] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 12:06:21.209] [blockchain] [info] Peer discovery initiated
+[2025-05-29 12:06:21.209] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 12:06:24.110] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 12:06:26.115] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 12:06:26.120] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 12:06:26.127] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 12:06:32.015] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 12:06:32.032] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 12:07:21.219] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 12:08:21.229] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 12:09:21.238] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 12:10:08.897] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 12:10:08.899] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 12:10:08.900] [blockchain] [info] REST API Server stopped
+[2025-05-29 12:10:21.110] [blockchain] [info] P2P Network stopped
+[2025-05-29 12:10:21.110] [blockchain] [info] Shutdown complete
+[2025-05-29 15:15:31.943] [blockchain] [info] Logging system initialized
+[2025-05-29 15:15:31.943] [blockchain] [info] Node Configuration:
+[2025-05-29 15:15:31.943] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 15:15:31.943] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 15:15:31.943] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 15:15:31.943] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 15:15:31.943] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 15:15:31.943] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 15:15:31.943] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 15:15:31.943] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 15:15:31.943] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 15:15:31.943] [blockchain] [info] Created genesis block
+[2025-05-29 15:15:31.943] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 15:15:31.943] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 15:15:31.943] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 15:15:31.944] [blockchain] [info] P2P Network initialized - Node ID: 4140daa02792f7c99d4f3ac748d9c519, TCP: 8333, UDP: 8334
+[2025-05-29 15:15:31.945] [blockchain] [debug] API routes configured
+[2025-05-29 15:15:31.945] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 15:15:31.945] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 15:15:31.945] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 15:15:31.945] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 15:15:31.945] [blockchain] [info] P2P Network started successfully
+[2025-05-29 15:15:31.945] [blockchain] [info] P2P network started successfully
+[2025-05-29 15:15:31.945] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 15:15:32.045] [blockchain] [info] REST API Server started successfully
+[2025-05-29 15:15:32.045] [blockchain] [info] REST API server started successfully
+[2025-05-29 15:15:32.045] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 15:15:32.045] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 15:15:32.045] [blockchain] [info] Peer discovery initiated
+[2025-05-29 15:15:32.045] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 15:15:34.943] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:15:36.948] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:15:36.949] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 15:15:36.954] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:15:45.102] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:15:45.106] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:16:31.100] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-05-29 15:16:31.102] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 15:16:31.945] [blockchain] [info] P2P Network stopped
+[2025-05-29 15:16:31.945] [blockchain] [info] Shutdown complete
+[2025-05-29 15:18:29.743] [blockchain] [info] Logging system initialized
+[2025-05-29 15:18:29.743] [blockchain] [info] Node Configuration:
+[2025-05-29 15:18:29.743] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 15:18:29.743] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 15:18:29.743] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 15:18:29.743] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 15:18:29.743] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 15:18:29.743] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 15:18:29.743] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 15:18:29.743] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 15:18:29.743] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 15:18:29.743] [blockchain] [info] Created genesis block
+[2025-05-29 15:18:29.743] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 15:18:29.743] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 15:18:29.743] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 15:18:29.745] [blockchain] [info] P2P Network initialized - Node ID: 4f07114f17da06f600d976a55e38748e, TCP: 8333, UDP: 8334
+[2025-05-29 15:18:29.745] [blockchain] [debug] API routes configured
+[2025-05-29 15:18:29.745] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 15:18:29.745] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 15:18:29.745] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 15:18:29.745] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 15:18:29.745] [blockchain] [info] P2P Network started successfully
+[2025-05-29 15:18:29.745] [blockchain] [info] P2P network started successfully
+[2025-05-29 15:18:29.745] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 15:18:29.845] [blockchain] [info] REST API Server started successfully
+[2025-05-29 15:18:29.845] [blockchain] [info] REST API server started successfully
+[2025-05-29 15:18:29.845] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 15:18:29.845] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 15:18:29.845] [blockchain] [info] Peer discovery initiated
+[2025-05-29 15:18:29.845] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 15:18:32.747] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:18:34.750] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:18:34.751] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 15:18:34.757] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:18:39.195] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:18:39.237] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:19:29.852] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:20:29.858] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:21:29.865] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:22:29.871] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:23:00.355] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:23:00.359] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 15:23:00.360] [blockchain] [info] REST API Server stopped
+[2025-05-29 15:23:29.747] [blockchain] [info] P2P Network stopped
+[2025-05-29 15:23:29.747] [blockchain] [info] Shutdown complete
+[2025-05-29 15:23:37.918] [blockchain] [info] Logging system initialized
+[2025-05-29 15:23:37.918] [blockchain] [info] Node Configuration:
+[2025-05-29 15:23:37.918] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 15:23:37.918] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 15:23:37.918] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 15:23:37.918] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 15:23:37.918] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 15:23:37.918] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 15:23:37.918] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 15:23:37.918] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 15:23:37.918] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 15:23:37.918] [blockchain] [info] Created genesis block
+[2025-05-29 15:23:37.918] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 15:23:37.918] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 15:23:37.918] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 15:23:37.920] [blockchain] [info] P2P Network initialized - Node ID: f4e6c29bf3dc5a1fc4272e133f4d58f0, TCP: 8333, UDP: 8334
+[2025-05-29 15:23:37.920] [blockchain] [debug] API routes configured
+[2025-05-29 15:23:37.920] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 15:23:37.920] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 15:23:37.920] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 15:23:37.920] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 15:23:37.920] [blockchain] [info] P2P Network started successfully
+[2025-05-29 15:23:37.920] [blockchain] [info] P2P network started successfully
+[2025-05-29 15:23:37.920] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 15:23:38.020] [blockchain] [info] REST API Server started successfully
+[2025-05-29 15:23:38.020] [blockchain] [info] REST API server started successfully
+[2025-05-29 15:23:38.020] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 15:23:38.020] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 15:23:38.020] [blockchain] [info] Peer discovery initiated
+[2025-05-29 15:23:38.020] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 15:23:40.922] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:23:42.926] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:23:42.931] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 15:23:42.945] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:23:46.774] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:23:46.777] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:24:38.029] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:24:47.905] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:24:47.907] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 15:24:47.907] [blockchain] [info] REST API Server stopped
+[2025-05-29 15:25:37.920] [blockchain] [info] P2P Network stopped
+[2025-05-29 15:25:37.920] [blockchain] [info] Shutdown complete
+[2025-05-29 15:26:03.232] [blockchain] [info] Logging system initialized
+[2025-05-29 15:26:03.232] [blockchain] [info] Node Configuration:
+[2025-05-29 15:26:03.232] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 15:26:03.232] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 15:26:03.232] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 15:26:03.232] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 15:26:03.232] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 15:26:03.232] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 15:26:03.232] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 15:26:03.232] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 15:26:03.232] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 15:26:03.232] [blockchain] [info] Created genesis block
+[2025-05-29 15:26:03.232] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 15:26:03.232] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 15:26:03.232] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 15:26:03.233] [blockchain] [info] P2P Network initialized - Node ID: 67984e447bdd9910435b16ba249acdc0, TCP: 8333, UDP: 8334
+[2025-05-29 15:26:03.233] [blockchain] [debug] API routes configured
+[2025-05-29 15:26:03.233] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 15:26:03.233] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 15:26:03.233] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 15:26:03.233] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 15:26:03.234] [blockchain] [info] P2P Network started successfully
+[2025-05-29 15:26:03.234] [blockchain] [info] P2P network started successfully
+[2025-05-29 15:26:03.234] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 15:26:03.334] [blockchain] [info] REST API Server started successfully
+[2025-05-29 15:26:03.334] [blockchain] [info] REST API server started successfully
+[2025-05-29 15:26:03.334] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 15:26:03.334] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 15:26:03.334] [blockchain] [info] Peer discovery initiated
+[2025-05-29 15:26:03.334] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 15:26:06.236] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:26:08.240] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:26:08.242] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 15:26:08.246] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:26:17.282] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:26:17.319] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:26:41.909] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-05-29 15:26:41.910] [blockchain] [info] REST API Server stopped
+[2025-05-29 15:26:41.910] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 15:26:41.910] [blockchain] [info] Shutdown complete
+[2025-05-29 15:32:50.210] [blockchain] [info] Logging system initialized
+[2025-05-29 15:32:50.210] [blockchain] [info] Node Configuration:
+[2025-05-29 15:32:50.210] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 15:32:50.210] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 15:32:50.210] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 15:32:50.210] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 15:32:50.210] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 15:32:50.210] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 15:32:50.210] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 15:32:50.210] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 15:32:50.210] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 15:32:50.210] [blockchain] [info] Created genesis block
+[2025-05-29 15:32:50.210] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 15:32:50.210] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 15:32:50.210] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 15:32:50.212] [blockchain] [info] P2P Network initialized - Node ID: 0836aba10139bf07e79c62606a1fe09b, TCP: 8333, UDP: 8334
+[2025-05-29 15:32:50.212] [blockchain] [debug] API routes configured
+[2025-05-29 15:32:50.212] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 15:32:50.212] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 15:32:50.212] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 15:32:50.212] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 15:32:50.212] [blockchain] [info] P2P Network started successfully
+[2025-05-29 15:32:50.212] [blockchain] [info] P2P network started successfully
+[2025-05-29 15:32:50.212] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 15:32:50.312] [blockchain] [info] REST API Server started successfully
+[2025-05-29 15:32:50.312] [blockchain] [info] REST API server started successfully
+[2025-05-29 15:32:50.313] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 15:32:50.313] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 15:32:50.313] [blockchain] [info] Peer discovery initiated
+[2025-05-29 15:32:50.313] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 15:32:51.624] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-05-29 15:32:51.626] [blockchain] [info] REST API Server stopped
+[2025-05-29 15:33:50.213] [blockchain] [info] P2P Network stopped
+[2025-05-29 15:33:50.213] [blockchain] [info] Shutdown complete
+[2025-05-29 15:47:15.867] [blockchain] [info] Logging system initialized
+[2025-05-29 15:47:15.867] [blockchain] [info] Node Configuration:
+[2025-05-29 15:47:15.867] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 15:47:15.867] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 15:47:15.867] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 15:47:15.867] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 15:47:15.867] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 15:47:15.867] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 15:47:15.867] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 15:47:15.867] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 15:47:15.868] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 15:47:15.868] [blockchain] [info] Created genesis block
+[2025-05-29 15:47:15.868] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 15:47:15.868] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 15:47:15.868] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 15:47:15.874] [blockchain] [info] P2P Network initialized - Node ID: a0ebfc5aa698781633248de7da153c48, TCP: 8333, UDP: 8334
+[2025-05-29 15:47:15.874] [blockchain] [debug] API routes configured
+[2025-05-29 15:47:15.874] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 15:47:15.874] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 15:47:15.874] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 15:47:15.874] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 15:47:15.875] [blockchain] [info] P2P Network started successfully
+[2025-05-29 15:47:15.875] [blockchain] [info] P2P network started successfully
+[2025-05-29 15:47:15.875] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 15:47:15.975] [blockchain] [info] REST API Server started successfully
+[2025-05-29 15:47:15.975] [blockchain] [info] REST API server started successfully
+[2025-05-29 15:47:15.975] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 15:47:15.975] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 15:47:15.975] [blockchain] [info] Peer discovery initiated
+[2025-05-29 15:47:15.975] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 15:47:18.867] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:47:20.871] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:47:20.876] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 15:47:20.891] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 15:47:24.826] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:47:24.844] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:48:15.983] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:48:49.118] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:48:49.125] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:49:15.990] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:50:15.997] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:51:16.004] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:52:16.013] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 15:52:16.013] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:53:16.021] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:54:16.028] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 15:54:56.114] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 15:54:56.116] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 15:54:56.116] [blockchain] [info] REST API Server stopped
+[2025-05-29 15:55:15.878] [blockchain] [info] P2P Network stopped
+[2025-05-29 15:55:15.878] [blockchain] [info] Shutdown complete
+[2025-05-29 16:10:46.462] [blockchain] [info] Logging system initialized
+[2025-05-29 16:10:46.462] [blockchain] [info] Node Configuration:
+[2025-05-29 16:10:46.462] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 16:10:46.462] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 16:10:46.462] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 16:10:46.462] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 16:10:46.462] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 16:10:46.462] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 16:10:46.462] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 16:10:46.462] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 16:10:46.462] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 16:10:46.462] [blockchain] [info] Created genesis block
+[2025-05-29 16:10:46.462] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 16:10:46.462] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 16:10:46.462] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 16:10:46.463] [blockchain] [info] P2P Network initialized - Node ID: f5818731c6948d8b6aabed37924d7dfc, TCP: 8333, UDP: 8334
+[2025-05-29 16:10:46.463] [blockchain] [debug] API routes configured
+[2025-05-29 16:10:46.463] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 16:10:46.463] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 16:10:46.463] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 16:10:46.463] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 16:10:46.464] [blockchain] [info] P2P Network started successfully
+[2025-05-29 16:10:46.464] [blockchain] [info] P2P network started successfully
+[2025-05-29 16:10:46.464] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 16:10:46.564] [blockchain] [info] REST API Server started successfully
+[2025-05-29 16:10:46.564] [blockchain] [info] REST API server started successfully
+[2025-05-29 16:10:46.564] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 16:10:46.564] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 16:10:46.564] [blockchain] [info] Peer discovery initiated
+[2025-05-29 16:10:46.564] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 16:10:49.463] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 16:10:51.467] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 16:10:51.471] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 16:10:51.479] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 16:10:57.346] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:10:57.383] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:11:46.571] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:12:04.263] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:12:04.268] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 16:12:04.269] [blockchain] [info] REST API Server stopped
+[2025-05-29 16:12:46.464] [blockchain] [info] P2P Network stopped
+[2025-05-29 16:12:46.464] [blockchain] [info] Shutdown complete
+[2025-05-29 16:13:47.343] [blockchain] [info] Logging system initialized
+[2025-05-29 16:13:47.343] [blockchain] [info] Node Configuration:
+[2025-05-29 16:13:47.343] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 16:13:47.343] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 16:13:47.343] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 16:13:47.343] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 16:13:47.343] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 16:13:47.343] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 16:13:47.343] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 16:13:47.343] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 16:13:47.343] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 16:13:47.343] [blockchain] [info] Created genesis block
+[2025-05-29 16:13:47.343] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 16:13:47.344] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 16:13:47.344] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 16:13:47.346] [blockchain] [info] P2P Network initialized - Node ID: 2f78c975749f8e02907f6e0e08ae26a6, TCP: 8333, UDP: 8334
+[2025-05-29 16:13:47.346] [blockchain] [debug] API routes configured
+[2025-05-29 16:13:47.346] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 16:13:47.346] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 16:13:47.346] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 16:13:47.346] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 16:13:47.346] [blockchain] [info] P2P Network started successfully
+[2025-05-29 16:13:47.346] [blockchain] [info] P2P network started successfully
+[2025-05-29 16:13:47.346] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 16:13:47.446] [blockchain] [info] REST API Server started successfully
+[2025-05-29 16:13:47.446] [blockchain] [info] REST API server started successfully
+[2025-05-29 16:13:47.446] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 16:13:47.446] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 16:13:47.446] [blockchain] [info] Peer discovery initiated
+[2025-05-29 16:13:47.446] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 16:13:50.347] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 16:13:52.351] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 16:13:52.356] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 16:13:52.371] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 16:13:58.349] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:13:58.393] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:14:47.454] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:15:47.463] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:16:47.471] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:17:47.479] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:18:47.488] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 16:18:47.488] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:19:47.495] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:20:47.503] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:21:47.511] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:22:01.520] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:22:01.520] [blockchain] [debug] Created transaction: security_system -> security_system (0.001)
+[2025-05-29 16:22:01.520] [blockchain] [error] Transaction 1baf7ee3c5d24a11ca1b83c4fe0b7c7d433dd79b9c58104128e095b0c3fdfe49 has insufficient input amount
+[2025-05-29 16:22:01.520] [blockchain] [warning] Invalid transaction rejected: 1baf7ee3c5d24a11ca1b83c4fe0b7c7d433dd79b9c58104128e095b0c3fdfe49
+[2025-05-29 16:22:47.519] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:22:49.775] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:22:49.775] [blockchain] [debug] Created transaction: security_system -> security_system (0.001)
+[2025-05-29 16:22:49.775] [blockchain] [error] Transaction 8ff75805982a43a1494a7328da288472cd8f41ff62e866ed7afefc789687f294 has insufficient input amount
+[2025-05-29 16:22:49.775] [blockchain] [warning] Invalid transaction rejected: 8ff75805982a43a1494a7328da288472cd8f41ff62e866ed7afefc789687f294
+[2025-05-29 16:23:47.528] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 16:23:47.528] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:24:47.536] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:25:47.545] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:26:47.553] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:27:47.560] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:28:47.570] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 16:28:47.570] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:29:47.576] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:30:47.583] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:31:47.587] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:32:47.592] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 16:33:32.395] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 16:33:32.434] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 16:33:32.435] [blockchain] [info] REST API Server stopped
+[2025-05-29 16:33:47.354] [blockchain] [info] P2P Network stopped
+[2025-05-29 16:33:47.354] [blockchain] [info] Shutdown complete
+[2025-05-29 17:02:26.304] [blockchain] [info] Logging system initialized
+[2025-05-29 17:02:26.304] [blockchain] [info] Node Configuration:
+[2025-05-29 17:02:26.304] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 17:02:26.304] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 17:02:26.304] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 17:02:26.304] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 17:02:26.304] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 17:02:26.304] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 17:02:26.304] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 17:02:26.304] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 17:02:26.304] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 17:02:26.304] [blockchain] [info] Created genesis block
+[2025-05-29 17:02:26.304] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 17:02:26.304] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 17:02:26.304] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 17:02:26.306] [blockchain] [info] P2P Network initialized - Node ID: b136c9cd64856fcd66094172f2c4ad8c, TCP: 8333, UDP: 8334
+[2025-05-29 17:02:26.306] [blockchain] [debug] API routes configured
+[2025-05-29 17:02:26.306] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 17:02:26.306] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 17:02:26.306] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 17:02:26.306] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 17:02:26.306] [blockchain] [info] P2P Network started successfully
+[2025-05-29 17:02:26.306] [blockchain] [info] P2P network started successfully
+[2025-05-29 17:02:26.306] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 17:02:26.406] [blockchain] [info] REST API Server started successfully
+[2025-05-29 17:02:26.406] [blockchain] [info] REST API server started successfully
+[2025-05-29 17:02:26.407] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 17:02:26.407] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 17:02:26.407] [blockchain] [info] Peer discovery initiated
+[2025-05-29 17:02:26.407] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 17:02:29.308] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 17:02:31.313] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 17:02:31.317] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 17:02:31.326] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 17:02:42.913] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 17:02:42.955] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 17:03:26.415] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:04:26.424] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:05:26.432] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:06:26.441] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:07:26.451] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:07:26.451] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:08:26.459] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:09:26.468] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:10:26.477] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:11:26.485] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:12:26.494] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:12:26.494] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:13:26.503] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:14:26.512] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:15:26.520] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:16:26.529] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:17:26.538] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:17:26.538] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:18:26.545] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:19:26.553] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:20:26.560] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:21:26.566] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:22:26.577] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:22:26.577] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:23:26.594] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:24:26.602] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:25:26.610] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:26:26.619] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:27:26.628] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:27:26.628] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:28:26.637] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:29:26.646] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:30:26.655] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:31:26.664] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:32:26.673] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:32:26.673] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:33:26.682] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:34:26.691] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:35:26.700] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:36:26.708] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:37:26.717] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:37:26.717] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:38:26.726] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:39:26.735] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:40:26.743] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:41:26.752] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:42:26.764] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:42:26.764] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:55:26.661] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:56:26.667] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:57:26.674] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:58:26.683] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 17:59:26.692] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 17:59:26.692] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:00:26.701] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:01:26.709] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:02:26.718] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:03:26.726] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:04:26.735] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:04:26.735] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:05:26.744] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:06:26.752] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:07:26.761] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:08:26.769] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:09:26.778] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:09:26.778] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:09:42.040] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 18:09:42.045] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-29 18:09:42.047] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 18:10:26.787] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:11:26.796] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:12:26.805] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:13:26.813] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:14:26.822] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:14:26.822] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:14:43.232] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-29 18:15:26.831] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:16:26.840] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:17:26.849] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:18:26.858] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:19:26.868] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:19:26.868] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:20:26.877] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:21:26.885] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:22:26.892] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:23:26.899] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:24:26.909] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:24:26.909] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:25:26.917] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:26:26.925] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:27:26.933] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:28:26.941] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:29:26.951] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:29:26.951] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:30:27.666] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:31:27.673] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:32:27.682] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:33:27.691] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:34:27.701] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:34:27.701] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:35:27.738] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:36:27.748] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:37:27.756] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:38:27.766] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:39:27.774] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:39:27.774] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:40:27.784] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:41:27.794] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:42:27.804] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:43:27.812] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:44:27.821] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:44:27.821] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:45:27.830] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:46:27.839] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:47:27.849] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:48:27.859] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:49:27.870] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:49:27.870] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:50:27.881] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:51:27.891] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:52:27.901] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:53:27.912] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:54:27.923] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:54:27.923] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:55:27.933] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:56:27.939] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:57:27.951] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:58:27.960] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 18:59:27.970] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 18:59:27.970] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:00:27.979] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:01:27.987] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:02:27.996] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:03:28.005] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:04:28.015] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 19:04:28.015] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:05:28.026] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:06:28.035] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:07:28.045] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:08:28.054] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:09:28.064] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 19:09:28.064] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:10:28.073] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:11:28.082] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:12:28.091] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:13:28.100] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:14:28.110] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 19:14:28.110] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:15:28.119] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:16:28.128] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:17:28.137] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:18:28.146] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:19:28.155] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 19:19:28.155] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:20:28.164] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:21:28.174] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:22:28.184] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:23:28.194] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:24:28.205] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 19:24:28.205] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:25:28.215] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:26:28.225] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:27:28.235] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:28:28.245] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:29:28.256] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 19:29:28.256] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:30:28.265] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:31:28.275] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:32:28.284] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:33:28.293] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:34:28.303] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 19:34:28.303] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:35:28.313] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:36:28.323] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:37:28.332] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:38:28.343] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 19:38:44.751] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 19:38:44.753] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-29 19:38:44.753] [blockchain] [info] REST API Server stopped
+[2025-05-29 19:39:26.549] [blockchain] [info] P2P Network stopped
+[2025-05-29 19:39:26.549] [blockchain] [info] Shutdown complete
+[2025-05-29 21:39:57.570] [blockchain] [info] Logging system initialized
+[2025-05-29 21:39:57.570] [blockchain] [info] Node Configuration:
+[2025-05-29 21:39:57.570] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-29 21:39:57.570] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-29 21:39:57.570] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-29 21:39:57.570] [blockchain] [info]   REST API Port: 8080
+[2025-05-29 21:39:57.570] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-29 21:39:57.570] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-29 21:39:57.570] [blockchain] [info] Initializing blockchain node components...
+[2025-05-29 21:39:57.570] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-29 21:39:57.570] [blockchain] [debug] OpenSSL initialized
+[2025-05-29 21:39:57.570] [blockchain] [info] Created genesis block
+[2025-05-29 21:39:57.570] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-29 21:39:57.570] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-29 21:39:57.570] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-29 21:39:57.572] [blockchain] [info] P2P Network initialized - Node ID: cc8698135a35acb38b27b10346d3f0ab, TCP: 8333, UDP: 8334
+[2025-05-29 21:39:57.572] [blockchain] [debug] API routes configured
+[2025-05-29 21:39:57.572] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-29 21:39:57.572] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-29 21:39:57.572] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-29 21:39:57.572] [blockchain] [info] Starting blockchain node services...
+[2025-05-29 21:39:57.572] [blockchain] [info] P2P Network started successfully
+[2025-05-29 21:39:57.572] [blockchain] [info] P2P network started successfully
+[2025-05-29 21:39:57.572] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-29 21:39:57.672] [blockchain] [info] REST API Server started successfully
+[2025-05-29 21:39:57.672] [blockchain] [info] REST API server started successfully
+[2025-05-29 21:39:57.672] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-29 21:39:57.672] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-29 21:39:57.672] [blockchain] [info] Peer discovery initiated
+[2025-05-29 21:39:57.672] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-29 21:40:00.566] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 21:40:02.568] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 21:40:02.569] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-29 21:40:02.574] [blockchain] [debug] API Request: GET /api/status
+[2025-05-29 21:40:11.504] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 21:40:11.546] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-29 21:40:57.678] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:41:57.683] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:42:57.692] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:43:57.699] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:44:57.709] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 21:44:57.709] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:45:57.718] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:46:57.728] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:47:57.735] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:48:57.744] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:49:57.755] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 21:49:57.755] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:50:57.764] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:51:57.771] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:52:57.776] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:53:57.782] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:54:57.786] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 21:54:57.786] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:55:57.792] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:56:57.797] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:57:57.802] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:58:57.810] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 21:59:57.820] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 21:59:57.820] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:00:57.826] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:01:57.836] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:02:57.846] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:03:57.856] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:04:57.866] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 22:04:57.866] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:05:57.871] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:06:57.876] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 22:07:57.882] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:27:01.637] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:28:01.644] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 23:28:01.644] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:29:01.649] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:30:01.655] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:31:01.661] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:32:01.670] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:33:01.680] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 23:33:01.680] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:34:01.688] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:35:01.697] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:36:01.706] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:37:01.716] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:38:01.725] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 23:38:01.725] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:39:01.734] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:40:01.743] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:41:01.752] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:42:01.760] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:43:01.771] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 23:43:01.771] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:44:01.781] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:45:01.791] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:46:01.802] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:47:01.813] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:48:01.823] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 23:48:01.823] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:49:01.832] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:50:01.843] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:51:01.853] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:52:01.862] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:53:01.873] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 23:53:01.873] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:54:01.884] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:55:01.895] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:56:01.905] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:57:01.916] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:58:01.926] [blockchain] [debug] Blockchain saved to file
+[2025-05-29 23:58:01.926] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-29 23:59:01.936] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:00:01.947] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:01:01.958] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:02:01.975] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:03:01.984] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:03:01.984] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:04:01.990] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:05:01.996] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:06:02.002] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:07:02.009] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:08:02.019] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:08:02.019] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:09:02.027] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:10:02.032] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:11:02.038] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:12:02.044] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:13:02.050] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:13:02.050] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:14:02.056] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:15:02.064] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:16:02.070] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:17:02.076] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:18:02.084] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:18:02.084] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:19:02.090] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:20:02.096] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:21:02.101] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:22:02.110] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:23:02.119] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:23:02.119] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:24:02.129] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:25:02.137] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:26:02.144] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:27:02.154] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:28:02.164] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:28:02.165] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:29:02.173] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:30:02.181] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:31:02.189] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:32:02.197] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:33:02.206] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:33:02.206] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:34:02.211] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:35:02.217] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:36:02.224] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:37:02.231] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:38:02.239] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:38:02.239] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:39:02.245] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:40:02.251] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:41:02.257] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:42:02.262] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:43:02.272] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:43:02.272] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:44:02.280] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:45:02.289] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:46:02.296] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:47:02.302] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:48:02.307] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 00:48:02.307] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:49:02.312] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:50:02.318] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:51:02.325] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:51:08.582] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 00:51:08.587] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-30 00:51:08.588] [blockchain] [info] REST API Server stopped
+[2025-05-30 00:52:00.856] [blockchain] [info] P2P Network stopped
+[2025-05-30 00:52:00.856] [blockchain] [info] Shutdown complete
+[2025-05-30 00:53:47.864] [blockchain] [info] Logging system initialized
+[2025-05-30 00:53:47.864] [blockchain] [info] Node Configuration:
+[2025-05-30 00:53:47.864] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-30 00:53:47.864] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-30 00:53:47.864] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-30 00:53:47.864] [blockchain] [info]   REST API Port: 8080
+[2025-05-30 00:53:47.864] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-30 00:53:47.864] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-30 00:53:47.864] [blockchain] [info] Initializing blockchain node components...
+[2025-05-30 00:53:47.864] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-30 00:53:47.864] [blockchain] [debug] OpenSSL initialized
+[2025-05-30 00:53:47.864] [blockchain] [info] Created genesis block
+[2025-05-30 00:53:47.864] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-30 00:53:47.864] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-30 00:53:47.864] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-30 00:53:47.865] [blockchain] [info] P2P Network initialized - Node ID: 164fb503b10075a6b5f126e9e761b2ec, TCP: 8333, UDP: 8334
+[2025-05-30 00:53:47.865] [blockchain] [debug] API routes configured
+[2025-05-30 00:53:47.865] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-30 00:53:47.865] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-30 00:53:47.865] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-30 00:53:47.865] [blockchain] [info] Starting blockchain node services...
+[2025-05-30 00:53:47.865] [blockchain] [info] P2P Network started successfully
+[2025-05-30 00:53:47.865] [blockchain] [info] P2P network started successfully
+[2025-05-30 00:53:47.865] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-30 00:53:47.965] [blockchain] [info] REST API Server started successfully
+[2025-05-30 00:53:47.965] [blockchain] [info] REST API server started successfully
+[2025-05-30 00:53:47.966] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-30 00:53:47.966] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-30 00:53:47.966] [blockchain] [info] Peer discovery initiated
+[2025-05-30 00:53:47.966] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-30 00:53:50.863] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 00:53:52.868] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 00:53:52.872] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-30 00:53:52.881] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 00:53:58.792] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 00:53:58.837] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 00:54:47.972] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 00:55:24.077] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 00:55:24.114] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-30 00:55:24.115] [blockchain] [info] REST API Server stopped
+[2025-05-30 00:55:47.867] [blockchain] [info] P2P Network stopped
+[2025-05-30 00:55:47.867] [blockchain] [info] Shutdown complete
+[2025-05-30 11:13:44.918] [blockchain] [info] Logging system initialized
+[2025-05-30 11:13:44.918] [blockchain] [info] Node Configuration:
+[2025-05-30 11:13:44.918] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-05-30 11:13:44.918] [blockchain] [info]   P2P TCP Port: 8333
+[2025-05-30 11:13:44.918] [blockchain] [info]   P2P UDP Port: 8334
+[2025-05-30 11:13:44.918] [blockchain] [info]   REST API Port: 8080
+[2025-05-30 11:13:44.918] [blockchain] [info]   Mining Reward: 50 coins
+[2025-05-30 11:13:44.918] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-05-30 11:13:44.918] [blockchain] [info] Initializing blockchain node components...
+[2025-05-30 11:13:44.918] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-05-30 11:13:44.918] [blockchain] [debug] OpenSSL initialized
+[2025-05-30 11:13:44.918] [blockchain] [info] Created genesis block
+[2025-05-30 11:13:44.918] [blockchain] [info] Blockchain initialized with genesis block
+[2025-05-30 11:13:44.918] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-05-30 11:13:44.918] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-05-30 11:13:44.924] [blockchain] [info] P2P Network initialized - Node ID: 78838ca71fd2e7c2ecea89d0dc714fb1, TCP: 8333, UDP: 8334
+[2025-05-30 11:13:44.924] [blockchain] [debug] API routes configured
+[2025-05-30 11:13:44.924] [blockchain] [info] REST API Server initialized on port 8080
+[2025-05-30 11:13:44.924] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-05-30 11:13:44.924] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-05-30 11:13:44.924] [blockchain] [info] Starting blockchain node services...
+[2025-05-30 11:13:44.925] [blockchain] [info] P2P Network started successfully
+[2025-05-30 11:13:44.925] [blockchain] [info] P2P network started successfully
+[2025-05-30 11:13:44.925] [blockchain] [info] Starting REST API Server on port 8080
+[2025-05-30 11:13:45.025] [blockchain] [info] REST API Server started successfully
+[2025-05-30 11:13:45.025] [blockchain] [info] REST API server started successfully
+[2025-05-30 11:13:45.025] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-05-30 11:13:45.025] [blockchain] [debug] Peer discovery message broadcasted
+[2025-05-30 11:13:45.025] [blockchain] [info] Peer discovery initiated
+[2025-05-30 11:13:45.025] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-05-30 11:13:47.919] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 11:13:49.924] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 11:13:49.927] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-05-30 11:13:49.940] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 11:14:39.713] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:14:39.751] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:14:45.031] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:14:50.938] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 11:14:50.943] [blockchain] [debug] API Request: GET /api/peers
+[2025-05-30 11:14:50.945] [blockchain] [debug] API Request: GET /api/status
+[2025-05-30 11:15:12.825] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:15:12.825] [blockchain] [debug] Created transaction: security_system -> security_system (0.001)
+[2025-05-30 11:15:12.825] [blockchain] [error] Transaction 489fb8e2d573ca33460a8994fc95c7ccb17140d6059b0b47f85a44f10284d1aa has insufficient input amount
+[2025-05-30 11:15:12.825] [blockchain] [warning] Invalid transaction rejected: 489fb8e2d573ca33460a8994fc95c7ccb17140d6059b0b47f85a44f10284d1aa
+[2025-05-30 11:15:45.038] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:16:29.950] [blockchain] [debug] API Request: POST /api/mine
+[2025-05-30 11:16:29.950] [blockchain] [debug] Created coinbase transaction for miner: miner_admin_1748592988 (reward: 50)
+[2025-05-30 11:16:29.950] [blockchain] [debug] Created new block with index: 1
+[2025-05-30 11:16:29.987] [blockchain] [info] Mining block 1 with difficulty 4
+[2025-05-30 11:16:30.089] [blockchain] [info] Block 1 mined successfully! Nonce: 48049, Time: 102ms
+[2025-05-30 11:16:30.089] [blockchain] [info] Block hash: 0000bd12cbc9b1ffe71fb410b5307ebcd99bbf6634a4f312c463cd67c748d0f6
+[2025-05-30 11:16:30.089] [blockchain] [error] Transaction 5dd100fbfcb4dc1d02ccd80522d29485c96c885c712582da85daa1240e3c6290 has insufficient input amount
+[2025-05-30 11:16:30.089] [blockchain] [error] Block 1 contains invalid transactions
+[2025-05-30 11:16:30.089] [blockchain] [error] Invalid block rejected: 1
+[2025-05-30 11:16:30.089] [blockchain] [error] Failed to add mined block to blockchain
+[2025-05-30 11:16:30.089] [blockchain] [info] Created genesis block
+[2025-05-30 11:16:30.089] [blockchain] [debug] Block 0 broadcasted to network
+[2025-05-30 11:16:30.093] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:16:30.093] [blockchain] [debug] Created transaction: security_system -> security_system (0.001)
+[2025-05-30 11:16:30.093] [blockchain] [error] Transaction 336b32be82a9e612ab334eeec41374776e399090ce5243b4a9020165c37b4619 has insufficient input amount
+[2025-05-30 11:16:30.093] [blockchain] [warning] Invalid transaction rejected: 336b32be82a9e612ab334eeec41374776e399090ce5243b4a9020165c37b4619
+[2025-05-30 11:16:45.044] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:17:45.050] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:18:45.056] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 11:18:45.056] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:19:45.062] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:20:45.068] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:21:45.072] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:22:45.078] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:23:11.917] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.920] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.928] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.931] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.936] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.939] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.945] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.948] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:11.953] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:23:45.084] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 11:23:45.084] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:24:45.092] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:25:45.096] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:26:45.101] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:27:45.105] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:28:45.110] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 11:28:45.110] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:29:45.116] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:30:45.124] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:31:45.132] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:32:45.142] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:33:45.149] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 11:33:45.150] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:34:45.157] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:35:45.166] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:36:45.172] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:37:45.178] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:38:45.183] [blockchain] [debug] Blockchain saved to file
+[2025-05-30 11:38:45.183] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:39:45.193] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:40:45.202] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:41:45.211] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-05-30 11:42:21.451] [blockchain] [debug] API Request: POST /api/transactions
+[2025-05-30 11:42:21.453] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-05-30 11:42:21.453] [blockchain] [info] REST API Server stopped
+[2025-05-30 11:42:44.933] [blockchain] [info] P2P Network stopped
+[2025-05-30 11:42:44.933] [blockchain] [info] Shutdown complete
+[2025-06-01 20:29:55.880] [blockchain] [info] Logging system initialized
+[2025-06-01 20:29:55.880] [blockchain] [info] Node Configuration:
+[2025-06-01 20:29:55.880] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-01 20:29:55.880] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-01 20:29:55.880] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-01 20:29:55.880] [blockchain] [info]   REST API Port: 8080
+[2025-06-01 20:29:55.880] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-01 20:29:55.880] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-01 20:29:55.880] [blockchain] [info] Initializing blockchain node components...
+[2025-06-01 20:29:55.880] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-01 20:29:55.880] [blockchain] [debug] OpenSSL initialized
+[2025-06-01 20:29:55.880] [blockchain] [info] Created genesis block
+[2025-06-01 20:29:55.880] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-01 20:29:55.881] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-01 20:29:55.881] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-01 20:29:55.882] [blockchain] [info] P2P Network initialized - Node ID: 2e8194224dbfd09e12fee01f6137d123, TCP: 8333, UDP: 8334
+[2025-06-01 20:29:55.882] [blockchain] [debug] API routes configured
+[2025-06-01 20:29:55.882] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-01 20:29:55.882] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-01 20:29:55.882] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-01 20:29:55.882] [blockchain] [info] Starting blockchain node services...
+[2025-06-01 20:29:55.882] [blockchain] [info] P2P Network started successfully
+[2025-06-01 20:29:55.882] [blockchain] [info] P2P network started successfully
+[2025-06-01 20:29:55.882] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-01 20:29:55.882] [blockchain] [error] Failed to start HTTP server on port 8080
+[2025-06-01 20:29:55.982] [blockchain] [error] Failed to start REST API server
+[2025-06-01 20:29:55.982] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-01 20:30:55.987] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:30:56.191] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-06-01 20:31:55.882] [blockchain] [info] P2P Network stopped
+[2025-06-01 20:31:55.882] [blockchain] [info] Shutdown complete
+[2025-06-01 20:50:22.418] [blockchain] [info] Logging system initialized
+[2025-06-01 20:50:22.418] [blockchain] [info] Node Configuration:
+[2025-06-01 20:50:22.418] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-01 20:50:22.418] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-01 20:50:22.418] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-01 20:50:22.418] [blockchain] [info]   REST API Port: 8080
+[2025-06-01 20:50:22.418] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-01 20:50:22.418] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-01 20:50:22.418] [blockchain] [info] Initializing blockchain node components...
+[2025-06-01 20:50:22.418] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-01 20:50:22.419] [blockchain] [debug] OpenSSL initialized
+[2025-06-01 20:50:22.419] [blockchain] [info] Created genesis block
+[2025-06-01 20:50:22.419] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-01 20:50:22.419] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-01 20:50:22.419] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-01 20:50:22.420] [blockchain] [info] P2P Network initialized - Node ID: b3a5dce66202574f4ce66acfb56469e5, TCP: 8333, UDP: 8334
+[2025-06-01 20:50:22.420] [blockchain] [debug] API routes configured
+[2025-06-01 20:50:22.420] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-01 20:50:22.420] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-01 20:50:22.420] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-01 20:50:22.420] [blockchain] [info] Starting blockchain node services...
+[2025-06-01 20:50:22.420] [blockchain] [info] P2P Network started successfully
+[2025-06-01 20:50:22.420] [blockchain] [info] P2P network started successfully
+[2025-06-01 20:50:22.420] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-01 20:50:22.420] [blockchain] [error] Failed to start HTTP server on port 8080
+[2025-06-01 20:50:22.520] [blockchain] [error] Failed to start REST API server
+[2025-06-01 20:50:22.520] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-01 20:51:22.524] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:52:22.528] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:53:22.533] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:54:22.537] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:55:22.542] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 20:55:22.542] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:56:22.547] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:57:22.552] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:58:22.556] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 20:58:26.817] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-06-01 20:59:22.421] [blockchain] [info] P2P Network stopped
+[2025-06-01 20:59:22.421] [blockchain] [info] Shutdown complete
+[2025-06-01 21:25:49.046] [blockchain] [info] Logging system initialized
+[2025-06-01 21:25:49.046] [blockchain] [info] Node Configuration:
+[2025-06-01 21:25:49.046] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-01 21:25:49.046] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-01 21:25:49.046] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-01 21:25:49.046] [blockchain] [info]   REST API Port: 8080
+[2025-06-01 21:25:49.046] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-01 21:25:49.046] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-01 21:25:49.046] [blockchain] [info] Initializing blockchain node components...
+[2025-06-01 21:25:49.046] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-01 21:25:49.046] [blockchain] [debug] OpenSSL initialized
+[2025-06-01 21:25:49.046] [blockchain] [info] Created genesis block
+[2025-06-01 21:25:49.046] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-01 21:25:49.046] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-01 21:25:49.046] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-01 21:25:49.047] [blockchain] [info] P2P Network initialized - Node ID: 9ebd9e5473cc11936e2b59bb8c81a66c, TCP: 8333, UDP: 8334
+[2025-06-01 21:25:49.047] [blockchain] [debug] API routes configured
+[2025-06-01 21:25:49.047] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-01 21:25:49.047] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-01 21:25:49.047] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-01 21:25:49.047] [blockchain] [info] Starting blockchain node services...
+[2025-06-01 21:25:49.047] [blockchain] [info] P2P Network started successfully
+[2025-06-01 21:25:49.047] [blockchain] [info] P2P network started successfully
+[2025-06-01 21:25:49.047] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-01 21:25:49.047] [blockchain] [error] Failed to start HTTP server on port 8080
+[2025-06-01 21:25:49.147] [blockchain] [error] Failed to start REST API server
+[2025-06-01 21:25:49.147] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-01 21:26:49.151] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:27:49.155] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:28:49.159] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:29:49.164] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:30:49.168] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 21:30:49.168] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:31:49.172] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:32:49.176] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:33:49.180] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:34:49.185] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:35:49.189] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 21:35:49.189] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:36:49.194] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:37:49.199] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:38:49.203] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:39:49.208] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:40:49.212] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 21:40:49.212] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:41:49.217] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:42:49.221] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:43:49.225] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:44:49.266] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:45:49.270] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 21:45:49.270] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:46:49.274] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:47:49.279] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:48:49.283] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:49:49.287] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:50:49.292] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 21:50:49.292] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:51:49.296] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:52:49.300] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:53:49.305] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:54:49.309] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:55:49.314] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 21:55:49.314] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:56:49.319] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:57:49.323] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:58:49.328] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 21:59:49.332] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:00:49.337] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 22:00:49.337] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:01:49.341] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:02:49.345] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:03:49.349] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:04:49.354] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:05:49.359] [blockchain] [debug] Blockchain saved to file
+[2025-06-01 22:05:49.359] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:06:49.363] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:07:49.368] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:08:49.372] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-01 22:09:06.501] [blockchain] [info] Received signal 15, initiating shutdown...
+[2025-06-01 22:09:49.051] [blockchain] [info] P2P Network stopped
+[2025-06-01 22:09:49.051] [blockchain] [info] Shutdown complete

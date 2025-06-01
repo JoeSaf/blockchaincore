@@ -270,5 +270,21 @@
     "errors_count": 0,
     "average_response_time": 0,
     "timestamp": 1748800706.8168929
+  },
+  {
+    "username": "unknown",
+    "session_duration": 2597.4219517707825,
+    "operations_count": 2,
+    "errors_count": 0,
+    "average_response_time": 0,
+    "timestamp": 1748804946.4597642
+  },
+  {
+    "username": "unknown",
+    "session_duration": 2597.457696199417,
+    "operations_count": 2,
+    "errors_count": 0,
+    "average_response_time": 0,
+    "timestamp": 1748804946.4955335
   }
 ]

@@ -847,5 +847,17 @@
     },
     "previous_hash": "1cee161a1324ae5231971bb42f445e24406f7785815095cdc5b21fb49e945af1",
     "hash": "240b4a397668d0abc0f9ab91436a41027dd6a1215f73e619f565a6119ab7ec88"
+  },
+  {
+    "index": 66,
+    "timestamp": 1748804946.4540265,
+    "data": {
+      "action": "logout",
+      "username": "admin",
+      "session_id": "22d984a505f73f126b0684b1810a07c619668290331faff13a819fd190db60d4",
+      "timestamp": 1748804946.4540222
+    },
+    "previous_hash": "240b4a397668d0abc0f9ab91436a41027dd6a1215f73e619f565a6119ab7ec88",
+    "hash": "f126f17229498fba5ab35d94fd3d5c20511080689a7cc93a993897f3babe3717"
   }
 ]

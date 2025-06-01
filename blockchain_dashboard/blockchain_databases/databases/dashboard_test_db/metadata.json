@@ -1,0 +1,10 @@
+{
+  "name": "dashboard_test_db",
+  "owner": "admin",
+  "created_at": 1748804353.3859375,
+  "schema": {
+    "tables": {},
+    "description": "testing user dashboard"
+  },
+  "version": "1.0"
+}
