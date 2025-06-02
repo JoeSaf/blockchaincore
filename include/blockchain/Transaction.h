@@ -39,8 +39,8 @@ public:
     // Default constructor
     Transaction() = default;
     
-    // Destructor
-    ~Transaction() = default;
+    // Virtual destructor for polymorphism
+    virtual ~Transaction() = default;
     
     // Calculate transaction hash
     std::string calculateHash() const;
@@ -48,8 +48,8 @@ public:
     // Sign transaction
     void signTransaction(const std::string& privateKey);
     
-    // Verify transaction signature
-    bool isValidTransaction() const;
+    // Verify transaction signature - MADE VIRTUAL
+    virtual bool isValidTransaction() const;
     
     // Check if transaction is properly formed
     bool isWellFormed() const;
@@ -68,9 +68,9 @@ public:
     void setId(const std::string& id) { id_ = id; }
     void setSignature(const std::string& signature) { signature_ = signature; }
     
-    // JSON serialization
-    nlohmann::json toJson() const;
-    void fromJson(const nlohmann::json& json);
+    // JSON serialization - MADE VIRTUAL
+    virtual nlohmann::json toJson() const;
+    virtual void fromJson(const nlohmann::json& json);
     
     // String representation
     std::string toString() const;
@@ -83,7 +83,7 @@ public:
     static Transaction createCoinbaseTransaction(const std::string& minerAddress, double reward);
     static bool isValidAddress(const std::string& address);
 
-private:
+protected:  // Changed from private to protected for inheritance
     std::string id_;
     std::vector<TransactionInput> inputs_;
     std::vector<TransactionOutput> outputs_;

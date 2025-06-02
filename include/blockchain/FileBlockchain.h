@@ -68,11 +68,15 @@ public:
     const FileMetadata& getFileMetadata() const { return fileMetadata_; }
     const FileChunk& getFileChunk() const { return fileChunk_; }
     const std::string& getFileId() const { return fileId_; }
+    const nlohmann::json& getPermissions() const { return permissions_; }
     
-    // Validation
-    bool isValidFileTransaction() const override;
+    // Validation - Override base class virtual method
+    bool isValidTransaction() const override;
     
-    // JSON serialization
+    // Additional file-specific validation
+    bool isValidFileTransaction() const;
+    
+    // JSON serialization - Override base class virtual methods
     nlohmann::json toJson() const override;
     void fromJson(const nlohmann::json& json) override;
 
@@ -100,7 +104,7 @@ public:
     std::vector<std::string> getStoredFileIds() const;
     uint64_t getTotalStoredBytes() const;
     
-    // JSON serialization
+    // JSON serialization - Override base class virtual methods
     nlohmann::json toJson() const override;
     void fromJson(const nlohmann::json& json) override;
 
@@ -148,54 +152,56 @@ public:
     std::vector<FileChunk> getAllFileChunks(const std::string& fileId);
     
     // ========================
-    // FILE MANAGEMENT
+    // FILE MANAGEMENT (CONST CORRECTED)
     // ========================
     
-    // File queries
-    std::vector<FileMetadata> listFiles(const std::string& userAddress = "");
-    FileMetadata getFileMetadata(const std::string& fileId);
-    bool fileExists(const std::string& fileId);
-    std::vector<std::string> findFilesByName(const std::string& filename);
+    // File queries - Made const for read-only operations
+    std::vector<FileMetadata> listFiles(const std::string& userAddress = "") const;
+    FileMetadata getFileMetadata(const std::string& fileId) const;
+    bool fileExists(const std::string& fileId) const;
+    std::vector<std::string> findFilesByName(const std::string& filename) const;
     
-    // File operations
+    // File operations - Remain non-const as they modify state
     bool deleteFile(const std::string& fileId, const std::string& userAddress);
     bool updateFilePermissions(const std::string& fileId, const nlohmann::json& permissions,
                               const std::string& userAddress);
     bool renameFile(const std::string& fileId, const std::string& newName, 
                    const std::string& userAddress);
     
-    // File integrity and verification
-    bool verifyFileIntegrity(const std::string& fileId);
-    std::string calculateFileHash(const std::string& fileId);
+    // File integrity and verification - Made const for read-only operations
+    bool verifyFileIntegrity(const std::string& fileId) const;
+    std::string calculateFileHash(const std::string& fileId) const;
     bool repairCorruptedFile(const std::string& fileId);
     
     // ========================
-    // FILE SEARCH AND INDEXING
+    // FILE SEARCH AND INDEXING (CONST CORRECTED)
     // ========================
     
-    // Search operations
-    std::vector<FileMetadata> searchFiles(const std::string& query);
-    std::vector<FileMetadata> getFilesByType(const std::string& mimeType);
-    std::vector<FileMetadata> getFilesByUser(const std::string& userAddress);
-    std::vector<FileMetadata> getFilesByDateRange(std::time_t startTime, std::time_t endTime);
+    // Search operations - Made const for read-only operations
+    std::vector<FileMetadata> searchFiles(const std::string& query) const;
+    std::vector<FileMetadata> getFilesByType(const std::string& mimeType) const;
+    std::vector<FileMetadata> getFilesByUser(const std::string& userAddress) const;
+    std::vector<FileMetadata> getFilesByDateRange(std::time_t startTime, std::time_t endTime) const;
     
-    // File statistics
+    // File statistics - Already const (good!)
     uint64_t getTotalStorageUsed() const;
     uint64_t getUserStorageUsed(const std::string& userAddress) const;
     uint32_t getTotalFileCount() const;
     std::vector<std::string> getMostActiveUsers() const;
     
     // ========================
-    // PERMISSION MANAGEMENT
+    // PERMISSION MANAGEMENT (CONST CORRECTED)
     // ========================
     
-    // Permission operations
+    // Permission operations - Made const for read-only access checks
     bool hasFileAccess(const std::string& fileId, const std::string& userAddress, 
-                      const std::string& operation = "read");
+                      const std::string& operation = "read") const;
+    nlohmann::json getFilePermissions(const std::string& fileId) const;
+    
+    // Permission modifications - Remain non-const as they modify state
     bool grantFileAccess(const std::string& fileId, const std::string& userAddress,
                         const std::string& permissions);
     bool revokeFileAccess(const std::string& fileId, const std::string& userAddress);
-    nlohmann::json getFilePermissions(const std::string& fileId);
     
     // ========================
     // STORAGE OPTIMIZATION
@@ -203,7 +209,7 @@ public:
     
     // Deduplication
     bool enableDeduplication(bool enable) { deduplicationEnabled_ = enable; return true; }
-    std::vector<std::string> findDuplicateFiles();
+    std::vector<std::string> findDuplicateFiles() const;
     bool mergeDuplicateFiles(const std::vector<std::string>& fileIds);
     
     // Compression
@@ -213,7 +219,7 @@ public:
     
     // Garbage collection
     void performGarbageCollection();
-    std::vector<std::string> findOrphanedChunks();
+    std::vector<std::string> findOrphanedChunks() const;
     void cleanupOrphanedChunks();
     
     // ========================
@@ -225,7 +231,7 @@ public:
     bool addFileBlock(const FileBlock& block);
     bool isValidFileBlock(const FileBlock& block, const FileBlock* previousBlock) const;
     
-    // File-specific validation
+    // File-specific validation - Made const for read-only validation
     bool validateFileChainIntegrity() const;
     bool validateAllFileIntegrity() const;
     
@@ -240,7 +246,7 @@ public:
     bool importFileMetadata(const std::string& filename);
     
     // Backup operations
-    bool createBackup(const std::string& backupPath);
+    bool createBackup(const std::string& backupPath) const;
     bool restoreFromBackup(const std::string& backupPath);
     
     // ========================
@@ -276,7 +282,7 @@ private:
     bool compressionEnabled_;
     bool encryptionEnabled_;
     
-    // Thread safety
+    // Thread safety - Made mutable for const method locking
     mutable std::mutex fileIndexMutex_;
     mutable std::mutex chunksMutex_;
     
@@ -286,7 +292,7 @@ private:
                                              const std::string& fileId);
     std::vector<uint8_t> reconstructFileFromChunks(const std::vector<FileChunk>& chunks);
     
-    // Validation helpers
+    // Validation helpers - Made const for read-only validation
     bool isValidFileId(const std::string& fileId) const;
     bool isValidChunkIndex(const std::string& fileId, uint32_t chunkIndex) const;
     bool hasAllChunks(const std::string& fileId) const;
@@ -297,24 +303,25 @@ private:
     void removeFileFromIndex(const std::string& fileId);
     void updateUserFileList(const std::string& userAddress, const std::string& fileId, bool add = true);
     
-    // Security and permissions
+    // Security and permissions - Made const for read-only access checks
     bool validateUserAccess(const std::string& fileId, const std::string& userAddress, 
                            const std::string& operation) const;
     nlohmann::json createDefaultPermissions(const std::string& ownerAddress);
     bool isOwner(const std::string& fileId, const std::string& userAddress) const;
     
-    // Utility functions
+    // Utility functions - Made const where appropriate
     std::string detectMimeType(const std::string& filename, const std::vector<uint8_t>& data);
     std::string formatFileSize(uint64_t bytes) const;
-    std::vector<uint8_t> readFileFromDisk(const std::string& filePath);
+    std::string formatTimestamp(std::time_t timestamp) const;
+    std::vector<uint8_t> readFileFromDisk(const std::string &filePath);
     bool writeFileToDisk(const std::string& filePath, const std::vector<uint8_t>& data);
     
-    // Deduplication helpers
+    // Deduplication helpers - Made const for read-only checks
     bool isDuplicateFile(const std::string& fileHash) const;
     std::string findExistingFileByHash(const std::string& fileHash) const;
     void linkDuplicateFile(const std::string& newFileId, const std::string& existingFileId);
     
-    // Compression helpers (placeholder for future implementation)
+    // Compression helpers - Made const where appropriate
     bool shouldCompressFile(const FileMetadata& metadata) const;
     std::vector<uint8_t> compressChunk(const std::vector<uint8_t>& chunkData);
     std::vector<uint8_t> decompressChunk(const std::vector<uint8_t>& compressedData);

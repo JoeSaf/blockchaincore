@@ -16,24 +16,24 @@ public:
     Blockchain();
     
     // Destructor
-    ~Blockchain() = default;
+    virtual ~Blockchain() = default;
     
     // Block operations
-    bool addBlock(const Block& block);
+    virtual bool addBlock(const Block& block);
     Block createNewBlock(const std::vector<Transaction>& transactions);
     Block mineBlock(const std::string& minerAddress);
     
     // Chain validation
     bool isValidChain() const;
-    bool isValidBlock(const Block& block, const Block& previousBlock) const;
+    virtual bool isValidBlock(const Block& block, const Block& previousBlock) const;
     
     // Chain management
     bool replaceChain(const std::vector<Block>& newChain);
     void resolveConflicts(const std::vector<std::vector<Block>>& chains);
     
     // Transaction operations
-    bool addTransaction(const Transaction& transaction);
-    bool isValidTransaction(const Transaction& transaction) const;
+    virtual bool addTransaction(const Transaction& transaction);
+    virtual bool isValidTransaction(const Transaction& transaction) const;
     double getBalance(const std::string& address) const;
     std::vector<TransactionOutput> getUnspentTransactionOutputs(const std::string& address) const;
     
@@ -53,12 +53,12 @@ public:
     const TransactionPool& getTransactionPool() const { return transactionPool_; }
     
     // Persistence
-    bool saveToFile(const std::string& filename) const;
-    bool loadFromFile(const std::string& filename);
+    virtual bool saveToFile(const std::string& filename) const;
+    virtual bool loadFromFile(const std::string& filename);
     
     // JSON serialization
-    nlohmann::json toJson() const;
-    void fromJson(const nlohmann::json& json);
+    virtual nlohmann::json toJson() const;
+    virtual void fromJson(const nlohmann::json& json);
     
     // Statistics
     double getTotalSupply() const;
@@ -69,11 +69,11 @@ public:
     // Constants
     static constexpr double MINING_REWARD = 50.0;
     static constexpr uint32_t BLOCK_TIME_TARGET = 10; // seconds
-    static constexpr uint32_t DIFFICULTY_ADJUSTMENT_INTERVAL = 10; // reorders the blocks
+    static constexpr uint32_t DIFFICULTY_ADJUSTMENT_INTERVAL = 10; // blocks
     static constexpr uint32_t MAX_BLOCK_SIZE = 1000000; // bytes
     static constexpr double MIN_TRANSACTION_FEE = 0.001;
 
-private:
+protected:  // Changed from private to protected for inheritance access
     std::vector<Block> chain_;
     TransactionPool transactionPool_;
     uint32_t difficulty_;
@@ -84,7 +84,7 @@ private:
     
     // Helper functions
     void createGenesisBlock();
-    void updateUTXOSet(const Block& block);
+    virtual void updateUTXOSet(const Block& block);
     bool hasValidProofOfWork(const Block& block) const;
     std::time_t getTimeDifference(uint32_t startIndex, uint32_t endIndex) const;
     

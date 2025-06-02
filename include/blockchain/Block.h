@@ -19,8 +19,8 @@ public:
     // Constructor from JSON
     explicit Block(const nlohmann::json& json);
     
-    // Destructor
-    ~Block() = default;
+    // Virtual destructor for polymorphism
+    virtual ~Block() = default;
     
     // Mining function
     void mineBlock(uint32_t difficulty);
@@ -43,9 +43,9 @@ public:
     // Setters
     void setHash(const std::string& hash) { hash_ = hash; }
     
-    // JSON serialization
-    nlohmann::json toJson() const;
-    void fromJson(const nlohmann::json& json);
+    // JSON serialization - MADE VIRTUAL
+    virtual nlohmann::json toJson() const;
+    virtual void fromJson(const nlohmann::json& json);
     
     // String representation
     std::string toString() const;
@@ -54,7 +54,7 @@ public:
     bool operator==(const Block& other) const;
     bool operator!=(const Block& other) const;
 
-private:
+protected:  // Changed from private to protected for inheritance
     uint32_t index_;
     std::string previousHash_;
     std::string hash_;
