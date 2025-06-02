@@ -297,6 +297,46 @@
                         <input type="password" id="password" name="password" required>
                     </div>
                     
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Don't have an account? 
+                    <a href="#" onclick="showRegister()" style="color: #667eea;">Register here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- REGISTER PAGE -->
+    <div class="register-page" style="display: none;">
+        <div class="container">
+            <div class="card login-card">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">
+                    📝 Create Account
+                </h2>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reg-confirm">Confirm Password</label>
+                        <input type="password" id="reg-confirm" name="confirm" required>
+                    </div>
+                    
                     <button type="submit" class="btn">Create Account</button>
                 </form>
                 
@@ -508,6 +548,24 @@
             refreshData();
         }
         
+        async function validateSession(sessionId) {
+            try {
+                const response = await fetch('/api/auth/validate', {
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionId
+                    }
+                });
+                
+                if (response.ok) {
+                    showDashboard();
+                } else {
+                    showLogin();
+                }
+            } catch (error) {
+                showLogin();
+            }
+        }
+        
         // Login form handler
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -583,6 +641,23 @@
             
             // Refresh data for the current tab
             refreshTabData(tabName);
+        }
+        
+        function refreshTabData(tabName) {
+            switch(tabName) {
+                case 'dashboard':
+                    refreshDashboard();
+                    break;
+                case 'files':
+                    refreshFiles();
+                    break;
+                case 'explorer':
+                    refreshBlockchain();
+                    break;
+                case 'security':
+                    refreshSecurity();
+                    break;
+            }
         }
         
         // File upload setup
@@ -689,10 +764,10 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    document.getElementById('chain-height').textContent = data.data.chainHeight;
-                    document.getElementById('peer-count').textContent = data.data.peerCount || 0;
-                    document.getElementById('file-count').textContent = data.data.fileCount || 0;
-                    document.getElementById('storage-used').textContent = formatBytes(data.data.storageUsed || 0);
+                    document.getElementById('chain-height').textContent = data.chainHeight || 0;
+                    document.getElementById('peer-count').textContent = data.peerCount || 0;
+                    document.getElementById('file-count').textContent = data.fileCount || 0;
+                    document.getElementById('storage-used').textContent = formatBytes(data.storageUsed || 0);
                 }
             } catch (error) {
                 console.error('Failed to refresh dashboard:', error);
@@ -712,7 +787,7 @@
                     const fileList = document.getElementById('fileList');
                     fileList.innerHTML = '';
                     
-                    data.data.files.forEach(file => {
+                    data.files.forEach(file => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${file.originalName}</td>
@@ -734,29 +809,57 @@
             }
         }
         
+        async function refreshBlockchain() {
+            try {
+                const response = await fetch('/api/blockchain');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const blockchainData = document.getElementById('blockchainData');
+                    blockchainData.innerHTML = '';
+                    
+                    data.blocks.forEach(block => {
+                        const blockElement = document.createElement('div');
+                        blockElement.className = 'block-item';
+                        blockElement.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                <strong>Block #${block.index}</strong>
+                                <span style="font-size: 12px; color: #666;">${formatTimestamp(block.timestamp)}</span>
+                            </div>
+                            <div class="block-hash">Hash: ${block.hash}</div>
+                            <div style="margin-top: 5px; font-size: 14px; color: #888;">
+                                Transactions: ${block.transactionCount}
+                            </div>
+                        `;
+                        blockchainData.appendChild(blockElement);
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to refresh blockchain:', error);
+            }
+        }
+        
         async function refreshSecurity() {
             try {
                 const response = await fetch('/api/security/status');
                 const data = await response.json();
                 
                 if (data.success) {
-                    const security = data.data;
-                    document.getElementById('threat-level').textContent = security.threatLevel;
-                    document.getElementById('integrity-score').textContent = security.integrityScore + '%';
-                    document.getElementById('quarantined-blocks').textContent = security.quarantinedBlocks;
-                    document.getElementById('reorder-count').textContent = security.reorderCount;
+                    document.getElementById('threat-level').textContent = getThreatLevelText(data.threatLevel);
+                    document.getElementById('integrity-score').textContent = data.integrityScore + '%';
+                    document.getElementById('quarantined-blocks').textContent = data.quarantinedBlocks || 0;
+                    document.getElementById('reorder-count').textContent = data.reorderCount || 0;
                     
                     // Update threat level color
                     const threatElement = document.getElementById('threat-level');
-                    threatElement.className = '';
-                    switch(security.threatLevel) {
-                        case 'CRITICAL':
+                    switch(data.threatLevel) {
+                        case 4:
                             threatElement.style.color = '#dc3545';
                             break;
-                        case 'HIGH':
+                        case 3:
                             threatElement.style.color = '#fd7e14';
                             break;
-                        case 'MEDIUM':
+                        case 2:
                             threatElement.style.color = '#ffc107';
                             break;
                         default:
@@ -768,19 +871,17 @@
             }
         }
         
-        // Utility functions
-        function formatBytes(bytes) {
-            if (bytes === 0) return '0 B';
-            const k = 1024;
-            const sizes = ['B', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        function getThreatLevelText(level) {
+            switch(level) {
+                case 4: return 'CRITICAL';
+                case 3: return 'HIGH';
+                case 2: return 'MEDIUM';
+                case 1: return 'LOW';
+                default: return 'NONE';
+            }
         }
         
-        function formatTimestamp(timestamp) {
-            return new Date(timestamp * 1000).toLocaleString();
-        }
-        
+        // File operations
         async function downloadFile(fileId) {
             try {
                 const response = await fetch(`/api/files/download/${fileId}`, {
@@ -799,6 +900,7 @@
                     document.body.appendChild(a);
                     a.click();
                     window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
                 } else {
                     alert('Download failed');
                 }
@@ -807,6 +909,32 @@
             }
         }
         
+        async function deleteFile(fileId) {
+            if (!confirm('Are you sure you want to delete this file?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/files/${fileId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    refreshFiles();
+                    alert('File deleted successfully');
+                } else {
+                    alert('Delete failed: ' + result.error);
+                }
+            } catch (error) {
+                alert('Delete error: ' + error.message);
+            }
+        }
+        
+        // Security operations
         async function performSecurityScan() {
             try {
                 const response = await fetch('/api/security/scan', {
@@ -828,51 +956,292 @@
             }
         }
         
+        async function triggerReorder() {
+            if (!confirm('Are you sure you want to trigger a polymorphic chain reorder? This is a major security operation.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/security/reorder', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('sessionId'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        reason: 'Manual trigger from web interface'
+                    })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert('Polymorphic reorder completed successfully');
+                    refreshSecurity();
+                    refreshDashboard();
+                } else {
+                    alert('Reorder failed: ' + result.error);
+                }
+            } catch (error) {
+                alert('Reorder error: ' + error.message);
+            }
+        }
+        
+        // Blockchain explorer
+        async function searchBlockchain() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                refreshBlockchain();
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/blockchain/search?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const blockchainData = document.getElementById('blockchainData');
+                    blockchainData.innerHTML = '';
+                    
+                    if (data.results.length === 0) {
+                        blockchainData.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">No results found</div>';
+                        return;
+                    }
+                    
+                    data.results.forEach(result => {
+                        const resultElement = document.createElement('div');
+                        resultElement.className = 'block-item';
+                        
+                        if (result.type === 'block') {
+                            resultElement.innerHTML = `
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                    <strong>Block #${result.data.index}</strong>
+                                    <span style="font-size: 12px; color: #666;">${formatTimestamp(result.data.timestamp)}</span>
+                                </div>
+                                <div class="block-hash">Hash: ${result.data.hash}</div>
+                                <div style="margin-top: 5px; font-size: 14px; color: #888;">
+                                    Transactions: ${result.data.transactionCount}
+                                </div>
+                            `;
+                        } else if (result.type === 'file') {
+                            resultElement.innerHTML = `
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                    <strong>📁 ${result.data.originalName}</strong>
+                                    <span style="font-size: 12px; color: #666;">${formatTimestamp(result.data.uploadTime)}</span>
+                                </div>
+                                <div class="block-hash">File ID: ${result.data.fileId}</div>
+                                <div style="margin-top: 5px; font-size: 14px; color: #888;">
+                                    Size: ${formatBytes(result.data.fileSize)} | Type: ${result.data.mimeType}
+                                </div>
+                            `;
+                        }
+                        
+                        blockchainData.appendChild(resultElement);
+                    });
+                } else {
+                    alert('Search failed: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+                alert('Search error: ' + error.message);
+            }
+        }
+        
+        // Utility functions
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function formatTimestamp(timestamp) {
+            return new Date(timestamp * 1000).toLocaleString();
+        }
+        
+        // Network status update
+        async function updateNetworkStatus() {
+            try {
+                const response = await fetch('/api/network/status');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const networkStatus = document.getElementById('network-status');
+                    networkStatus.innerHTML = `
+                        <div style="display: flex; align-items: center; margin: 10px 0;">
+                            <span class="status-indicator ${data.networkRunning ? 'status-online' : 'status-offline'}"></span>
+                            <span>P2P Network: ${data.networkRunning ? 'Online' : 'Offline'}</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin: 10px 0;">
+                            <span class="status-indicator status-online"></span>
+                            <span>Blockchain: Synchronized</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin: 10px 0;">
+                            <span class="status-indicator status-online"></span>
+                            <span>Security: Active</span>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 14px; color: #666;">
+                            <div>Connected Peers: ${data.peerCount || 0}</div>
+                            <div>Messages Sent: ${data.messagesSent || 0}</div>
+                            <div>Messages Received: ${data.messagesReceived || 0}</div>
+                            <div>Node ID: ${data.nodeId ? data.nodeId.substring(0, 16) + '...' : 'N/A'}</div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Failed to update network status:', error);
+            }
+        }
+        
+        // Security alerts management
+        async function loadSecurityAlerts() {
+            try {
+                const response = await fetch('/api/security/alerts');
+                const data = await response.json();
+                
+                if (data.success && data.alerts.length > 0) {
+                    const alertsContainer = document.getElementById('securityAlerts');
+                    alertsContainer.innerHTML = '<h4>Recent Security Alerts</h4>';
+                    
+                    data.alerts.forEach(alert => {
+                        const alertElement = document.createElement('div');
+                        alertElement.className = `security-alert ${alert.level.toLowerCase()}`;
+                        alertElement.innerHTML = `
+                            <strong>${alert.event}</strong> - ${alert.description}
+                            <div style="font-size: 12px; margin-top: 5px; opacity: 0.8;">
+                                Block: ${alert.blockIndex} | Time: ${formatTimestamp(alert.timestamp)}
+                            </div>
+                        `;
+                        alertsContainer.appendChild(alertElement);
+                    });
+                } else {
+                    document.getElementById('securityAlerts').innerHTML = '<div style="color: #28a745; text-align: center; padding: 20px;">✅ No security alerts</div>';
+                }
+            } catch (error) {
+                console.error('Failed to load security alerts:', error);
+            }
+        }
+        
+        // Real-time updates
+        function setupRealTimeUpdates() {
+            // Update network status every 30 seconds
+            setInterval(updateNetworkStatus, 30000);
+            updateNetworkStatus();
+            
+            // Load security alerts on security tab
+            if (currentTab === 'security') {
+                loadSecurityAlerts();
+            }
+        }
+        
+        // Enhanced tab switching with real-time updates
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').style.display = 'block';
+            currentTab = tabName;
+            
+            // Refresh data and setup real-time updates for the current tab
+            refreshTabData(tabName);
+            
+            if (tabName === 'security') {
+                loadSecurityAlerts();
+            }
+        }
+        
         function logout() {
+            // Clear session
             localStorage.removeItem('sessionId');
             currentUser = null;
+            
+            // Send logout request to server
+            fetch('/api/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
+                }
+            }).catch(err => console.log('Logout request failed:', err));
+            
+            // Show login page
             showLogin();
         }
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Alt+1-4 for tab switching
+            if (e.altKey && !e.ctrlKey && !e.shiftKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        showTab('dashboard');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        showTab('files');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        showTab('explorer');
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        showTab('security');
+                        break;
+                }
+            }
+            
+            // Ctrl+U for file upload (when in files tab)
+            if (e.ctrlKey && e.key === 'u' && currentTab === 'files') {
+                e.preventDefault();
+                document.getElementById('fileInput').click();
+            }
+            
+            // Enter to search in explorer
+            if (e.key === 'Enter' && document.activeElement === document.getElementById('searchInput')) {
+                e.preventDefault();
+                searchBlockchain();
+            }
+        });
+        
+        // Initialize real-time updates when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setupRealTimeUpdates();
+        });
+        
+        // Auto-refresh data based on current tab
+        setInterval(() => {
+            if (document.visibilityState === 'visible') {
+                refreshData();
+            }
+        }, 15000); // Every 15 seconds when page is visible
+        
+        // Error handling for fetch requests
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled promise rejection:', event.reason);
+            
+            // Handle authentication errors
+            if (event.reason && event.reason.message && event.reason.message.includes('401')) {
+                alert('Session expired. Please login again.');
+                logout();
+            }
+        });
+        
+        // Connection status indicator
+        window.addEventListener('online', function() {
+            console.log('Connection restored');
+            refreshData();
+        });
+        
+        window.addEventListener('offline', function() {
+            console.log('Connection lost');
+        });
+        
+        console.log('🔗 Blockchain Storage Interface Loaded');
+        console.log('💡 Keyboard shortcuts: Alt+1-4 for tabs, Ctrl+U for upload');
     </script>
 </body>
-</html> type="submit" class="btn">Login</button>
-                </form>
-                
-                <p style="text-align: center; margin-top: 20px;">
-                    Don't have an account? 
-                    <a href="#" onclick="showRegister()" style="color: #667eea;">Register here</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- REGISTER PAGE -->
-    <div class="register-page" style="display: none;">
-        <div class="container">
-            <div class="card login-card">
-                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">
-                    📝 Create Account
-                </h2>
-                
-                <form id="registerForm">
-                    <div class="form-group">
-                        <label for="reg-username">Username</label>
-                        <input type="text" id="reg-username" name="username" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reg-email">Email</label>
-                        <input type="email" id="reg-email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reg-password">Password</label>
-                        <input type="password" id="reg-password" name="password" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reg-confirm">Confirm Password</label>
-                        <input type="password" id="reg-confirm" name="confirm" required>
-                    </div>
-                    
-                    <button
+</html>
