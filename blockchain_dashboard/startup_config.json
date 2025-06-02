@@ -1,0 +1,30 @@
+{
+  "cpp_node": {
+    "executable": "../blockchain_dashboard/../build/bin/blockchain_node",
+    "enabled": true,
+    "startup_delay": 3,
+    "restart_on_failure": true
+  },
+  "coordinator": {
+    "script": "system_coordinator.py",
+    "enabled": true,
+    "startup_delay": 2,
+    "daemon_mode": true
+  },
+  "django": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "enabled": true,
+    "startup_delay": 1,
+    "auto_migrate": true
+  },
+  "redis": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 6379
+  },
+  "monitoring": {
+    "enabled": true,
+    "check_interval": 10
+  }
+}

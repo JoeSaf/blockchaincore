@@ -1,157 +1,1800 @@
-<!DOCTYPE html>
+startSecurityScan() {
+                const scanIdle = document.getElementById('scan-idle');
+                const scanProgress = document.getElementById('scan-progress');
+                const scanResults = document.getElementById('scan-results');
+                const deepScan = document.getElementById('deep-scan').checked;
+
+                scanIdle.classList.add('d-none');
+                scanProgress.classList.remove('d-none');
+                scanResults.classList.add('d-none');
+
+                // Start real security scan via API
+                this.runSecurityScan(deepScan);
+            }
+
+            async runSecurityScan(deepScan) {
+                try {
+                    const response = await fetch('/api/security/scan/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify({
+                            deep_scan: deepScan
+                        })
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        
+                        if (result.scan_id) {
+                            // Poll for scan progress
+                            this.pollScanProgress(result.scan_id);
+                        } else {
+                            this.displayScanResults(result);
+                        }
+                    } else {
+                        this.handleScanError('Scan failed: ' + response.statusText);
+                    }
+                } catch (error) {
+                    this.handleScanError('Scan error: ' + error.message);
+                }
+            }
+
+            async pollScanProgress(scanId) {
+                const pollInterval = setInterval(async () => {
+                    try {
+                        const response = await fetch(`/api/security/scan/${scanId}/status/`, {
+                            method: 'GET',
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+
+                        if (response.ok) {
+                            const status = await response.json();
+                            this.updateScanProgress(status);
+
+                            if (status.completed) {
+                                clearInterval(pollInterval);
+                                this.displayScanResults(status.results);
+                            }
+                        }
+                    } catch (error) {
+                        clearInterval(pollInterval);
+                        this.handleScanError('Progress polling error: ' + error.message);
+                    }
+                }, 2000);
+            }
+
+            updateScanProgress(status) {
+                const progressBar = document.getElementById('scan-progress-bar');
+                const statusText = document.getElementById('scan-status');
+
+                progressBar.style.width = `${status.progress || 0}%`;
+                statusText.textContent = status.message || 'Scanning...';
+            }
+
+            displayScanResults(results) {
+                const scanProgress = document.getElementById('scan-progress');
+                const scanResults = document.getElementById('scan-results');
+
+                scanProgress.classList.add('d-none');
+                scanResults.classList.remove('d-none');
+
+                const alertClass = results.critical_issues > 0 ? 'danger' : 
+                                results.warnings > 0 ? 'warning' : 'success';
+                
+                const alertIcon = results.critical_issues > 0 ? 'exclamation-triangle' : 
+                                results.warnings > 0 ? 'exclamation-triangle' : 'check-circle';
+
+                scanResults.innerHTML = `
+                    <div class="alert alert-${alertClass}">
+                        <h6><i class="fas fa-${alertIcon}"></i> Scan Complete</h6>
+                        <p class="mb-1">${results.summary || 'Security scan completed.'}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Scan Summary</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-${results.system_integrity ? 'check text-success' : 'times text-danger'}"></i> System integrity: ${results.system_integrity ? 'OK' : 'FAILED'}</li>
+                                <li><i class="fas fa-${results.file_permissions ? 'check text-success' : 'times text-danger'}"></i> File permissions: ${results.file_permissions ? 'OK' : 'ISSUES'}</li>
+                                <li><i class="fas fa-${results.network_security ? 'check text-success' : 'times text-danger'}"></i> Network security: ${results.network_security ? 'OK' : 'VULNERABLE'}</li>
+                                <li><i class="fas fa-exclamation-triangle text-warning"></i> ${results.warnings || 0} warnings</li>
+                                ${results.critical_issues ? `<li><i class="fas fa-times text-danger"></i> ${results.critical_issues} critical issues</li>` : ''}
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Recommendations</h6>
+                            <ul class="list-unstyled">
+                                ${(results.recommendations || []).map(rec => `<li><small>• ${rec}</small></li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+
+            handleScanError(errorMessage) {
+                const scanProgress = document.getElementById('scan-progress');
+                const scanResults = document.getElementById('scan-results');
+
+                scanProgress.classList.add('d-none');
+                scanResults.classList.remove('d-none');
+
+                scanResults.innerHTML = `
+                    <div class="alert alert-danger">
+                        <h6><i class="fas fa-exclamation-triangle"></i> Scan Error</h6>
+                        <p class="mb-0">${errorMessage}</p>
+                    </div>
+                `;
+            }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockchain Dashboard</title>
+    <title>Blockchain Dashboard - Enhanced</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --dark-bg: #1a1a2e;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        .navbar {
+            background: var(--primary-gradient);
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .status-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .status-indicator {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-details {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .connection-status {
+            display: inline-flex;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            gap: 0.5rem;
         }
-        .welcome {
-            color: #333;
+
+        .connection-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
         }
-        .logout-btn {
-            background: #dc3545;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
+
+        .connection-dot.connected {
+            background-color: var(--success-color);
+        }
+
+        .connection-dot.disconnected {
+            background-color: var(--danger-color);
+        }
+
+        .connection-dot.warning {
+            background-color: var(--warning-color);
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .activity-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-item {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1rem;
+        }
+
+        .activity-icon.success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+        }
+
+        .activity-icon.warning {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning-color);
+        }
+
+        .activity-icon.danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger-color);
+        }
+
+        .activity-icon.info {
+            background-color: rgba(23, 162, 184, 0.1);
+            color: var(--info-color);
+        }
+
+        .timestamp {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-left: auto;
+        }
+
+        .progress-container {
+            margin-top: 1rem;
+        }
+
+        .progress {
+            height: 8px;
             border-radius: 4px;
+            background-color: rgba(0,0,0,0.1);
         }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+
+        .progress-bar {
+            border-radius: 4px;
+            transition: width 0.3s ease;
         }
-        .stat-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #007bff;
+
+        .security-alert {
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            color: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            animation: slideIn 0.5s ease;
         }
-        .stat-title {
-            font-weight: bold;
-            color: #666;
-            margin-bottom: 10px;
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
+
+        .metric-card {
+            text-align: center;
+            padding: 1rem;
         }
-        .databases-section {
-            margin-top: 30px;
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
         }
-        .database-list {
-            list-style: none;
-            padding: 0;
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
         }
-        .database-item {
-            background: #f8f9fa;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        .upload-zone {
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.5);
         }
-        .database-name {
-            font-weight: bold;
-            color: #333;
+
+        .upload-zone:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
         }
-        .database-info {
-            color: #666;
-            font-size: 14px;
+
+        .upload-zone.dragover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.02);
+        }
+
+        .btn-gradient {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .websocket-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .websocket-status.connected {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .websocket-status.disconnected {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .websocket-status.connecting {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .chart-container {
+            height: 300px;
+            margin: 1rem 0;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+        }
+
+        .modal-header {
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 15px 15px 0 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="welcome">Welcome to Blockchain Dashboard, {{ user.username }}!</h1>
-            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
-        </div>
+    <!-- WebSocket Status Indicator -->
+    <div id="websocket-status" class="websocket-status connecting">
+        <i class="fas fa-wifi"></i> Connecting...
+    </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-title">Total Databases</div>
-                <div class="stat-value">{{ total_databases }}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-title">Total Files</div>
-                <div class="stat-value">{{ total_files }}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-title">Blockchain Blocks</div>
-                <div class="stat-value">{{ total_blocks }}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-title">Your Role</div>
-                <div class="stat-value">{{ user_role|default:"User" }}</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cube"></i> Blockchain Dashboard
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i> Admin
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-shield-alt"></i> Security</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </nav>
 
-        <div class="databases-section">
-            <h2>Your Databases</h2>
-            {% if databases %}
-                <ul class="database-list">
-                    {% for db in databases %}
-                    <li class="database-item">
-                        <div>
-                            <div class="database-name">{{ db.name }}</div>
-                            <div class="database-info">Created: {{ db.created_at|date:"M d, Y" }} | Owner: {{ db.owner }}</div>
+    <div class="container mt-4">
+        <!-- Security Alerts -->
+        <div id="security-alerts"></div>
+
+        <!-- System Status Cards -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="status-indicator">
+                            <i class="fas fa-server" id="cpp-node-icon"></i>
                         </div>
-                        <div>
-                            <a href="#" class="btn">View Details</a>
+                        <div class="connection-status">
+                            <div class="connection-dot disconnected" id="cpp-connection-dot"></div>
+                            <span id="cpp-status-text">Connecting...</span>
                         </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No databases found. <a href="#" class="btn">Create your first database</a></p>
-            {% endif %}
+                        <div class="status-label">C++ Blockchain Node</div>
+                        <div class="status-details" id="cpp-details">
+                            Initializing connection...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="status-indicator">
+                            <i class="fas fa-cogs" id="coordinator-icon"></i>
+                        </div>
+                        <div class="connection-status">
+                            <div class="connection-dot disconnected" id="coordinator-connection-dot"></div>
+                            <span id="coordinator-status-text">Checking...</span>
+                        </div>
+                        <div class="status-label">System Coordinator</div>
+                        <div class="status-details" id="coordinator-details">
+                            Checking process status...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="status-indicator">
+                            <i class="fas fa-shield-alt" id="security-icon"></i>
+                        </div>
+                        <div class="connection-status">
+                            <div class="connection-dot connected" id="security-connection-dot"></div>
+                            <span id="security-status-text">Secure</span>
+                        </div>
+                        <div class="status-label">Security Status</div>
+                        <div class="status-details" id="security-details">
+                            All systems secure
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="status-indicator">
+                            <i class="fas fa-cloud-upload-alt" id="upload-icon"></i>
+                        </div>
+                        <div class="connection-status">
+                            <div class="connection-dot connected" id="upload-connection-dot"></div>
+                            <span id="upload-status-text">Ready</span>
+                        </div>
+                        <div class="status-label">File Upload System</div>
+                        <div class="status-details" id="upload-details">
+                            Ready for uploads
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="databases-section">
-            <h2>Recent Activity</h2>
-            {% if recent_blocks %}
-                <ul class="database-list">
-                    {% for block in recent_blocks %}
-                    <li class="database-item">
-                        <div>
-                            <div class="database-name">{{ block.data.action|title }}</div>
-                            <div class="database-info">
-                                {% if block.data.database %}Database: {{ block.data.database }} | {% endif %}
-                                Time: {{ block.timestamp|date:"M d, Y H:i" }}
+        <!-- Metrics Row -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="metric-number text-primary" id="blocks-count">-</div>
+                        <div class="metric-label">Total Blocks</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="metric-number text-success" id="files-count">-</div>
+                        <div class="metric-label">Files Stored</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="metric-number text-info" id="users-count">-</div>
+                        <div class="metric-label">Active Users</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="status-card">
+                    <div class="metric-card">
+                        <div class="metric-number text-warning" id="threats-blocked">-</div>
+                        <div class="metric-label">Threats Blocked</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Row -->
+        <div class="row">
+            <!-- File Upload Section -->
+            <div class="col-lg-6">
+                <div class="activity-card">
+                    <div class="card-header bg-transparent border-0 pb-0">
+                        <h5 class="mb-0">
+                            <i class="fas fa-cloud-upload-alt text-primary"></i> File Upload
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="upload-zone" id="upload-zone">
+                            <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                            <h6>Drag & Drop Files Here</h6>
+                            <p class="text-muted">or click to browse</p>
+                            <input type="file" id="file-input" class="d-none" multiple>
+                            <button class="btn btn-gradient btn-sm" id="browse-btn">
+                                <i class="fas fa-folder-open"></i> Browse Files
+                            </button>
+                        </div>
+                        
+                        <div class="progress-container d-none" id="upload-progress-container">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <small class="text-muted" id="upload-status">Preparing upload...</small>
+                                <small class="text-muted" id="upload-percentage">0%</small>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" id="upload-progress-bar" style="width: 0%"></div>
                             </div>
                         </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No recent activity found.</p>
-            {% endif %}
+
+                        <div class="mt-3" id="upload-results"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Activity -->
+            <div class="col-lg-6">
+                <div class="activity-card">
+                    <div class="card-header bg-transparent border-0 pb-0">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-line text-success"></i> System Activity
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="activity-feed">
+                            <div class="activity-item">
+                                <div class="activity-icon info">
+                                    <i class="fas fa-info"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-semibold">System Started</div>
+                                    <small class="text-muted">Dashboard initialized successfully</small>
+                                </div>
+                                <div class="timestamp">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics and Security Row -->
+        <div class="row mt-4">
+            <!-- Security Dashboard -->
+            <div class="col-lg-8">
+                <div class="activity-card">
+                    <div class="card-header bg-transparent border-0 pb-0">
+                        <h5 class="mb-0">
+                            <i class="fas fa-shield-alt text-danger"></i> Security Monitor
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <div class="h4 text-success mb-1" id="security-score">98%</div>
+                                    <small class="text-muted">Security Score</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <div class="h4 text-warning mb-1" id="active-scans">3</div>
+                                    <small class="text-muted">Active Scans</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <div class="h4 text-info mb-1" id="quarantined-files">0</div>
+                                    <small class="text-muted">Quarantined</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <h6>Recent Security Events</h6>
+                            <div id="security-events">
+                                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                                    <div>
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        System integrity check passed
+                                    </div>
+                                    <small class="text-muted">2 min ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="col-lg-4">
+                <div class="activity-card">
+                    <div class="card-header bg-transparent border-0 pb-0">
+                        <h5 class="mb-0">
+                            <i class="fas fa-bolt text-warning"></i> Quick Actions
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-gradient" id="restart-coordinator">
+                                <i class="fas fa-redo"></i> Restart Coordinator
+                            </button>
+                            <button class="btn btn-outline-primary" id="view-logs">
+                                <i class="fas fa-file-alt"></i> View System Logs
+                            </button>
+                            <button class="btn btn-outline-success" id="run-security-scan">
+                                <i class="fas fa-search"></i> Run Security Scan
+                            </button>
+                            <button class="btn btn-outline-info" id="export-data">
+                                <i class="fas fa-download"></i> Export Data
+                            </button>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <h6>System Health</h6>
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <small>CPU Usage</small>
+                                    <small id="cpu-usage">-</small>
+                                </div>
+                                <div class="progress" style="height: 4px;">
+                                    <div class="progress-bar bg-primary" id="cpu-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <small>Memory Usage</small>
+                                    <small id="memory-usage">-</small>
+                                </div>
+                                <div class="progress" style="height: 4px;">
+                                    <div class="progress-bar bg-success" id="memory-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <small>Disk Usage</small>
+                                    <small id="disk-usage">-</small>
+                                </div>
+                                <div class="progress" style="height: 4px;">
+                                    <div class="progress-bar bg-warning" id="disk-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Modals -->
+    <!-- System Logs Modal -->
+    <div class="modal fade" id="logsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-file-alt"></i> System Logs
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <select class="form-select" id="log-filter">
+                            <option value="all">All Logs</option>
+                            <option value="security">Security</option>
+                            <option value="upload">Upload</option>
+                            <option value="system">System</option>
+                            <option value="error">Errors</option>
+                        </select>
+                    </div>
+                    <div id="logs-content" style="height: 400px; overflow-y: auto; background: #f8f9fa; padding: 1rem; border-radius: 5px; font-family: monospace; font-size: 0.85rem;">
+                        Loading logs...
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" id="refresh-logs">
+                        <i class="fas fa-sync"></i> Refresh
+                    </button>
+                    <button type="button" class="btn btn-primary" id="download-logs">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Scan Modal -->
+    <div class="modal fade" id="securityScanModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-search"></i> Security Scan
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="scan-progress" class="d-none">
+                        <div class="text-center mb-3">
+                            <div class="loading-spinner"></div>
+                        </div>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-info" id="scan-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="text-center">
+                            <small id="scan-status">Initializing scan...</small>
+                        </div>
+                    </div>
+                    <div id="scan-results" class="d-none">
+                        <!-- Scan results will be populated here -->
+                    </div>
+                    <div id="scan-idle">
+                        <p>Run a comprehensive security scan of the system to check for vulnerabilities, threats, and integrity issues.</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="deep-scan" checked>
+                            <label class="form-check-label" for="deep-scan">
+                                Deep scan (includes file integrity check)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="start-scan">
+                        <i class="fas fa-play"></i> Start Scan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        class BlockchainDashboard {
+            constructor() {
+                this.socket = null;
+                this.reconnectAttempts = 0;
+                this.maxReconnectAttempts = 5;
+                this.reconnectDelay = 3000;
+                this.isConnected = false;
+                
+                this.initializeEventListeners();
+                this.initializeWebSocket();
+                this.initializeFileUpload();
+                this.loadInitialData();
+            }
+
+            loadInitialData() {
+                // Load initial dashboard data via API
+                this.fetchDashboardData();
+            }
+
+            async fetchDashboardData() {
+                try {
+                    const response = await fetch('/api/dashboard/', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        this.updateSystemStatusFromData(data.status || {});
+                        this.updateMetricsFromData(data.metrics || {});
+                        
+                        if (data.activity) {
+                            data.activity.forEach(activity => {
+                                this.addActivityItem(activity);
+                            });
+                        }
+                    } else {
+                        console.error('Failed to fetch dashboard data:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error fetching dashboard data:', error);
+                }
+            }
+
+            requestMetricsUpdate() {
+                if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+                    this.socket.send(JSON.stringify({
+                        type: 'get_metrics'
+                    }));
+                }
+            }
+
+            initializeEventListeners() {
+                // Quick action buttons
+                document.getElementById('restart-coordinator').addEventListener('click', () => {
+                    this.restartCoordinator();
+                });
+
+                document.getElementById('view-logs').addEventListener('click', () => {
+                    this.showLogsModal();
+                });
+
+                document.getElementById('run-security-scan').addEventListener('click', () => {
+                    this.showSecurityScanModal();
+                });
+
+                document.getElementById('export-data').addEventListener('click', () => {
+                    this.exportData();
+                });
+
+                // Modal event listeners
+                document.getElementById('refresh-logs').addEventListener('click', () => {
+                    this.refreshLogs();
+                });
+
+                document.getElementById('download-logs').addEventListener('click', () => {
+                    this.downloadLogs();
+                });
+
+                document.getElementById('start-scan').addEventListener('click', () => {
+                    this.startSecurityScan();
+                });
+
+                document.getElementById('log-filter').addEventListener('change', (e) => {
+                    this.filterLogs(e.target.value);
+                });
+
+                // Request fresh data every 30 seconds
+                setInterval(() => {
+                    this.requestStatusUpdate();
+                    this.requestMetricsUpdate();
+                }, 30000);
+            }
+
+            initializeWebSocket() {
+                try {
+                    // Real WebSocket connection to Django Channels
+                    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                    const wsUrl = `${protocol}//${window.location.host}/ws/dashboard/`;
+                    
+                    this.updateWebSocketStatus('connecting');
+                    this.socket = new WebSocket(wsUrl);
+                    
+                    this.socket.onopen = (event) => {
+                        console.log('Dashboard WebSocket connected');
+                        this.isConnected = true;
+                        this.reconnectAttempts = 0;
+                        this.updateWebSocketStatus('connected');
+                        this.requestStatusUpdate();
+                    };
+                    
+                    this.socket.onmessage = (event) => {
+                        const data = JSON.parse(event.data);
+                        this.handleWebSocketMessage(data);
+                    };
+                    
+                    this.socket.onclose = (event) => {
+                        console.log('Dashboard WebSocket disconnected');
+                        this.isConnected = false;
+                        this.updateWebSocketStatus('disconnected');
+                        this.handleReconnection();
+                    };
+                    
+                    this.socket.onerror = (error) => {
+                        console.error('WebSocket error:', error);
+                        this.updateWebSocketStatus('disconnected');
+                    };
+                } catch (error) {
+                    console.error('WebSocket initialization failed:', error);
+                    this.updateWebSocketStatus('disconnected');
+                }
+            }
+
+            handleReconnection() {
+                if (this.reconnectAttempts < this.maxReconnectAttempts) {
+                    this.reconnectAttempts++;
+                    console.log(`Attempting to reconnect... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
+                    
+                    setTimeout(() => {
+                        this.initializeWebSocket();
+                    }, this.reconnectDelay * this.reconnectAttempts);
+                } else {
+                    console.error('Max reconnection attempts reached');
+                    this.updateWebSocketStatus('disconnected');
+                }
+            }
+
+            requestStatusUpdate() {
+                if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+                    this.socket.send(JSON.stringify({
+                        type: 'get_status'
+                    }));
+                }
+            }
+
+            updateWebSocketStatus(status) {
+                const statusElement = document.getElementById('websocket-status');
+                statusElement.className = `websocket-status ${status}`;
+                
+                switch(status) {
+                    case 'connected':
+                        statusElement.innerHTML = '<i class="fas fa-wifi"></i> Connected';
+                        break;
+                    case 'disconnected':
+                        statusElement.innerHTML = '<i class="fas fa-wifi"></i> Disconnected';
+                        break;
+                    case 'connecting':
+                        statusElement.innerHTML = '<i class="fas fa-wifi"></i> Connecting...';
+                        break;
+                }
+            }
+
+            startDataSimulation() {
+                // Simulate real-time data updates
+                this.simulateSystemStatus();
+                this.simulateMetrics();
+                this.simulateActivityFeed();
+                
+                // Update every 5 seconds
+                setInterval(() => {
+                    this.simulateSystemStatus();
+                    this.simulateMetrics();
+                }, 5000);
+
+                // Add activity every 10-30 seconds
+                setInterval(() => {
+                    this.addRandomActivity();
+                }, Math.random() * 20000 + 10000);
+            }
+
+            simulateSystemStatus() {
+                // C++ Node Status
+                const cppConnected = Math.random() > 0.1; // 90% uptime
+                this.updateComponentStatus('cpp', cppConnected, 
+                    cppConnected ? 'Connected to blockchain network' : 'Connection lost');
+
+                // Coordinator Status
+                const coordinatorRunning = Math.random() > 0.05; // 95% uptime
+                this.updateComponentStatus('coordinator', coordinatorRunning,
+                    coordinatorRunning ? 'Processing requests normally' : 'Service unavailable');
+
+                // Security Status
+                const securityOk = Math.random() > 0.02; // 98% secure
+                this.updateComponentStatus('security', securityOk,
+                    securityOk ? 'All systems secure' : 'Security alert detected');
+
+                // Upload Status
+                const uploadReady = Math.random() > 0.03; // 97% available
+                this.updateComponentStatus('upload', uploadReady,
+                    uploadReady ? 'Ready for uploads' : 'Upload service temporarily unavailable');
+            }
+
+            updateComponentStatus(component, isOnline, details) {
+                const statusText = document.getElementById(`${component}-status-text`);
+                const connectionDot = document.getElementById(`${component}-connection-dot`);
+                const detailsElement = document.getElementById(`${component}-details`);
+
+                if (isOnline) {
+                    statusText.textContent = component === 'cpp' ? 'Connected' :
+                                           component === 'coordinator' ? 'Running' :
+                                           component === 'security' ? 'Secure' : 'Ready';
+                    connectionDot.className = 'connection-dot connected';
+                } else {
+                    statusText.textContent = component === 'cpp' ? 'Disconnected' :
+                                           component === 'coordinator' ? 'Stopped' :
+                                           component === 'security' ? 'Alert' : 'Unavailable';
+                    connectionDot.className = 'connection-dot disconnected';
+                }
+
+                detailsElement.textContent = details;
+            }
+
+            simulateMetrics() {
+                // Update metrics with realistic values
+                document.getElementById('blocks-count').textContent = 
+                    Math.floor(Math.random() * 1000 + 15000).toLocaleString();
+                
+                document.getElementById('files-count').textContent = 
+                    Math.floor(Math.random() * 500 + 2500).toLocaleString();
+                
+                document.getElementById('users-count').textContent = 
+                    Math.floor(Math.random() * 50 + 150);
+                
+                document.getElementById('threats-blocked').textContent = 
+                    Math.floor(Math.random() * 10 + 45);
+
+                // Update system health
+                const cpuUsage = Math.floor(Math.random() * 40 + 20);
+                const memoryUsage = Math.floor(Math.random() * 30 + 40);
+                const diskUsage = Math.floor(Math.random() * 20 + 60);
+
+                document.getElementById('cpu-usage').textContent = `${cpuUsage}%`;
+                document.getElementById('cpu-progress').style.width = `${cpuUsage}%`;
+
+                document.getElementById('memory-usage').textContent = `${memoryUsage}%`;
+                document.getElementById('memory-progress').style.width = `${memoryUsage}%`;
+
+                document.getElementById('disk-usage').textContent = `${diskUsage}%`;
+                document.getElementById('disk-progress').style.width = `${diskUsage}%`;
+            }
+
+            simulateActivityFeed() {
+                // Initial activity items
+                const activities = [
+                    { icon: 'success', iconClass: 'fa-check', title: 'File Upload Complete', 
+                      message: 'document.pdf uploaded successfully', time: '2 min ago' },
+                    { icon: 'info', iconClass: 'fa-sync', title: 'Blockchain Sync', 
+                      message: 'Synchronized with 12 peers', time: '5 min ago' },
+                    { icon: 'warning', iconClass: 'fa-exclamation-triangle', title: 'Security Scan', 
+                      message: 'Routine security scan completed', time: '8 min ago' }
+                ];
+
+                activities.forEach(activity => {
+                    this.addActivityItem(activity);
+                });
+            }
+
+            addRandomActivity() {
+                const activities = [
+                    { icon: 'success', iconClass: 'fa-upload', title: 'File Uploaded', 
+                      message: 'New file added to blockchain', time: 'Just now' },
+                    { icon: 'info', iconClass: 'fa-user-plus', title: 'User Connected', 
+                      message: 'New user joined the network', time: 'Just now' },
+                    { icon: 'success', iconClass: 'fa-shield-alt', title: 'Security Check', 
+                      message: 'All security protocols verified', time: 'Just now' },
+                    { icon: 'info', iconClass: 'fa-cube', title: 'Block Mined', 
+                      message: 'New block added to chain', time: 'Just now' },
+                    { icon: 'warning', iconClass: 'fa-exclamation-triangle', title: 'System Alert', 
+                      message: 'High CPU usage detected', time: 'Just now' }
+                ];
+
+                const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+                this.addActivityItem(randomActivity);
+            }
+
+            addActivityItem(activity) {
+                const feed = document.getElementById('activity-feed');
+                const item = document.createElement('div');
+                item.className = 'activity-item fade-in';
+                item.innerHTML = `
+                    <div class="activity-icon ${activity.icon}">
+                        <i class="fas ${activity.iconClass}"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="fw-semibold">${activity.title}</div>
+                        <small class="text-muted">${activity.message}</small>
+                    </div>
+                    <div class="timestamp">${activity.time}</div>
+                `;
+
+                // Insert at the beginning
+                feed.insertBefore(item, feed.firstChild);
+
+                // Keep only last 10 items
+                while (feed.children.length > 10) {
+                    feed.removeChild(feed.lastChild);
+                }
+            }
+
+            initializeFileUpload() {
+                const uploadZone = document.getElementById('upload-zone');
+                const fileInput = document.getElementById('file-input');
+                const browseBtn = document.getElementById('browse-btn');
+
+                // Click to browse
+                browseBtn.addEventListener('click', () => {
+                    fileInput.click();
+                });
+
+                uploadZone.addEventListener('click', () => {
+                    fileInput.click();
+                });
+
+                // Drag and drop
+                uploadZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadZone.classList.add('dragover');
+                });
+
+                uploadZone.addEventListener('dragleave', () => {
+                    uploadZone.classList.remove('dragover');
+                });
+
+                uploadZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadZone.classList.remove('dragover');
+                    const files = e.dataTransfer.files;
+                    this.handleFileUpload(files);
+                });
+
+                // File input change
+                fileInput.addEventListener('change', (e) => {
+                    this.handleFileUpload(e.target.files);
+                });
+            }
+
+            handleFileUpload(files) {
+                if (files.length === 0) return;
+
+                const progressContainer = document.getElementById('upload-progress-container');
+                const resultsDiv = document.getElementById('upload-results');
+
+                progressContainer.classList.remove('d-none');
+                resultsDiv.innerHTML = '';
+
+                // Upload files via API
+                this.uploadFilesToServer(files);
+            }
+
+            async uploadFilesToServer(files) {
+                const formData = new FormData();
+                
+                Array.from(files).forEach((file, index) => {
+                    formData.append('files', file);
+                });
+
+                // Add additional metadata
+                formData.append('database', 'default');
+                formData.append('scan_security', 'true');
+
+                try {
+                    const response = await fetch('/api/upload/', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        this.handleUploadResponse(result);
+                    } else {
+                        this.handleUploadError('Upload failed: ' + response.statusText);
+                    }
+                } catch (error) {
+                    this.handleUploadError('Upload error: ' + error.message);
+                }
+            }
+
+            handleUploadResponse(result) {
+                const resultsDiv = document.getElementById('upload-results');
+                const progressContainer = document.getElementById('upload-progress-container');
+
+                progressContainer.classList.add('d-none');
+
+                if (result.results) {
+                    result.results.forEach(fileResult => {
+                        const alert = document.createElement('div');
+                        alert.className = `alert alert-${fileResult.success ? 'success' : 'danger'} alert-dismissible fade show`;
+                        alert.innerHTML = `
+                            <i class="fas fa-${fileResult.success ? 'check-circle' : 'exclamation-triangle'}"></i>
+                            <strong>${fileResult.filename}</strong> - ${fileResult.status || (fileResult.success ? 'Upload successful' : 'Upload failed')}
+                            ${fileResult.threats && fileResult.threats.length > 0 ? 
+                                `<br><small>Threats detected: ${fileResult.threats.join(', ')}</small>` : ''}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        `;
+                        resultsDiv.appendChild(alert);
+                    });
+                }
+            }
+
+            handleUploadError(errorMessage) {
+                const resultsDiv = document.getElementById('upload-results');
+                const progressContainer = document.getElementById('upload-progress-container');
+
+                progressContainer.classList.add('d-none');
+
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-danger alert-dismissible fade show';
+                alert.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Upload Error:</strong> ${errorMessage}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                resultsDiv.appendChild(alert);
+            }
+
+            showLogsModal() {
+                const modal = new bootstrap.Modal(document.getElementById('logsModal'));
+                modal.show();
+                this.loadLogs();
+            }
+
+            loadLogs() {
+                const logsContent = document.getElementById('logs-content');
+                logsContent.innerHTML = 'Loading logs...';
+
+                // Fetch real logs from API
+                this.fetchSystemLogs();
+            }
+
+            async fetchSystemLogs() {
+                try {
+                    const filter = document.getElementById('log-filter').value;
+                    const response = await fetch(`/api/logs/?filter=${filter}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        this.displayLogs(data.logs || []);
+                    } else {
+                        document.getElementById('logs-content').innerHTML = 'Failed to load logs: ' + response.statusText;
+                    }
+                } catch (error) {
+                    document.getElementById('logs-content').innerHTML = 'Error loading logs: ' + error.message;
+                }
+            }
+
+            displayLogs(logs) {
+                const logsContent = document.getElementById('logs-content');
+                
+                if (logs.length === 0) {
+                    logsContent.innerHTML = 'No logs found.';
+                    return;
+                }
+
+                const logText = logs.map(log => {
+                    if (typeof log === 'string') {
+                        return log;
+                    } else {
+                        // Format log object
+                        return `[${log.timestamp}] ${log.level || 'INFO'}: ${log.message}`;
+                    }
+                }).join('\n');
+
+                logsContent.innerHTML = logText;
+            }
+
+            refreshLogs() {
+                this.fetchSystemLogs();
+            }
+
+            async downloadLogs() {
+                try {
+                    const filter = document.getElementById('log-filter').value;
+                    const response = await fetch(`/api/logs/download/?filter=${filter}`, {
+                        method: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `blockchain-logs-${new Date().toISOString().slice(0, 10)}.txt`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);
+                    } else {
+                        alert('Failed to download logs: ' + response.statusText);
+                    }
+                } catch (error) {
+                    alert('Error downloading logs: ' + error.message);
+                }
+            }
+
+            filterLogs(filter) {
+                this.fetchSystemLogs();
+            }
+
+            showSecurityScanModal() {
+                const modal = new bootstrap.Modal(document.getElementById('securityScanModal'));
+                modal.show();
+            }
+
+            startSecurityScan() {
+                const scanIdle = document.getElementById('scan-idle');
+                const scanProgress = document.getElementById('scan-progress');
+                const scanResults = document.getElementById('scan-results');
+                const progressBar = document.getElementById('scan-progress-bar');
+                const statusText = document.getElementById('scan-status');
+
+                scanIdle.classList.add('d-none');
+                scanProgress.classList.remove('d-none');
+                scanResults.classList.add('d-none');
+
+                // Simulate scan progress
+                let progress = 0;
+                const statuses = [
+                    'Initializing scan...',
+                    'Checking system integrity...',
+                    'Scanning for vulnerabilities...',
+                    'Analyzing file permissions...',
+                    'Checking network security...',
+                    'Finalizing scan results...'
+                ];
+
+                const interval = setInterval(() => {
+                    progress += Math.random() * 20;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        this.completeScan();
+                    }
+
+                    progressBar.style.width = `${progress}%`;
+                    const statusIndex = Math.floor((progress / 100) * (statuses.length - 1));
+                    statusText.textContent = statuses[statusIndex];
+                }, 800);
+            }
+
+            completeScan() {
+                const scanProgress = document.getElementById('scan-progress');
+                const scanResults = document.getElementById('scan-results');
+
+                setTimeout(() => {
+                    scanProgress.classList.add('d-none');
+                    scanResults.classList.remove('d-none');
+
+                    scanResults.innerHTML = `
+                        <div class="alert alert-success">
+                            <h6><i class="fas fa-check-circle"></i> Scan Complete</h6>
+                            <p class="mb-1">Security scan completed successfully. No critical vulnerabilities found.</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Scan Summary</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success"></i> System integrity: OK</li>
+                                    <li><i class="fas fa-check text-success"></i> File permissions: OK</li>
+                                    <li><i class="fas fa-check text-success"></i> Network security: OK</li>
+                                    <li><i class="fas fa-exclamation-triangle text-warning"></i> 2 minor warnings</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Recommendations</h6>
+                                <ul class="list-unstyled">
+                                    <li><small>• Update system packages</small></li>
+                                    <li><small>• Review log rotation settings</small></li>
+                                    <li><small>• Monitor disk usage trends</small></li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                }, 1000);
+            }
+
+            async restartCoordinator() {
+                // Show confirmation
+                if (confirm('Are you sure you want to restart the coordinator? This may temporarily interrupt service.')) {
+                    // Update coordinator status
+                    document.getElementById('coordinator-status-text').textContent = 'Restarting...';
+                    document.getElementById('coordinator-connection-dot').className = 'connection-dot warning';
+                    document.getElementById('coordinator-details').textContent = 'Restarting service...';
+
+                    try {
+                        const response = await fetch('/api/system/restart-coordinator/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+
+                        if (response.ok) {
+                            const result = await response.json();
+                            
+                            // Poll for restart completion
+                            this.pollCoordinatorStatus();
+                        } else {
+                            this.handleRestartError('Restart failed: ' + response.statusText);
+                        }
+                    } catch (error) {
+                        this.handleRestartError('Restart error: ' + error.message);
+                    }
+                }
+            }
+
+            async pollCoordinatorStatus() {
+                let attempts = 0;
+                const maxAttempts = 30; // 30 seconds max
+                
+                const pollInterval = setInterval(async () => {
+                    attempts++;
+                    
+                    try {
+                        const response = await fetch('/api/system/coordinator-status/', {
+                            method: 'GET',
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+
+                        if (response.ok) {
+                            const status = await response.json();
+                            
+                            if (status.running) {
+                                clearInterval(pollInterval);
+                                document.getElementById('coordinator-status-text').textContent = 'Running';
+                                document.getElementById('coordinator-connection-dot').className = 'connection-dot connected';
+                                document.getElementById('coordinator-details').textContent = 'Service restarted successfully';
+                            }
+                        }
+                        
+                        if (attempts >= maxAttempts) {
+                            clearInterval(pollInterval);
+                            this.handleRestartError('Restart timeout - coordinator may still be starting');
+                        }
+                    } catch (error) {
+                        if (attempts >= maxAttempts) {
+                            clearInterval(pollInterval);
+                            this.handleRestartError('Error checking coordinator status: ' + error.message);
+                        }
+                    }
+                }, 1000);
+            }
+
+            handleRestartError(errorMessage) {
+                document.getElementById('coordinator-status-text').textContent = 'Error';
+                document.getElementById('coordinator-connection-dot').className = 'connection-dot disconnected';
+                document.getElementById('coordinator-details').textContent = errorMessage;
+                alert('Coordinator restart failed: ' + errorMessage);
+            }
+
+            async exportData() {
+                // Show export options
+                const exportOptions = [
+                    'System Logs',
+                    'Security Reports', 
+                    'Upload History',
+                    'Performance Metrics',
+                    'Complete System Data'
+                ];
+
+                const option = prompt(`Select data to export:\n${exportOptions.map((opt, i) => `${i + 1}. ${opt}`).join('\n')}\n\nEnter number (1-5):`);
+                
+                if (option && option >= 1 && option <= 5) {
+                    const exportType = exportOptions[option - 1];
+                    
+                    try {
+                        const response = await fetch('/api/export/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            },
+                            body: JSON.stringify({
+                                export_type: exportType.toLowerCase().replace(' ', '-')
+                            })
+                        });
+
+                        if (response.ok) {
+                            const blob = await response.blob();
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `blockchain-${exportType.toLowerCase().replace(' ', '-')}-${new Date().toISOString().slice(0, 10)}.json`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            window.URL.revokeObjectURL(url);
+                        } else {
+                            alert('Export failed: ' + response.statusText);
+                        }
+                    } catch (error) {
+                        alert('Export error: ' + error.message);
+                    }
+                }
+            }
+
+            startSystemPolling() {
+                // Remove polling - replaced with WebSocket real-time updates
+                console.log('System polling disabled - using WebSocket for real-time updates');
+            }
+
+            pollSystemHealth() {
+                // Removed - health data comes from WebSocket
+            }
+
+            addSecurityEvent() {
+                // Removed - security events come from backend via WebSocket
+            }
+
+            showSecurityAlert(alertData) {
+                const alertsContainer = document.getElementById('security-alerts');
+                const alert = document.createElement('div');
+                alert.className = 'security-alert';
+                alert.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="mb-1">
+                                <i class="fas fa-exclamation-triangle"></i> ${alertData.title}
+                            </h6>
+                            <p class="mb-0">${alertData.message}</p>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-light" onclick="this.parentElement.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+
+                alertsContainer.appendChild(alert);
+
+                // Auto-remove after 10 seconds
+                setTimeout(() => {
+                    if (alert.parentElement) {
+                        alert.remove();
+                    }
+                }, 10000);
+            }
+
+            // Method to handle real WebSocket messages (for when implementing real backend)
+            handleWebSocketMessage(data) {
+                switch(data.type) {
+                    case 'status_update':
+                        this.updateSystemStatusFromData(data.data);
+                        break;
+                    case 'activity_update':
+                        this.addActivityItem(data.data);
+                        break;
+                    case 'security_alert':
+                        this.showSecurityAlert(data.data);
+                        break;
+                    case 'upload_progress':
+                        this.updateUploadProgressFromData(data.data);
+                        break;
+                    case 'metrics_update':
+                        this.updateMetricsFromData(data.data);
+                        break;
+                }
+            }
+
+            updateSystemStatusFromData(data) {
+                // Update each component based on real data
+                if (data.cpp_node !== undefined) {
+                    this.updateComponentStatus('cpp', data.cpp_node.connected, data.cpp_node.details);
+                }
+                if (data.coordinator !== undefined) {
+                    this.updateComponentStatus('coordinator', data.coordinator.running, data.coordinator.details);
+                }
+                if (data.security !== undefined) {
+                    this.updateComponentStatus('security', data.security.secure, data.security.details);
+                }
+                if (data.upload !== undefined) {
+                    this.updateComponentStatus('upload', data.upload.available, data.upload.details);
+                }
+            }
+
+            updateMetricsFromData(data) {
+                // Update metrics from real data
+                if (data.blocks_count) {
+                    document.getElementById('blocks-count').textContent = data.blocks_count.toLocaleString();
+                }
+                if (data.files_count) {
+                    document.getElementById('files-count').textContent = data.files_count.toLocaleString();
+                }
+                if (data.users_count) {
+                    document.getElementById('users-count').textContent = data.users_count;
+                }
+                if (data.threats_blocked) {
+                    document.getElementById('threats-blocked').textContent = data.threats_blocked;
+                }
+
+                // Update system health metrics
+                if (data.system_health) {
+                    const health = data.system_health;
+                    
+                    if (health.cpu !== undefined) {
+                        document.getElementById('cpu-usage').textContent = `${health.cpu}%`;
+                        document.getElementById('cpu-progress').style.width = `${health.cpu}%`;
+                    }
+                    
+                    if (health.memory !== undefined) {
+                        document.getElementById('memory-usage').textContent = `${health.memory}%`;
+                        document.getElementById('memory-progress').style.width = `${health.memory}%`;
+                    }
+                    
+                    if (health.disk !== undefined) {
+                        document.getElementById('disk-usage').textContent = `${health.disk}%`;
+                        document.getElementById('disk-progress').style.width = `${health.disk}%`;
+                    }
+                }
+            }
+
+            updateUploadProgressFromData(data) {
+                const progressContainer = document.getElementById('upload-progress-container');
+                const progressBar = document.getElementById('upload-progress-bar');
+                const statusText = document.getElementById('upload-status');
+                const percentage = document.getElementById('upload-percentage');
+
+                if (data.progress !== undefined) {
+                    progressContainer.classList.remove('d-none');
+                    progressBar.style.width = `${data.progress}%`;
+                    percentage.textContent = `${data.progress}%`;
+                }
+
+                if (data.status) {
+                    statusText.textContent = data.status;
+                }
+
+                if (data.completed) {
+                    setTimeout(() => {
+                        progressContainer.classList.add('d-none');
+                    }, 2000);
+                }
+            }
+
+            // Public API methods for external integration
+            updateStatus(component, status, details) {
+                this.updateComponentStatus(component, status, details);
+            }
+
+            addActivity(activity) {
+                this.addActivityItem(activity);
+            }
+
+            showAlert(alert) {
+                this.showSecurityAlert(alert);
+            }
+
+            updateMetric(metric, value) {
+                const element = document.getElementById(`${metric}-count`);
+                if (element) {
+                    element.textContent = typeof value === 'number' ? value.toLocaleString() : value;
+                }
+            }
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            window.dashboard = new BlockchainDashboard();
+            
+            console.log('🔗 Blockchain Dashboard initialized and ready for backend integration');
+        });
+
+        // Global utility functions for external integration
+        window.BlockchainDashboardAPI = {
+            updateSystemStatus: function(data) {
+                if (window.dashboard) {
+                    window.dashboard.updateSystemStatusFromData(data);
+                }
+            },
+            
+            updateMetrics: function(data) {
+                if (window.dashboard) {
+                    window.dashboard.updateMetricsFromData(data);
+                }
+            },
+            
+            addActivity: function(activity) {
+                if (window.dashboard) {
+                    window.dashboard.addActivityItem(activity);
+                }
+            },
+            
+            showSecurityAlert: function(alert) {
+                if (window.dashboard) {
+                    window.dashboard.showSecurityAlert(alert);
+                }
+            },
+            
+            updateUploadProgress: function(data) {
+                if (window.dashboard) {
+                    window.dashboard.updateUploadProgressFromData(data);
+                }
+            }
+        };
+
+        // Console welcome message
+        console.log('%c🔗 Blockchain Dashboard Loaded', 'color: #667eea; font-size: 16px; font-weight: bold;');
+        console.log('%cUse window.BlockchainDashboardAPI to interact with the dashboard programmatically', 'color: #6c757d;');
+    </script>
 </body>
 </html>

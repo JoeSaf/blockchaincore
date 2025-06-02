@@ -1,6 +1,6 @@
 {
   "cpp_node": {
-    "executable": "./build/bin/blockchain_node",
+    "executable": "../blockchain_dashboard/../build/bin/blockchain_node",
     "api_url": "http://localhost:8080",
     "tcp_port": 8333,
     "udp_port": 8334,

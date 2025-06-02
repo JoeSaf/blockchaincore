@@ -187,7 +187,24 @@ class FileUpload(models.Model):
     
     def __str__(self):
         return f"{self.original_filename} - {self.uploader.username} - {self.status}"
-
+class SystemStatus(models.Model):
+    """Real-time system status shared between components"""
+    cpp_node_status = models.JSONField(default=dict)
+    coordinator_status = models.JSONField(default=dict)
+    last_updated = models.DateTimeField(auto_now=True)
+    
+class LiveMetrics(models.Model):
+    """Live system metrics"""
+    metric_type = models.CharField(max_length=50)
+    metric_value = models.JSONField()
+    timestamp = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['metric_type', '-timestamp'])
+        ]
+        
+        
 class SecurityAlert(models.Model):
     """Security alerts and notifications"""
     SEVERITY_CHOICES = [
