@@ -1,4 +1,5 @@
 #include "security/SecurityManager.h"
+#include "blockchain/FileBlockchain.h"
 #include "utils/Crypto.h"
 #include "utils/Utils.h"
 #include <spdlog/spdlog.h>
@@ -7,6 +8,7 @@
 #include <chrono>
 #include <fstream>
 #include <iomanip>
+#include "SecurityManager.h"
 
 // SecurityViolation implementations
 nlohmann::json SecurityViolation::toJson() const {
@@ -436,13 +438,10 @@ bool SecurityManager::validateBlockSecurity(const Block& block, const Block* pre
     return true;
 }
 
-bool SecurityManager::isBlockCorrupted(const Block& block) {
+bool SecurityManager::isBlockCorrupted(const Block& block) const {
     // Check if hash matches calculated hash
-    std::string calculatedHash = generateSecurityHash(block);
+    std::string calculatedHash = const_cast<SecurityManager*>(this)->generateSecurityHash(block);
     if (calculatedHash != block.getHash()) {
-        spdlog::error("Block {} hash mismatch. Expected: {}, Got: {}", 
-                     block.getIndex(), calculatedHash.substr(0, 16) + "...", 
-                     block.getHash().substr(0, 16) + "...");
         return true;
     }
     
@@ -453,7 +452,6 @@ bool SecurityManager::isBlockCorrupted(const Block& block) {
     
     // Additional corruption checks
     if (block.getTransactions().empty() && block.getIndex() > 0) {
-        spdlog::warn("Block {} has no transactions (suspicious)", block.getIndex());
         return true;
     }
     
@@ -820,12 +818,6 @@ nlohmann::json SecurityManager::generateSecurityReport() const {
     nlohmann::json report;
     report["timestamp"] = std::time(nullptr);
     report["chainIntegrityScore"] = getChainIntegrityScore();
-nlohmann::json SecurityManager::generateSecurityReport() const {
-    std::lock_guard<std::mutex> lock(securityMutex_);
-    
-    nlohmann::json report;
-    report["timestamp"] = std::time(nullptr);
-    report["chainIntegrityScore"] = getChainIntegrityScore();
     report["threatLevel"] = static_cast<int>(assessThreatLevel());
     report["totalViolations"] = totalViolations_;
     report["reorderCount"] = reorderCount_;
@@ -862,7 +854,6 @@ nlohmann::json SecurityManager::generateSecurityReport() const {
     
     return report;
 }
-
 // ========================
 // SECURITY CALLBACKS AND ALERTS
 // ========================

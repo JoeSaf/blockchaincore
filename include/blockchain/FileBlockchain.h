@@ -6,10 +6,10 @@
 #include <unordered_map>
 #include <mutex>
 #include <fstream>
-#include <nlohmann/json.hpp>
+#include <third_party/nlohmann/json.hpp> 
 #include "Blockchain.h"
-#include "../blockchain/Block.h"
-#include "../blockchain/Transaction.h"
+#include "Block.h"
+#include "Transaction.h"
 
 // File metadata structure
 struct FileMetadata {

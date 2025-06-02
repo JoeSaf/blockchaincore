@@ -1,4 +1,4 @@
-#include "FileBlockchain.h"
+#include "blockchain/FileBlockchain.h"
 #include "utils/Crypto.h"
 #include "utils/Utils.h"
 #include <spdlog/spdlog.h>
@@ -854,14 +854,7 @@ bool FileBlockchain::addFileBlock(const FileBlock& block) {
         spdlog::error("Cannot add file block to empty chain");
         return false;
     }
-    
-    const Block& previousBlock = chain_.back();
-    
-    bool FileBlockchain::addFileBlock(const FileBlock& block) {
-    if (chain_.empty()) {
-        spdlog::error("Cannot add file block to empty chain");
-        return false;
-    }
+
     
     const Block& previousBlock = chain_.back();
     

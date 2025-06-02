@@ -4,7 +4,8 @@
 #include <functional>
 #include <atomic>
 #include <thread>
-#include <httplib.h>
+#include <third_party/httplib.h>
+#include <third_party/nlohmann/json.hpp> 
 #include "../blockchain/Blockchain.h"
 #include "../p2p/P2PNetwork.h"
 

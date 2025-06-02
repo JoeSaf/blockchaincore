@@ -153,6 +153,14 @@ add_executable(blockchain_cli
     ${CLI_SOURCES}
 )
 
+target_include_directories(blockchain_node PRIVATE 
+    ${CMAKE_SOURCE_DIR}/include
+)
+
+target_include_directories(blockchain_cli PRIVATE 
+    ${CMAKE_SOURCE_DIR}/include  
+)
+
 # ========================
 # TARGET CONFIGURATION
 # ========================

@@ -1,4 +1,5 @@
-#include "CLIInterface.h"
+#include "blockchain/FileBlockchain.h"
+#include "cli/CLIInterface.h"
 #include "utils/Crypto.h"
 #include "utils/Utils.h"
 #include <iostream>

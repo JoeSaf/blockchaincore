@@ -1,7 +1,9 @@
 #include "web/WebInterface.h"
+#include "blockchain/FileBlockchain.h"
 #include "utils/Crypto.h"
 #include "utils/Utils.h"
 #include <spdlog/spdlog.h>
+#include <nlohmann/json.hpp>  
 #include <fstream>
 #include <sstream>
 #include <regex>
@@ -1538,3 +1540,1416 @@ std::string WebInterface::formatFileSize(uint64_t bytes) const {
     oss << std::fixed << std::setprecision(1) << size << " " << units[unit];
     return oss.str();
 }
+
+// Add these missing methods to your WebInterface.cpp file
+
+// ========================
+// MISSING PAGE HANDLERS
+// ========================
+
+void WebInterface::handleRegisterPage(const httplib::Request& req, httplib::Response& res) {
+    if (!registrationEnabled_) {
+        std::string html = R"(<!DOCTYPE html>
+<html><head><title>Registration Disabled</title></head>
+<body style="text-align:center; padding:50px;">
+<h1>Registration Disabled</h1>
+<p>User registration is currently disabled.</p>
+<a href="/login">Return to Login</a>
+</body></html>)";
+        sendHTMLResponse(res, html);
+        return;
+    }
+    
+    std::string html = generateRegisterPage();
+    sendHTMLResponse(res, html);
+}
+
+void WebInterface::handleFileManager(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        res.status = 302;
+        res.set_header("Location", "/login");
+        return;
+    }
+    
+    std::string html = generateFileManager(*user);
+    sendHTMLResponse(res, html);
+}
+
+void WebInterface::handleBlockchainExplorer(const httplib::Request& req, httplib::Response& res) {
+    std::string html = generateBlockchainExplorer();
+    sendHTMLResponse(res, html);
+}
+
+void WebInterface::handleSecurityPanel(const httplib::Request& req, httplib::Response& res) {
+    std::string html = generateSecurityPanel();
+    sendHTMLResponse(res, html);
+}
+
+void WebInterface::handleProfile(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    nlohmann::json response;
+    response["success"] = true;
+    response["user"] = user->toJson();
+    sendJSONResponse(res, response);
+}
+
+void WebInterface::handleChangePassword(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    try {
+        nlohmann::json requestData = nlohmann::json::parse(req.body);
+        
+        if (!requestData.contains("currentPassword") || !requestData.contains("newPassword")) {
+            sendErrorResponse(res, "Current password and new password required");
+            return;
+        }
+        
+        std::string currentPassword = requestData["currentPassword"];
+        std::string newPassword = requestData["newPassword"];
+        
+        if (!verifyPassword(currentPassword, user->passwordHash)) {
+            sendErrorResponse(res, "Current password is incorrect", 401);
+            return;
+        }
+        
+        if (!isValidPassword(newPassword)) {
+            sendErrorResponse(res, "New password must be at least 8 characters");
+            return;
+        }
+        
+        user->passwordHash = hashPassword(newPassword);
+        updateUser(*user);
+        
+        nlohmann::json response;
+        response["success"] = true;
+        response["message"] = "Password changed successfully";
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("Change password error: {}", e.what());
+        sendErrorResponse(res, "Password change failed", 500);
+    }
+}
+
+// ========================
+// MISSING FILE HANDLERS
+// ========================
+
+void WebInterface::handleFileDelete(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    if (!fileBlockchain_) {
+        sendErrorResponse(res, "File blockchain not available", 503);
+        return;
+    }
+    
+    try {
+        std::string fileId = req.matches[1];
+        
+        if (!fileBlockchain_->fileExists(fileId)) {
+            sendErrorResponse(res, "File not found", 404);
+            return;
+        }
+        
+        // Check if user owns the file
+        auto metadata = fileBlockchain_->getFileMetadata(fileId);
+        if (metadata.uploaderAddress != user->walletAddress) {
+            sendErrorResponse(res, "Access denied", 403);
+            return;
+        }
+        
+        // Delete file from blockchain
+        bool result = fileBlockchain_->deleteFile(fileId, user->walletAddress);
+        if (!result) {
+            sendErrorResponse(res, "Failed to delete file", 500);
+            return;
+        }
+        
+        // Update user storage
+        user->storageUsed -= metadata.fileSize;
+        updateUser(*user);
+        
+        nlohmann::json response;
+        response["success"] = true;
+        response["message"] = "File deleted successfully";
+        sendJSONResponse(res, response);
+        
+        logSecurityEvent("File deleted", user->userId, req.get_header_value("X-Real-IP"));
+        
+    } catch (const std::exception& e) {
+        spdlog::error("File delete error: {}", e.what());
+        sendErrorResponse(res, "File deletion failed", 500);
+    }
+}
+
+void WebInterface::handleFileInfo(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    if (!fileBlockchain_) {
+        sendErrorResponse(res, "File blockchain not available", 503);
+        return;
+    }
+    
+    try {
+        std::string fileId = req.matches[1];
+        
+        if (!fileBlockchain_->fileExists(fileId)) {
+            sendErrorResponse(res, "File not found", 404);
+            return;
+        }
+        
+        auto metadata = fileBlockchain_->getFileMetadata(fileId);
+        
+        nlohmann::json response;
+        response["success"] = true;
+        response["fileId"] = metadata.fileId;
+        response["originalName"] = metadata.originalName;
+        response["fileSize"] = metadata.fileSize;
+        response["mimeType"] = metadata.mimeType;
+        response["uploadTime"] = metadata.uploadTime;
+        response["uploaderAddress"] = metadata.uploaderAddress;
+        response["isComplete"] = metadata.isComplete;
+        response["totalChunks"] = metadata.totalChunks;
+        
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("File info error: {}", e.what());
+        sendErrorResponse(res, "Failed to get file info", 500);
+    }
+}
+
+void WebInterface::handleFileShare(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    try {
+        nlohmann::json requestData = nlohmann::json::parse(req.body);
+        
+        if (!requestData.contains("fileId") || !requestData.contains("targetUser")) {
+            sendErrorResponse(res, "File ID and target user required");
+            return;
+        }
+        
+        std::string fileId = requestData["fileId"];
+        std::string targetUser = requestData["targetUser"];
+        
+        // For now, just return success (implement actual sharing logic later)
+        nlohmann::json response;
+        response["success"] = true;
+        response["message"] = "File sharing feature coming soon";
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("File share error: {}", e.what());
+        sendErrorResponse(res, "File sharing failed", 500);
+    }
+}
+
+// ========================
+// MISSING UPLOAD HANDLERS
+// ========================
+
+void WebInterface::handleUploadProgress(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    try {
+        std::string uploadId = req.get_param_value("uploadId");
+        if (uploadId.empty()) {
+            sendErrorResponse(res, "Upload ID required");
+            return;
+        }
+        
+        std::lock_guard<std::mutex> lock(uploadsMutex_);
+        auto it = uploads_.find(uploadId);
+        if (it == uploads_.end()) {
+            sendErrorResponse(res, "Upload not found", 404);
+            return;
+        }
+        
+        nlohmann::json response;
+        response["success"] = true;
+        response["upload"] = it->second.toJson();
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("Upload progress error: {}", e.what());
+        sendErrorResponse(res, "Failed to get upload progress", 500);
+    }
+}
+
+void WebInterface::handleChunkedUpload(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    // For now, redirect to regular upload
+    handleFileUpload(req, res);
+}
+
+void WebInterface::handleUploadCancel(const httplib::Request& req, httplib::Response& res) {
+    User* user = getAuthenticatedUser(req);
+    if (!user) {
+        sendErrorResponse(res, "Authentication required", 401);
+        return;
+    }
+    
+    try {
+        std::string uploadId = req.get_param_value("uploadId");
+        if (uploadId.empty()) {
+            sendErrorResponse(res, "Upload ID required");
+            return;
+        }
+        
+        std::lock_guard<std::mutex> lock(uploadsMutex_);
+        uploads_.erase(uploadId);
+        
+        nlohmann::json response;
+        response["success"] = true;
+        response["message"] = "Upload cancelled";
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("Upload cancel error: {}", e.what());
+        sendErrorResponse(res, "Failed to cancel upload", 500);
+    }
+}
+
+// ========================
+// MISSING BLOCKCHAIN HANDLERS
+// ========================
+
+void WebInterface::handleBlockExplorer(const httplib::Request& req, httplib::Response& res) {
+    try {
+        nlohmann::json response;
+        response["success"] = true;
+        response["blocks"] = nlohmann::json::array();
+        
+        if (fileBlockchain_) {
+            const auto& chain = fileBlockchain_->getChain();
+            
+            // Return last 10 blocks
+            size_t startIndex = chain.size() > 10 ? chain.size() - 10 : 0;
+            for (size_t i = startIndex; i < chain.size(); ++i) {
+                nlohmann::json blockJson;
+                blockJson["index"] = chain[i].getIndex();
+                blockJson["hash"] = chain[i].getHash();
+                blockJson["previousHash"] = chain[i].getPreviousHash();
+                blockJson["timestamp"] = chain[i].getTimestamp();
+                blockJson["transactionCount"] = chain[i].getTransactions().size();
+                response["blocks"].push_back(blockJson);
+            }
+        }
+        
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("Block explorer error: {}", e.what());
+        sendErrorResponse(res, "Failed to get blockchain data", 500);
+    }
+}
+
+void WebInterface::handleTransactionExplorer(const httplib::Request& req, httplib::Response& res) {
+    try {
+        nlohmann::json response;
+        response["success"] = true;
+        response["transactions"] = nlohmann::json::array();
+        
+        if (fileBlockchain_) {
+            const auto& mempool = fileBlockchain_->getTransactionPool();
+            auto transactions = mempool.getTransactions(20); // Get last 20 transactions
+            
+            for (const auto& tx : transactions) {
+                nlohmann::json txJson;
+                txJson["id"] = tx.getId();
+                txJson["timestamp"] = tx.getTimestamp();
+                txJson["inputCount"] = tx.getInputs().size();
+                txJson["outputCount"] = tx.getOutputs().size();
+                txJson["fee"] = tx.getFee();
+                response["transactions"].push_back(txJson);
+            }
+        }
+        
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("Transaction explorer error: {}", e.what());
+        sendErrorResponse(res, "Failed to get transaction data", 500);
+    }
+}
+
+void WebInterface::handleNetworkStatus(const httplib::Request& req, httplib::Response& res) {
+    try {
+        nlohmann::json response;
+        response["success"] = true;
+        
+        if (p2pNetwork_) {
+            response["isRunning"] = p2pNetwork_->isRunning();
+            response["peerCount"] = p2pNetwork_->getPeerCount();
+            response["nodeId"] = p2pNetwork_->getNodeId();
+            response["messagesSent"] = p2pNetwork_->getMessagesSent();
+            response["messagesReceived"] = p2pNetwork_->getMessagesReceived();
+            response["bytesTransferred"] = p2pNetwork_->getBytesTransferred();
+            
+            auto peers = p2pNetwork_->getConnectedPeers();
+            response["peers"] = nlohmann::json::array();
+            for (const auto& peer : peers) {
+                response["peers"].push_back(peer.toJson());
+            }
+        } else {
+            response["isRunning"] = false;
+            response["peerCount"] = 0;
+            response["peers"] = nlohmann::json::array();
+        }
+        
+        sendJSONResponse(res, response);
+        
+    } catch (const std::exception& e) {
+        spdlog::error("Network status error: {}", e.what());
+        sendErrorResponse(res, "Failed to get network status", 500);
+    }
+}
+
+// ========================
+// MISSING HTML GENERATORS
+// ========================
+
+std::string WebInterface::generateRegisterPage(const std::string& errorMessage) {
+    std::stringstream html;
+    
+    html << R"(<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Storage - Register</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .register-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .login-link a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo">🔗 Blockchain Storage</div>)";
+    
+    if (!errorMessage.empty()) {
+        html << "<div class=\"error\">" << errorMessage << "</div>";
+    }
+    
+    html << R"(
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="btn">Create Account</button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="/login">Login here</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('Registration successful! Please login.');
+                    window.location.href = '/login';
+                } else {
+                    alert('Registration failed: ' + result.error);
+                }
+            } catch (error) {
+                alert('Registration error: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>)";
+    
+    return html.str();
+}
+
+std::string WebInterface::generateFileManager(const User& user) {
+    // Reuse dashboard for now, could be made more specific
+    return generateDashboard(user);
+}
+
+std::string WebInterface::generateBlockchainExplorer() {
+    return R"(<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockchain Explorer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .block { border: 1px solid #ddd; margin: 10px 0; padding: 15px; border-radius: 5px; }
+        .hash { font-family: monospace; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Blockchain Explorer</h1>
+    <div id="blocks"></div>
+    <script>
+        async function loadBlocks() {
+            try {
+                const response = await fetch('/api/blockchain');
+                const data = await response.json();
+                const blocksDiv = document.getElementById('blocks');
+                
+                if (data.success && data.blocks) {
+                    data.blocks.forEach(block => {
+                        const blockDiv = document.createElement('div');
+                        blockDiv.className = 'block';
+                        blockDiv.innerHTML = `
+                            <h3>Block #${block.index}</h3>
+                            <p><strong>Hash:</strong> <span class="hash">${block.hash}</span></p>
+                            <p><strong>Previous Hash:</strong> <span class="hash">${block.previousHash}</span></p>
+                            <p><strong>Timestamp:</strong> ${new Date(block.timestamp * 1000).toLocaleString()}</p>
+                            <p><strong>Transactions:</strong> ${block.transactionCount}</p>
+                        `;
+                        blocksDiv.appendChild(blockDiv);
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to load blocks:', error);
+            }
+        }
+        loadBlocks();
+    </script>
+</body>
+</html>)";
+}
+
+std::string WebInterface::generateSecurityPanel() {
+    return R"(<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .metric { display: inline-block; margin: 15px; padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-align: center; }
+        .critical { border-color: #dc3545; background: #f8d7da; }
+        .warning { border-color: #ffc107; background: #fff3cd; }
+        .success { border-color: #28a745; background: #d4edda; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ Security Panel</h1>
+    <div id="metrics"></div>
+    <button onclick="performScan()">🔍 Security Scan</button>
+    <script>
+        async function loadSecurityStatus() {
+            try {
+                const response = await fetch('/api/security/status');
+                const data = await response.json();
+                const metricsDiv = document.getElementById('metrics');
+                
+                if (data.success) {
+                    metricsDiv.innerHTML = `
+                        <div class="metric ${data.threatLevel < 2 ? 'success' : data.threatLevel < 4 ? 'warning' : 'critical'}">
+                            <h3>Threat Level</h3><p>${data.threatLevel}</p>
+                        </div>
+                        <div class="metric">
+                            <h3>Integrity Score</h3><p>${data.integrityScore}%</p>
+                        </div>
+                        <div class="metric">
+                            <h3>Active Threats</h3><p>${data.activeThreats}</p>
+                        </div>
+                        <div class="metric">
+                            <h3>Quarantined Blocks</h3><p>${data.quarantinedBlocks}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Failed to load security status:', error);
+            }
+        }
+        
+        async function performScan() {
+            try {
+                const response = await fetch('/api/security/scan', { method: 'POST' });
+                const result = await response.json();
+                alert(result.message || 'Scan completed');
+                loadSecurityStatus();
+            } catch (error) {
+                alert('Scan failed: ' + error.message);
+            }
+        }
+        
+        loadSecurityStatus();
+        setInterval(loadSecurityStatus, 30000);
+    </script>
+</body>
+</html>)";
+}
+
+// ========================
+// MISSING UTILITY METHODS
+// ========================
+
+void WebInterface::setupStaticFiles() {
+    // Static file serving is already handled by server_->set_mount_point in setupRoutes
+    spdlog::debug("Static files configured at: {}", staticFilesPath_);
+}
+
+std::string WebInterface::generateUploadId() {
+    return Crypto::generateRandomString(16);
+}
+
+void WebInterface::updateUploadStatus(const std::string& uploadId, const UploadStatus& status) {
+    std::lock_guard<std::mutex> lock(uploadsMutex_);
+    uploads_[uploadId] = status;
+}
+
+bool WebInterface::checkRateLimit(const std::string& ipAddress) {
+    // Simple rate limiting - could be enhanced with actual rate tracking
+    return true;
+}
+
+void WebInterface::loadConfiguration() {
+    try {
+        if (Utils::fileExists("web_config.json")) {
+            nlohmann::json config = Utils::readJsonFile("web_config.json");
+            if (config.contains("maxUploadSize")) {
+                maxUploadSize_ = config["maxUploadSize"];
+            }
+            if (config.contains("sessionTimeout")) {
+                sessionTimeout_ = config["sessionTimeout"];
+            }
+            if (config.contains("registrationEnabled")) {
+                registrationEnabled_ = config["registrationEnabled"];
+            }
+            spdlog::debug("Web configuration loaded");
+        }
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to load web configuration: {}", e.what());
+    }
+}
+
+void WebInterface::saveConfiguration() {
+    try {
+        nlohmann::json config;
+        config["maxUploadSize"] = maxUploadSize_;
+        config["sessionTimeout"] = sessionTimeout_;
+        config["registrationEnabled"] = registrationEnabled_;
+        
+        Utils::writeJsonFile("web_config.json", config);
+        spdlog::debug("Web configuration saved");
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to save web configuration: {}", e.what());
+    }
+}
+
+// ========================
+// MISSING TABLE/COMPONENT GENERATORS
+// ========================
+
+std::string WebInterface::generateHeader(const std::string& title, bool includeAuth) {
+    std::stringstream header;
+    header << R"(<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>)" << title << R"(</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .navbar { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 15px; margin-bottom: 30px; }
+    </style>
+</head>
+<body>)";
+    
+    if (includeAuth) {
+        header << R"(<nav class="navbar">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="color: white; font-size: 24px; font-weight: bold;">🔗 Blockchain Storage</div>
+                <div><button onclick="logout()" style="color: white; background: none; border: none;">Logout</button></div>
+            </div>
+        </nav>)";
+    }
+    
+    return header.str();
+}
+
+std::string WebInterface::generateFooter() {
+    return R"(
+    <script>
+        function logout() {
+            localStorage.removeItem('sessionId');
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+</html>)";
+}
+
+std::string WebInterface::generateNavigation(const User* user) {
+    std::stringstream nav;
+    nav << R"(<nav style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">)";
+    
+    if (user) {
+        nav << R"(<span style="color: white;">Welcome, )" << user->username << R"(</span>)";
+        nav << R"( | <a href="/dashboard" style="color: white;">Dashboard</a>)";
+        nav << R"( | <a href="/files" style="color: white;">Files</a>)";
+        nav << R"( | <button onclick="logout()" style="color: white; background: none; border: none;">Logout</button>)";
+    } else {
+        nav << R"(<a href="/login" style="color: white;">Login</a>)";
+        nav << R"( | <a href="/register" style="color: white;">Register</a>)";
+    }
+    
+    nav << "</nav>";
+    return nav.str();
+}
+
+std::string WebInterface::generateFileTable(const std::vector<FileMetadata>& files) {
+    std::stringstream table;
+    table << R"(<table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background: rgba(102,126,234,0.1);">
+                <th style="padding: 15px; text-align: left;">Name</th>
+                <th style="padding: 15px; text-align: left;">Size</th>
+                <th style="padding: 15px; text-align: left;">Upload Date</th>
+                <th style="padding: 15px; text-align: left;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>)";
+    
+    for (const auto& file : files) {
+        table << "<tr style=\"border-bottom: 1px solid #e1e5e9;\">";
+        table << "<td style=\"padding: 15px;\">";
+        table << "<button onclick=\"downloadFile('" << file.fileId << "')\">Download</button> ";
+        table << "<button onclick=\"deleteFile('" << file.fileId << "')\">Delete</button>";
+        table << "</td>";
+        table << "</tr>";
+    }
+    
+    table << R"(</tbody>
+    </table>)";
+    return table.str();
+}
+
+std::string WebInterface::generateBlockTable(const std::vector<Block>& blocks) {
+    std::stringstream table;
+    table << R"(<table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background: rgba(102,126,234,0.1);">
+                <th style="padding: 15px; text-align: left;">Index</th>
+                <th style="padding: 15px; text-align: left;">Hash</th>
+                <th style="padding: 15px; text-align: left;">Timestamp</th>
+                <th style="padding: 15px; text-align: left;">Transactions</th>
+            </tr>
+        </thead>
+        <tbody>)";
+    
+    for (const auto& block : blocks) {
+        table << "<tr style=\"border-bottom: 1px solid #e1e5e9;\">";
+        table << "<td style=\"padding: 15px;\">" << block.getIndex() << "</td>";
+        table << "<td style=\"padding: 15px; font-family: monospace; font-size: 12px;\">" 
+              << block.getHash().substr(0, 16) << "...</td>";
+        table << "<td style=\"padding: 15px;\">" << formatTimestamp(block.getTimestamp()) << "</td>";
+        table << "<td style=\"padding: 15px;\">" << block.getTransactions().size() << "</td>";
+        table << "</tr>";
+    }
+    
+    table << R"(</tbody>
+    </table>)";
+    return table.str();
+}
+
+std::string WebInterface::generateSecurityAlerts(const std::vector<SecurityViolation>& violations) {
+    std::stringstream alerts;
+    
+    for (const auto& violation : violations) {
+        std::string alertClass = "security-alert";
+        if (violation.level == ThreatLevel::CRITICAL) {
+            alertClass += " critical";
+        }
+        
+        alerts << "<div class=\"" << alertClass << "\" style=\"margin: 10px 0; padding: 15px; border-radius: 5px;\">";
+        alerts << "<strong>" << securityEventToString(violation.event) << "</strong><br>";
+        alerts << "Block: " << violation.blockIndex << " | ";
+        alerts << "Time: " << formatTimestamp(violation.timestamp) << "<br>";
+        alerts << violation.description;
+        alerts << "</div>";
+    }
+    
+    return alerts.str();
+}
+
+// ========================
+// MISSING JAVASCRIPT GENERATORS
+// ========================
+
+std::string WebInterface::generateFileUploadJS() {
+    return R"(
+function setupFileUpload() {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    
+    uploadArea.addEventListener('click', () => fileInput.click());
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.style.background = 'rgba(102, 126, 234, 0.2)';
+    });
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.style.background = '';
+    });
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.style.background = '';
+        handleFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', (e) => {
+        handleFiles(e.target.files);
+    });
+}
+
+async function handleFiles(files) {
+    const sessionId = localStorage.getItem('sessionId');
+    if (!sessionId) {
+        alert('Please login first');
+        return;
+    }
+    
+    for (let file of files) {
+        const formData = new FormData();
+        formData.append('file', file);
+        
+        try {
+            const response = await fetch('/api/files/upload', {
+                method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + sessionId },
+                body: formData
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                console.log('Uploaded:', result.fileId);
+            } else {
+                alert('Upload failed: ' + result.error);
+            }
+        } catch (error) {
+            alert('Upload error: ' + error.message);
+        }
+    }
+}
+)";
+}
+
+std::string WebInterface::generateBlockchainExplorerJS() {
+    return R"(
+async function loadBlockchainData() {
+    try {
+        const response = await fetch('/api/blockchain');
+        const data = await response.json();
+        
+        if (data.success && data.blocks) {
+            const container = document.getElementById('blockchainData');
+            container.innerHTML = '';
+            
+            data.blocks.forEach(block => {
+                const blockDiv = document.createElement('div');
+                blockDiv.className = 'block-item';
+                blockDiv.innerHTML = `
+                    <h4>Block #${block.index}</h4>
+                    <p class="block-hash">Hash: ${block.hash}</p>
+                    <p>Transactions: ${block.transactionCount}</p>
+                    <p>Time: ${new Date(block.timestamp * 1000).toLocaleString()}</p>
+                `;
+                container.appendChild(blockDiv);
+            });
+        }
+    } catch (error) {
+        console.error('Failed to load blockchain data:', error);
+    }
+}
+
+function searchBlockchain() {
+    const query = document.getElementById('searchInput').value;
+    if (query) {
+        console.log('Searching for:', query);
+        // Implement search functionality
+    }
+}
+)";
+}
+
+std::string WebInterface::generateSecurityMonitorJS() {
+    return R"(
+async function loadSecurityData() {
+    try {
+        const response = await fetch('/api/security/status');
+        const data = await response.json();
+        
+        if (data.success) {
+            document.getElementById('threat-level').textContent = getThreatLevelText(data.threatLevel);
+            document.getElementById('integrity-score').textContent = data.integrityScore + '%';
+            document.getElementById('quarantined-blocks').textContent = data.quarantinedBlocks;
+            document.getElementById('reorder-count').textContent = data.reorderCount;
+            
+            // Update threat level color
+            const threatElement = document.getElementById('threat-level');
+            threatElement.className = getThreatLevelClass(data.threatLevel);
+        }
+    } catch (error) {
+        console.error('Failed to load security data:', error);
+    }
+}
+
+function getThreatLevelText(level) {
+    const levels = ['NONE', 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'];
+    return levels[level] || 'UNKNOWN';
+}
+
+function getThreatLevelClass(level) {
+    if (level >= 4) return 'threat-critical';
+    if (level >= 3) return 'threat-high';
+    if (level >= 2) return 'threat-medium';
+    return 'threat-low';
+}
+
+async function performSecurityScan() {
+    const sessionId = localStorage.getItem('sessionId');
+    if (!sessionId) {
+        alert('Please login first');
+        return;
+    }
+    
+    try {
+        const response = await fetch('/api/security/scan', {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + sessionId }
+        });
+        
+        const result = await response.json();
+        alert(result.message || 'Security scan completed');
+        loadSecurityData();
+    } catch (error) {
+        alert('Security scan failed: ' + error.message);
+    }
+}
+)";
+}
+
+std::string WebInterface::generateDashboardJS() {
+    return R"(
+async function refreshDashboard() {
+    await Promise.all([
+        refreshStatus(),
+        refreshFiles(),
+        refreshSecurity()
+    ]);
+}
+
+async function refreshStatus() {
+    try {
+        const response = await fetch('/api/status');
+        const data = await response.json();
+        
+        if (data.success) {
+            document.getElementById('chain-height').textContent = data.chainHeight || 0;
+            document.getElementById('peer-count').textContent = data.peerCount || 0;
+            document.getElementById('file-count').textContent = data.fileCount || 0;
+            document.getElementById('storage-used').textContent = formatBytes(data.storageUsed || 0);
+        }
+    } catch (error) {
+        console.error('Failed to refresh status:', error);
+    }
+}
+
+async function refreshFiles() {
+    const sessionId = localStorage.getItem('sessionId');
+    if (!sessionId) return;
+    
+    try {
+        const response = await fetch('/api/files/list', {
+            headers: { 'Authorization': 'Bearer ' + sessionId }
+        });
+        const data = await response.json();
+        
+        if (data.success) {
+            const fileList = document.getElementById('fileList');
+            if (fileList) {
+                fileList.innerHTML = '';
+                data.files.forEach(file => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${file.originalName}</td>
+                        <td>${formatBytes(file.fileSize)}</td>
+                        <td>${new Date(file.uploadTime * 1000).toLocaleDateString()}</td>
+                        <td>
+                            <button onclick="downloadFile('${file.fileId}')">Download</button>
+                            <button onclick="deleteFile('${file.fileId}')">Delete</button>
+                        </td>
+                    `;
+                    fileList.appendChild(row);
+                });
+            }
+        }
+    } catch (error) {
+        console.error('Failed to refresh files:', error);
+    }
+}
+
+async function refreshSecurity() {
+    try {
+        const response = await fetch('/api/security/status');
+        const data = await response.json();
+        
+        if (data.success) {
+            const threatElement = document.getElementById('threat-level');
+            if (threatElement) {
+                threatElement.textContent = getThreatLevelText(data.threatLevel);
+                threatElement.className = getThreatLevelClass(data.threatLevel);
+            }
+        }
+    } catch (error) {
+        console.error('Failed to refresh security:', error);
+    }
+}
+
+function formatBytes(bytes) {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+)";
+}
+
+// ========================
+// MISSING CSS GENERATORS
+// ========================
+
+std::string WebInterface::generateMainCSS() {
+    return R"(
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #dc3545;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px 25px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.threat-critical { color: #dc3545; }
+.threat-high { color: #fd7e14; }
+.threat-medium { color: #ffc107; }
+.threat-low { color: #28a745; }
+)";
+}
+
+std::string WebInterface::generateFileManagerCSS() {
+    return R"(
+.file-upload-area {
+    border: 3px dashed #667eea;
+    border-radius: 15px;
+    padding: 50px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 20px 0;
+}
+
+.file-upload-area:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.file-upload-area.dragover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: #764ba2;
+}
+
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.file-table th,
+.file-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e1e5e9;
+}
+
+.file-table th {
+    background: rgba(102, 126, 234, 0.1);
+    font-weight: 600;
+}
+
+.file-table tr:hover {
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e1e5e9;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: width 0.3s;
+}
+)";
+}
+
+std::string WebInterface::generateBlockchainExplorerCSS() {
+    return R"(
+.blockchain-explorer {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #e1e5e9;
+    border-radius: 10px;
+}
+
+.block-item {
+    padding: 15px;
+    border-bottom: 1px solid #e1e5e9;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.block-item:hover {
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.block-hash {
+    font-family: monospace;
+    font-size: 12px;
+    color: #666;
+    word-break: break-all;
+}
+
+.security-alert {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.security-alert.critical {
+    background: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+}
+)";
+}
+
+// ========================
+// MISSING HELPER METHODS
+// ========================
+
+User* WebInterface::getUserById(const std::string& userId) {
+    std::lock_guard<std::mutex> lock(usersMutex_);
+    
+    auto it = users_.find(userId);
+    if (it != users_.end()) {
+        return &it->second;
+    }
+    
+    return nullptr;
+}
+
+UserSession* WebInterface::getSession(const std::string& sessionId) {
+    std::lock_guard<std::mutex> lock(sessionsMutex_);
+    
+    auto it = sessions_.find(sessionId);
+    if (it != sessions_.end()) {
+        return &it->second;
+    }
+    
+    return nullptr;
+}
+
+void WebInterface::updateSessionAccess(const std::string& sessionId) {
+    std::lock_guard<std::mutex> lock(sessionsMutex_);
+    
+    auto it = sessions_.find(sessionId);
+    if (it != sessions_.end()) {
+        it->second.lastAccess = std::time(nullptr);
+        it->second.expirationTime = it->second.lastAccess + sessionTimeout_;
+    }
+}
+
+bool WebInterface::deleteUser(const std::string& userId) {
+    std::lock_guard<std::mutex> lock(usersMutex_);
+    
+    auto userIt = users_.find(userId);
+    if (userIt != users_.end()) {
+        // Remove from username mapping
+        usernames_.erase(userIt->second.username);
+        users_.erase(userIt);
+        return true;
+    }
+    
+    return false;
+}
+
+bool WebInterface::validateRequestParameters(const httplib::Request& req, const std::vector<std::string>& required) {
+    for (const auto& param : required) {
+        if (!req.has_param(param.c_str()) || req.get_param_value(param.c_str()).empty()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::string WebInterface::sanitizeInput(const std::string& input) {
+    std::string sanitized = input;
+    
+    // Remove potentially dangerous characters
+    sanitized.erase(std::remove(sanitized.begin(), sanitized.end(), '<'), sanitized.end());
+    sanitized.erase(std::remove(sanitized.begin(), sanitized.end(), '>'), sanitized.end());
+    sanitized.erase(std::remove(sanitized.begin(), sanitized.end(), '\"'), sanitized.end());
+    sanitized.erase(std::remove(sanitized.begin(), sanitized.end(), '\''), sanitized.end());
+    
+    return sanitized;
+}
+
+std::string WebInterface::processFileUpload(const httplib::Request& req, const User& user) {
+    // This method is already implemented in handleFileUpload
+    // Return upload ID for tracking
+    return generateUploadId();
+}
+
+bool WebInterface::isRequestSecure(const httplib::Request& req) {
+    // Check if request is over HTTPS (simplified)
+    auto scheme = req.get_header_value("X-Forwarded-Proto");
+    return scheme == "https" || req.get_header_value("Host").find("localhost") != std::string::npos;
+}
+
+std::string WebInterface::escapeHTML(const std::string& text) {
+    std::string escaped = text;
+    
+    std::string::size_type pos = 0;
+    while ((pos = escaped.find("&", pos)) != std::string::npos) {
+        escaped.replace(pos, 1, "&amp;");
+        pos += 5;
+    }
+    
+    pos = 0;
+    while ((pos = escaped.find("<", pos)) != std::string::npos) {
+        escaped.replace(pos, 1, "&lt;");
+        pos += 4;
+    }
+    
+    pos = 0;
+    while ((pos = escaped.find(">", pos)) != std::string::npos) {
+        escaped.replace(pos, 1, "&gt;");
+        pos += 4;
+    }
+    
+    return escaped;
+}
+
+std::string WebInterface::urlEncode(const std::string& text) {
+    return Utils::urlEncode(text);
+}
+
+std::string WebInterface::formatTimestamp(std::time_t timestamp) const {
+    return Utils::formatTimestamp(timestamp);
+}
+
+// Helper function to convert SecurityEvent to string (if not already available)
+std::string WebInterface::securityEventToString(SecurityEvent event) const {
+    switch (event) {
+        case SecurityEvent::CORRUPTED_BLOCK_DETECTED: return "CORRUPTED_BLOCK_DETECTED";
+        case SecurityEvent::CHAIN_INTEGRITY_VIOLATION: return "CHAIN_INTEGRITY_VIOLATION";
+        case SecurityEvent::INFECTED_BLOCK_QUARANTINED: return "INFECTED_BLOCK_QUARANTINED";
+        case SecurityEvent::POLYMORPHIC_REORDER_TRIGGERED: return "POLYMORPHIC_REORDER_TRIGGERED";
+        case SecurityEvent::USER_DATA_MIGRATED: return "USER_DATA_MIGRATED";
+        case SecurityEvent::PEER_MALICIOUS_BEHAVIOR: return "PEER_MALICIOUS_BEHAVIOR";
+        case SecurityEvent::CONSENSUS_ATTACK_DETECTED: return "CONSENSUS_ATTACK_DETECTED";
+        default: return "UNKNOWN_EVENT";
+    }
+};\">" << file.originalName << "</td>";
+        table << "<td style=\"padding: 15px;\">" << formatFileSize(file.fileSize) << "</td>";
+        table << "<td style=\"padding: 15px;\">" << formatTimestamp(file.uploadTime) << "</td>";
+        table << "<td style=\"padding: 15px

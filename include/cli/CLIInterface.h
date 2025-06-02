@@ -10,7 +10,13 @@
 #include "../blockchain/Blockchain.h"
 #include "../p2p/P2PNetwork.h"
 #include "../api/RestApiServer.h"
-#include "SecurityManager.h"
+#include "../blockchain/FileBlockchain.h"
+#include "../security/SecurityManager.h"
+
+class FileBlockchain;
+class SecurityManager;
+enum class ThreatLevel;
+struct SecurityViolation;
 
 // CLI command structure
 struct CLICommand {
@@ -30,6 +36,7 @@ enum class OutputFormat {
     PLAIN,
     DETAILED
 };
+
 
 // CLI color codes for output
 namespace Colors {
@@ -74,6 +81,7 @@ private:
     std::shared_ptr<P2PNetwork> p2pNetwork_;
     std::shared_ptr<RestApiServer> apiServer_;
     std::shared_ptr<SecurityManager> securityManager_;
+    
     
     // CLI configuration
     OutputFormat outputFormat_;
@@ -219,6 +227,7 @@ private:
     std::string formatTimestamp(std::time_t timestamp);
     std::string truncateString(const std::string& str, size_t maxLength);
     std::string colorize(const std::string& text, const std::string& color);
+    std::string threatLevelToString(ThreatLevel level) const;
     
     // Command parsing
     CLICommand* findCommand(const std::string& name);

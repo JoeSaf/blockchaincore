@@ -87,7 +87,8 @@ public:
     
     // Block validation and monitoring
     bool validateBlockSecurity(const Block& block, const Block* previousBlock = nullptr);
-    bool isBlockCorrupted(const Block& block);
+    bool isBlockCorrupted(const Block &block) const;
+    //bool isBlockCorrupted(const Block &block);
     bool hasChainIntegrityViolation(uint32_t startIndex, uint32_t endIndex);
     
     // Threat detection
