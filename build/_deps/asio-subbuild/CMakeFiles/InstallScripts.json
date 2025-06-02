@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/senjoe/Documents/p2pblockchain/build/_deps/asio-subbuild/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

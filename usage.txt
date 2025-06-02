@@ -1,2 +1,43 @@
 login page : http://127.0.0.1:8000/login/
 userdashboard: http://127.0.0.1:8000/
+
+incase tokens run out
+"I need you to create the complete C++ implementation files (.cpp) for a blockchain file storage system. I have the header files already, and I need you to create full working implementations for:
+1. SecurityManager.cpp - Advanced security system with:
+
+Corrupted block detection via hash validation
+Chain integrity verification
+Automatic infected block quarantine
+Polymorphic chain reordering (anti-brute force)
+User data migration to clean chains
+Real-time threat monitoring
+
+2. FileBlockchain.cpp - File storage blockchain with:
+
+File chunking and reconstruction
+File deduplication and compression
+Permission management system
+Integrity verification with SHA-256
+File upload/download operations
+UTXO-style file tracking
+
+3. WebInterface.cpp - Web interface with:
+
+User authentication (login/register)
+File upload via HTTP with drag-and-drop support
+File download and management
+Blockchain explorer interface
+Security dashboard with real-time monitoring
+Simple HTTP server using cpp-httplib
+
+Requirements:
+
+Use modern C++17 features
+Include comprehensive error handling
+Add detailed logging with spdlog
+Thread-safe implementations with mutexes
+JSON serialization with nlohmann/json
+Integration with existing Blockchain, P2PNetwork, and Transaction classes
+Professional code quality with proper documentation
+
+Please create complete, production-ready implementations that work together as a cohesive blockchain file storage system."

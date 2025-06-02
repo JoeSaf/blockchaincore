@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain File Storage System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .login-card {
+            max-width: 400px;
+            margin: 100px auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+        }
+        
+        .file-upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 20px 0;
+        }
+        
+        .file-upload-area:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .file-upload-area.dragover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #764ba2;
+        }
+        
+        .file-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .file-table th,
+        .file-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+        
+        .file-table th {
+            background: rgba(102, 126, 234, 0.1);
+            font-weight: 600;
+        }
+        
+        .file-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e1e5e9;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online { background: #28a745; }
+        .status-offline { background: #dc3545; }
+        .status-warning { background: #ffc107; }
+        
+        .security-alert {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        .security-alert.critical {
+            background: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .blockchain-explorer {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+        }
+        
+        .block-item {
+            padding: 15px;
+            border-bottom: 1px solid #e1e5e9;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .block-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .block-hash {
+            font-family: monospace;
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN PAGE -->
+    <div class="login-page" style="display: none;">
+        <div class="container">
+            <div class="card login-card">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">
+                    🔐 Blockchain Login
+                </h2>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn">Create Account</button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Already have an account? 
+                    <a href="#" onclick="showLogin()" style="color: #667eea;">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MAIN DASHBOARD -->
+    <div class="dashboard" style="display: block;">
+        <div class="container">
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="logo">⛓️ Blockchain Storage</div>
+                <div class="nav-links">
+                    <a href="#" onclick="showTab('dashboard')">Dashboard</a>
+                    <a href="#" onclick="showTab('files')">Files</a>
+                    <a href="#" onclick="showTab('explorer')">Explorer</a>
+                    <a href="#" onclick="showTab('security')">Security</a>
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </nav>
+            
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="tab-content">
+                <div class="card">
+                    <h2>📊 Node Status</h2>
+                    <div class="grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="chain-height">0</div>
+                            <div class="metric-label">Chain Height</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="peer-count">0</div>
+                            <div class="metric-label">Connected Peers</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="file-count">0</div>
+                            <div class="metric-label">Files Stored</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="storage-used">0 MB</div>
+                            <div class="metric-label">Storage Used</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🔗 Network Status</h3>
+                    <div id="network-status">
+                        <div style="display: flex; align-items: center; margin: 10px 0;">
+                            <span class="status-indicator status-online"></span>
+                            <span>P2P Network: Online</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin: 10px 0;">
+                            <span class="status-indicator status-online"></span>
+                            <span>Blockchain: Synchronized</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin: 10px 0;">
+                            <span class="status-indicator status-online"></span>
+                            <span>Security: Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Files Tab -->
+            <div id="files-tab" class="tab-content" style="display: none;">
+                <div class="card">
+                    <h2>📁 File Manager</h2>
+                    
+                    <!-- File Upload Area -->
+                    <div class="file-upload-area" id="uploadArea">
+                        <div style="font-size: 48px; margin-bottom: 20px;">📤</div>
+                        <h3>Drop files here or click to upload</h3>
+                        <p style="color: #666; margin-top: 10px;">
+                            Supported formats: All files up to 100MB
+                        </p>
+                        <input type="file" id="fileInput" style="display: none;" multiple>
+                    </div>
+                    
+                    <!-- Upload Progress -->
+                    <div id="uploadProgress" style="display: none;">
+                        <h4>Uploading files...</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                        </div>
+                        <div id="uploadStatus">Preparing upload...</div>
+                    </div>
+                    
+                    <!-- File List -->
+                    <table class="file-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Size</th>
+                                <th>Upload Date</th>
+                                <th>File ID</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fileList">
+                            <!-- Files will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Blockchain Explorer Tab -->
+            <div id="explorer-tab" class="tab-content" style="display: none;">
+                <div class="card">
+                    <h2>🔍 Blockchain Explorer</h2>
+                    
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                        <input type="text" id="searchInput" placeholder="Search by block index, hash, or file ID..." 
+                               style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <button class="btn" onclick="searchBlockchain()" style="width: auto; padding: 10px 20px;">
+                            Search
+                        </button>
+                    </div>
+                    
+                    <div class="blockchain-explorer" id="blockchainData">
+                        <!-- Blockchain blocks will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Security Tab -->
+            <div id="security-tab" class="tab-content" style="display: none;">
+                <div class="card">
+                    <h2>🛡️ Security Monitor</h2>
+                    
+                    <div class="grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="threat-level" style="color: #28a745;">LOW</div>
+                            <div class="metric-label">Threat Level</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="integrity-score">100%</div>
+                            <div class="metric-label">Chain Integrity</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="quarantined-blocks">0</div>
+                            <div class="metric-label">Quarantined Blocks</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="reorder-count">0</div>
+                            <div class="metric-label">Chain Reorders</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 30px 0;">
+                        <button class="btn" onclick="performSecurityScan()" style="width: auto; margin-right: 10px;">
+                            🔍 Security Scan
+                        </button>
+                        <button class="btn btn-secondary" onclick="triggerReorder()" style="width: auto;">
+                            🔄 Trigger Reorder
+                        </button>
+                    </div>
+                    
+                    <div id="securityAlerts">
+                        <!-- Security alerts will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Global state
+        let currentUser = null;
+        let currentTab = 'dashboard';
+        let uploadQueue = [];
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const sessionId = localStorage.getItem('sessionId');
+            if (sessionId) {
+                validateSession(sessionId);
+            } else {
+                showLogin();
+            }
+            
+            setupFileUpload();
+            startDataRefresh();
+        });
+        
+        // Authentication functions
+        function showLogin() {
+            document.querySelector('.login-page').style.display = 'block';
+            document.querySelector('.register-page').style.display = 'none';
+            document.querySelector('.dashboard').style.display = 'none';
+        }
+        
+        function showRegister() {
+            document.querySelector('.login-page').style.display = 'none';
+            document.querySelector('.register-page').style.display = 'block';
+            document.querySelector('.dashboard').style.display = 'none';
+        }
+        
+        function showDashboard() {
+            document.querySelector('.login-page').style.display = 'none';
+            document.querySelector('.register-page').style.display = 'none';
+            document.querySelector('.dashboard').style.display = 'block';
+            refreshData();
+        }
+        
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    localStorage.setItem('sessionId', result.sessionId);
+                    currentUser = result.user;
+                    showDashboard();
+                } else {
+                    alert('Login failed: ' + result.error);
+                }
+            } catch (error) {
+                alert('Login error: ' + error.message);
+            }
+        });
+        
+        // Register form handler
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('reg-username').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm').value;
+            
+            if (password !== confirm) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Registration successful! Please login.');
+                    showLogin();
+                } else {
+                    alert('Registration failed: ' + result.error);
+                }
+            } catch (error) {
+                alert('Registration error: ' + error.message);
+            }
+        });
+        
+        // Tab navigation
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').style.display = 'block';
+            currentTab = tabName;
+            
+            // Refresh data for the current tab
+            refreshTabData(tabName);
+        }
+        
+        // File upload setup
+        function setupFileUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+            
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+        }
+        
+        // File upload handler
+        async function handleFiles(files) {
+            const progressDiv = document.getElementById('uploadProgress');
+            const progressFill = document.getElementById('progressFill');
+            const statusDiv = document.getElementById('uploadStatus');
+            
+            progressDiv.style.display = 'block';
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const formData = new FormData();
+                formData.append('file', file);
+                
+                statusDiv.textContent = `Uploading ${file.name}...`;
+                
+                try {
+                    const response = await fetch('/api/files/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
+                        },
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        console.log('File uploaded:', result.fileId);
+                    } else {
+                        alert('Upload failed: ' + result.error);
+                    }
+                    
+                    const progress = ((i + 1) / files.length) * 100;
+                    progressFill.style.width = progress + '%';
+                    
+                } catch (error) {
+                    alert('Upload error: ' + error.message);
+                }
+            }
+            
+            statusDiv.textContent = 'Upload complete!';
+            setTimeout(() => {
+                progressDiv.style.display = 'none';
+                progressFill.style.width = '0%';
+            }, 2000);
+            
+            // Refresh file list
+            refreshFiles();
+        }
+        
+        // Data refresh functions
+        function startDataRefresh() {
+            // Refresh data every 10 seconds
+            setInterval(refreshData, 10000);
+            refreshData();
+        }
+        
+        async function refreshData() {
+            if (currentTab === 'dashboard') {
+                await refreshDashboard();
+            } else if (currentTab === 'files') {
+                await refreshFiles();
+            } else if (currentTab === 'explorer') {
+                await refreshBlockchain();
+            } else if (currentTab === 'security') {
+                await refreshSecurity();
+            }
+        }
+        
+        async function refreshDashboard() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('chain-height').textContent = data.data.chainHeight;
+                    document.getElementById('peer-count').textContent = data.data.peerCount || 0;
+                    document.getElementById('file-count').textContent = data.data.fileCount || 0;
+                    document.getElementById('storage-used').textContent = formatBytes(data.data.storageUsed || 0);
+                }
+            } catch (error) {
+                console.error('Failed to refresh dashboard:', error);
+            }
+        }
+        
+        async function refreshFiles() {
+            try {
+                const response = await fetch('/api/files/list', {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
+                    }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    const fileList = document.getElementById('fileList');
+                    fileList.innerHTML = '';
+                    
+                    data.data.files.forEach(file => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${file.originalName}</td>
+                            <td>${formatBytes(file.fileSize)}</td>
+                            <td>${formatTimestamp(file.uploadTime)}</td>
+                            <td style="font-family: monospace; font-size: 12px;">${file.fileId.substring(0, 16)}...</td>
+                            <td>
+                                <button class="btn btn-secondary" style="width: auto; padding: 5px 10px; margin-right: 5px;" 
+                                        onclick="downloadFile('${file.fileId}')">Download</button>
+                                <button class="btn btn-danger" style="width: auto; padding: 5px 10px;" 
+                                        onclick="deleteFile('${file.fileId}')">Delete</button>
+                            </td>
+                        `;
+                        fileList.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to refresh files:', error);
+            }
+        }
+        
+        async function refreshSecurity() {
+            try {
+                const response = await fetch('/api/security/status');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const security = data.data;
+                    document.getElementById('threat-level').textContent = security.threatLevel;
+                    document.getElementById('integrity-score').textContent = security.integrityScore + '%';
+                    document.getElementById('quarantined-blocks').textContent = security.quarantinedBlocks;
+                    document.getElementById('reorder-count').textContent = security.reorderCount;
+                    
+                    // Update threat level color
+                    const threatElement = document.getElementById('threat-level');
+                    threatElement.className = '';
+                    switch(security.threatLevel) {
+                        case 'CRITICAL':
+                            threatElement.style.color = '#dc3545';
+                            break;
+                        case 'HIGH':
+                            threatElement.style.color = '#fd7e14';
+                            break;
+                        case 'MEDIUM':
+                            threatElement.style.color = '#ffc107';
+                            break;
+                        default:
+                            threatElement.style.color = '#28a745';
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to refresh security:', error);
+            }
+        }
+        
+        // Utility functions
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function formatTimestamp(timestamp) {
+            return new Date(timestamp * 1000).toLocaleString();
+        }
+        
+        async function downloadFile(fileId) {
+            try {
+                const response = await fetch(`/api/files/download/${fileId}`, {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
+                    }
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = fileId;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                } else {
+                    alert('Download failed');
+                }
+            } catch (error) {
+                alert('Download error: ' + error.message);
+            }
+        }
+        
+        async function performSecurityScan() {
+            try {
+                const response = await fetch('/api/security/scan', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
+                    }
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert('Security scan completed successfully');
+                    refreshSecurity();
+                } else {
+                    alert('Security scan failed: ' + result.error);
+                }
+            } catch (error) {
+                alert('Security scan error: ' + error.message);
+            }
+        }
+        
+        function logout() {
+            localStorage.removeItem('sessionId');
+            currentUser = null;
+            showLogin();
+        }
+    </script>
+</body>
+</html> type="submit" class="btn">Login</button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Don't have an account? 
+                    <a href="#" onclick="showRegister()" style="color: #667eea;">Register here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- REGISTER PAGE -->
+    <div class="register-page" style="display: none;">
+        <div class="container">
+            <div class="card login-card">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #667eea;">
+                    📝 Create Account
+                </h2>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reg-confirm">Confirm Password</label>
+                        <input type="password" id="reg-confirm" name="confirm" required>
+                    </div>
+                    
+                    <button
