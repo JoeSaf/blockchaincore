@@ -14,9 +14,18 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a file.
+ASIO_INCLUDE_DIR:PATH=/usr/include
+
+//Build documentation
+BUILD_DOCS:BOOL=OFF
+
 //Build the library as a shared library instead of static. Has
 // no effect if using header-only.
 BUILD_SHARED_LIBS:BOOL=OFF
+
+//Build unit tests
+BUILD_TESTS:BOOL=OFF
 
 //Value Computed by CMake
 BlockchainNode_BINARY_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build
@@ -387,6 +396,9 @@ GIT_EXECUTABLE:FILEPATH=/usr/bin/git
 // header & source file (requires Python v3).
 HTTPLIB_COMPILE:BOOL=OFF
 
+//Path to a file.
+HTTPLIB_INCLUDE_DIR:PATH=/home/senjoe/Documents/p2pblockchain/include/third_party
+
 //Enables the installation target
 HTTPLIB_INSTALL:BOOL=ON
 
@@ -553,6 +565,9 @@ ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 ZLIB_LIBRARY_RELEASE:FILEPATH=/usr/lib/libz.so
 
+//The directory containing a CMake configuration file for fmt.
+fmt_DIR:PATH=/usr/lib/cmake/fmt
+
 //Value Computed by CMake
 httplib_BINARY_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build/_deps/httplib-build
 
@@ -564,6 +579,9 @@ httplib_SOURCE_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build/_deps/httpl
 
 //Value Computed by CMake
 nlohmann_json_BINARY_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build/_deps/json-build
+
+//The directory containing a CMake configuration file for nlohmann_json.
+nlohmann_json_DIR:PATH=/usr/share/cmake/nlohmann_json
 
 //Value Computed by CMake
 nlohmann_json_IS_TOP_LEVEL:STATIC=OFF
@@ -588,6 +606,9 @@ pkgcfg_lib__OPENSSL_ssl:FILEPATH=/usr/lib/libssl.so
 
 //Value Computed by CMake
 spdlog_BINARY_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build/_deps/spdlog-build
+
+//The directory containing a CMake configuration file for spdlog.
+spdlog_DIR:PATH=/usr/lib/cmake/spdlog
 
 //Value Computed by CMake
 spdlog_IS_TOP_LEVEL:STATIC=OFF
@@ -829,7 +850,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -876,8 +897,12 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenSSL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/lib/libcrypto.so][/usr/include][ ][v3.5.0()]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v2.4.3()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
+//Details about finding nlohmann_json
+FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/usr/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.12.0()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 NLOHMANN_JSON_CONFIG_INSTALL_DIR:INTERNAL=share/cmake/nlohmann_json

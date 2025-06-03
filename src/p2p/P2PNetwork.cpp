@@ -1,3 +1,4 @@
+#include <asio/socket_base.hpp>
 #include "p2p/P2PNetwork.h"
 #include "utils/Crypto.h"
 #include <spdlog/spdlog.h>
@@ -82,9 +83,29 @@ bool P2PNetwork::start() {
     }
     
     try {
-        // Initialize ASIO components
-        tcpAcceptor_ = std::make_unique<tcp::acceptor>(ioContext_, tcp::endpoint(tcp::v4(), tcpPort_));
-        udpSocket_ = std::make_unique<udp::socket>(ioContext_, udp::endpoint(udp::v4(), udpPort_));
+        // Initialize ASIO components with proper socket options
+        tcpAcceptor_ = std::make_unique<tcp::acceptor>(ioContext_);
+        udpSocket_ = std::make_unique<udp::socket>(ioContext_);
+        
+        // Configure TCP acceptor with reuse options
+        tcp::endpoint tcpEndpoint(tcp::v4(), tcpPort_);
+        tcpAcceptor_->open(tcpEndpoint.protocol());
+        
+        // Enable socket reuse options
+        tcpAcceptor_->set_option(asio::socket_base::reuse_address(true));
+        tcpAcceptor_->set_option(asio::socket_base::linger(true, 0));
+        
+        // Bind and listen
+        tcpAcceptor_->bind(tcpEndpoint);
+        tcpAcceptor_->listen();
+        
+        // Configure UDP socket with reuse options
+        udp::endpoint udpEndpoint(udp::v4(), udpPort_);
+        udpSocket_->open(udpEndpoint.protocol());
+        
+        // Enable socket reuse for UDP
+        udpSocket_->set_option(asio::socket_base::reuse_address(true));
+        udpSocket_->bind(udpEndpoint);
         
         running_ = true;
         
@@ -97,9 +118,24 @@ bool P2PNetwork::start() {
         startTcpServer();
         startUdpListener();
         
-        spdlog::info("P2P Network started successfully");
+        spdlog::info("P2P Network started successfully on TCP:{} UDP:{}", tcpPort_, udpPort_);
         return true;
         
+    } catch (const std::system_error& e) {
+        spdlog::error("Failed to start P2P Network: {} (Error code: {})", e.what(), e.code().value());
+        
+        // Suggest alternative ports if bind fails
+        if (e.code() == asio::error::address_in_use) {
+            spdlog::warn("Ports {} (TCP) and {} (UDP) are in use", tcpPort_, udpPort_);
+            spdlog::info("Try running with different ports:");
+            spdlog::info("  ./blockchain_node --tcp-port 8334 --udp-port 8335");
+            spdlog::info("Or kill existing processes using these ports:");
+            spdlog::info("  sudo netstat -tulpn | grep :{}"); 
+            spdlog::info("  sudo netstat -tulpn | grep :{}", tcpPort_, udpPort_);
+        }
+        
+        running_ = false;
+        return false;
     } catch (const std::exception& e) {
         spdlog::error("Failed to start P2P Network: {}", e.what());
         running_ = false;

@@ -1,395 +1,294 @@
 cmake_minimum_required(VERSION 3.16)
 project(BlockchainNode VERSION 1.0.0 LANGUAGES CXX)
 
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Set policy for FetchContent timestamps
-if(POLICY CMP0135)
-    cmake_policy(SET CMP0135 NEW)
+# Build type
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# Compiler-specific options to suppress warnings
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3")
-    # Suppress specific warnings that are causing issues
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-dangling-reference")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /O2")
-    # Suppress MSVC specific warnings
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4100") # unreferenced formal parameter
-endif()
+# Compiler flags
+set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -Wall -Wextra")
 
-# Find packages
+# Disable specific warnings that are problematic
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-dangling-reference -Wno-unused-parameter")
+
+# Find required packages
+find_package(PkgConfig REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
 
+# Find spdlog
+find_package(spdlog REQUIRED)
+
+# Find fmt (usually comes with spdlog)
+find_package(fmt REQUIRED)
+
+# Find nlohmann_json
+find_package(nlohmann_json REQUIRED)
+
+# ASIO (header-only)
+find_path(ASIO_INCLUDE_DIR asio.hpp PATHS /usr/include /usr/local/include)
+if(NOT ASIO_INCLUDE_DIR)
+    message(FATAL_ERROR "ASIO headers not found. Please install libasio-dev")
+endif()
+
+# httplib (header-only) - Check if available
+find_path(HTTPLIB_INCLUDE_DIR httplib.h 
+    PATHS 
+    /usr/include 
+    /usr/local/include
+    ${CMAKE_SOURCE_DIR}/third_party
+    ${CMAKE_SOURCE_DIR}/include/third_party
+)
+
+if(NOT HTTPLIB_INCLUDE_DIR)
+    message(WARNING "httplib.h not found. Web interface will not be available.")
+    set(ENABLE_WEB_INTERFACE OFF)
+else()
+    set(ENABLE_WEB_INTERFACE ON)
+    message(STATUS "Found httplib at: ${HTTPLIB_INCLUDE_DIR}")
+endif()
+
 # Include directories
-include_directories(include)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${OPENSSL_INCLUDE_DIR})
+include_directories(${ASIO_INCLUDE_DIR})
 
-# Fetch dependencies
-include(FetchContent)
+if(ENABLE_WEB_INTERFACE)
+    include_directories(${HTTPLIB_INCLUDE_DIR})
+    add_compile_definitions(ENABLE_WEB_INTERFACE)
+    add_compile_definitions(HTTPLIB_OPENSSL_SUPPORT)
+endif()
 
-# nlohmann/json
-FetchContent_Declare(
-    json
-    URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
-    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-)
-FetchContent_MakeAvailable(json)
-
-# ASIO (standalone, no Boost dependency)
-FetchContent_Declare(
-    asio
-    GIT_REPOSITORY https://github.com/chriskohlhoff/asio.git
-    GIT_TAG asio-1-28-0
-)
-FetchContent_MakeAvailable(asio)
-
-# spdlog for logging
-FetchContent_Declare(
-    spdlog
-    GIT_REPOSITORY https://github.com/gabime/spdlog.git
-    GIT_TAG v1.12.0
-)
-# Configure spdlog to suppress warnings
-set(SPDLOG_BUILD_WARNINGS OFF CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(spdlog)
-
-# fmt library
-FetchContent_Declare(
-    fmt
-    GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-    GIT_TAG 10.1.1
-)
-FetchContent_MakeAvailable(fmt)
-
-# httplib - Header-only HTTP server
-FetchContent_Declare(
-    httplib
-    GIT_REPOSITORY https://github.com/yhirose/cpp-httplib.git
-    GIT_TAG v0.14.1
-)
-FetchContent_MakeAvailable(httplib)
-
-# ========================
-# SOURCE FILE ORGANIZATION
-# ========================
-
-# Core blockchain sources (your existing files)
-set(BLOCKCHAIN_SOURCES
+# Core blockchain library sources
+set(BLOCKCHAIN_CORE_SOURCES
+    # Blockchain core
     src/blockchain/Block.cpp
     src/blockchain/Blockchain.cpp
     src/blockchain/Transaction.cpp
     src/blockchain/TransactionPool.cpp
-)
-
-# P2P Network sources (your existing files)
-set(P2P_SOURCES
+    src/blockchain/FileBlockchain.cpp
+    
+    # Utilities
+    src/utils/Crypto.cpp
+    src/utils/Utils.cpp
+    
+    # Security
+    src/security/SecurityManager.cpp
+    
+    # P2P Network
     src/p2p/P2PNetwork.cpp
     src/p2p/MessageHandler.cpp
 )
 
-# API sources (your existing files)
-set(API_SOURCES
-    src/api/RestApiServer.cpp
-)
+# API Server sources (conditional)
+set(API_SERVER_SOURCES)
+if(ENABLE_WEB_INTERFACE)
+    list(APPEND API_SERVER_SOURCES
+        src/api/RestApiServer.cpp
+        src/web/WebInterface.cpp
+    )
+endif()
 
-# Utility sources (your existing files)
-set(UTILS_SOURCES
-    src/utils/Crypto.cpp
-    src/utils/Utils.cpp
-)
-
-# NEW: Security Manager sources
-set(SECURITY_SOURCES
-    src/security/SecurityManager.cpp
-)
-
-# NEW: File Blockchain sources
-set(FILE_BLOCKCHAIN_SOURCES
-    src/blockchain/FileBlockchain.cpp
-)
-
-# NEW: CLI Interface sources
+# CLI sources
 set(CLI_SOURCES
     src/cli/CLIInterface.cpp
 )
 
-# NEW: Web Interface sources
-set(WEB_SOURCES
-    src/web/WebInterface.cpp
+# Create core blockchain library
+add_library(blockchain_core STATIC ${BLOCKCHAIN_CORE_SOURCES})
+
+target_link_libraries(blockchain_core
+    PUBLIC
+    ${OPENSSL_LIBRARIES}
+    spdlog::spdlog
+    fmt::fmt
+    nlohmann_json::nlohmann_json
+    Threads::Threads
 )
 
-# ========================
-# BUILD TARGETS
-# ========================
-
-# Main executable - Full Node with all features
-add_executable(blockchain_node
-    src/main.cpp 
-    ${BLOCKCHAIN_SOURCES}
-    ${P2P_SOURCES}
-    ${API_SOURCES}
-    ${UTILS_SOURCES}
-    ${SECURITY_SOURCES}
-    ${FILE_BLOCKCHAIN_SOURCES}
-    ${CLI_SOURCES}
-    ${WEB_SOURCES}
+target_include_directories(blockchain_core
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+    ${OPENSSL_INCLUDE_DIR}
+    ${ASIO_INCLUDE_DIR}
 )
 
-# CLI-only executable - Lightweight version
-add_executable(blockchain_cli
-    src/cli_main.cpp 
-    ${BLOCKCHAIN_SOURCES}
-    ${P2P_SOURCES}
-    ${UTILS_SOURCES}
-    ${SECURITY_SOURCES}
-    ${FILE_BLOCKCHAIN_SOURCES}
-    ${CLI_SOURCES}
+# Create API server library (conditional)
+if(ENABLE_WEB_INTERFACE)
+    add_library(api_server STATIC ${API_SERVER_SOURCES})
+    
+    target_link_libraries(api_server
+        PUBLIC
+        blockchain_core
+        ${OPENSSL_LIBRARIES}
+        spdlog::spdlog
+        fmt::fmt
+        nlohmann_json::nlohmann_json
+        Threads::Threads
+    )
+    
+    target_include_directories(api_server
+        PUBLIC
+        ${CMAKE_SOURCE_DIR}/include
+        ${HTTPLIB_INCLUDE_DIR}
+        ${OPENSSL_INCLUDE_DIR}
+    )
+endif()
+
+# Create CLI library
+add_library(cli_interface STATIC ${CLI_SOURCES})
+
+target_link_libraries(cli_interface
+    PUBLIC
+    blockchain_core
+    spdlog::spdlog
+    fmt::fmt
+    nlohmann_json::nlohmann_json
 )
 
-target_include_directories(blockchain_node PRIVATE 
+target_include_directories(cli_interface
+    PUBLIC
     ${CMAKE_SOURCE_DIR}/include
 )
 
-target_include_directories(blockchain_cli PRIVATE 
-    ${CMAKE_SOURCE_DIR}/include  
+# Main node executable
+add_executable(blockchain_node src/main.cpp)
+
+target_link_libraries(blockchain_node
+    PRIVATE
+    blockchain_core
+    ${OPENSSL_LIBRARIES}
+    spdlog::spdlog
+    fmt::fmt
+    nlohmann_json::nlohmann_json
+    Threads::Threads
 )
 
-# ========================
-# TARGET CONFIGURATION
-# ========================
-
-# Set include directories for both targets
-foreach(target blockchain_node blockchain_cli)
-    target_include_directories(${target} PRIVATE 
-        ${asio_SOURCE_DIR}/asio/include
-        ${httplib_SOURCE_DIR}
-    )
-    
-    # Link libraries
-    target_link_libraries(${target}
-        PRIVATE 
-        OpenSSL::SSL 
-        OpenSSL::Crypto
-        Threads::Threads
-        nlohmann_json::nlohmann_json
-        spdlog::spdlog
-        fmt::fmt
-    )
-    
-    # Preprocessor definitions
-    target_compile_definitions(${target} PRIVATE 
-        ASIO_STANDALONE
-        ASIO_HAS_STD_ADDRESSOF
-        ASIO_HAS_STD_ARRAY
-        ASIO_HAS_CSTDINT
-        ASIO_HAS_STD_SHARED_PTR
-        ASIO_HAS_STD_TYPE_TRAITS
-        OPENSSL_SUPPRESS_DEPRECATED
-        HTTPLIB_OPENSSL_SUPPORT
-        # Suppress specific fmt warnings
-        FMT_SUPPRESS_WARNINGS=1
-    )
-    
-    # Suppress warnings for third-party dependencies
-    target_compile_options(${target} PRIVATE
-        $<$<COMPILE_LANGUAGE:CXX>:
-            $<$<CXX_COMPILER_ID:GNU>:-Wno-dangling-reference>
-            $<$<CXX_COMPILER_ID:Clang>:-Wno-unused-parameter>
-        >
-    )
-    
-    # Set output directory
-    set_target_properties(${target} PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    )
-    
-    # Add compiler-specific flags for better optimization on Linux
-    if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-        target_compile_options(${target} PRIVATE
-            $<$<CONFIG:Release>:-O3 -DNDEBUG -march=native>
-            $<$<CONFIG:Debug>:-O0 -g -DDEBUG>
-        )
-    endif()
-endforeach()
-
-# ========================
-# TESTING CONFIGURATION
-# ========================
-
-# Enable testing
-enable_testing()
-
-# Test executable (optional - only if test files exist)
-if(EXISTS "${CMAKE_SOURCE_DIR}/tests/test_main.cpp")
-    add_executable(blockchain_node_test
-        tests/test_main.cpp
-        tests/test_blockchain.cpp
-        tests/test_security.cpp
-        tests/test_file_blockchain.cpp
-        tests/test_p2p.cpp
-        ${BLOCKCHAIN_SOURCES}
-        ${P2P_SOURCES}
-        ${UTILS_SOURCES}
-        ${SECURITY_SOURCES}
-        ${FILE_BLOCKCHAIN_SOURCES}
-    )
-    
-    # Configure test target
-    target_include_directories(blockchain_node_test PRIVATE 
-        ${asio_SOURCE_DIR}/asio/include
-        ${httplib_SOURCE_DIR}
-    )
-    
-    target_link_libraries(blockchain_node_test
-        PRIVATE 
-        OpenSSL::SSL 
-        OpenSSL::Crypto
-        Threads::Threads
-        nlohmann_json::nlohmann_json
-        spdlog::spdlog
-        fmt::fmt
-    )
-    
-    target_compile_definitions(blockchain_node_test PRIVATE 
-        ASIO_STANDALONE
-        ASIO_HAS_STD_ADDRESSOF
-        ASIO_HAS_STD_ARRAY
-        ASIO_HAS_CSTDINT
-        ASIO_HAS_STD_SHARED_PTR
-        ASIO_HAS_STD_TYPE_TRAITS
-        FMT_SUPPRESS_WARNINGS=1
-        OPENSSL_SUPPRESS_DEPRECATED
-        HTTPLIB_OPENSSL_SUPPORT
-    )
-    
-    set_target_properties(blockchain_node_test PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    )
-    
-    add_test(NAME blockchain_tests COMMAND blockchain_node_test)
+if(ENABLE_WEB_INTERFACE)
+    target_link_libraries(blockchain_node PRIVATE api_server)
 endif()
 
-# ========================
-# INSTALLATION
-# ========================
+# CLI executable
+add_executable(blockchain_cli src/cli_main.cpp)
+
+target_link_libraries(blockchain_cli
+    PRIVATE
+    blockchain_core
+    cli_interface
+    ${OPENSSL_LIBRARIES}
+    spdlog::spdlog
+    fmt::fmt
+    nlohmann_json::nlohmann_json
+    Threads::Threads
+)
+
+# Set output directories
+set_target_properties(blockchain_node blockchain_cli
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
 
 # Install targets
-install(TARGETS blockchain_node blockchain_cli DESTINATION bin)
-
-# Install configuration files (if they exist)
-if(EXISTS "${CMAKE_SOURCE_DIR}/config")
-    install(DIRECTORY config/ DESTINATION etc/blockchain)
-endif()
-
-# Install web static files (if they exist)
-if(EXISTS "${CMAKE_SOURCE_DIR}/web/static")
-    install(DIRECTORY web/static/ DESTINATION share/blockchain/web)
-endif()
-
-# ========================
-# CUSTOM TARGETS
-# ========================
-
-# Run full node
-add_custom_target(run
-    COMMAND ${CMAKE_BINARY_DIR}/bin/blockchain_node
-    DEPENDS blockchain_node
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Running blockchain node with all features"
+install(TARGETS blockchain_node blockchain_cli
+    RUNTIME DESTINATION bin
 )
 
-# Run CLI interface
-add_custom_target(cli
-    COMMAND ${CMAKE_BINARY_DIR}/bin/blockchain_cli
-    DEPENDS blockchain_cli
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Running CLI interface"
-)
-
-# Interactive CLI mode
-add_custom_target(cli-interactive
-    COMMAND ${CMAKE_BINARY_DIR}/bin/blockchain_cli --interactive
-    DEPENDS blockchain_cli
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Running CLI in interactive mode"
-)
-
-# Run tests (if available)
-if(TARGET blockchain_node_test)
-    add_custom_target(test-run
-        COMMAND ${CMAKE_BINARY_DIR}/bin/blockchain_node_test
-        DEPENDS blockchain_node_test
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMENT "Running all tests"
+# Install web static files if web interface is enabled
+if(ENABLE_WEB_INTERFACE)
+    install(DIRECTORY src/web/static/
+        DESTINATION share/blockchain_node/web
+        FILES_MATCHING PATTERN "*.html" PATTERN "*.css" PATTERN "*.js"
     )
 endif()
 
-# Development helpers
-add_custom_target(clean-all
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/bin
-    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/CMakeFiles
-    COMMAND ${CMAKE_COMMAND} -E remove ${CMAKE_BINARY_DIR}/CMakeCache.txt
-    COMMENT "Cleaning all build artifacts"
+# Version configuration
+configure_file(
+    ${CMAKE_SOURCE_DIR}/include/version.h.in
+    ${CMAKE_BINARY_DIR}/include/version.h
+    @ONLY
 )
 
-# Format code (if clang-format is available)
-find_program(CLANG_FORMAT clang-format)
-if(CLANG_FORMAT)
-    add_custom_target(format
-        COMMAND find ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include -name "*.cpp" -o -name "*.h" | 
-                xargs ${CLANG_FORMAT} -i -style=file
-        COMMENT "Formatting source code with clang-format"
-    )
-endif()
+# Add the configured version header to include path
+target_include_directories(blockchain_core PUBLIC ${CMAKE_BINARY_DIR}/include)
 
-# ========================
-# CONFIGURATION STATUS
-# ========================
-
-message(STATUS "")
-message(STATUS "=== Blockchain Node Build Configuration ===")
+# Print build information
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
-message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
-message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
-message(STATUS "")
-message(STATUS "Build targets:")
-message(STATUS "  • blockchain_node (full node with web UI)")
-message(STATUS "  • blockchain_cli (command-line interface)")
-if(TARGET blockchain_node_test)
-    message(STATUS "  • blockchain_node_test (test suite)")
+message(STATUS "C++ standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "OpenSSL version: ${OPENSSL_VERSION}")
+message(STATUS "Web interface: ${ENABLE_WEB_INTERFACE}")
+
+if(ENABLE_WEB_INTERFACE)
+    message(STATUS "httplib found at: ${HTTPLIB_INCLUDE_DIR}")
 endif()
-message(STATUS "")
-message(STATUS "Components included:")
-message(STATUS "  ✓ Blockchain Core")
-message(STATUS "  ✓ P2P Network")
-message(STATUS "  ✓ REST API Server")
-message(STATUS "  ✓ Security Manager (with polymorphic reordering)")
-message(STATUS "  ✓ File Storage Blockchain")
-message(STATUS "  ✓ CLI Interface")
-message(STATUS "  ✓ Web Interface")
-message(STATUS "")
-message(STATUS "Quick start commands:")
-message(STATUS "  make                     # Build all targets")
-message(STATUS "  make run                 # Build and run full node")
-message(STATUS "  make cli                 # Build and run CLI")
-message(STATUS "  make cli-interactive     # Build and run interactive CLI")
-if(TARGET blockchain_node_test)
-    message(STATUS "  make test-run           # Build and run tests")
+
+# Optional: Add tests
+option(BUILD_TESTS "Build unit tests" OFF)
+
+if(BUILD_TESTS)
+    enable_testing()
+    find_package(GTest REQUIRED)
+    
+    # Add test subdirectory if it exists
+    if(EXISTS ${CMAKE_SOURCE_DIR}/tests)
+        add_subdirectory(tests)
+    endif()
 endif()
-message(STATUS "")
-message(STATUS "Your blockchain system includes:")
-message(STATUS "  🛡️  Advanced Security (polymorphic chain reordering)")
-message(STATUS "  📁  File Storage (chunked, deduplicated)")
-message(STATUS "  🌐  P2P Network (true decentralization)")
-message(STATUS "  💻  CLI Interface (primary interaction)")
-message(STATUS "  🌐  Web Interface (file upload/management)")
-message(STATUS "==========================================")
-message(STATUS "")
+
+# Optional: Documentation
+option(BUILD_DOCS "Build documentation" OFF)
+
+if(BUILD_DOCS)
+    find_package(Doxygen)
+    if(DOXYGEN_FOUND)
+        configure_file(${CMAKE_SOURCE_DIR}/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile @ONLY)
+        add_custom_target(docs
+            ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+            COMMENT "Generating API documentation with Doxygen"
+            VERBATIM
+        )
+    endif()
+endif()
+
+# Debug information
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message(STATUS "Debug mode enabled - additional logging available")
+    add_compile_definitions(DEBUG_MODE)
+endif()
+
+# Platform-specific settings
+if(WIN32)
+    # Windows-specific settings
+    target_compile_definitions(blockchain_core PRIVATE WIN32_LEAN_AND_MEAN)
+    target_compile_definitions(blockchain_core PRIVATE _WIN32_WINNT=0x0601)
+elseif(UNIX)
+    # Unix-specific settings
+    target_link_libraries(blockchain_core PUBLIC dl)
+endif()
+
+# Optimization flags for release
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        target_compile_options(blockchain_core PRIVATE -O3 -march=native)
+    endif()
+endif()
+
+# Summary
+message(STATUS "=== Build Configuration Summary ===")
+message(STATUS "Blockchain Node: blockchain_node")
+message(STATUS "CLI Tool: blockchain_cli")
+message(STATUS "Core Library: blockchain_core")
+if(ENABLE_WEB_INTERFACE)
+    message(STATUS "API Server: api_server")
+    message(STATUS "Web Interface: ENABLED")
+else()
+    message(STATUS "Web Interface: DISABLED (httplib not found)")
+endif()
+message(STATUS "=====================================")

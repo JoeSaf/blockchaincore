@@ -1,0 +1,161 @@
+[2025-06-03 10:41:32.694] [blockchain] [info] Logging system initialized
+[2025-06-03 10:41:32.694] [blockchain] [info] Node Configuration:
+[2025-06-03 10:41:32.694] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 10:41:32.694] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 10:41:32.694] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 10:41:32.694] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 10:41:32.694] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 10:41:32.694] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 10:41:32.694] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 10:41:32.694] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:41:32.694] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 10:41:32.694] [blockchain] [info] Created genesis block
+[2025-06-03 10:41:32.694] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 10:41:32.694] [blockchain] [info] Blockchain file blockchain.json does not exist
+[2025-06-03 10:41:32.694] [blockchain] [info] Created new blockchain with genesis block
+[2025-06-03 10:41:32.696] [blockchain] [info] P2P Network initialized - Node ID: 3a45be62e90c28cf64e3d400a23010cf, TCP: 8333, UDP: 8334
+[2025-06-03 10:41:32.696] [blockchain] [debug] API routes configured
+[2025-06-03 10:41:32.696] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 10:41:32.696] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 10:41:32.696] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 10:41:32.696] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 10:41:32.696] [blockchain] [error] Failed to start P2P Network: bind: Address already in use
+[2025-06-03 10:41:32.696] [blockchain] [error] Failed to start P2P network
+[2025-06-03 10:41:32.696] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 10:42:09.285] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 10:42:09.285] [blockchain] [info] Shutdown complete
+[2025-06-03 10:37:02.272] [blockchain] [info] Logging system initialized
+[2025-06-03 10:37:02.272] [blockchain] [info] Node Configuration:
+[2025-06-03 10:37:02.272] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 10:37:02.272] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 10:37:02.272] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 10:37:02.272] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 10:37:02.272] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 10:37:02.272] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 10:37:02.272] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 10:37:02.272] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:37:02.272] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 10:37:02.272] [blockchain] [info] Created genesis block
+[2025-06-03 10:37:02.272] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 10:37:02.272] [blockchain] [info] Blockchain file blockchain.json does not exist
+[2025-06-03 10:37:02.272] [blockchain] [info] Created new blockchain with genesis block
+[2025-06-03 10:37:02.273] [blockchain] [info] P2P Network initialized - Node ID: 8bd50c9cdc18fc55f68a4f5b3693d289, TCP: 8333, UDP: 8334
+[2025-06-03 10:37:02.273] [blockchain] [debug] API routes configured
+[2025-06-03 10:37:02.273] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 10:37:02.273] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 10:37:02.273] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 10:37:02.273] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 10:37:02.274] [blockchain] [info] P2P Network started successfully
+[2025-06-03 10:37:02.274] [blockchain] [info] P2P network started successfully
+[2025-06-03 10:37:02.274] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 10:37:02.374] [blockchain] [info] REST API Server started successfully
+[2025-06-03 10:37:02.374] [blockchain] [info] REST API server started successfully
+[2025-06-03 10:37:02.374] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 10:37:02.374] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 10:37:02.374] [blockchain] [info] Peer discovery initiated
+[2025-06-03 10:37:02.374] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 10:38:02.379] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:39:02.386] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:39:26.060] [blockchain] [debug] API Request: GET /api/status
+[2025-06-03 10:39:37.999] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-06-03 10:39:52.925] [blockchain] [debug] API Request: GET /api/peers
+[2025-06-03 10:40:02.394] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:41:02.402] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:41:57.159] [blockchain] [debug] API Request: GET /api/peers
+[2025-06-03 10:42:02.410] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 10:42:02.410] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:42:12.136] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 10:42:12.137] [blockchain] [info] REST API Server stopped
+[2025-06-03 10:43:02.274] [blockchain] [info] P2P Network stopped
+[2025-06-03 10:43:02.274] [blockchain] [info] Shutdown complete
+[2025-06-03 10:44:32.713] [blockchain] [info] Logging system initialized
+[2025-06-03 10:44:32.713] [blockchain] [info] Node Configuration:
+[2025-06-03 10:44:32.713] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 10:44:32.713] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 10:44:32.713] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 10:44:32.713] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 10:44:32.713] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 10:44:32.713] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 10:44:32.713] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 10:44:32.713] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:44:32.713] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 10:44:32.713] [blockchain] [info] Created genesis block
+[2025-06-03 10:44:32.713] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 10:44:32.713] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 10:44:32.713] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 10:44:32.715] [blockchain] [info] P2P Network initialized - Node ID: 3e55cd003905f7f6ac6a9523d1e16840, TCP: 8333, UDP: 8334
+[2025-06-03 10:44:32.715] [blockchain] [debug] API routes configured
+[2025-06-03 10:44:32.715] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 10:44:32.715] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 10:44:32.715] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 10:44:32.715] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 10:44:32.715] [blockchain] [error] Failed to start P2P Network: bind: Address already in use
+[2025-06-03 10:44:32.715] [blockchain] [error] Failed to start P2P network
+[2025-06-03 10:44:32.715] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 10:45:32.722] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:46:32.728] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:46:51.998] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 10:46:51.998] [blockchain] [info] Shutdown complete
+[2025-06-03 10:43:12.790] [blockchain] [info] Logging system initialized
+[2025-06-03 10:43:12.790] [blockchain] [info] Node Configuration:
+[2025-06-03 10:43:12.790] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 10:43:12.790] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 10:43:12.790] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 10:43:12.790] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 10:43:12.790] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 10:43:12.790] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 10:43:12.790] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 10:43:12.790] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:43:12.790] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 10:43:12.790] [blockchain] [info] Created genesis block
+[2025-06-03 10:43:12.790] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 10:43:12.790] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 10:43:12.790] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 10:43:12.792] [blockchain] [info] P2P Network initialized - Node ID: 38edc22d821224f5400c2002113f2887, TCP: 8333, UDP: 8334
+[2025-06-03 10:43:12.792] [blockchain] [debug] API routes configured
+[2025-06-03 10:43:12.792] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 10:43:12.792] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 10:43:12.792] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 10:43:12.792] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 10:43:12.792] [blockchain] [info] P2P Network started successfully
+[2025-06-03 10:43:12.792] [blockchain] [info] P2P network started successfully
+[2025-06-03 10:43:12.792] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 10:43:12.892] [blockchain] [info] REST API Server started successfully
+[2025-06-03 10:43:12.892] [blockchain] [info] REST API server started successfully
+[2025-06-03 10:43:12.893] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 10:43:12.893] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 10:43:12.893] [blockchain] [info] Peer discovery initiated
+[2025-06-03 10:43:12.893] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 10:44:12.902] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:45:12.912] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:46:12.921] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 10:46:59.613] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 10:46:59.614] [blockchain] [info] REST API Server stopped
+[2025-06-03 10:47:12.794] [blockchain] [info] P2P Network stopped
+[2025-06-03 10:47:12.794] [blockchain] [info] Shutdown complete
+[2025-06-03 10:53:56.683] [blockchain] [info] Logging system initialized
+[2025-06-03 10:53:56.683] [blockchain] [info] Node Configuration:
+[2025-06-03 10:53:56.683] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 10:53:56.683] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 10:53:56.683] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 10:53:56.683] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 10:53:56.683] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 10:53:56.683] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 10:53:56.683] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 10:53:56.683] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:53:56.683] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 10:53:56.683] [blockchain] [info] Created genesis block
+[2025-06-03 10:53:56.683] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 10:53:56.683] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 10:53:56.683] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 10:53:56.685] [blockchain] [info] P2P Network initialized - Node ID: 95f8871768ce12dd4bb35f75d6f4cd80, TCP: 8333, UDP: 8334
+[2025-06-03 10:53:56.685] [blockchain] [debug] API routes configured
+[2025-06-03 10:53:56.685] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 10:53:56.685] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 10:53:56.685] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 10:53:56.685] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 10:53:56.685] [blockchain] [error] Failed to start P2P Network: bind: Address already in use
+[2025-06-03 10:53:56.685] [blockchain] [error] Failed to start P2P network
+[2025-06-03 10:53:56.685] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 10:54:12.068] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 10:54:12.068] [blockchain] [info] Shutdown complete

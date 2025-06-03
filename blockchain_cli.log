@@ -1,0 +1,58 @@
+[2025-06-03 10:45:12.473] [blockchain_cli] [info] CLI logging system initialized
+[2025-06-03 10:45:12.473] [blockchain_cli] [info] Initializing blockchain components...
+[2025-06-03 10:45:12.473] [blockchain_cli] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:45:12.473] [blockchain_cli] [debug] OpenSSL initialized
+[2025-06-03 10:45:12.473] [blockchain_cli] [info] Created genesis block
+[2025-06-03 10:45:12.473] [blockchain_cli] [info] Blockchain initialized with genesis block
+[2025-06-03 10:45:12.473] [blockchain_cli] [info] FileBlockchain initialized with chunk size: 1048576, max file size: 104857600
+[2025-06-03 10:45:12.473] [blockchain_cli] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 10:45:12.473] [blockchain_cli] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 10:45:12.475] [blockchain_cli] [info] P2P Network initialized - Node ID: ed08ca79b179f35ed39ac59dd2f42002, TCP: 8333, UDP: 8334
+[2025-06-03 10:45:12.475] [blockchain_cli] [info] SecurityManager initialized with on-demand threat detection
+[2025-06-03 10:45:12.475] [blockchain_cli] [debug] Config file cli_config.json does not exist, using defaults
+[2025-06-03 10:45:12.475] [blockchain_cli] [info] All components initialized successfully
+[2025-06-03 10:45:12.475] [blockchain_cli] [error] Failed to start P2P Network: bind: Address already in use
+[2025-06-03 10:45:12.475] [blockchain_cli] [warning] P2P network failed to start (CLI will work offline)
+[2025-06-03 10:45:12.475] [blockchain_cli] [info] Running in offline mode (blockchain operations still available)
+[2025-06-03 10:45:12.475] [blockchain_cli] [info] Blockchain saved to file
+[2025-06-03 10:45:12.475] [blockchain_cli] [info] CLI application finished with code 1
+[2025-06-03 10:45:50.015] [blockchain_cli] [info] CLI logging system initialized
+[2025-06-03 10:45:50.015] [blockchain_cli] [info] Initializing blockchain components...
+[2025-06-03 10:45:50.015] [blockchain_cli] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:45:50.015] [blockchain_cli] [debug] OpenSSL initialized
+[2025-06-03 10:45:50.015] [blockchain_cli] [info] Created genesis block
+[2025-06-03 10:45:50.015] [blockchain_cli] [info] Blockchain initialized with genesis block
+[2025-06-03 10:45:50.015] [blockchain_cli] [info] FileBlockchain initialized with chunk size: 1048576, max file size: 104857600
+[2025-06-03 10:45:50.015] [blockchain_cli] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 10:45:50.015] [blockchain_cli] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 10:45:50.017] [blockchain_cli] [info] P2P Network initialized - Node ID: eca666261d89666171c401ebee272e93, TCP: 8333, UDP: 8334
+[2025-06-03 10:45:50.017] [blockchain_cli] [info] SecurityManager initialized with on-demand threat detection
+[2025-06-03 10:45:50.017] [blockchain_cli] [debug] Config file cli_config.json does not exist, using defaults
+[2025-06-03 10:45:50.017] [blockchain_cli] [info] All components initialized successfully
+[2025-06-03 10:45:50.017] [blockchain_cli] [error] Failed to start P2P Network: bind: Address already in use
+[2025-06-03 10:45:50.017] [blockchain_cli] [warning] P2P network failed to start (CLI will work offline)
+[2025-06-03 10:45:50.017] [blockchain_cli] [info] Running in offline mode (blockchain operations still available)
+[2025-06-03 10:45:50.017] [blockchain_cli] [info] Blockchain saved to file
+[2025-06-03 10:45:50.017] [blockchain_cli] [info] CLI application finished with code 1
+[2025-06-03 10:49:15.856] [blockchain_cli] [info] CLI logging system initialized
+[2025-06-03 10:49:15.856] [blockchain_cli] [info] Initializing blockchain components...
+[2025-06-03 10:49:15.856] [blockchain_cli] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 10:49:15.856] [blockchain_cli] [debug] OpenSSL initialized
+[2025-06-03 10:49:15.856] [blockchain_cli] [info] Created genesis block
+[2025-06-03 10:49:15.856] [blockchain_cli] [info] Blockchain initialized with genesis block
+[2025-06-03 10:49:15.856] [blockchain_cli] [info] FileBlockchain initialized with chunk size: 1048576, max file size: 104857600
+[2025-06-03 10:49:15.856] [blockchain_cli] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 10:49:15.856] [blockchain_cli] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 10:49:15.858] [blockchain_cli] [info] P2P Network initialized - Node ID: 514e47b2c3a65d18eb24fcbe502ad686, TCP: 8333, UDP: 8334
+[2025-06-03 10:49:15.858] [blockchain_cli] [info] SecurityManager initialized with on-demand threat detection
+[2025-06-03 10:49:15.858] [blockchain_cli] [debug] Config file cli_config.json does not exist, using defaults
+[2025-06-03 10:49:15.858] [blockchain_cli] [info] All components initialized successfully
+[2025-06-03 10:49:15.858] [blockchain_cli] [info] P2P Network started successfully
+[2025-06-03 10:49:15.858] [blockchain_cli] [info] P2P network started successfully
+[2025-06-03 10:49:15.858] [blockchain_cli] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 10:49:15.858] [blockchain_cli] [debug] Peer discovery message broadcasted
+[2025-06-03 10:49:57.059] [blockchain_cli] [info] Executing polymorphic chain reordering...
+[2025-06-03 10:49:57.059] [blockchain_cli] [warning] Chain too short for reordering
+[2025-06-03 10:56:01.551] [blockchain_cli] [info] Blockchain saved to file
+[2025-06-03 10:56:15.861] [blockchain_cli] [info] P2P Network stopped
+[2025-06-03 10:56:15.861] [blockchain_cli] [info] CLI application finished with code 0

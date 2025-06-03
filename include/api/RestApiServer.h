@@ -1,3 +1,7 @@
+#ifndef HTTPLIB_IMPLEMENTATION
+#define HTTPLIB_IMPLEMENTATION
+#endif
+
 #pragma once
 
 #include <third_party/httplib.h>

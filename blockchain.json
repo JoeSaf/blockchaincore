@@ -1,0 +1,28 @@
+{
+    "chain": [
+        {
+            "hash": "c425ef64f29e1f49d1979d76d009226b9c22c7f204d569db1c1e9e2b3d055575",
+            "index": 0,
+            "merkleRoot": "729d7b73da2b5e7a0112fe1928866b727438b2e894a57a0eca9780ef544636f5",
+            "nonce": 0,
+            "previousHash": "0",
+            "timestamp": 1748936222,
+            "transactions": [
+                {
+                    "id": "genesis",
+                    "inputs": [],
+                    "outputs": [],
+                    "signature": "",
+                    "timestamp": -9036018789425018112
+                }
+            ]
+        }
+    ],
+    "chainHeight": 1,
+    "difficulty": 4,
+    "transactionPool": {
+        "maxPoolSize": 1000,
+        "transactionCount": 0,
+        "transactions": []
+    }
+}

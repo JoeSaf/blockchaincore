@@ -1,3 +1,6 @@
+#ifndef HTTPLIB_IMPLEMENTATION
+#define HTTPLIB_IMPLEMENTATION
+#endif
 #include "api/RestApiServer.h"
 #include "utils/Crypto.h"
 #include <spdlog/spdlog.h>
