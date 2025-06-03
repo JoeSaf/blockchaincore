@@ -9,6 +9,7 @@
 #include <regex>
 #include <random>
 #include <iomanip>
+#include <iterator>
 
 // User struct implementations
 nlohmann::json User::toJson() const {
@@ -81,7 +82,7 @@ nlohmann::json UploadStatus::toJson() const {
 WebInterface::WebInterface(uint16_t port)
     : port_(port), running_(false), maxUploadSize_(DEFAULT_MAX_UPLOAD_SIZE),
       sessionTimeout_(DEFAULT_SESSION_TIMEOUT), registrationEnabled_(true),
-      staticFilesPath_("web/static") {
+      staticFilesPath_("src/web/static") {
     
     server_ = std::make_unique<httplib::Server>();
     setupRoutes();
@@ -184,8 +185,36 @@ void WebInterface::setupRoutes() {
         res.status = 200;
     });
     
-    // Serve static files (your working index.html)
-    server_->set_mount_point("/", staticFilesPath_);
+    // ROOT PATH HANDLER - ADD THIS NEW CODE HERE
+    server_->Get("/", [this](const httplib::Request& req, httplib::Response& res) {
+        spdlog::info("🌐 ROOT PATH REQUEST RECEIVED");
+        std::string indexPath = staticFilesPath_ + "/index.html";
+        spdlog::info("📂 Looking for file at: {}", indexPath);
+        
+        // Try standard C++ file reading
+        std::ifstream file(indexPath);
+        if (file.is_open()) {
+            std::string content((std::istreambuf_iterator<char>(file)),
+                               std::istreambuf_iterator<char>());
+            file.close();
+            
+            if (!content.empty()) {
+                res.set_content(content, "text/html; charset=utf-8");
+                res.status = 200;
+                spdlog::info("✅ Served with std::ifstream ({} bytes)", content.size());
+            } else {
+                res.status = 500;
+                res.set_content("File is empty", "text/plain");
+                spdlog::error("❌ File is empty");
+            }
+        } else {
+            res.status = 404;
+            res.set_content("File not found: " + indexPath, "text/plain");
+            spdlog::error("❌ Could not open file: {}", indexPath);
+        }
+    });   
+     // Serve static files (your working index.html)
+    //server_->set_mount_point("/", staticFilesPath_);
     
     // ========================
     // AUTHENTICATION API

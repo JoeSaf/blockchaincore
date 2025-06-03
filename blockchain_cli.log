@@ -56,3 +56,53 @@
 [2025-06-03 10:56:01.551] [blockchain_cli] [info] Blockchain saved to file
 [2025-06-03 10:56:15.861] [blockchain_cli] [info] P2P Network stopped
 [2025-06-03 10:56:15.861] [blockchain_cli] [info] CLI application finished with code 0
+[2025-06-03 12:02:15.552] [blockchain_cli] [info] CLI logging system initialized
+[2025-06-03 12:02:15.552] [blockchain_cli] [info] Initializing blockchain components...
+[2025-06-03 12:02:15.552] [blockchain_cli] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 12:02:15.552] [blockchain_cli] [debug] OpenSSL initialized
+[2025-06-03 12:02:15.552] [blockchain_cli] [info] Created genesis block
+[2025-06-03 12:02:15.552] [blockchain_cli] [info] Blockchain initialized with genesis block
+[2025-06-03 12:02:15.552] [blockchain_cli] [info] FileBlockchain initialized with chunk size: 1048576, max file size: 104857600
+[2025-06-03 12:02:15.552] [blockchain_cli] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 12:02:15.552] [blockchain_cli] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 12:02:15.553] [blockchain_cli] [info] P2P Network initialized - Node ID: edc6548922dec64c80f874c523f22956, TCP: 8333, UDP: 8334
+[2025-06-03 12:02:15.553] [blockchain_cli] [info] SecurityManager initialized with on-demand threat detection
+[2025-06-03 12:02:15.553] [blockchain_cli] [debug] Config file cli_config.json does not exist, using defaults
+[2025-06-03 12:02:15.553] [blockchain_cli] [info] All components initialized successfully
+[2025-06-03 12:02:15.554] [blockchain_cli] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 12:02:15.554] [blockchain_cli] [info] P2P network started successfully
+[2025-06-03 12:02:15.554] [blockchain_cli] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 12:02:15.554] [blockchain_cli] [debug] Peer discovery message broadcasted
+[2025-06-03 12:02:15.554] [blockchain_cli] [info] Blockchain saved to file
+[2025-06-03 12:02:34.426] [blockchain_cli] [info] Received signal 2, shutting down CLI...
+[2025-06-03 12:02:34.426] [blockchain_cli] [info] CLI shutdown complete
+[2025-06-03 12:02:38.618] [blockchain_cli] [info] CLI logging system initialized
+[2025-06-03 12:02:38.618] [blockchain_cli] [info] Initializing blockchain components...
+[2025-06-03 12:02:38.618] [blockchain_cli] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 12:02:38.618] [blockchain_cli] [debug] OpenSSL initialized
+[2025-06-03 12:02:38.618] [blockchain_cli] [info] Created genesis block
+[2025-06-03 12:02:38.618] [blockchain_cli] [info] Blockchain initialized with genesis block
+[2025-06-03 12:02:38.618] [blockchain_cli] [info] FileBlockchain initialized with chunk size: 1048576, max file size: 104857600
+[2025-06-03 12:02:38.618] [blockchain_cli] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 12:02:38.618] [blockchain_cli] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 12:02:38.620] [blockchain_cli] [info] P2P Network initialized - Node ID: f11ce9faed8834bb49c686fc0f61f3f6, TCP: 8333, UDP: 8334
+[2025-06-03 12:02:38.620] [blockchain_cli] [info] SecurityManager initialized with on-demand threat detection
+[2025-06-03 12:02:38.620] [blockchain_cli] [debug] Config file cli_config.json does not exist, using defaults
+[2025-06-03 12:02:38.620] [blockchain_cli] [info] All components initialized successfully
+[2025-06-03 12:02:38.620] [blockchain_cli] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 12:02:38.620] [blockchain_cli] [info] P2P network started successfully
+[2025-06-03 12:02:38.620] [blockchain_cli] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 12:02:38.620] [blockchain_cli] [debug] Peer discovery message broadcasted
+[2025-06-03 12:04:13.214] [blockchain_cli] [debug] Created coinbase transaction for miner: 1242b149d76917a55122a823392ffbe0f0 (reward: 50)
+[2025-06-03 12:04:13.214] [blockchain_cli] [debug] Created new block with index: 1
+[2025-06-03 12:04:13.214] [blockchain_cli] [info] Mining block 1 with difficulty 4
+[2025-06-03 12:04:13.272] [blockchain_cli] [info] Block 1 mined successfully! Nonce: 25068, Time: 57ms
+[2025-06-03 12:04:13.272] [blockchain_cli] [info] Block hash: 00004c4d94a74c1157df232898c861d15fb180ad506ba0cbc0ecc86d8e17b6d6
+[2025-06-03 12:04:13.272] [blockchain_cli] [error] Transaction 38751db8e424b772422f6df7df34f5558f0d2627acaf97b40b42fe0cdaf220ac has insufficient input amount
+[2025-06-03 12:04:13.272] [blockchain_cli] [error] Block 1 contains invalid transactions
+[2025-06-03 12:04:13.272] [blockchain_cli] [error] Invalid block rejected: 1
+[2025-06-03 12:04:13.272] [blockchain_cli] [error] Failed to add mined block to blockchain
+[2025-06-03 12:04:13.272] [blockchain_cli] [info] Created genesis block
+[2025-06-03 12:04:49.425] [blockchain_cli] [info] Blockchain saved to file
+[2025-06-03 12:05:38.620] [blockchain_cli] [info] P2P Network stopped
+[2025-06-03 12:05:38.620] [blockchain_cli] [info] CLI application finished with code 0

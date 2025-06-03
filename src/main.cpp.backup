@@ -10,20 +10,16 @@
 #include <spdlog/sinks/rotating_file_sink.h>
 
 #include "blockchain/Blockchain.h"
-#include "blockchain/FileBlockchain.h"
 #include "p2p/P2PNetwork.h"
 #include "api/RestApiServer.h"
+#include "utils/Crypto.h"
 #include "web/WebInterface.h"
 #include "security/SecurityManager.h"
-#include "utils/Crypto.h"
 
 // Global variables for clean shutdown
 std::shared_ptr<Blockchain> g_blockchain;
-std::shared_ptr<FileBlockchain> g_fileBlockchain;
 std::shared_ptr<P2PNetwork> g_p2pNetwork;
 std::shared_ptr<RestApiServer> g_apiServer;
-std::shared_ptr<WebInterface> g_webInterface;
-std::shared_ptr<SecurityManager> g_securityManager;
 std::atomic<bool> g_running(true);
 
 void setupLogging() {
@@ -49,10 +45,6 @@ void signalHandler(int signal) {
     spdlog::info("Received signal {}, initiating shutdown...", signal);
     g_running = false;
     
-    if (g_webInterface) {
-        g_webInterface->stop();
-    }
-    
     if (g_apiServer) {
         g_apiServer->stop();
     }
@@ -76,15 +68,14 @@ void setupSignalHandlers() {
 void printStartupBanner() {
     std::cout << R"(
 ╔════════════════════════════════════════════════════════════════╗
-║               Blockchain File Storage Node v1.0                ║
+║                    Blockchain Node v1.0.0                      ║
 ║                                                                ║
-║  🔗 Full blockchain implementation with:                       ║
-║  • 📁 File storage on blockchain                               ║
-║  • 🛡️  Advanced security monitoring                            ║
-║  • 🌐 Web dashboard interface                                  ║
-║  • 🔌 REST API endpoints                                       ║
-║  • 🌎 P2P broadcast networking                                 ║
-║  • 💰 Transaction mempool & UTXO                               ║
+║  A full-featured blockchain implementation with:               ║
+║  • Proof-of-Work consensus                                     ║
+║  • P2P broadcast networking                                    ║
+║  • REST API interface                                          ║
+║  • Transaction mempool                                         ║
+║  • UTXO model                                                  ║
 ╚════════════════════════════════════════════════════════════════╝
 )" << std::endl;
 }
@@ -94,17 +85,14 @@ void printNodeInfo() {
     spdlog::info("  Blockchain file: blockchain.json");
     spdlog::info("  P2P TCP Port: 8333");
     spdlog::info("  P2P UDP Port: 8334");
-    spdlog::info("  Web Interface: http://localhost:8080");
-    spdlog::info("  REST API: http://localhost:8081");
+    spdlog::info("  REST API Port: 8080");
     spdlog::info("  Mining Reward: {} coins", Blockchain::MINING_REWARD);
     spdlog::info("  Block Time Target: {} seconds", Blockchain::BLOCK_TIME_TARGET);
 }
 
 bool initializeBlockchain() {
     try {
-        // Use FileBlockchain for full functionality
-        g_fileBlockchain = std::make_shared<FileBlockchain>();
-        g_blockchain = std::static_pointer_cast<Blockchain>(g_fileBlockchain);
+        g_blockchain = std::make_shared<Blockchain>();
         
         // Try to load existing blockchain
         if (g_blockchain->loadFromFile("blockchain.json")) {
@@ -132,9 +120,6 @@ bool initializeP2PNetwork() {
             if (g_blockchain->addBlock(block)) {
                 spdlog::info("Added block {} to blockchain", block.getIndex());
                 g_blockchain->saveToFile("blockchain.json");
-                
-                // Update P2P network with new chain height
-                g_p2pNetwork->setChainHeight(g_blockchain->getChainHeight());
             } else {
                 spdlog::warn("Rejected invalid block {} from peer {}", block.getIndex(), peerId);
             }
@@ -181,53 +166,9 @@ bool initializeP2PNetwork() {
     }
 }
 
-bool initializeSecurityManager() {
-    try {
-        g_securityManager = std::make_shared<SecurityManager>(g_blockchain);
-        
-        // Set up security event callback
-        g_securityManager->setSecurityEventCallback([](const SecurityViolation& violation) {
-            std::string levelStr;
-            switch (violation.level) {
-                case ThreatLevel::CRITICAL: levelStr = "CRITICAL"; break;
-                case ThreatLevel::HIGH: levelStr = "HIGH"; break;
-                case ThreatLevel::MEDIUM: levelStr = "MEDIUM"; break;
-                case ThreatLevel::LOW: levelStr = "LOW"; break;
-                default: levelStr = "UNKNOWN"; break;
-            }
-            
-            spdlog::warn("🛡️  SECURITY EVENT [{}]: {} at block {}", 
-                        levelStr, violation.description, violation.blockIndex);
-            
-            // Auto-trigger security responses for critical threats
-            if (violation.level == ThreatLevel::CRITICAL) {
-                spdlog::error("🚨 CRITICAL SECURITY THREAT DETECTED - Auto-triggering security response");
-                g_securityManager->quarantineInfectedBlocks();
-            }
-        });
-        
-        // Set up chain reorder callback
-        g_securityManager->setChainReorderCallback([](const std::vector<Block>& reorderedChain) {
-            spdlog::info("🔄 Polymorphic chain reordering completed - new chain height: {}", 
-                        reorderedChain.size());
-            
-            // Update P2P network with new chain height
-            if (g_p2pNetwork) {
-                g_p2pNetwork->setChainHeight(reorderedChain.size());
-            }
-        });
-        
-        spdlog::info("Security Manager initialized with real-time monitoring");
-        return true;
-    } catch (const std::exception& e) {
-        spdlog::error("Failed to initialize Security Manager: {}", e.what());
-        return false;
-    }
-}
-
 bool initializeApiServer() {
     try {
-        g_apiServer = std::make_shared<RestApiServer>(8081);
+        g_apiServer = std::make_shared<RestApiServer>(8080);
         g_apiServer->setBlockchain(g_blockchain);
         g_apiServer->setP2PNetwork(g_p2pNetwork);
         g_apiServer->enableCORS(true);
@@ -239,48 +180,26 @@ bool initializeApiServer() {
     }
 }
 
-bool initializeWebInterface() {
-    try {
-        g_webInterface = std::make_shared<WebInterface>(8080);
-        g_webInterface->setFileBlockchain(g_fileBlockchain);
-        g_webInterface->setP2PNetwork(g_p2pNetwork);
-        g_webInterface->setSecurityManager(g_securityManager);
-        
-        spdlog::info("Web Interface initialized");
-        return true;
-    } catch (const std::exception& e) {
-        spdlog::error("Failed to initialize Web Interface: {}", e.what());
-        return false;
-    }
-}
-
 void startServices() {
     spdlog::info("Starting blockchain node services...");
     
     // Start P2P network
     if (!g_p2pNetwork->start()) {
-        spdlog::warn("P2P network failed to start - running in offline mode");
-    } else {
-        spdlog::info("P2P network started successfully");
-        
-        // Discover peers
-        g_p2pNetwork->discoverPeers();
-        spdlog::info("Peer discovery initiated");
+        spdlog::error("Failed to start P2P network");
+        return;
     }
+    spdlog::info("P2P network started successfully");
     
-    // Start Web Interface (primary interface)
-    if (!g_webInterface->start()) {
-        spdlog::error("Failed to start web interface");
-    } else {
-        spdlog::info("🌐 Web Interface started successfully");
-    }
-    
-    // Start REST API server (secondary interface)
+    // Start API server
     if (!g_apiServer->start()) {
-        spdlog::warn("Failed to start REST API server - web interface only mode");
-    } else {
-        spdlog::info("🔌 REST API server started successfully");
+        spdlog::error("Failed to start REST API server");
+        return;
     }
+    spdlog::info("REST API server started successfully");
+    
+    // Discover peers
+    g_p2pNetwork->discoverPeers();
+    spdlog::info("Peer discovery initiated");
 }
 
 void runMainLoop() {
@@ -288,86 +207,51 @@ void runMainLoop() {
     
     auto lastSave = std::chrono::steady_clock::now();
     auto lastStats = std::chrono::steady_clock::now();
-    auto lastSecurityScan = std::chrono::steady_clock::now();
     
     while (g_running) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         
         auto now = std::chrono::steady_clock::now();
         
-        // Save blockchain periodically (every 5 minutes)
+        // Save blockchain periodically
         if (std::chrono::duration_cast<std::chrono::minutes>(now - lastSave).count() >= 5) {
             g_blockchain->saveToFile("blockchain.json");
             lastSave = now;
             spdlog::debug("Blockchain saved to file");
         }
         
-        // Print statistics periodically (every 1 minute)
+        // Print statistics periodically
         if (std::chrono::duration_cast<std::chrono::minutes>(now - lastStats).count() >= 1) {
-            uint32_t peerCount = g_p2pNetwork ? g_p2pNetwork->getPeerCount() : 0;
-            uint32_t fileCount = g_fileBlockchain ? g_fileBlockchain->getTotalFileCount() : 0;
-            uint64_t storageUsed = g_fileBlockchain ? g_fileBlockchain->getTotalStorageUsed() : 0;
-            
-            spdlog::info("📊 Node Status - Height: {}, Peers: {}, Mempool: {}, Files: {}, Storage: {} MB", 
+            spdlog::info("Node Status - Height: {}, Peers: {}, Mempool: {}", 
                         g_blockchain->getChainHeight(),
-                        peerCount,
-                        g_blockchain->getTransactionPool().getTransactionCount(),
-                        fileCount,
-                        storageUsed / (1024 * 1024));
+                        g_p2pNetwork->getPeerCount(),
+                        g_blockchain->getTransactionPool().getTransactionCount());
             lastStats = now;
         }
         
-        // Run periodic security scans (every 10 minutes)
-        if (g_securityManager && 
-            std::chrono::duration_cast<std::chrono::minutes>(now - lastSecurityScan).count() >= 10) {
-            spdlog::info("🛡️  Running periodic security scan...");
-            g_securityManager->performSecurityScan();
-            lastSecurityScan = now;
-        }
-        
         // Update P2P network with current chain height
-        if (g_p2pNetwork) {
-            g_p2pNetwork->setChainHeight(g_blockchain->getChainHeight());
-        }
+        g_p2pNetwork->setChainHeight(g_blockchain->getChainHeight());
     }
 }
 
 void printUsageInstructions() {
-    std::cout << "\n=== Blockchain Node Access Information ===\n" << std::endl;
-    
-    std::cout << "🌐 WEB DASHBOARD:" << std::endl;
-    std::cout << "  URL: http://localhost:8080" << std::endl;
-    std::cout << "  Features: File management, blockchain explorer, security monitoring" << std::endl;
-    std::cout << "  Authentication: Registration and login system included" << std::endl;
-    
-    std::cout << "\n🔌 REST API ENDPOINTS:" << std::endl;
-    std::cout << "  Base URL: http://localhost:8081/api" << std::endl;
-    std::cout << "  Status: GET /status" << std::endl;
-    std::cout << "  Blockchain: GET /blockchain" << std::endl;
-    std::cout << "  Transactions: POST /transactions" << std::endl;
-    std::cout << "  Mining: POST /mine" << std::endl;
-    std::cout << "  Peers: GET /peers" << std::endl;
-    
-    std::cout << "\n📁 FILE OPERATIONS:" << std::endl;
-    std::cout << "  Upload files through web interface or API" << std::endl;
-    std::cout << "  Automatic chunking for large files" << std::endl;
-    std::cout << "  Deduplication and integrity verification" << std::endl;
-    
-    std::cout << "\n🛡️  SECURITY FEATURES:" << std::endl;
-    std::cout << "  Real-time threat detection and monitoring" << std::endl;
-    std::cout << "  Polymorphic chain reordering for security" << std::endl;
-    std::cout << "  Automatic quarantine of infected blocks" << std::endl;
-    
-    std::cout << "\n🌎 P2P NETWORK:" << std::endl;
-    std::cout << "  Automatic peer discovery on local network" << std::endl;
-    std::cout << "  TCP: 8333, UDP: 8334" << std::endl;
-    std::cout << "  Block and transaction synchronization" << std::endl;
-    
-    std::cout << "\n📊 MONITORING:" << std::endl;
-    std::cout << "  Logs: blockchain_node.log" << std::endl;
-    std::cout << "  Real-time dashboard updates" << std::endl;
-    std::cout << "  Comprehensive security alerts" << std::endl;
-    
+    std::cout << "\n=== Blockchain Node Usage Instructions ===\n" << std::endl;
+    std::cout << "REST API Endpoints:" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/status           - Node status" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/blockchain       - Full blockchain" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/block/latest     - Latest block" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/mempool          - Transaction pool" << std::endl;
+    std::cout << "  POST http://localhost:8080/api/transactions     - Create transaction" << std::endl;
+    std::cout << "  POST http://localhost:8080/api/mine             - Mine new block" << std::endl;
+    std::cout << "  GET  http://localhost:8080/api/peers            - Connected peers" << std::endl;
+    std::cout << "\nExample transaction creation:" << std::endl;
+    std::cout << R"(  curl -X POST http://localhost:8080/api/transactions \)" << std::endl;
+    std::cout << R"(    -H "Content-Type: application/json" \)" << std::endl;
+    std::cout << R"(    -d '{"from":"address1","to":"address2","amount":10}')" << std::endl;
+    std::cout << "\nExample mining:" << std::endl;
+    std::cout << R"(  curl -X POST http://localhost:8080/api/mine \)" << std::endl;
+    std::cout << R"(    -H "Content-Type: application/json" \)" << std::endl;
+    std::cout << R"(    -d '{"minerAddress":"your_address"}')" << std::endl;
     std::cout << "\n==========================================\n" << std::endl;
 }
 
@@ -385,7 +269,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
         // Print node configuration
         printNodeInfo();
         
-        // Initialize all components
+        // Initialize components
         spdlog::info("Initializing blockchain node components...");
         
         if (!initializeBlockchain()) {
@@ -398,18 +282,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
             return 1;
         }
         
-        if (!initializeSecurityManager()) {
-            spdlog::error("Failed to initialize Security Manager");
-            return 1;
-        }
-        
         if (!initializeApiServer()) {
             spdlog::error("Failed to initialize API server");
-            return 1;
-        }
-        
-        if (!initializeWebInterface()) {
-            spdlog::error("Failed to initialize Web Interface");
             return 1;
         }
         
@@ -419,7 +293,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
         // Print usage instructions
         printUsageInstructions();
         
-        // Run main event loop with enhanced monitoring
+        // Run main event loop
         runMainLoop();
         
     } catch (const std::exception& e) {

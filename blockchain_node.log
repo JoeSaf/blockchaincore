@@ -159,3 +159,701 @@
 [2025-06-03 10:53:56.685] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
 [2025-06-03 10:54:12.068] [blockchain] [info] Received signal 2, initiating shutdown...
 [2025-06-03 10:54:12.068] [blockchain] [info] Shutdown complete
+[2025-06-03 11:08:26.766] [blockchain] [info] Logging system initialized
+[2025-06-03 11:08:26.766] [blockchain] [info] Node Configuration:
+[2025-06-03 11:08:26.766] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 11:08:26.766] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 11:08:26.766] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 11:08:26.766] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 11:08:26.766] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 11:08:26.766] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 11:08:26.766] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 11:08:26.766] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 11:08:26.766] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 11:08:26.766] [blockchain] [info] Created genesis block
+[2025-06-03 11:08:26.766] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 11:08:26.766] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 11:08:26.766] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 11:08:26.767] [blockchain] [info] P2P Network initialized - Node ID: 13da58d8f55351fff5de8859b1ddf6aa, TCP: 8333, UDP: 8334
+[2025-06-03 11:08:26.767] [blockchain] [debug] API routes configured
+[2025-06-03 11:08:26.767] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 11:08:26.767] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 11:08:26.767] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 11:08:26.767] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 11:08:26.767] [blockchain] [info] P2P Network started successfully
+[2025-06-03 11:08:26.767] [blockchain] [info] P2P network started successfully
+[2025-06-03 11:08:26.768] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 11:08:26.868] [blockchain] [info] REST API Server started successfully
+[2025-06-03 11:08:26.868] [blockchain] [info] REST API server started successfully
+[2025-06-03 11:08:26.868] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 11:08:26.868] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 11:08:26.868] [blockchain] [info] Peer discovery initiated
+[2025-06-03 11:08:26.868] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 11:09:26.876] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:10:26.883] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:11:26.889] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:11:27.683] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 11:11:27.685] [blockchain] [info] REST API Server stopped
+[2025-06-03 11:12:26.768] [blockchain] [info] P2P Network stopped
+[2025-06-03 11:12:26.769] [blockchain] [info] Shutdown complete
+[2025-06-03 11:13:32.278] [blockchain] [info] Logging system initialized
+[2025-06-03 11:13:32.278] [blockchain] [info] Node Configuration:
+[2025-06-03 11:13:32.278] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 11:13:32.278] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 11:13:32.278] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 11:13:32.278] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 11:13:32.278] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 11:13:32.278] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 11:13:32.278] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 11:13:32.278] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 11:13:32.278] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 11:13:32.278] [blockchain] [info] Created genesis block
+[2025-06-03 11:13:32.278] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 11:13:32.278] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 11:13:32.278] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 11:13:32.280] [blockchain] [info] P2P Network initialized - Node ID: 47bf0c21aa1cc34cb2987656b4176e6e, TCP: 8333, UDP: 8334
+[2025-06-03 11:13:32.280] [blockchain] [debug] API routes configured
+[2025-06-03 11:13:32.280] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 11:13:32.280] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 11:13:32.280] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 11:13:32.280] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 11:13:32.280] [blockchain] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 11:13:32.280] [blockchain] [info] P2P network started successfully
+[2025-06-03 11:13:32.280] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 11:13:32.380] [blockchain] [info] REST API Server started successfully
+[2025-06-03 11:13:32.380] [blockchain] [info] REST API server started successfully
+[2025-06-03 11:13:32.380] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 11:13:32.380] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 11:13:32.381] [blockchain] [info] Peer discovery initiated
+[2025-06-03 11:13:32.381] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 11:14:32.387] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:15:32.393] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:16:32.399] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:17:32.408] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:18:32.416] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 11:18:32.416] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:18:32.925] [blockchain] [debug] API Request: HEAD /api/status
+[2025-06-03 11:19:32.423] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:20:32.429] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:21:32.436] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:22:32.442] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:23:32.448] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 11:23:32.448] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:24:32.454] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:25:32.459] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:26:32.466] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:27:32.473] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:28:32.483] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 11:28:32.483] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:29:32.491] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:30:32.497] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:30:42.498] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 11:30:42.500] [blockchain] [info] REST API Server stopped
+[2025-06-03 11:31:32.282] [blockchain] [info] P2P Network stopped
+[2025-06-03 11:31:32.282] [blockchain] [info] Shutdown complete
+[2025-06-03 11:32:07.187] [blockchain] [info] Logging system initialized
+[2025-06-03 11:32:07.187] [blockchain] [info] Node Configuration:
+[2025-06-03 11:32:07.187] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 11:32:07.187] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 11:32:07.187] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 11:32:07.187] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 11:32:07.187] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 11:32:07.187] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 11:32:07.187] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 11:32:07.187] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 11:32:07.187] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 11:32:07.187] [blockchain] [info] Created genesis block
+[2025-06-03 11:32:07.187] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 11:32:07.187] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 11:32:07.187] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 11:32:07.188] [blockchain] [info] P2P Network initialized - Node ID: 6f11b47d16ff68232435217dee13bf7b, TCP: 8333, UDP: 8334
+[2025-06-03 11:32:07.189] [blockchain] [debug] API routes configured
+[2025-06-03 11:32:07.189] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 11:32:07.189] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 11:32:07.189] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 11:32:07.189] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 11:32:07.189] [blockchain] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 11:32:07.189] [blockchain] [info] P2P network started successfully
+[2025-06-03 11:32:07.189] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 11:32:07.289] [blockchain] [info] REST API Server started successfully
+[2025-06-03 11:32:07.289] [blockchain] [info] REST API server started successfully
+[2025-06-03 11:32:07.289] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 11:32:07.289] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 11:32:07.289] [blockchain] [info] Peer discovery initiated
+[2025-06-03 11:32:07.290] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 11:32:23.615] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 11:32:23.617] [blockchain] [info] REST API Server stopped
+[2025-06-03 11:33:07.189] [blockchain] [info] P2P Network stopped
+[2025-06-03 11:33:07.189] [blockchain] [info] Shutdown complete
+[2025-06-03 11:41:16.974] [blockchain] [info] Logging system initialized
+[2025-06-03 11:41:16.974] [blockchain] [info] Node Configuration:
+[2025-06-03 11:41:16.974] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 11:41:16.974] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 11:41:16.974] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 11:41:16.974] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 11:41:16.974] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 11:41:16.974] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 11:41:16.974] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 11:41:16.974] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 11:41:16.974] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 11:41:16.974] [blockchain] [info] Created genesis block
+[2025-06-03 11:41:16.974] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 11:41:16.974] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 11:41:16.974] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 11:41:16.975] [blockchain] [info] P2P Network initialized - Node ID: 6745c2158b74e099835b2211bc2565f2, TCP: 8333, UDP: 8334
+[2025-06-03 11:41:16.976] [blockchain] [debug] API routes configured
+[2025-06-03 11:41:16.976] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 11:41:16.976] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 11:41:16.976] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 11:41:16.976] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 11:41:16.976] [blockchain] [error] Failed to start P2P Network: bind: Address already in use (Error code: 98)
+[2025-06-03 11:41:16.976] [blockchain] [warning] Ports 8333 (TCP) and 8334 (UDP) are in use
+[2025-06-03 11:41:16.976] [blockchain] [info] Try running with different ports:
+[2025-06-03 11:41:16.976] [blockchain] [info]   ./blockchain_node --tcp-port 8334 --udp-port 8335
+[2025-06-03 11:41:16.976] [blockchain] [info] Or kill existing processes using these ports:
+[2025-06-03 11:41:16.976] [blockchain] [info]   sudo netstat -tulpn | grep :{}
+[2025-06-03 11:41:16.976] [blockchain] [info]   sudo netstat -tulpn | grep :8333
+[2025-06-03 11:41:16.976] [blockchain] [error] Failed to start P2P network
+[2025-06-03 11:41:16.976] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 11:41:28.724] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 11:41:28.724] [blockchain] [info] Shutdown complete
+[2025-06-03 11:33:37.941] [blockchain] [info] Logging system initialized
+[2025-06-03 11:33:37.941] [blockchain] [info] Node Configuration:
+[2025-06-03 11:33:37.941] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 11:33:37.941] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 11:33:37.941] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 11:33:37.941] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 11:33:37.941] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 11:33:37.941] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 11:33:37.941] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 11:33:37.941] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 11:33:37.941] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 11:33:37.941] [blockchain] [info] Created genesis block
+[2025-06-03 11:33:37.941] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 11:33:37.941] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 11:33:37.941] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 11:33:37.943] [blockchain] [info] P2P Network initialized - Node ID: 9f6b60a6e389bf7fa271f503943d32c4, TCP: 8333, UDP: 8334
+[2025-06-03 11:33:37.943] [blockchain] [debug] API routes configured
+[2025-06-03 11:33:37.943] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 11:33:37.943] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 11:33:37.943] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 11:33:37.943] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 11:33:37.943] [blockchain] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 11:33:37.943] [blockchain] [info] P2P network started successfully
+[2025-06-03 11:33:37.943] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 11:33:38.043] [blockchain] [info] REST API Server started successfully
+[2025-06-03 11:33:38.043] [blockchain] [info] REST API server started successfully
+[2025-06-03 11:33:38.043] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 11:33:38.043] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 11:33:38.044] [blockchain] [info] Peer discovery initiated
+[2025-06-03 11:33:38.044] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 11:34:38.052] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:35:01.544] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-06-03 11:35:38.060] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:36:22.823] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-06-03 11:36:38.067] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:37:38.074] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:38:38.084] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 11:38:38.084] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:39:38.092] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:40:38.098] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:41:38.106] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:42:38.113] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:43:38.122] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 11:43:38.122] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:44:38.135] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:45:38.142] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:46:38.152] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:47:38.160] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:48:38.171] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 11:48:38.171] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:49:38.180] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:50:38.188] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:51:38.194] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:51:54.287] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 11:51:54.287] [blockchain] [info] REST API Server stopped
+[2025-06-03 11:52:37.946] [blockchain] [info] P2P Network stopped
+[2025-06-03 11:52:37.946] [blockchain] [info] Shutdown complete
+[2025-06-03 11:54:19.348] [blockchain] [info] Logging system initialized
+[2025-06-03 11:54:19.348] [blockchain] [info] Node Configuration:
+[2025-06-03 11:54:19.348] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 11:54:19.348] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 11:54:19.348] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 11:54:19.348] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 11:54:19.348] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 11:54:19.348] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 11:54:19.348] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 11:54:19.349] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 11:54:19.349] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 11:54:19.349] [blockchain] [info] Created genesis block
+[2025-06-03 11:54:19.349] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 11:54:19.349] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 11:54:19.349] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 11:54:19.350] [blockchain] [info] P2P Network initialized - Node ID: 8e69d1795b43436f62fa3918cb49934a, TCP: 8333, UDP: 8334
+[2025-06-03 11:54:19.350] [blockchain] [debug] API routes configured
+[2025-06-03 11:54:19.350] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 11:54:19.350] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 11:54:19.350] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 11:54:19.350] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 11:54:19.350] [blockchain] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 11:54:19.350] [blockchain] [info] P2P network started successfully
+[2025-06-03 11:54:19.351] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 11:54:19.451] [blockchain] [info] REST API Server started successfully
+[2025-06-03 11:54:19.451] [blockchain] [info] REST API server started successfully
+[2025-06-03 11:54:19.451] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 11:54:19.451] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 11:54:19.451] [blockchain] [info] Peer discovery initiated
+[2025-06-03 11:54:19.451] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 11:55:19.458] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:56:19.464] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:57:19.471] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:58:19.476] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:59:19.482] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 11:59:19.482] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 11:59:40.656] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 11:59:40.657] [blockchain] [info] REST API Server stopped
+[2025-06-03 12:00:19.351] [blockchain] [info] P2P Network stopped
+[2025-06-03 12:00:19.351] [blockchain] [info] Shutdown complete
+[2025-06-03 12:00:53.625] [blockchain] [info] Logging system initialized
+[2025-06-03 12:00:53.625] [blockchain] [info] Node Configuration:
+[2025-06-03 12:00:53.625] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 12:00:53.625] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 12:00:53.625] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 12:00:53.625] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 12:00:53.625] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 12:00:53.625] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 12:00:53.625] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 12:00:53.625] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 12:00:53.625] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 12:00:53.625] [blockchain] [info] Created genesis block
+[2025-06-03 12:00:53.625] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 12:00:53.625] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 12:00:53.625] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 12:00:53.631] [blockchain] [info] P2P Network initialized - Node ID: 36dfcf1ae92e25006b4e9f9935f53a07, TCP: 8333, UDP: 8334
+[2025-06-03 12:00:53.631] [blockchain] [debug] API routes configured
+[2025-06-03 12:00:53.631] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 12:00:53.631] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 12:00:53.631] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 12:00:53.631] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 12:00:53.631] [blockchain] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 12:00:53.631] [blockchain] [info] P2P network started successfully
+[2025-06-03 12:00:53.632] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 12:00:53.732] [blockchain] [info] REST API Server started successfully
+[2025-06-03 12:00:53.732] [blockchain] [info] REST API server started successfully
+[2025-06-03 12:00:53.732] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 12:00:53.732] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 12:00:53.732] [blockchain] [info] Peer discovery initiated
+[2025-06-03 12:00:53.732] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 12:01:43.856] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 12:01:43.857] [blockchain] [info] REST API Server stopped
+[2025-06-03 12:01:53.632] [blockchain] [info] P2P Network stopped
+[2025-06-03 12:01:53.632] [blockchain] [info] Shutdown complete
+[2025-06-03 12:37:07.831] [blockchain] [info] Logging system initialized
+[2025-06-03 12:37:07.831] [blockchain] [info] Node Configuration:
+[2025-06-03 12:37:07.831] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 12:37:07.831] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 12:37:07.831] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 12:37:07.831] [blockchain] [info]   REST API Port: 8080
+[2025-06-03 12:37:07.831] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 12:37:07.831] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 12:37:07.831] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 12:37:07.831] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 12:37:07.831] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 12:37:07.831] [blockchain] [info] Created genesis block
+[2025-06-03 12:37:07.831] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 12:37:07.831] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 12:37:07.831] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 12:37:07.833] [blockchain] [info] P2P Network initialized - Node ID: ade23992d86da83a90c933f4d8f6ddd5, TCP: 8333, UDP: 8334
+[2025-06-03 12:37:07.833] [blockchain] [debug] API routes configured
+[2025-06-03 12:37:07.833] [blockchain] [info] REST API Server initialized on port 8080
+[2025-06-03 12:37:07.833] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 12:37:07.833] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 12:37:07.833] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 12:37:07.833] [blockchain] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 12:37:07.833] [blockchain] [info] P2P network started successfully
+[2025-06-03 12:37:07.833] [blockchain] [info] Starting REST API Server on port 8080
+[2025-06-03 12:37:07.933] [blockchain] [info] REST API Server started successfully
+[2025-06-03 12:37:07.933] [blockchain] [info] REST API server started successfully
+[2025-06-03 12:37:07.934] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 12:37:07.934] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 12:37:07.934] [blockchain] [info] Peer discovery initiated
+[2025-06-03 12:37:07.934] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 12:38:07.943] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:38:09.801] [blockchain] [debug] API Request: GET /api/blockchain
+[2025-06-03 12:39:07.950] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:39:57.005] [blockchain] [debug] API Request: GET /api/status
+[2025-06-03 12:40:07.956] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:40:36.422] [blockchain] [debug] API Request: GET /api/peers
+[2025-06-03 12:41:07.963] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:42:07.970] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 12:42:07.971] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:43:07.977] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:44:07.985] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:45:07.992] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:46:07.996] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:47:08.003] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 12:47:08.003] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:48:08.008] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:49:08.014] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:50:08.019] [blockchain] [info] Node Status - Height: 1, Peers: 0, Mempool: 0
+[2025-06-03 12:50:57.133] [blockchain] [info] Received signal 2, initiating shutdown...
+[2025-06-03 12:50:57.135] [blockchain] [info] REST API Server stopped
+[2025-06-03 12:51:07.838] [blockchain] [info] P2P Network stopped
+[2025-06-03 12:51:07.838] [blockchain] [info] Shutdown complete
+[2025-06-03 12:51:41.709] [blockchain] [info] Logging system initialized
+[2025-06-03 12:51:41.709] [blockchain] [info] Node Configuration:
+[2025-06-03 12:51:41.709] [blockchain] [info]   Blockchain file: blockchain.json
+[2025-06-03 12:51:41.709] [blockchain] [info]   P2P TCP Port: 8333
+[2025-06-03 12:51:41.709] [blockchain] [info]   P2P UDP Port: 8334
+[2025-06-03 12:51:41.709] [blockchain] [info]   Web Interface: http://localhost:8080
+[2025-06-03 12:51:41.709] [blockchain] [info]   REST API: http://localhost:8081
+[2025-06-03 12:51:41.709] [blockchain] [info]   Mining Reward: 50 coins
+[2025-06-03 12:51:41.709] [blockchain] [info]   Block Time Target: 10 seconds
+[2025-06-03 12:51:41.709] [blockchain] [info] Initializing blockchain node components...
+[2025-06-03 12:51:41.709] [blockchain] [debug] Transaction pool initialized with max size: 1000
+[2025-06-03 12:51:41.709] [blockchain] [debug] OpenSSL initialized
+[2025-06-03 12:51:41.709] [blockchain] [info] Created genesis block
+[2025-06-03 12:51:41.709] [blockchain] [info] Blockchain initialized with genesis block
+[2025-06-03 12:51:41.709] [blockchain] [info] FileBlockchain initialized with chunk size: 1048576, max file size: 104857600
+[2025-06-03 12:51:41.709] [blockchain] [info] Loaded blockchain from file blockchain.json with 1 blocks
+[2025-06-03 12:51:41.709] [blockchain] [info] Loaded existing blockchain with 1 blocks
+[2025-06-03 12:51:41.711] [blockchain] [info] P2P Network initialized - Node ID: b7e71b5d5dcef3d0063c123a448f4771, TCP: 8333, UDP: 8334
+[2025-06-03 12:51:41.711] [blockchain] [info] SecurityManager initialized with on-demand threat detection
+[2025-06-03 12:51:41.711] [blockchain] [info] Security Manager initialized with real-time monitoring
+[2025-06-03 12:51:41.711] [blockchain] [debug] API routes configured
+[2025-06-03 12:51:41.711] [blockchain] [info] REST API Server initialized on port 8081
+[2025-06-03 12:51:41.711] [blockchain] [debug] Blockchain reference set for REST API Server
+[2025-06-03 12:51:41.711] [blockchain] [debug] P2P Network reference set for REST API Server
+[2025-06-03 12:51:41.711] [blockchain] [debug] WebInterface routes configured - API endpoints + static file serving
+[2025-06-03 12:51:41.711] [blockchain] [info] WebInterface initialized on port 8080 (API + Static Files)
+[2025-06-03 12:51:41.711] [blockchain] [debug] FileBlockchain reference set for WebInterface
+[2025-06-03 12:51:41.711] [blockchain] [debug] P2PNetwork reference set for WebInterface
+[2025-06-03 12:51:41.711] [blockchain] [debug] SecurityManager reference set for WebInterface
+[2025-06-03 12:51:41.711] [blockchain] [info] Web Interface initialized
+[2025-06-03 12:51:41.711] [blockchain] [info] Starting blockchain node services...
+[2025-06-03 12:51:41.711] [blockchain] [info] P2P Network started successfully on TCP:8333 UDP:8334
+[2025-06-03 12:51:41.711] [blockchain] [info] P2P network started successfully
+[2025-06-03 12:51:41.711] [blockchain] [debug] Failed to send UDP message: send_to: Permission denied
+[2025-06-03 12:51:41.711] [blockchain] [debug] Peer discovery message broadcasted
+[2025-06-03 12:51:41.711] [blockchain] [info] Peer discovery initiated
+[2025-06-03 12:51:41.711] [blockchain] [info] Starting WebInterface on port 8080
+[2025-06-03 12:51:41.811] [blockchain] [info] WebInterface started successfully on http://localhost:8080
+[2025-06-03 12:51:41.811] [blockchain] [info] 🌐 Web Interface started successfully
+[2025-06-03 12:51:41.812] [blockchain] [info] Starting REST API Server on port 8081
+[2025-06-03 12:51:41.912] [blockchain] [info] REST API Server started successfully
+[2025-06-03 12:51:41.912] [blockchain] [info] 🔌 REST API server started successfully
+[2025-06-03 12:51:41.912] [blockchain] [info] Blockchain node is running. Press Ctrl+C to stop.
+[2025-06-03 12:51:48.919] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 12:51:48.919] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 12:51:48.919] [blockchain] [info] ✅ Served with std::ifstream (48454 bytes)
+[2025-06-03 12:52:31.643] [blockchain] [info] Created user: admin (856917434d09f28fd6c03eea74c26e18)
+[2025-06-03 12:52:31.643] [blockchain] [info] Security Event: New user registration | User: 856917434d09f28fd6c03eea74c26e18 | IP: 
+[2025-06-03 12:52:41.106] [blockchain] [info] Security Event: Successful login | User: 856917434d09f28fd6c03eea74c26e18 | IP: 
+[2025-06-03 12:52:41.920] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:53:41.930] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:53:49.862] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 12:53:49.862] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 12:53:49.862] [blockchain] [info] ✅ Served with std::ifstream (48454 bytes)
+[2025-06-03 12:53:56.577] [blockchain] [info] Security Event: Successful login | User: 856917434d09f28fd6c03eea74c26e18 | IP: 
+[2025-06-03 12:54:41.939] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:55:11.002] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 12:55:11.002] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 12:55:11.003] [blockchain] [info] ✅ Served with std::ifstream (48454 bytes)
+[2025-06-03 12:55:22.628] [blockchain] [info] Security Event: Successful login | User: 856917434d09f28fd6c03eea74c26e18 | IP: 
+[2025-06-03 12:55:41.948] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:56:18.456] [blockchain] [debug] Created new block with index: 1
+[2025-06-03 12:56:18.456] [blockchain] [error] Transaction 5b17437c5d9e7b12b54547311580c2de07411fec2a825d949d897c56184d5a97 has insufficient input amount
+[2025-06-03 12:56:18.456] [blockchain] [error] Block 1 contains invalid transactions
+[2025-06-03 12:56:18.456] [blockchain] [error] Invalid file block rejected: 1
+[2025-06-03 12:56:18.456] [blockchain] [error] Failed to add file block for: d7741f53d0eaca3aa038a06171b364e3
+[2025-06-03 12:56:41.957] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 12:56:41.957] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:57:03.810] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 12:57:03.810] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 12:57:03.811] [blockchain] [info] ✅ Served with std::ifstream (48454 bytes)
+[2025-06-03 12:57:08.627] [blockchain] [info] Security Event: Successful login | User: 856917434d09f28fd6c03eea74c26e18 | IP: 
+[2025-06-03 12:57:41.970] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:58:08.195] [blockchain] [debug] Created new block with index: 1
+[2025-06-03 12:58:08.195] [blockchain] [error] Transaction eedc6017e4d8e4e1fcdc07d78a28f8b66931a815f71d63b21067d78a4fe31977 has insufficient input amount
+[2025-06-03 12:58:08.195] [blockchain] [error] Block 1 contains invalid transactions
+[2025-06-03 12:58:08.195] [blockchain] [error] Invalid file block rejected: 1
+[2025-06-03 12:58:08.195] [blockchain] [error] Failed to add file block for: c448ab046fa840483f2b226768bf9da1
+[2025-06-03 12:58:22.569] [blockchain] [debug] Created new block with index: 1
+[2025-06-03 12:58:22.569] [blockchain] [error] Transaction da2088fb9489f542beb5a25cdaef346ac0a1e84912015f3fb327e2b6efe28cf7 has insufficient input amount
+[2025-06-03 12:58:22.569] [blockchain] [error] Block 1 contains invalid transactions
+[2025-06-03 12:58:22.569] [blockchain] [error] Invalid file block rejected: 1
+[2025-06-03 12:58:22.569] [blockchain] [error] Failed to add file block for: 025f7c1d02c4781eb28e28dcfd8dae13
+[2025-06-03 12:58:41.977] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:59:41.986] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 12:59:45.405] [blockchain] [debug] Created new block with index: 1
+[2025-06-03 12:59:45.405] [blockchain] [error] Transaction 7b8b1a9ac04fa2e09ed3299529eab7fd2695a8ce6fc83b22432e24fd054b2d69 has insufficient input amount
+[2025-06-03 12:59:45.405] [blockchain] [error] Block 1 contains invalid transactions
+[2025-06-03 12:59:45.405] [blockchain] [error] Invalid file block rejected: 1
+[2025-06-03 12:59:45.405] [blockchain] [error] Failed to add file block for: d83a273c738c25cab7940502b2e16f17
+[2025-06-03 13:00:41.995] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:01:42.004] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:01:42.004] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:01:42.004] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 13:01:42.004] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 13:01:42.004] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 13:01:42.004] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 13:01:42.004] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 13:01:42.004] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 13:01:42.004] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 13:01:42.004] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 13:01:42.004] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 13:01:42.004] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 13:02:42.014] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:03:42.023] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:04:42.032] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:05:42.040] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:06:42.048] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:06:42.048] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:07:42.056] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:08:42.064] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:09:42.075] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:10:42.086] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:11:42.095] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:11:42.095] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:11:42.095] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 13:11:42.095] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 13:11:42.095] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 13:11:42.095] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 13:11:42.095] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 13:11:42.095] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 13:11:42.095] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 13:11:42.095] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 13:11:42.095] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 13:11:42.095] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 13:12:42.105] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:13:42.114] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:14:42.123] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:15:42.133] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:16:42.142] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:16:42.142] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:17:42.151] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:18:42.162] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:19:42.171] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:20:42.181] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:21:42.193] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:21:42.193] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:21:42.193] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 13:21:42.193] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 13:21:42.193] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 13:21:42.193] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 13:21:42.193] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 13:21:42.193] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 13:21:42.193] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 13:21:42.193] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 13:21:42.193] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 13:21:42.193] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 13:22:42.203] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:23:42.214] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:24:42.224] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:25:42.235] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:26:42.243] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:26:42.244] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:27:42.249] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:28:42.258] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:29:42.268] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:30:42.279] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:31:42.291] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:31:42.291] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:31:42.291] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 13:31:42.291] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 13:31:42.291] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 13:31:42.291] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 13:31:42.291] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 13:31:42.291] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 13:31:42.291] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 13:31:42.291] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 13:31:42.291] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 13:31:42.291] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 13:32:42.303] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:33:42.314] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:34:42.323] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:35:42.333] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:36:42.341] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:36:42.341] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:37:42.349] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:38:42.358] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:39:42.365] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:40:39.697] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 13:40:39.697] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 13:40:39.697] [blockchain] [info] ✅ Served with std::ifstream (48454 bytes)
+[2025-06-03 13:40:42.372] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:40:47.619] [blockchain] [info] Security Event: Successful login | User: 856917434d09f28fd6c03eea74c26e18 | IP: 
+[2025-06-03 13:40:56.892] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 13:40:56.892] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 13:40:56.892] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 13:40:56.892] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 13:40:56.892] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 13:40:56.892] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 13:40:56.892] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 13:40:56.892] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 13:40:56.892] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 13:41:08.100] [blockchain] [info] Triggering polymorphic reorder. Reason: Manual trigger from web interface
+[2025-06-03 13:41:08.100] [blockchain] [info] Executing polymorphic chain reordering...
+[2025-06-03 13:41:08.100] [blockchain] [warning] Chain too short for reordering
+[2025-06-03 13:41:42.380] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:41:42.380] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:41:42.380] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 13:41:42.380] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 13:41:42.380] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 13:41:42.380] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 13:41:42.380] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 13:41:42.380] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 13:41:42.380] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 13:41:42.380] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 13:41:42.380] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 13:41:42.381] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 13:42:42.388] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:43:42.395] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:43:50.415] [blockchain] [debug] Created new block with index: 1
+[2025-06-03 13:43:50.416] [blockchain] [error] Transaction cd25a65f66fa9c8e3829237e77f29ce31db3f9cb9efb15ebd07419f2a7ff0698 has insufficient input amount
+[2025-06-03 13:43:50.416] [blockchain] [error] Block 1 contains invalid transactions
+[2025-06-03 13:43:50.416] [blockchain] [error] Invalid file block rejected: 1
+[2025-06-03 13:43:50.416] [blockchain] [error] Failed to add file block for: 462ac81b9435cb2d1887bb1f03736744
+[2025-06-03 13:44:42.403] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:45:42.410] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:46:42.419] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:46:42.419] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:47:42.427] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:48:42.435] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:49:42.443] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:50:42.453] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:51:42.462] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:51:42.462] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:51:42.462] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 13:51:42.462] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 13:51:42.462] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 13:51:42.462] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 13:51:42.462] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 13:51:42.462] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 13:51:42.462] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 13:51:42.462] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 13:51:42.462] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 13:51:42.462] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 13:52:42.471] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:53:42.480] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:54:42.487] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:55:42.497] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:56:42.505] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 13:56:42.505] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:57:42.513] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:58:42.522] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 13:59:42.530] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:00:42.537] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:01:42.546] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:01:42.546] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:01:42.546] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 14:01:42.546] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 14:01:42.546] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 14:01:42.546] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 14:01:42.546] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 14:01:42.546] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 14:01:42.546] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 14:01:42.546] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 14:01:42.547] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 14:01:42.547] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 14:02:42.555] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:03:42.561] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:04:42.569] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:05:42.577] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:06:42.583] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:06:42.583] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:07:42.590] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:08:42.594] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:09:42.599] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:10:42.604] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:11:42.610] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:11:42.610] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:11:42.610] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 14:11:42.610] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 14:11:42.610] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 14:11:42.610] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 14:11:42.610] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 14:11:42.610] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 14:11:42.610] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 14:11:42.610] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 14:11:42.610] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 14:11:42.610] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 14:12:42.616] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:13:42.625] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:14:42.635] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:14:47.774] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 14:14:47.774] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 14:14:47.774] [blockchain] [info] ✅ Served with std::ifstream (80884 bytes)
+[2025-06-03 14:15:42.644] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:16:42.651] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:16:42.651] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:17:42.657] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:18:42.662] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:19:42.666] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:20:42.671] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:21:42.677] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:21:42.677] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:21:42.677] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 14:21:42.677] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 14:21:42.677] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 14:21:42.677] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 14:21:42.677] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 14:21:42.677] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 14:21:42.677] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 14:21:42.677] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 14:21:42.677] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 14:21:42.677] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 14:22:42.683] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:23:42.689] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:24:42.697] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:25:42.702] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:26:42.708] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:26:42.708] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:26:54.941] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 14:26:54.941] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 14:26:54.941] [blockchain] [info] ✅ Served with std::ifstream (43610 bytes)
+[2025-06-03 14:27:42.713] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:28:42.719] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:29:42.725] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:30:42.732] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:31:42.740] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:31:42.740] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:31:42.740] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 14:31:42.740] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 14:31:42.740] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 14:31:42.740] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 14:31:42.740] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 14:31:42.740] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 14:31:42.740] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 14:31:42.740] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 14:31:42.740] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 14:31:42.740] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 14:32:42.746] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:33:42.751] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:34:42.756] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:34:47.406] [blockchain] [info] 🌐 ROOT PATH REQUEST RECEIVED
+[2025-06-03 14:34:47.406] [blockchain] [info] 📂 Looking for file at: src/web/static/index.html
+[2025-06-03 14:34:47.407] [blockchain] [info] ✅ Served with std::ifstream (50911 bytes)
+[2025-06-03 14:34:54.558] [blockchain] [info] Security Event: Successful login | User: 856917434d09f28fd6c03eea74c26e18 | IP: 
+[2025-06-03 14:35:42.763] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:36:42.769] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:36:42.769] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:37:42.779] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:38:42.787] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:39:42.794] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:40:42.801] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:41:42.807] [blockchain] [debug] Blockchain saved to file
+[2025-06-03 14:41:42.807] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:41:42.807] [blockchain] [info] 🛡️  Running periodic security scan...
+[2025-06-03 14:41:42.807] [blockchain] [info] Starting comprehensive security scan...
+[2025-06-03 14:41:42.807] [blockchain] [debug] Scanning for corrupted blocks...
+[2025-06-03 14:41:42.807] [blockchain] [critical] CRITICAL SECURITY ALERT: CORRUPTED_BLOCK_DETECTED - Block 0: Block hash validation failed
+[2025-06-03 14:41:42.807] [blockchain] [warning] 🛡️  SECURITY EVENT [HIGH]: Block hash validation failed at block 0
+[2025-06-03 14:41:42.807] [blockchain] [error] Corrupted block detected: Index 0, Hash: c425ef64f29e1f49...
+[2025-06-03 14:41:42.807] [blockchain] [warning] Corrupted blocks detected during scan
+[2025-06-03 14:41:42.807] [blockchain] [debug] Verifying chain integrity...
+[2025-06-03 14:41:42.807] [blockchain] [warning] Deep analysis failed for block 0
+[2025-06-03 14:41:42.807] [blockchain] [info] Security scan completed. Found 2 violations, overall result: ISSUES_DETECTED
+[2025-06-03 14:42:42.813] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:43:42.818] [blockchain] [info] 📊 Node Status - Height: 1, Peers: 0, Mempool: 0, Files: 0, Storage: 0 MB
+[2025-06-03 14:44:42.827] [blockchain] [info] 📊 Node Status - Height: 1,
