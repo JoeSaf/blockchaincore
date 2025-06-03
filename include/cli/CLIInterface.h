@@ -51,6 +51,8 @@ namespace Colors {
     const std::string BOLD = "\033[1m";
 }
 
+
+
 class CLIInterface {
 public:
     // Constructor
@@ -74,6 +76,10 @@ public:
     void setOutputFormat(OutputFormat format) { outputFormat_ = format; }
     void enableColors(bool enable) { colorsEnabled_ = enable; }
     void setVerbose(bool verbose) { verbose_ = verbose; }
+
+    void setMultiChainManager(std::shared_ptr<MultiChainManager> manager) {
+        multiChainManager_ = manager;
+    }
 
 private:
     // Core components
@@ -229,6 +235,21 @@ private:
     std::string colorize(const std::string& text, const std::string& color);
     std::string threatLevelToString(ThreatLevel level) const;
     
+    std::shared_ptr<MultiChainManager> multiChainManager_;
+    
+    // Multi-chain command handlers
+    int cmdMultiChain(const std::vector<std::string>& args);
+    int cmdMultiChainList(const std::vector<std::string>& args);
+    int cmdMultiChainCreate(const std::vector<std::string>& args);
+    int cmdMultiChainStart(const std::vector<std::string>& args);
+    int cmdMultiChainStop(const std::vector<std::string>& args);
+    int cmdMultiChainStatus(const std::vector<std::string>& args);
+    int cmdMultiChainTransfer(const std::vector<std::string>& args);
+    int cmdMultiChainBridge(const std::vector<std::string>& args);
+    int cmdMultiChainConsensus(const std::vector<std::string>& args);
+    
+    void showMultiChainHelp();
+
     // Command parsing
     CLICommand* findCommand(const std::string& name);
     std::vector<std::string> getCommandSuggestions(const std::string& partial);
@@ -260,4 +281,5 @@ private:
     CLIConfig config_;
     bool loadConfig(const std::string& configFile = "cli_config.json");
     bool saveConfig(const std::string& configFile = "cli_config.json");
+    
 };

@@ -43,6 +43,8 @@ struct NetworkMessage {
     static NetworkMessage deserialize(const std::string& data);
 };
 
+
+
 struct PeerInfo {
     std::string peerId;
     std::string ipAddress;

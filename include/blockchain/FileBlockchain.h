@@ -30,6 +30,7 @@ struct FileMetadata {
     void fromJson(const nlohmann::json& json);
 };
 
+
 // File chunk data
 struct FileChunk {
     std::string fileId;

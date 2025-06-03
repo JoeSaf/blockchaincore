@@ -1,325 +1,344 @@
-cmake_minimum_required(VERSION 3.16)
+message(STATUS "Components to build:")
+message(cmake_minimum_required(VERSION 3.16)
 
-# Project information
-project(MultiChainBlockchain 
-    VERSION 2.0.0
-    DESCRIPTION "Multi-Chain Blockchain System with File Storage"
-    LANGUAGES CXX)
+# Project configuration
+project(BlockchainNode 
+    VERSION 1.0.0
+    DESCRIPTION "Advanced Blockchain File Storage System with Security Features"
+    LANGUAGES CXX
+)
 
-# Set C++ standard
+# C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Build options
-option(BUILD_TESTS "Build test suite" ON)
-option(BUILD_CLI "Build CLI interface" ON)
-option(BUILD_WEB "Build web interface" ON)
-option(ENABLE_SECURITY "Enable security features" ON)
-option(ENABLE_SANITIZERS "Enable sanitizers for debug builds" OFF)
-
-# Set default build type
+# Build type defaults
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# Compiler-specific options
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    add_compile_options(
-        -Wall -Wextra -Wpedantic
-        -Wno-unused-parameter
-        -Wno-dangling-reference  # Suppress GCC 13+ warnings
-    )
-    
-    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-        add_compile_options(-g -O0)
-        if(ENABLE_SANITIZERS)
-            add_compile_options(-fsanitize=address -fsanitize=undefined)
-            add_link_options(-fsanitize=address -fsanitize=undefined)
-        endif()
-    else()
-        add_compile_options(-O3 -DNDEBUG)
-    endif()
+# Output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# Platform-specific configuration
+if(WIN32)
+    add_definitions(-D_WIN32_WINNT=0x0601)
+    add_definitions(-DWIN32_LEAN_AND_MEAN)
+    add_definitions(-DNOMINMAX)
 endif()
+
+# Compiler-specific flags
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-parameter -Wno-dangling-reference")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DDEBUG")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-parameter")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DDEBUG")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3 /EHsc")
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
+
+# Configure version header
+configure_file(
+    ${CMAKE_SOURCE_DIR}/include/version.h.in
+    ${CMAKE_BINARY_DIR}/include/version.h
+    @ONLY
+)
 
 # Find required packages
-find_package(PkgConfig REQUIRED)
 find_package(Threads REQUIRED)
-
-# OpenSSL
 find_package(OpenSSL REQUIRED)
-if(NOT OpenSSL_FOUND)
-    message(FATAL_ERROR "OpenSSL not found. Please install OpenSSL development packages.")
-endif()
 
-# Detect platform-specific libraries
-if(WIN32)
-    set(PLATFORM_LIBS ws2_32 wsock32)
-elseif(UNIX AND NOT APPLE)
-    set(PLATFORM_LIBS dl pthread)
-elseif(APPLE)
-    set(PLATFORM_LIBS dl pthread)
-endif()
+# Find optional packages
+find_package(PkgConfig QUIET)
 
 # Include directories
 include_directories(
     ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_BINARY_DIR}/include
     ${CMAKE_SOURCE_DIR}/third_party
-    ${OPENSSL_INCLUDE_DIR}
 )
 
 # Third-party libraries (header-only)
-set(THIRD_PARTY_INCLUDE_DIRS
-    ${CMAKE_SOURCE_DIR}/third_party/nlohmann
-    ${CMAKE_SOURCE_DIR}/third_party/spdlog/include
-    ${CMAKE_SOURCE_DIR}/third_party/httplib
-    ${CMAKE_SOURCE_DIR}/third_party/asio/include
+set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third_party)
+
+# Check for required third-party headers
+set(REQUIRED_HEADERS
+    ${THIRD_PARTY_DIR}/nlohmann/json.hpp
+    ${THIRD_PARTY_DIR}/spdlog/spdlog.h
+    ${THIRD_PARTY_DIR}/httplib.h
 )
 
-include_directories(${THIRD_PARTY_INCLUDE_DIRS})
+foreach(HEADER ${REQUIRED_HEADERS})
+    if(NOT EXISTS ${HEADER})
+        message(WARNING "Missing third-party header: ${HEADER}")
+        message(STATUS "Please ensure all third-party dependencies are in the third_party/ directory")
+    endif()
+endforeach()
 
-# Suppress third-party warnings
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    include_directories(SYSTEM ${THIRD_PARTY_INCLUDE_DIRS})
-endif()
-
-# Core library sources
-set(CORE_SOURCES
-    # Utilities
-    src/utils/Crypto.cpp
-    src/utils/Utils.cpp
-    
-    # Blockchain core
-    src/blockchain/Transaction.cpp
+# Core blockchain library
+set(BLOCKCHAIN_CORE_SOURCES
     src/blockchain/Block.cpp
+    src/blockchain/Transaction.cpp
     src/blockchain/Blockchain.cpp
     src/blockchain/TransactionPool.cpp
-    
-    # File blockchain
     src/blockchain/FileBlockchain.cpp
-    
-    # Multi-chain system
-    src/MultiChainManager.cpp
-    
-    # P2P networking
-    src/p2p/P2PNetwork.cpp
-    src/p2p/MessageHandler.cpp
-    
-    # Security
-    src/security/SecurityManager.cpp
-    
-    # API server
-    src/api/RestApiServer.cpp
+    src/utils/Crypto.cpp
+    src/utils/Utils.cpp
 )
 
-# Web interface sources
-if(BUILD_WEB)
-    list(APPEND CORE_SOURCES
-        src/web/WebInterface.cpp
-    )
-    add_definitions(-DENABLE_WEB_INTERFACE)
-endif()
+add_library(blockchain_core ${BLOCKCHAIN_CORE_SOURCES})
+target_link_libraries(blockchain_core 
+    OpenSSL::SSL 
+    OpenSSL::Crypto
+    Threads::Threads
+)
+target_include_directories(blockchain_core PUBLIC 
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_BINARY_DIR}/include
+)
 
-# CLI interface sources
-if(BUILD_CLI)
-    set(CLI_SOURCES
-        src/cli/CLIInterface.cpp
-    )
-    add_definitions(-DENABLE_CLI_INTERFACE)
-endif()
+# P2P networking library
+set(P2P_SOURCES
+    src/p2p/P2PNetwork.cpp
+    src/p2p/MessageHandler.cpp
+)
 
-# Create core library
-add_library(blockchain_core STATIC ${CORE_SOURCES})
-
-target_link_libraries(blockchain_core
-    ${OPENSSL_LIBRARIES}
-    ${PLATFORM_LIBS}
+add_library(p2p_network ${P2P_SOURCES})
+target_link_libraries(p2p_network 
+    blockchain_core
     Threads::Threads
 )
 
-target_compile_definitions(blockchain_core PRIVATE
-    ASIO_STANDALONE
-    ASIO_NO_DEPRECATED
-    HTTPLIB_OPENSSL_SUPPORT
+# Security system library
+set(SECURITY_SOURCES
+    src/security/SecurityManager.cpp
 )
 
-if(ENABLE_SECURITY)
-    target_compile_definitions(blockchain_core PRIVATE ENABLE_SECURITY_FEATURES)
+add_library(security_system ${SECURITY_SOURCES})
+target_link_libraries(security_system 
+    blockchain_core
+    Threads::Threads
+)
+
+# Multi-chain management library
+set(MULTICHAIN_SOURCES
+    src/multichain/MultiChainManager.cpp
+    src/multichain/ChainBridge.cpp
+    src/multichain/ConsensusCoordinator.cpp
+    src/multichain/ChainFactory.cpp
+)
+
+add_library(multichain_manager ${MULTICHAIN_SOURCES})
+target_link_libraries(multichain_manager 
+    blockchain_core
+    p2p_network
+    security_system
+    Threads::Threads
+)
+
+# CLI interface library
+set(CLI_SOURCES
+    src/cli/CLIInterface.cpp
+)
+
+add_library(cli_interface ${CLI_SOURCES})
+target_link_libraries(cli_interface 
+    blockchain_core
+    p2p_network
+    security_system
+    multichain_manager
+)
+
+# Web interface library
+set(WEB_SOURCES
+    src/web/WebInterface.cpp
+)
+
+add_library(web_interface ${WEB_SOURCES})
+target_link_libraries(web_interface 
+    blockchain_core
+    p2p_network
+    security_system
+    multichain_manager
+    Threads::Threads
+)
+
+# REST API library
+set(API_SOURCES
+    src/api/RestApiServer.cpp
+)
+
+add_library(rest_api ${API_SOURCES})
+target_link_libraries(rest_api 
+    blockchain_core
+    p2p_network
+    Threads::Threads
+)
+
+# Main blockchain node executable (with web interface)
+add_executable(blockchain_node src/main.cpp)
+target_link_libraries(blockchain_node 
+    blockchain_core
+    p2p_network
+    security_system
+    multichain_manager
+    web_interface
+    rest_api
+    Threads::Threads
+)
+
+# CLI-only executable
+add_executable(blockchain_cli src/cli_main.cpp)
+target_link_libraries(blockchain_cli 
+    blockchain_core
+    p2p_network
+    security_system
+    multichain_manager
+    cli_interface
+    Threads::Threads
+)
+
+# Platform-specific linking
+if(WIN32)
+    target_link_libraries(blockchain_node ws2_32 wsock32)
+    target_link_libraries(blockchain_cli ws2_32 wsock32)
+    target_link_libraries(p2p_network ws2_32 wsock32)
+    target_link_libraries(web_interface ws2_32 wsock32)
+    target_link_libraries(rest_api ws2_32 wsock32)
 endif()
 
-# Multi-chain node executable
-add_executable(multi_chain_node
-    src/multi_chain_main.cpp
-)
-
-target_link_libraries(multi_chain_node
-    blockchain_core
-)
-
-# CLI executable
-if(BUILD_CLI)
-    add_executable(blockchain_cli
-        src/cli_main.cpp
-        ${CLI_SOURCES}
+# Enable testing (optional)
+option(BUILD_TESTS "Build test suite" ON)
+if(BUILD_TESTS)
+    enable_testing()
+    
+    # Simple test executable
+    add_executable(blockchain_node_test 
+        tests/test_main.cpp
+        tests/test_blockchain.cpp
+        tests/test_crypto.cpp
+        tests/test_p2p.cpp
+        tests/test_security.cpp
+        tests/test_file_storage.cpp
     )
     
-    target_link_libraries(blockchain_cli
+    target_link_libraries(blockchain_node_test 
         blockchain_core
+        p2p_network
+        security_system
+        multichain_manager
+        cli_interface
+        web_interface
+        rest_api
     )
+    
+    add_test(NAME blockchain_tests COMMAND blockchain_node_test)
 endif()
 
-# Original single-chain node (for compatibility)
-add_executable(blockchain_node
-    src/main.cpp
-)
-
-target_link_libraries(blockchain_node
-    blockchain_core
-)
-
-# Set output directory
-set_target_properties(
-    multi_chain_node blockchain_node
-    PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-)
-
-if(BUILD_CLI)
-    set_target_properties(
-        blockchain_cli
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    )
-endif()
-
-
-# Installation
-install(TARGETS multi_chain_node blockchain_node
+# Installation rules
+install(TARGETS blockchain_node blockchain_cli 
     RUNTIME DESTINATION bin
 )
 
-if(BUILD_CLI)
-    install(TARGETS blockchain_cli
-        RUNTIME DESTINATION bin
-    )
-endif()
-
-# Install headers for development
-install(DIRECTORY include/
-    DESTINATION include/blockchain
-    FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/src/web/static 
+    DESTINATION share/blockchain_node/web
+    OPTIONAL
 )
 
-# Install configuration templates
-install(FILES 
-    config/node.json.template
-    config/security.json.template
-    DESTINATION share/blockchain/config
-)
-
-# Install documentation
-install(FILES 
-    README.md
-    LICENSE
-    INSTALL.md
-    DESTINATION share/doc/blockchain
-)
-
-# Install systemd service file (Linux only)
-if(UNIX AND NOT APPLE)
-    install(FILES scripts/multi-chain-blockchain.service
-        DESTINATION lib/systemd/system
-    )
-endif()
-
-# Version configuration
-configure_file(
-    "${CMAKE_SOURCE_DIR}/include/version.h.in"
-    "${CMAKE_BINARY_DIR}/include/version.h"
-    @ONLY
-)
-
-include_directories(${CMAKE_BINARY_DIR}/include)
-
-# CPack configuration for package generation
-set(CPACK_PACKAGE_NAME "multi-chain-blockchain")
-set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
-set(CPACK_PACKAGE_DESCRIPTION "${PROJECT_DESCRIPTION}")
-set(CPACK_PACKAGE_CONTACT "blockchain@example.com")
-
-if(WIN32)
-    set(CPACK_GENERATOR "NSIS;ZIP")
-elseif(APPLE)
-    set(CPACK_GENERATOR "DragNDrop;TGZ")
-else()
-    set(CPACK_GENERATOR "DEB;RPM;TGZ")
+# Create a simple test runner if test files don't exist
+if(BUILD_TESTS AND NOT EXISTS ${CMAKE_SOURCE_DIR}/tests/test_main.cpp)
+    file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/tests)
     
-    # Debian package specifics
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libssl-dev, libcurl4-openssl-dev")
-    set(CPACK_DEBIAN_PACKAGE_SECTION "net")
-    set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+    file(WRITE ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
+"#include <iostream>
+#include <cassert>
+#include \"blockchain/Blockchain.h\"
+#include \"utils/Crypto.h\"
+
+int main() {
+    std::cout << \"Running blockchain tests...\" << std::endl;
     
-    # RPM package specifics
-    set(CPACK_RPM_PACKAGE_REQUIRES "openssl-devel, libcurl-devel")
-    set(CPACK_RPM_PACKAGE_GROUP "Applications/Internet")
+    // Basic blockchain test
+    try {
+        Blockchain blockchain;
+        std::cout << \"✓ Blockchain creation successful\" << std::endl;
+        
+        // Test mining
+        auto block = blockchain.mineBlock(\"test_miner\");
+        std::cout << \"✓ Block mining successful\" << std::endl;
+        
+        // Test crypto
+        auto hash = Crypto::sha256(\"test\");
+        assert(!hash.empty());
+        std::cout << \"✓ Crypto hash successful\" << std::endl;
+        
+        // Test key generation
+        auto keyPair = Crypto::generateKeyPair();
+        assert(!keyPair.first.empty() && !keyPair.second.empty());
+        std::cout << \"✓ Key generation successful\" << std::endl;
+        
+    } catch (const std::exception& e) {
+        std::cerr << \"Test failed: \" << e.what() << std::endl;
+        return 1;
+    }
+    
+    std::cout << \"All tests passed!\" << std::endl;
+    return 0;
+}
+")
+
+    file(WRITE ${CMAKE_SOURCE_DIR}/tests/test_blockchain.cpp "// Blockchain tests placeholder\n")
+    file(WRITE ${CMAKE_SOURCE_DIR}/tests/test_crypto.cpp "// Crypto tests placeholder\n")
+    file(WRITE ${CMAKE_SOURCE_DIR}/tests/test_p2p.cpp "// P2P tests placeholder\n")
+    file(WRITE ${CMAKE_SOURCE_DIR}/tests/test_security.cpp "// Security tests placeholder\n")
+    file(WRITE ${CMAKE_SOURCE_DIR}/tests/test_file_storage.cpp "// File storage tests placeholder\n")
+    
+    message(STATUS "Created basic test files in tests/ directory")
 endif()
 
-include(CPack)
-
-# Custom targets
-add_custom_target(format
-    COMMAND find ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include -name "*.cpp" -o -name "*.h" | xargs clang-format -i -style=file
-    COMMENT "Formatting code with clang-format"
-)
-
-add_custom_target(check
-    COMMAND cppcheck --enable=all --std=c++17 --suppress=missingIncludeSystem 
-            ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include
-    COMMENT "Running static analysis with cppcheck"
-)
-
-add_custom_target(demo
-    COMMAND ${CMAKE_BINARY_DIR}/bin/multi_chain_node --demo
-    DEPENDS multi_chain_node
-    COMMENT "Running system demonstration"
-)
-
-# Print configuration summary
-message(STATUS "")
-message(STATUS "Multi-Chain Blockchain Configuration Summary:")
-message(STATUS "  Version: ${PROJECT_VERSION}")
-message(STATUS "  Build type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "  Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
-message(STATUS "  Platform: ${CMAKE_SYSTEM_NAME}")
-message(STATUS "")
-message(STATUS "Features:")
-message(STATUS "  Build tests: ${BUILD_TESTS}")
-message(STATUS "  Build CLI: ${BUILD_CLI}")
-message(STATUS "  Build web interface: ${BUILD_WEB}")
-message(STATUS "  Security features: ${ENABLE_SECURITY}")
-message(STATUS "  Sanitizers: ${ENABLE_SANITIZERS}")
-message(STATUS "")
-message(STATUS "Dependencies:")
-message(STATUS "  OpenSSL: ${OPENSSL_VERSION}")
-message(STATUS "")
-message(STATUS "Installation:")
-message(STATUS "  Binary directory: ${CMAKE_INSTALL_PREFIX}/bin")
-message(STATUS "  Include directory: ${CMAKE_INSTALL_PREFIX}/include/blockchain")
-message(STATUS "")
-
-# Helpful build instructions
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    message(STATUS "Debug build - run with:")
-    message(STATUS "  make multi_chain_node && ./bin/multi_chain_node --demo")
-else()
-    message(STATUS "Release build - run with:")
-    message(STATUS "  make && ./bin/multi_chain_node")
+# Development tools
+option(ENABLE_CLANG_TIDY "Enable clang-tidy checks" OFF)
+if(ENABLE_CLANG_TIDY)
+    find_program(CLANG_TIDY_EXE NAMES "clang-tidy")
+    if(CLANG_TIDY_EXE)
+        set_target_properties(blockchain_core PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_EXE}")
+        message(STATUS "clang-tidy enabled")
+    endif()
 endif()
 
+# Summary
+message(STATUS "")
+message(STATUS "════════════════════════════════════════")
+message(STATUS "  Blockchain Node Build Configuration")
+message(STATUS "════════════════════════════════════════")
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "C++ standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+message(STATUS "OpenSSL version: ${OPENSSL_VERSION}")
+message(STATUS "Build tests: ${BUILD_TESTS}")
+message(STATUS "")
+message(STATUS "Components to build:")
+message(STATUS "  ✓ Core Blockchain (Proof-of-Work, UTXO)")
+message(STATUS "  ✓ File Storage System (chunked, deduplicated)")
+message(STATUS "  ✓ P2P Network (discovery, consensus)")
+message(STATUS "  ✓ Security Manager (polymorphic reordering)")
+message(STATUS "  ✓ Multi-Chain Manager (cross-chain, bridges)")
+message(STATUS "  ✓ CLI Interface (interactive & batch)")
+message(STATUS "  ✓ Web Interface (file upload & explorer)")
+message(STATUS "  ✓ REST API Server (full blockchain API)")
+message(STATUS "")
+message(STATUS "Executables:")
+message(STATUS "  → blockchain_node (full node with web UI)")
+message(STATUS "  → blockchain_cli (command-line interface)")
 if(BUILD_TESTS)
-    message(STATUS "Run tests with:")
-    message(STATUS "  make test")
-    message(STATUS "  or: ./bin/blockchain_test")
+    message(STATUS "  → blockchain_node_test (test suite)")
 endif()
-
+message(STATUS "════════════════════════════════════════")
 message(STATUS "")

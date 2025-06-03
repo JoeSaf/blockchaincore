@@ -139,6 +139,8 @@ public:
     static constexpr double DEFAULT_RANDOMNESS_FACTOR = 0.7;
     static constexpr uint32_t SECURITY_SCAN_INTERVAL = 60; // seconds
 
+    
+
 private:
     // Core data
     std::shared_ptr<Blockchain> blockchain_;

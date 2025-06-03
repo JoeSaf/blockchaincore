@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include <functional>
-#include <httplib.h>
+#include <third_party/httplib.h>  // FIXED: Added third_party/ prefix
 #include <nlohmann/json.hpp>
 #include "../blockchain/Blockchain.h"
 #include "../p2p/P2PNetwork.h"

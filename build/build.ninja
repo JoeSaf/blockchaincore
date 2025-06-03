@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: BlockchainNode
+# Project: MultiChainBlockchain
 # Configurations: Release
 # =============================================================================
 
@@ -49,95 +49,148 @@ cmake_ninja_workdir = /home/senjoe/Documents/p2pblockchain/build/
 
 build cmake_object_order_depends_target_blockchain_core: phony || .
 
-build CMakeFiles/blockchain_core.dir/src/blockchain/Block.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/Block.cpp || cmake_object_order_depends_target_blockchain_core
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/Block.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/blockchain_core.dir
-  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
-
-build CMakeFiles/blockchain_core.dir/src/blockchain/Blockchain.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/Blockchain.cpp || cmake_object_order_depends_target_blockchain_core
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/Blockchain.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/blockchain_core.dir
-  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
-
-build CMakeFiles/blockchain_core.dir/src/blockchain/Transaction.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/Transaction.cpp || cmake_object_order_depends_target_blockchain_core
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/Transaction.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/blockchain_core.dir
-  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
-
-build CMakeFiles/blockchain_core.dir/src/blockchain/TransactionPool.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/TransactionPool.cpp || cmake_object_order_depends_target_blockchain_core
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/TransactionPool.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/blockchain_core.dir
-  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
-
-build CMakeFiles/blockchain_core.dir/src/blockchain/FileBlockchain.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/FileBlockchain.cpp || cmake_object_order_depends_target_blockchain_core
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/FileBlockchain.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/blockchain_core.dir
-  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
-
 build CMakeFiles/blockchain_core.dir/src/utils/Crypto.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/utils/Crypto.cpp || cmake_object_order_depends_target_blockchain_core
   CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
   DEP_FILE = CMakeFiles/blockchain_core.dir/src/utils/Crypto.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
   OBJECT_DIR = CMakeFiles/blockchain_core.dir
   OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/utils
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
 
 build CMakeFiles/blockchain_core.dir/src/utils/Utils.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/utils/Utils.cpp || cmake_object_order_depends_target_blockchain_core
   CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
   DEP_FILE = CMakeFiles/blockchain_core.dir/src/utils/Utils.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
   OBJECT_DIR = CMakeFiles/blockchain_core.dir
   OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/utils
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
 
-build CMakeFiles/blockchain_core.dir/src/security/SecurityManager.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/security/SecurityManager.cpp || cmake_object_order_depends_target_blockchain_core
+build CMakeFiles/blockchain_core.dir/src/blockchain/Transaction.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/Transaction.cpp || cmake_object_order_depends_target_blockchain_core
   CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/blockchain_core.dir/src/security/SecurityManager.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/Transaction.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
   OBJECT_DIR = CMakeFiles/blockchain_core.dir
-  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/security
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/blockchain/Block.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/Block.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/Block.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/blockchain/Blockchain.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/Blockchain.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/Blockchain.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/blockchain/TransactionPool.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/TransactionPool.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/TransactionPool.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/blockchain/FileBlockchain.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/blockchain/FileBlockchain.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/blockchain/FileBlockchain.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/blockchain
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/MultiChainManager.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/MultiChainManager.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/MultiChainManager.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
 
 build CMakeFiles/blockchain_core.dir/src/p2p/P2PNetwork.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/p2p/P2PNetwork.cpp || cmake_object_order_depends_target_blockchain_core
   CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
   DEP_FILE = CMakeFiles/blockchain_core.dir/src/p2p/P2PNetwork.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
   OBJECT_DIR = CMakeFiles/blockchain_core.dir
   OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/p2p
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
 
 build CMakeFiles/blockchain_core.dir/src/p2p/MessageHandler.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/p2p/MessageHandler.cpp || cmake_object_order_depends_target_blockchain_core
   CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
   DEP_FILE = CMakeFiles/blockchain_core.dir/src/p2p/MessageHandler.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17 -O3 -march=native
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
   OBJECT_DIR = CMakeFiles/blockchain_core.dir
   OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/p2p
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/security/SecurityManager.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/security/SecurityManager.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/security/SecurityManager.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/security
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/api/RestApiServer.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/api/RestApiServer.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/api/RestApiServer.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/api
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
+
+build CMakeFiles/blockchain_core.dir/src/web/WebInterface.cpp.o: CXX_COMPILER__blockchain_core_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/web/WebInterface.cpp || cmake_object_order_depends_target_blockchain_core
+  CONFIG = Release
+  DEFINES = -DASIO_NO_DEPRECATED -DASIO_STANDALONE -DENABLE_CLI_INTERFACE -DENABLE_SECURITY_FEATURES -DENABLE_WEB_INTERFACE -DHTTPLIB_OPENSSL_SUPPORT
+  DEP_FILE = CMakeFiles/blockchain_core.dir/src/web/WebInterface.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_core.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_core.dir/src/web
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
+  TARGET_PDB = libblockchain_core.pdb
 
 
 # =============================================================================
@@ -147,131 +200,56 @@ build CMakeFiles/blockchain_core.dir/src/p2p/MessageHandler.cpp.o: CXX_COMPILER_
 #############################################
 # Link the static library libblockchain_core.a
 
-build libblockchain_core.a: CXX_STATIC_LIBRARY_LINKER__blockchain_core_Release CMakeFiles/blockchain_core.dir/src/blockchain/Block.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/Blockchain.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/Transaction.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/TransactionPool.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/FileBlockchain.cpp.o CMakeFiles/blockchain_core.dir/src/utils/Crypto.cpp.o CMakeFiles/blockchain_core.dir/src/utils/Utils.cpp.o CMakeFiles/blockchain_core.dir/src/security/SecurityManager.cpp.o CMakeFiles/blockchain_core.dir/src/p2p/P2PNetwork.cpp.o CMakeFiles/blockchain_core.dir/src/p2p/MessageHandler.cpp.o
+build libblockchain_core.a: CXX_STATIC_LIBRARY_LINKER__blockchain_core_Release CMakeFiles/blockchain_core.dir/src/utils/Crypto.cpp.o CMakeFiles/blockchain_core.dir/src/utils/Utils.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/Transaction.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/Block.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/Blockchain.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/TransactionPool.cpp.o CMakeFiles/blockchain_core.dir/src/blockchain/FileBlockchain.cpp.o CMakeFiles/blockchain_core.dir/src/MultiChainManager.cpp.o CMakeFiles/blockchain_core.dir/src/p2p/P2PNetwork.cpp.o CMakeFiles/blockchain_core.dir/src/p2p/MessageHandler.cpp.o CMakeFiles/blockchain_core.dir/src/security/SecurityManager.cpp.o CMakeFiles/blockchain_core.dir/src/api/RestApiServer.cpp.o CMakeFiles/blockchain_core.dir/src/web/WebInterface.cpp.o
   CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra
+  LANGUAGE_COMPILE_FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/blockchain_core.dir
   POST_BUILD = :
   PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_core.dir/blockchain_core.pdb
   TARGET_FILE = libblockchain_core.a
-  TARGET_PDB = blockchain_core.a.dbg
+  TARGET_PDB = libblockchain_core.pdb
 
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target api_server
+# Object build statements for EXECUTABLE target multi_chain_node
 
 
 #############################################
-# Order-only phony target for api_server
+# Order-only phony target for multi_chain_node
 
-build cmake_object_order_depends_target_api_server: phony || cmake_object_order_depends_target_blockchain_core
+build cmake_object_order_depends_target_multi_chain_node: phony || cmake_object_order_depends_target_blockchain_core
 
-build CMakeFiles/api_server.dir/src/api/RestApiServer.cpp.o: CXX_COMPILER__api_server_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/api/RestApiServer.cpp || cmake_object_order_depends_target_api_server
+build CMakeFiles/multi_chain_node.dir/src/MultiChainManager.cpp.o: CXX_COMPILER__multi_chain_node_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/MultiChainManager.cpp || cmake_object_order_depends_target_multi_chain_node
   CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/api_server.dir/src/api/RestApiServer.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/api_server.dir
-  OBJECT_FILE_DIR = CMakeFiles/api_server.dir/src/api
-
-build CMakeFiles/api_server.dir/src/web/WebInterface.cpp.o: CXX_COMPILER__api_server_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/web/WebInterface.cpp || cmake_object_order_depends_target_api_server
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/api_server.dir/src/web/WebInterface.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/api_server.dir
-  OBJECT_FILE_DIR = CMakeFiles/api_server.dir/src/web
+  DEFINES = -DENABLE_CLI_INTERFACE -DENABLE_WEB_INTERFACE
+  DEP_FILE = CMakeFiles/multi_chain_node.dir/src/MultiChainManager.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/multi_chain_node.dir
+  OBJECT_FILE_DIR = CMakeFiles/multi_chain_node.dir/src
+  TARGET_COMPILE_PDB = CMakeFiles/multi_chain_node.dir/
+  TARGET_PDB = bin/multi_chain_node.pdb
 
 
 # =============================================================================
-# Link build statements for STATIC_LIBRARY target api_server
+# Link build statements for EXECUTABLE target multi_chain_node
 
 
 #############################################
-# Link the static library libapi_server.a
+# Link the executable bin/multi_chain_node
 
-build libapi_server.a: CXX_STATIC_LIBRARY_LINKER__api_server_Release CMakeFiles/api_server.dir/src/api/RestApiServer.cpp.o CMakeFiles/api_server.dir/src/web/WebInterface.cpp.o || libblockchain_core.a
+build bin/multi_chain_node: CXX_EXECUTABLE_LINKER__multi_chain_node_Release CMakeFiles/multi_chain_node.dir/src/MultiChainManager.cpp.o | libblockchain_core.a /usr/lib/libssl.so /usr/lib/libcrypto.so || libblockchain_core.a
   CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra
-  OBJECT_DIR = CMakeFiles/api_server.dir
+  DEP_FILE = CMakeFiles/multi_chain_node.dir/link.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG
+  LINK_FLAGS = -Wl,--dependency-file=CMakeFiles/multi_chain_node.dir/link.d
+  LINK_LIBRARIES = libblockchain_core.a  /usr/lib/libssl.so  /usr/lib/libcrypto.so  -ldl  -lpthread
+  OBJECT_DIR = CMakeFiles/multi_chain_node.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = libapi_server.a
-  TARGET_PDB = api_server.a.dbg
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target cli_interface
-
-
-#############################################
-# Order-only phony target for cli_interface
-
-build cmake_object_order_depends_target_cli_interface: phony || cmake_object_order_depends_target_blockchain_core
-
-build CMakeFiles/cli_interface.dir/src/cli/CLIInterface.cpp.o: CXX_COMPILER__cli_interface_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/cli/CLIInterface.cpp || cmake_object_order_depends_target_cli_interface
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/cli_interface.dir/src/cli/CLIInterface.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/cli_interface.dir
-  OBJECT_FILE_DIR = CMakeFiles/cli_interface.dir/src/cli
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target cli_interface
-
-
-#############################################
-# Link the static library libcli_interface.a
-
-build libcli_interface.a: CXX_STATIC_LIBRARY_LINKER__cli_interface_Release CMakeFiles/cli_interface.dir/src/cli/CLIInterface.cpp.o || libblockchain_core.a
-  CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra
-  OBJECT_DIR = CMakeFiles/cli_interface.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = libcli_interface.a
-  TARGET_PDB = cli_interface.a.dbg
-
-# =============================================================================
-# Object build statements for EXECUTABLE target blockchain_node
-
-
-#############################################
-# Order-only phony target for blockchain_node
-
-build cmake_object_order_depends_target_blockchain_node: phony || cmake_object_order_depends_target_api_server cmake_object_order_depends_target_blockchain_core
-
-build CMakeFiles/blockchain_node.dir/src/main.cpp.o: CXX_COMPILER__blockchain_node_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/main.cpp || cmake_object_order_depends_target_blockchain_node
-  CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
-  DEP_FILE = CMakeFiles/blockchain_node.dir/src/main.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
-  OBJECT_DIR = CMakeFiles/blockchain_node.dir
-  OBJECT_FILE_DIR = CMakeFiles/blockchain_node.dir/src
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target blockchain_node
-
-
-#############################################
-# Link the executable bin/blockchain_node
-
-build bin/blockchain_node: CXX_EXECUTABLE_LINKER__blockchain_node_Release CMakeFiles/blockchain_node.dir/src/main.cpp.o | libblockchain_core.a /usr/lib/libssl.so /usr/lib/libcrypto.so libapi_server.a libblockchain_core.a /usr/lib/libssl.so /usr/lib/libcrypto.so /usr/lib/libspdlog.so.1.15.3 /usr/lib/libfmt.so.11.2.0 || libapi_server.a libblockchain_core.a
-  CONFIG = Release
-  DEP_FILE = CMakeFiles/blockchain_node.dir/link.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra
-  LINK_FLAGS = -Wl,--dependency-file=CMakeFiles/blockchain_node.dir/link.d
-  LINK_LIBRARIES = libblockchain_core.a  /usr/lib/libssl.so  /usr/lib/libcrypto.so  libapi_server.a  libblockchain_core.a  -ldl  /usr/lib/libssl.so  /usr/lib/libcrypto.so  /usr/lib/libspdlog.so.1.15.3  /usr/lib/libfmt.so.11.2.0
-  OBJECT_DIR = CMakeFiles/blockchain_node.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = bin/blockchain_node
-  TARGET_PDB = blockchain_node.dbg
+  TARGET_COMPILE_PDB = CMakeFiles/multi_chain_node.dir/
+  TARGET_FILE = bin/multi_chain_node
+  TARGET_PDB = bin/multi_chain_node.pdb
 
 # =============================================================================
 # Object build statements for EXECUTABLE target blockchain_cli
@@ -280,16 +258,29 @@ build bin/blockchain_node: CXX_EXECUTABLE_LINKER__blockchain_node_Release CMakeF
 #############################################
 # Order-only phony target for blockchain_cli
 
-build cmake_object_order_depends_target_blockchain_cli: phony || cmake_object_order_depends_target_blockchain_core cmake_object_order_depends_target_cli_interface
+build cmake_object_order_depends_target_blockchain_cli: phony || cmake_object_order_depends_target_blockchain_core
 
 build CMakeFiles/blockchain_cli.dir/src/cli_main.cpp.o: CXX_COMPILER__blockchain_cli_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/cli_main.cpp || cmake_object_order_depends_target_blockchain_cli
   CONFIG = Release
-  DEFINES = -DENABLE_WEB_INTERFACE -DFMT_SHARED -DHTTPLIB_OPENSSL_SUPPORT -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB
+  DEFINES = -DENABLE_CLI_INTERFACE -DENABLE_WEB_INTERFACE
   DEP_FILE = CMakeFiles/blockchain_cli.dir/src/cli_main.cpp.o.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra -std=c++17
-  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/include/third_party -I/home/senjoe/Documents/p2pblockchain/build/include
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
   OBJECT_DIR = CMakeFiles/blockchain_cli.dir
   OBJECT_FILE_DIR = CMakeFiles/blockchain_cli.dir/src
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_cli.dir/
+  TARGET_PDB = bin/blockchain_cli.pdb
+
+build CMakeFiles/blockchain_cli.dir/src/cli/CLIInterface.cpp.o: CXX_COMPILER__blockchain_cli_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/cli/CLIInterface.cpp || cmake_object_order_depends_target_blockchain_cli
+  CONFIG = Release
+  DEFINES = -DENABLE_CLI_INTERFACE -DENABLE_WEB_INTERFACE
+  DEP_FILE = CMakeFiles/blockchain_cli.dir/src/cli/CLIInterface.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_cli.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_cli.dir/src/cli
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_cli.dir/
+  TARGET_PDB = bin/blockchain_cli.pdb
 
 
 # =============================================================================
@@ -299,17 +290,101 @@ build CMakeFiles/blockchain_cli.dir/src/cli_main.cpp.o: CXX_COMPILER__blockchain
 #############################################
 # Link the executable bin/blockchain_cli
 
-build bin/blockchain_cli: CXX_EXECUTABLE_LINKER__blockchain_cli_Release CMakeFiles/blockchain_cli.dir/src/cli_main.cpp.o | libblockchain_core.a libcli_interface.a /usr/lib/libssl.so /usr/lib/libcrypto.so libblockchain_core.a /usr/lib/libssl.so /usr/lib/libcrypto.so /usr/lib/libspdlog.so.1.15.3 /usr/lib/libfmt.so.11.2.0 || libblockchain_core.a libcli_interface.a
+build bin/blockchain_cli: CXX_EXECUTABLE_LINKER__blockchain_cli_Release CMakeFiles/blockchain_cli.dir/src/cli_main.cpp.o CMakeFiles/blockchain_cli.dir/src/cli/CLIInterface.cpp.o | libblockchain_core.a /usr/lib/libssl.so /usr/lib/libcrypto.so || libblockchain_core.a
   CONFIG = Release
   DEP_FILE = CMakeFiles/blockchain_cli.dir/link.d
-  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -Wall -Wextra
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG
   LINK_FLAGS = -Wl,--dependency-file=CMakeFiles/blockchain_cli.dir/link.d
-  LINK_LIBRARIES = libblockchain_core.a  libcli_interface.a  /usr/lib/libssl.so  /usr/lib/libcrypto.so  libblockchain_core.a  /usr/lib/libssl.so  /usr/lib/libcrypto.so  -ldl  /usr/lib/libspdlog.so.1.15.3  /usr/lib/libfmt.so.11.2.0
+  LINK_LIBRARIES = libblockchain_core.a  /usr/lib/libssl.so  /usr/lib/libcrypto.so  -ldl  -lpthread
   OBJECT_DIR = CMakeFiles/blockchain_cli.dir
   POST_BUILD = :
   PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_cli.dir/
   TARGET_FILE = bin/blockchain_cli
-  TARGET_PDB = blockchain_cli.dbg
+  TARGET_PDB = bin/blockchain_cli.pdb
+
+# =============================================================================
+# Object build statements for EXECUTABLE target blockchain_node
+
+
+#############################################
+# Order-only phony target for blockchain_node
+
+build cmake_object_order_depends_target_blockchain_node: phony || cmake_object_order_depends_target_blockchain_core
+
+build CMakeFiles/blockchain_node.dir/src/main.cpp.o: CXX_COMPILER__blockchain_node_unscanned_Release /home/senjoe/Documents/p2pblockchain/src/main.cpp || cmake_object_order_depends_target_blockchain_node
+  CONFIG = Release
+  DEFINES = -DENABLE_CLI_INTERFACE -DENABLE_WEB_INTERFACE
+  DEP_FILE = CMakeFiles/blockchain_node.dir/src/main.cpp.o.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-dangling-reference -O3 -DNDEBUG
+  INCLUDES = -I/home/senjoe/Documents/p2pblockchain/include -I/home/senjoe/Documents/p2pblockchain/third_party -I/home/senjoe/Documents/p2pblockchain/build/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/nlohmann -isystem /home/senjoe/Documents/p2pblockchain/third_party/spdlog/include -isystem /home/senjoe/Documents/p2pblockchain/third_party/httplib -isystem /home/senjoe/Documents/p2pblockchain/third_party/asio/include
+  OBJECT_DIR = CMakeFiles/blockchain_node.dir
+  OBJECT_FILE_DIR = CMakeFiles/blockchain_node.dir/src
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_node.dir/
+  TARGET_PDB = bin/blockchain_node.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target blockchain_node
+
+
+#############################################
+# Link the executable bin/blockchain_node
+
+build bin/blockchain_node: CXX_EXECUTABLE_LINKER__blockchain_node_Release CMakeFiles/blockchain_node.dir/src/main.cpp.o | libblockchain_core.a /usr/lib/libssl.so /usr/lib/libcrypto.so || libblockchain_core.a
+  CONFIG = Release
+  DEP_FILE = CMakeFiles/blockchain_node.dir/link.d
+  FLAGS = -Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter -O3 -DNDEBUG
+  LINK_FLAGS = -Wl,--dependency-file=CMakeFiles/blockchain_node.dir/link.d
+  LINK_LIBRARIES = libblockchain_core.a  /usr/lib/libssl.so  /usr/lib/libcrypto.so  -ldl  -lpthread
+  OBJECT_DIR = CMakeFiles/blockchain_node.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/blockchain_node.dir/
+  TARGET_FILE = bin/blockchain_node
+  TARGET_PDB = bin/blockchain_node.pdb
+
+
+#############################################
+# Utility command for format
+
+build format: phony CMakeFiles/format
+
+
+#############################################
+# Utility command for check
+
+build check: phony CMakeFiles/check
+
+
+#############################################
+# Utility command for demo
+
+build demo: phony CMakeFiles/demo bin/multi_chain_node
+
+
+#############################################
+# Utility command for package
+
+build CMakeFiles/package.util: CUSTOM_COMMAND all
+  COMMAND = cd /home/senjoe/Documents/p2pblockchain/build && /usr/bin/cpack --config ./CPackConfig.cmake
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build package: phony CMakeFiles/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = cd /home/senjoe/Documents/p2pblockchain/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/senjoe/Documents/p2pblockchain/build/CPackSourceConfig.cmake
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build package_source: phony CMakeFiles/package_source.util
 
 
 #############################################
@@ -377,10 +452,32 @@ build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
 
 build install/strip: phony CMakeFiles/install/strip.util
 
+
+#############################################
+# Custom command for CMakeFiles/format
+
+build CMakeFiles/format | ${cmake_ninja_workdir}CMakeFiles/format: CUSTOM_COMMAND
+  COMMAND = cd /home/senjoe/Documents/p2pblockchain/build && find /home/senjoe/Documents/p2pblockchain/src /home/senjoe/Documents/p2pblockchain/include -name *.cpp -o -name *.h | xargs clang-format -i -style=file
+  DESC = Formatting code with clang-format
+
+
+#############################################
+# Custom command for CMakeFiles/check
+
+build CMakeFiles/check | ${cmake_ninja_workdir}CMakeFiles/check: CUSTOM_COMMAND
+  COMMAND = cd /home/senjoe/Documents/p2pblockchain/build && cppcheck --enable=all --std=c++17 --suppress=missingIncludeSystem /home/senjoe/Documents/p2pblockchain/src /home/senjoe/Documents/p2pblockchain/include
+  DESC = Running static analysis with cppcheck
+
+
+#############################################
+# Custom command for CMakeFiles/demo
+
+build CMakeFiles/demo | ${cmake_ninja_workdir}CMakeFiles/demo: CUSTOM_COMMAND bin/multi_chain_node || bin/multi_chain_node libblockchain_core.a
+  COMMAND = cd /home/senjoe/Documents/p2pblockchain/build && /home/senjoe/Documents/p2pblockchain/build/bin/multi_chain_node --demo
+  DESC = Running system demonstration
+
 # =============================================================================
 # Target aliases.
-
-build api_server: phony libapi_server.a
 
 build blockchain_cli: phony bin/blockchain_cli
 
@@ -388,7 +485,7 @@ build blockchain_core: phony libblockchain_core.a
 
 build blockchain_node: phony bin/blockchain_node
 
-build cli_interface: phony libcli_interface.a
+build multi_chain_node: phony bin/multi_chain_node
 
 # =============================================================================
 # Folder targets.
@@ -398,7 +495,7 @@ build cli_interface: phony libcli_interface.a
 #############################################
 # Folder: /home/senjoe/Documents/p2pblockchain/build
 
-build all: phony libblockchain_core.a libapi_server.a libcli_interface.a bin/blockchain_node bin/blockchain_cli
+build all: phony libblockchain_core.a bin/multi_chain_node bin/blockchain_cli bin/blockchain_node
 
 # =============================================================================
 # Built-in targets
@@ -407,14 +504,14 @@ build all: phony libblockchain_core.a libapi_server.a libcli_interface.a bin/blo
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja /home/senjoe/Documents/p2pblockchain/build/cmake_install.cmake: RERUN_CMAKE | /home/senjoe/Documents/p2pblockchain/CMakeLists.txt /home/senjoe/Documents/p2pblockchain/include/version.h.in /usr/lib/cmake/fmt/fmt-config-version.cmake /usr/lib/cmake/fmt/fmt-config.cmake /usr/lib/cmake/fmt/fmt-targets-none.cmake /usr/lib/cmake/fmt/fmt-targets.cmake /usr/lib/cmake/spdlog/spdlogConfig.cmake /usr/lib/cmake/spdlog/spdlogConfigTargets-none.cmake /usr/lib/cmake/spdlog/spdlogConfigTargets.cmake /usr/lib/cmake/spdlog/spdlogConfigVersion.cmake /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/FindOpenSSL.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake /usr/share/cmake/nlohmann_json/nlohmann_jsonConfigVersion.cmake /usr/share/cmake/nlohmann_json/nlohmann_jsonTargets.cmake CMakeCache.txt CMakeFiles/4.0.2-dirty/CMakeCXXCompiler.cmake CMakeFiles/4.0.2-dirty/CMakeSystem.cmake
+build build.ninja /home/senjoe/Documents/p2pblockchain/build/cmake_install.cmake: RERUN_CMAKE | /home/senjoe/Documents/p2pblockchain/CMakeLists.txt /home/senjoe/Documents/p2pblockchain/include/version.h.in /usr/share/cmake/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake /usr/share/cmake/Modules/CMakeDetermineSystem.cmake /usr/share/cmake/Modules/CMakeFindBinUtils.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake /usr/share/cmake/Modules/CMakeSystem.cmake.in /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake/Modules/CPack.cmake /usr/share/cmake/Modules/CPackComponent.cmake /usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX-CXXImportStd.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/FindOpenSSL.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake /usr/share/cmake/Modules/Internal/CMakeInspectCXXLinker.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Internal/FeatureTesting.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/4.0.2-dirty/CMakeCXXCompiler.cmake CMakeFiles/4.0.2-dirty/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/senjoe/Documents/p2pblockchain/CMakeLists.txt /home/senjoe/Documents/p2pblockchain/include/version.h.in /usr/lib/cmake/fmt/fmt-config-version.cmake /usr/lib/cmake/fmt/fmt-config.cmake /usr/lib/cmake/fmt/fmt-targets-none.cmake /usr/lib/cmake/fmt/fmt-targets.cmake /usr/lib/cmake/spdlog/spdlogConfig.cmake /usr/lib/cmake/spdlog/spdlogConfigTargets-none.cmake /usr/lib/cmake/spdlog/spdlogConfigTargets.cmake /usr/lib/cmake/spdlog/spdlogConfigVersion.cmake /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/FindOpenSSL.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake /usr/share/cmake/nlohmann_json/nlohmann_jsonConfigVersion.cmake /usr/share/cmake/nlohmann_json/nlohmann_jsonTargets.cmake CMakeCache.txt CMakeFiles/4.0.2-dirty/CMakeCXXCompiler.cmake CMakeFiles/4.0.2-dirty/CMakeSystem.cmake: phony
+build /home/senjoe/Documents/p2pblockchain/CMakeLists.txt /home/senjoe/Documents/p2pblockchain/include/version.h.in /usr/share/cmake/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake /usr/share/cmake/Modules/CMakeDetermineSystem.cmake /usr/share/cmake/Modules/CMakeFindBinUtils.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake /usr/share/cmake/Modules/CMakeSystem.cmake.in /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake/Modules/CPack.cmake /usr/share/cmake/Modules/CPackComponent.cmake /usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX-CXXImportStd.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/FindOpenSSL.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake /usr/share/cmake/Modules/Internal/CMakeInspectCXXLinker.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Internal/FeatureTesting.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/4.0.2-dirty/CMakeCXXCompiler.cmake CMakeFiles/4.0.2-dirty/CMakeSystem.cmake: phony
 
 
 #############################################

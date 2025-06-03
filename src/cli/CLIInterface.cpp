@@ -1459,3 +1459,204 @@ void CLIInterface::CLIConfig::fromJson(const nlohmann::json& json) {
 void CLIInterface::printSeparator(char ch, int length) {
     std::cout << std::string(length, ch) << std::endl;
 }
+
+// =======================================================================================
+// Enhanced CLI Integration (additions to CLIInterface.cpp)
+// =======================================================================================
+
+// Add these methods to CLIInterface class
+int CLIInterface::cmdMultiChain(const std::vector<std::string>& args) {
+    if (!multiChainManager_) {
+        printError("MultiChainManager not available");
+        return 1;
+    }
+    
+    if (args.size() < 2) {
+        printError("Usage: multichain <command> [options]");
+        showMultiChainHelp();
+        return 1;
+    }
+    
+    std::string command = args[1];
+    
+    try {
+        if (command == "list") {
+            return cmdMultiChainList(args);
+        }
+        else if (command == "create") {
+            return cmdMultiChainCreate(args);
+        }
+        else if (command == "start") {
+            return cmdMultiChainStart(args);
+        }
+        else if (command == "stop") {
+            return cmdMultiChainStop(args);
+        }
+        else if (command == "status") {
+            return cmdMultiChainStatus(args);
+        }
+        else if (command == "transfer") {
+            return cmdMultiChainTransfer(args);
+        }
+        else if (command == "bridge") {
+            return cmdMultiChainBridge(args);
+        }
+        else if (command == "consensus") {
+            return cmdMultiChainConsensus(args);
+        }
+        else {
+            printError("Unknown multichain command: " + command);
+            showMultiChainHelp();
+            return 1;
+        }
+    } catch (const std::exception& e) {
+        handleCommandError("multichain " + command, e);
+        return 1;
+    }
+}
+
+int CLIInterface::cmdMultiChainList(const std::vector<std::string>& args) {
+    auto chainIds = multiChainManager_->getAllChainIds();
+    
+    if (chainIds.empty()) {
+        printWarning("No chains found");
+        return 0;
+    }
+    
+    printInfo(colorize("MULTI-CHAIN ECOSYSTEM", Colors::BOLD + Colors::CYAN));
+    printSeparator('=', 80);
+    
+    std::vector<std::string> headers = {"Chain ID", "Type", "Name", "Height", "Status", "Peers", "API Port"};
+    std::vector<std::vector<std::string>> chainData;
+    
+    for (const auto& chainId : chainIds) {
+        auto status = multiChainManager_->getChainStatus(chainId);
+        bool isActive = multiChainManager_->isChainActive(chainId);
+        uint32_t height = multiChainManager_->getChainHeight(chainId);
+        
+        chainData.push_back({
+            chainId.substr(0, 12) + "...",
+            status["type"].get<std::string>(),
+            status["name"].get<std::string>(),
+            std::to_string(height),
+            isActive ? colorize("Active", Colors::GREEN) : colorize("Inactive", Colors::RED),
+            status.contains("peerCount") ? std::to_string(status["peerCount"].get<int>()) : "0",
+            status.contains("apiPort") ? std::to_string(status["apiPort"].get<int>()) : "N/A"
+        });
+    }
+    
+    printTable(chainData, headers);
+    
+    // Show global metrics
+    auto metrics = multiChainManager_->getGlobalMetrics();
+    printSeparator('-', 80);
+    printInfo("Global Metrics:");
+    std::cout << "  Total Chains: " << metrics["totalChains"].get<int>() << std::endl;
+    std::cout << "  Cross-Chain Transactions: " << metrics["crossChainTransactions"].get<int>() << std::endl;
+    std::cout << "  Global Throughput: " << std::fixed << std::setprecision(2) 
+              << multiChainManager_->getGlobalThroughput() << " TPS" << std::endl;
+    
+    return 0;
+}
+
+int CLIInterface::cmdMultiChainCreate(const std::vector<std::string>& args) {
+    if (!validateArgs(args, 4, 4)) {
+        printError("Usage: multichain create <type> <name>");
+        printInfo("Types: main, file, identity, side, private, test");
+        return 1;
+    }
+    
+    std::string typeStr = args[2];
+    std::string name = args[3];
+    
+    // Map string to ChainType
+    ChainType type = ChainType::MAIN_CHAIN;
+    if (typeStr == "main") type = ChainType::MAIN_CHAIN;
+    else if (typeStr == "file") type = ChainType::FILE_CHAIN;
+    else if (typeStr == "identity") type = ChainType::IDENTITY_CHAIN;
+    else if (typeStr == "side") type = ChainType::SIDECHAIN;
+    else if (typeStr == "private") type = ChainType::PRIVATE_CHAIN;
+    else if (typeStr == "test") type = ChainType::TEST_CHAIN;
+    else {
+        printError("Invalid chain type: " + typeStr);
+        return 1;
+    }
+    
+    showSpinner("Creating new " + typeStr + " chain...");
+    
+    auto config = ChainFactory::createDefaultConfig(type, name);
+    
+    // Assign available ports
+    config.p2pPort = 8333 + (multiChainManager_->getAllChainIds().size() * 2);
+    config.apiPort = 8080 + (multiChainManager_->getAllChainIds().size() * 2);
+    
+    std::string chainId = multiChainManager_->createChain(config);
+    hideSpinner();
+    
+    printSuccess("Created new chain: " + name);
+    
+    std::vector<std::vector<std::string>> createData = {
+        {"Chain ID", chainId},
+        {"Type", typeStr},
+        {"Name", name},
+        {"P2P Port", std::to_string(config.p2pPort)},
+        {"API Port", std::to_string(config.apiPort)},
+        {"Status", "Created (Inactive)"}
+    };
+    
+    printTable(createData, {"Property", "Value"});
+    printInfo("Use 'multichain start " + chainId + "' to activate the chain");
+    
+    return 0;
+}
+
+int CLIInterface::cmdMultiChainTransfer(const std::vector<std::string>& args) {
+    if (!validateArgs(args, 7, 7)) {
+        printError("Usage: multichain transfer <source-chain> <target-chain> <from> <to> <amount>");
+        return 1;
+    }
+    
+    std::string sourceChain = args[2];
+    std::string targetChain = args[3];
+    std::string fromAddress = args[4];
+    std::string toAddress = args[5];
+    double amount = std::stod(args[6]);
+    
+    showSpinner("Initiating cross-chain transfer...");
+    
+    std::string txId = multiChainManager_->initiateCrossChainTransfer(
+        sourceChain, targetChain, fromAddress, toAddress, amount);
+    
+    hideSpinner();
+    printSuccess("Cross-chain transfer initiated!");
+    
+    std::vector<std::vector<std::string>> transferData = {
+        {"Transaction ID", txId},
+        {"Source Chain", sourceChain},
+        {"Target Chain", targetChain},
+        {"From Address", fromAddress.substr(0, 16) + "..."},
+        {"To Address", toAddress.substr(0, 16) + "..."},
+        {"Amount", std::to_string(amount)},
+        {"Status", "Pending Confirmation"}
+    };
+    
+    printTable(transferData, {"Property", "Value"});
+    printInfo("Use 'multichain status' to monitor transfer progress");
+    
+    return 0;
+}
+
+void CLIInterface::showMultiChainHelp() {
+    std::cout << colorize("Multi-Chain Commands:", Colors::BOLD + Colors::CYAN) << std::endl;
+    std::cout << "  list                           - List all chains in ecosystem" << std::endl;
+    std::cout << "  create <type> <name>           - Create new blockchain" << std::endl;
+    std::cout << "  start <chain-id>               - Start/activate a chain" << std::endl;
+    std::cout << "  stop <chain-id>                - Stop/deactivate a chain" << std::endl;
+    std::cout << "  status [chain-id]              - Show chain status" << std::endl;
+    std::cout << "  transfer <src> <tgt> <from> <to> <amt> - Cross-chain transfer" << std::endl;
+    std::cout << "  bridge <src> <tgt>             - Create cross-chain bridge" << std::endl;
+    std::cout << "  consensus                      - Trigger global consensus" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Chain Types: main, file, identity, side, private, test" << std::endl;
+}
+
