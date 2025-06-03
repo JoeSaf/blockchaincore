@@ -1,3 +1,7 @@
+#define HTTPLIB_IMPLEMENTATION
+#define HTTPLIB_OPENSSL_SUPPORT
+#include <httplib.h>
+
 #include <iostream>
 #include <memory>
 #include <signal.h>

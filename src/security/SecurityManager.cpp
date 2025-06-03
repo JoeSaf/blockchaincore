@@ -8,7 +8,6 @@
 #include <chrono>
 #include <fstream>
 #include <iomanip>
-#include "SecurityManager.h"
 
 // SecurityViolation implementations
 nlohmann::json SecurityViolation::toJson() const {

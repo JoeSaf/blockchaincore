@@ -10,8 +10,8 @@
 #include <nlohmann/json.hpp>
 #include "../blockchain/Blockchain.h"
 #include "../p2p/P2PNetwork.h"
-#include "FileBlockchain.h"
-#include "SecurityManager.h"
+#include "../blockchain/FileBlockchain.h"
+#include "../security/SecurityManager.h"
 
 // User authentication structure
 struct User {
@@ -149,6 +149,7 @@ private:
     
     void handleBlockchainStatus(const httplib::Request& req, httplib::Response& res);
     void handleBlockExplorer(const httplib::Request& req, httplib::Response& res);
+    void handleBlockchainSearch(const httplib::Request& req, httplib::Response& res);  // ADDED
     void handleTransactionExplorer(const httplib::Request& req, httplib::Response& res);
     void handleNetworkStatus(const httplib::Request& req, httplib::Response& res);
     void handleSecurityStatus(const httplib::Request& req, httplib::Response& res);

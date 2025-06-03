@@ -941,24 +941,113 @@ void WebInterface::handleBlockchainSearch(const httplib::Request& req, httplib::
                         auto block = fileBlockchain_->getBlock(blockIndex);
                         nlohmann::json result;
                         result["type"] = "block";
+                        result["data"] = nlohmann::json::object();
                         result["data"]["index"] = block.getIndex();
                         result["data"]["hash"] = block.getHash();
+                        result["data"]["previousHash"] = block.getPreviousHash();
                         result["data"]["timestamp"] = block.getTimestamp();
                         result["data"]["transactionCount"] = block.getTransactions().size();
+                        result["data"]["nonce"] = block.getNonce();
+                        result["data"]["merkleRoot"] = block.getMerkleRoot();
                         response["results"].push_back(result);
                     }
-                } catch (...) {
-                    // If not a valid number, continue with hash search
+                } catch (const std::exception& e) {
+                    // If not a valid number or block not found, continue with other searches
+                    spdlog::debug("Block search failed for query '{}': {}", query, e.what());
                 }
             }
             
-            // Search files by name or ID
-            auto files = fileBlockchain_->searchFiles(query);
-            for (const auto& file : files) {
-                nlohmann::json result;
-                result["type"] = "file";
-                result["data"] = file.toJson();
-                response["results"].push_back(result);
+            // Search blocks by hash if query looks like a hash (hexadecimal, 64 chars for SHA256)
+            if (query.length() == 64 && std::all_of(query.begin(), query.end(), ::isxdigit)) {
+                try {
+                    auto block = fileBlockchain_->getBlockByHash(query);
+                    if (!block.getHash().empty()) {
+                        nlohmann::json result;
+                        result["type"] = "block";
+                        result["data"] = nlohmann::json::object();
+                        result["data"]["index"] = block.getIndex();
+                        result["data"]["hash"] = block.getHash();
+                        result["data"]["previousHash"] = block.getPreviousHash();
+                        result["data"]["timestamp"] = block.getTimestamp();
+                        result["data"]["transactionCount"] = block.getTransactions().size();
+                        result["data"]["nonce"] = block.getNonce();
+                        result["data"]["merkleRoot"] = block.getMerkleRoot();
+                        response["results"].push_back(result);
+                    }
+                } catch (const std::exception& e) {
+                    spdlog::debug("Block hash search failed for query '{}': {}", query, e.what());
+                }
+            }
+            
+            // Search files by name or ID (only if we didn't find a block)
+            if (response["results"].empty()) {
+                try {
+                    auto files = fileBlockchain_->searchFiles(query);
+                    for (const auto& file : files) {
+                        nlohmann::json result;
+                        result["type"] = "file";
+                        result["data"] = nlohmann::json::object();
+                        result["data"]["fileId"] = file.fileId;
+                        result["data"]["originalName"] = file.originalName;
+                        result["data"]["fileSize"] = file.fileSize;
+                        result["data"]["mimeType"] = file.mimeType;
+                        result["data"]["uploadTime"] = file.uploadTime;
+                        result["data"]["uploaderAddress"] = file.uploaderAddress;
+                        result["data"]["isComplete"] = file.isComplete;
+                        result["data"]["totalChunks"] = file.totalChunks;
+                        result["data"]["fileHash"] = file.fileHash;
+                        response["results"].push_back(result);
+                    }
+                } catch (const std::exception& e) {
+                    spdlog::debug("File search failed for query '{}': {}", query, e.what());
+                }
+            }
+            
+            // Search by file ID directly if it looks like one (32 hex characters)
+            if (query.length() == 32 && std::all_of(query.begin(), query.end(), ::isxdigit)) {
+                try {
+                    if (fileBlockchain_->fileExists(query)) {
+                        auto metadata = fileBlockchain_->getFileMetadata(query);
+                        nlohmann::json result;
+                        result["type"] = "file";
+                        result["data"] = nlohmann::json::object();
+                        result["data"]["fileId"] = metadata.fileId;
+                        result["data"]["originalName"] = metadata.originalName;
+                        result["data"]["fileSize"] = metadata.fileSize;
+                        result["data"]["mimeType"] = metadata.mimeType;
+                        result["data"]["uploadTime"] = metadata.uploadTime;
+                        result["data"]["uploaderAddress"] = metadata.uploaderAddress;
+                        result["data"]["isComplete"] = metadata.isComplete;
+                        result["data"]["totalChunks"] = metadata.totalChunks;
+                        result["data"]["fileHash"] = metadata.fileHash;
+                        response["results"].push_back(result);
+                    }
+                } catch (const std::exception& e) {
+                    spdlog::debug("File ID search failed for query '{}': {}", query, e.what());
+                }
+            }
+            
+            // Search transactions in mempool by ID
+            if (query.length() == 64 && std::all_of(query.begin(), query.end(), ::isxdigit)) {
+                try {
+                    const auto& mempool = fileBlockchain_->getTransactionPool();
+                    auto transaction = mempool.getTransaction(query);
+                    if (!transaction.getId().empty()) {
+                        nlohmann::json result;
+                        result["type"] = "transaction";
+                        result["data"] = nlohmann::json::object();
+                        result["data"]["id"] = transaction.getId();
+                        result["data"]["timestamp"] = transaction.getTimestamp();
+                        result["data"]["inputCount"] = transaction.getInputs().size();
+                        result["data"]["outputCount"] = transaction.getOutputs().size();
+                        result["data"]["totalInputAmount"] = transaction.getTotalInputAmount();
+                        result["data"]["totalOutputAmount"] = transaction.getTotalOutputAmount();
+                        result["data"]["fee"] = transaction.getFee();
+                        response["results"].push_back(result);
+                    }
+                } catch (const std::exception& e) {
+                    spdlog::debug("Transaction search failed for query '{}': {}", query, e.what());
+                }
             }
         }
         
@@ -969,7 +1058,6 @@ void WebInterface::handleBlockchainSearch(const httplib::Request& req, httplib::
         sendErrorResponse(res, "Search failed", 500);
     }
 }
-
 void WebInterface::handleTransactionExplorer(const httplib::Request& req, httplib::Response& res) {
     try {
         nlohmann::json response;

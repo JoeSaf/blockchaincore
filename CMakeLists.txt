@@ -131,7 +131,7 @@ set(WEB_SOURCES
 
 # Main executable - Full Node with all features
 add_executable(blockchain_node
-    src/main.cpp
+    src/main.cpp 
     ${BLOCKCHAIN_SOURCES}
     ${P2P_SOURCES}
     ${API_SOURCES}
@@ -144,7 +144,7 @@ add_executable(blockchain_node
 
 # CLI-only executable - Lightweight version
 add_executable(blockchain_cli
-    src/cli_main.cpp
+    src/cli_main.cpp 
     ${BLOCKCHAIN_SOURCES}
     ${P2P_SOURCES}
     ${UTILS_SOURCES}
@@ -191,6 +191,8 @@ foreach(target blockchain_node blockchain_cli)
         ASIO_HAS_CSTDINT
         ASIO_HAS_STD_SHARED_PTR
         ASIO_HAS_STD_TYPE_TRAITS
+        OPENSSL_SUPPRESS_DEPRECATED
+        HTTPLIB_OPENSSL_SUPPORT
         # Suppress specific fmt warnings
         FMT_SUPPRESS_WARNINGS=1
     )
@@ -263,6 +265,8 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/tests/test_main.cpp")
         ASIO_HAS_STD_SHARED_PTR
         ASIO_HAS_STD_TYPE_TRAITS
         FMT_SUPPRESS_WARNINGS=1
+        OPENSSL_SUPPRESS_DEPRECATED
+        HTTPLIB_OPENSSL_SUPPORT
     )
     
     set_target_properties(blockchain_node_test PROPERTIES
