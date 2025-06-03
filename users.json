@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "email": "admin@localhost.com",
+            "isActive": true,
+            "lastLogin": 1748957308,
+            "permissions": {},
+            "registrationTime": 1748944351,
+            "storageQuota": 1073741824,
+            "storageUsed": 0,
+            "userId": "856917434d09f28fd6c03eea74c26e18",
+            "username": "admin",
+            "walletAddress": "15830a2edaf92837521e6b58f63df863ac"
+        }
+    ]
+}
