@@ -80,6 +80,15 @@ FileTransaction::FileTransaction(FileOperation operation, const std::string& use
     timestamp_ = std::time(nullptr);
     id_ = calculateHash();
 }
+bool FileTransaction::isValidTransaction() const {
+    // Call base class validation first
+    if (!Transaction::isValidTransaction()) {
+        return false;
+    }
+    
+    // Perform file-specific validation
+    return isValidFileTransaction();
+}
 
 void FileTransaction::setFileMetadata(const FileMetadata& metadata) {
     fileMetadata_ = metadata;

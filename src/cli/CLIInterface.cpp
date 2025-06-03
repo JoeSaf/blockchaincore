@@ -773,3 +773,689 @@ void CLIInterface::printWelcomeBanner() {
 ╚════════════════════════════════════════════════════════════════╝
 )", Colors::CYAN) << std::endl;
 }
+
+
+void CLIInterface::setBlockchain(std::shared_ptr<Blockchain> blockchain) {
+    blockchain_ = blockchain;
+}
+
+void CLIInterface::setP2PNetwork(std::shared_ptr<P2PNetwork> network) {
+    p2pNetwork_ = network;
+}
+
+void CLIInterface::setSecurityManager(std::shared_ptr<SecurityManager> securityManager) {
+    securityManager_ = securityManager;
+}
+
+void CLIInterface::registerCommand(const CLICommand& command) {
+    commands_[command.name] = command;
+    
+    // Also register aliases
+    for (const auto& alias : command.aliases) {
+        commands_[alias] = command;
+    }
+}
+
+int CLIInterface::executeCommand(const std::vector<std::string>& args) {
+    if (args.empty()) {
+        printError("No command provided");
+        return 1;
+    }
+    
+    std::string commandName = args[0];
+    auto it = commands_.find(commandName);
+    
+    if (it == commands_.end()) {
+        printError("Unknown command: " + commandName);
+        showCommandNotFound(commandName);
+        return 1;
+    }
+    
+    try {
+        return it->second.handler(args);
+    } catch (const std::exception& e) {
+        handleCommandError(commandName, e);
+        return 1;
+    }
+}
+
+bool CLIInterface::loadConfig(const std::string& configFile) {
+    if (!Utils::fileExists(configFile)) {
+        spdlog::debug("Config file {} does not exist, using defaults", configFile);
+        return false;
+    }
+    
+    try {
+        nlohmann::json configJson = Utils::readJsonFile(configFile);
+        config_.fromJson(configJson);
+        
+        // Apply configuration
+        outputFormat_ = config_.defaultFormat;
+        colorsEnabled_ = config_.enableColors;
+        verbose_ = config_.verboseOutput;
+        
+        spdlog::debug("Loaded CLI configuration from {}", configFile);
+        return true;
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to load config: {}", e.what());
+        return false;
+    }
+}
+
+std::string CLIInterface::readUserInput(const std::string& prompt) {
+    std::cout << prompt;
+    std::cout.flush();
+    
+    std::string input;
+    std::getline(std::cin, input);
+    
+    // Add to command history if not empty
+    if (!input.empty() && input != "exit" && input != "quit") {
+        commandHistory_.push_back(input);
+        
+        // Limit history size
+        if (commandHistory_.size() > 100) {
+            commandHistory_.erase(commandHistory_.begin());
+        }
+    }
+    
+    return input;
+}
+
+std::vector<std::string> CLIInterface::parseCommandLine(const std::string& line) {
+    std::vector<std::string> tokens;
+    std::istringstream iss(line);
+    std::string token;
+    
+    while (iss >> token) {
+        tokens.push_back(token);
+    }
+    
+    return tokens;
+}
+
+void CLIInterface::displayLiveChainStatus() {
+    if (!blockchain_) {
+        printError("Blockchain not available");
+        return;
+    }
+    
+    std::cout << "\033[2J\033[H"; // Clear screen
+    printInfo(colorize("LIVE BLOCKCHAIN STATUS", Colors::BOLD + Colors::CYAN));
+    printInfo("Press Ctrl+C to exit");
+    printSeparator('=', 80);
+    
+    while (true) {
+        std::cout << "\033[5;1H"; // Move cursor to line 5
+        
+        auto height = blockchain_->getChainHeight();
+        auto difficulty = blockchain_->getDifficulty();
+        auto mempoolSize = blockchain_->getTransactionPool().getTransactionCount();
+        
+        std::cout << "Chain Height: " << colorize(std::to_string(height), Colors::GREEN) << std::endl;
+        std::cout << "Difficulty: " << difficulty << std::endl;
+        std::cout << "Mempool Size: " << mempoolSize << std::endl;
+        std::cout << "Last Update: " << Utils::getCurrentTimestamp() << std::endl;
+        
+        if (p2pNetwork_) {
+            std::cout << "Connected Peers: " << p2pNetwork_->getPeerCount() << std::endl;
+            std::cout << "Network Status: " << (p2pNetwork_->isRunning() ? 
+                colorize("Online", Colors::GREEN) : colorize("Offline", Colors::RED)) << std::endl;
+        }
+        
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+}
+
+void CLIInterface::displayLiveNetworkStatus() {
+    if (!p2pNetwork_) {
+        printError("P2P Network not available");
+        return;
+    }
+    
+    std::cout << "\033[2J\033[H"; // Clear screen
+    printInfo(colorize("LIVE NETWORK STATUS", Colors::BOLD + Colors::CYAN));
+    printInfo("Press Ctrl+C to exit");
+    printSeparator('=', 80);
+    
+    while (true) {
+        std::cout << "\033[5;1H"; // Move cursor to line 5
+        
+        auto peers = p2pNetwork_->getConnectedPeers();
+        std::cout << "Connected Peers: " << colorize(std::to_string(peers.size()), Colors::GREEN) << std::endl;
+        std::cout << "Messages Sent: " << p2pNetwork_->getMessagesSent() << std::endl;
+        std::cout << "Messages Received: " << p2pNetwork_->getMessagesReceived() << std::endl;
+        std::cout << "Bytes Transferred: " << formatBytes(p2pNetwork_->getBytesTransferred()) << std::endl;
+        std::cout << "Network Running: " << (p2pNetwork_->isRunning() ? 
+            colorize("Yes", Colors::GREEN) : colorize("No", Colors::RED)) << std::endl;
+        
+        std::cout << "\nActive Peers:" << std::endl;
+        for (size_t i = 0; i < std::min(peers.size(), size_t(5)); ++i) {
+            const auto& peer = peers[i];
+            std::cout << "• " << peer.ipAddress << ":" << peer.port 
+                     << " (Height: " << peer.chainHeight << ")" << std::endl;
+        }
+        
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+}
+
+void CLIInterface::showSpinner(const std::string& message) {
+    if (!verbose_) return;
+    
+    std::cout << message << " ";
+    std::cout.flush();
+}
+
+void CLIInterface::hideSpinner() {
+    if (!verbose_) return;
+    
+    std::cout << colorize("✓", Colors::GREEN) << std::endl;
+}
+
+bool CLIInterface::requiresComponent(const std::string& componentName, bool condition) {
+    if (!condition) {
+        printError(componentName + " is required but not available");
+        return false;
+    }
+    return true;
+}
+
+bool CLIInterface::validateArgs(const std::vector<std::string>& args, size_t minArgs, size_t maxArgs) {
+    if (args.size() < minArgs) {
+        printError("Too few arguments. Minimum required: " + std::to_string(minArgs));
+        return false;
+    }
+    
+    if (maxArgs != SIZE_MAX && args.size() > maxArgs) {
+        printError("Too many arguments. Maximum allowed: " + std::to_string(maxArgs));
+        return false;
+    }
+    
+    return true;
+}
+
+std::string CLIInterface::getFlagValue(const std::vector<std::string>& args, const std::string& flag) {
+    for (size_t i = 0; i < args.size() - 1; ++i) {
+        if (args[i] == flag) {
+            return args[i + 1];
+        }
+    }
+    return "";
+}
+
+bool CLIInterface::hasFlag(const std::vector<std::string>& args, const std::string& flag) {
+    return std::find(args.begin(), args.end(), flag) != args.end();
+}
+
+bool CLIInterface::validateFilePath(const std::string& path) {
+    return Utils::fileExists(path);
+}
+
+std::vector<uint8_t> CLIInterface::readFileData(const std::string& path) {
+    std::ifstream file(path, std::ios::binary);
+    if (!file) {
+        return {};
+    }
+    
+    file.seekg(0, std::ios::end);
+    size_t size = file.tellg();
+    file.seekg(0, std::ios::beg);
+    
+    std::vector<uint8_t> data(size);
+    file.read(reinterpret_cast<char*>(data.data()), size);
+    
+    return data;
+}
+
+bool CLIInterface::writeFileData(const std::string& path, const std::vector<uint8_t>& data) {
+    std::ofstream file(path, std::ios::binary);
+    if (!file) {
+        return false;
+    }
+    
+    file.write(reinterpret_cast<const char*>(data.data()), data.size());
+    return file.good();
+}
+
+void CLIInterface::printTable(const std::vector<std::vector<std::string>>& data, 
+                             const std::vector<std::string>& headers) {
+    if (data.empty()) {
+        printInfo("No data to display");
+        return;
+    }
+    
+    // Calculate column widths
+    std::vector<size_t> columnWidths(headers.size(), 0);
+    
+    for (size_t i = 0; i < headers.size(); ++i) {
+        columnWidths[i] = headers[i].length();
+    }
+    
+    for (const auto& row : data) {
+        for (size_t i = 0; i < row.size() && i < columnWidths.size(); ++i) {
+            columnWidths[i] = std::max(columnWidths[i], row[i].length());
+        }
+    }
+    
+    // Print headers
+    for (size_t i = 0; i < headers.size(); ++i) {
+        std::cout << std::left << std::setw(columnWidths[i] + 2) << headers[i];
+    }
+    std::cout << std::endl;
+    
+    // Print separator
+    for (size_t i = 0; i < headers.size(); ++i) {
+        std::cout << std::string(columnWidths[i] + 2, '-');
+    }
+    std::cout << std::endl;
+    
+    // Print data rows
+    for (const auto& row : data) {
+        for (size_t i = 0; i < row.size() && i < columnWidths.size(); ++i) {
+            std::cout << std::left << std::setw(columnWidths[i] + 2) << row[i];
+        }
+        std::cout << std::endl;
+    }
+}
+
+void CLIInterface::printJson(const nlohmann::json& json) {
+    std::cout << json.dump(2) << std::endl;
+}
+
+std::string CLIInterface::formatTimestamp(std::time_t timestamp) {
+    return Utils::formatTimestamp(timestamp);
+}
+
+void CLIInterface::handleCommandError(const std::string& command, const std::exception& e) {
+    printError("Command '" + command + "' failed: " + e.what());
+}
+
+void CLIInterface::showUsage(const std::string& command) {
+    auto it = commands_.find(command);
+    if (it != commands_.end()) {
+        std::cout << "Usage: " << it->second.usage << std::endl;
+        std::cout << "Description: " << it->second.description << std::endl;
+    }
+}
+
+void CLIInterface::showCommandNotFound(const std::string& command) {
+    printError("Command not found: " + command);
+    printInfo("Type 'help' to see available commands");
+}
+
+void CLIInterface::showSecurityAlert(const SecurityViolation& violation) {
+    std::string levelColor;
+    switch (violation.level) {
+        case ThreatLevel::CRITICAL: levelColor = Colors::RED; break;
+        case ThreatLevel::HIGH: levelColor = Colors::YELLOW; break;
+        case ThreatLevel::MEDIUM: levelColor = Colors::BLUE; break;
+        default: levelColor = Colors::GREEN; break;
+    }
+    
+    std::cout << colorize("🚨 SECURITY ALERT", Colors::BOLD + levelColor) << std::endl;
+    std::cout << "Level: " << colorize(threatLevelToString(violation.level), levelColor) << std::endl;
+    std::cout << "Block: " << violation.blockIndex << std::endl;
+    std::cout << "Description: " << violation.description << std::endl;
+    std::cout << "Time: " << formatTimestamp(violation.timestamp) << std::endl;
+    printSeparator('-', 40);
+}
+
+// ========================
+// MISSING COMMAND IMPLEMENTATIONS  
+// ========================
+
+int CLIInterface::cmdMineBlock(const std::vector<std::string>& args) {
+    if (!requiresComponent("Blockchain", blockchain_ != nullptr)) return 1;
+    
+    try {
+        std::string minerAddress = "default_miner";
+        if (args.size() > 1) {
+            minerAddress = args[1];
+        } else {
+            minerAddress = Crypto::generateRandomAddress();
+        }
+        
+        printInfo("Mining new block with miner address: " + minerAddress);
+        showSpinner("Mining block...");
+        
+        auto block = blockchain_->mineBlock(minerAddress);
+        hideSpinner();
+        
+        if (block.getIndex() > 0) {
+            printSuccess("Block mined successfully!");
+            
+            std::vector<std::vector<std::string>> blockData = {
+                {"Block Index", std::to_string(block.getIndex())},
+                {"Block Hash", block.getHash().substr(0, 32) + "..."},
+                {"Nonce", std::to_string(block.getNonce())},
+                {"Transactions", std::to_string(block.getTransactions().size())},
+                {"Miner Address", minerAddress}
+            };
+            
+            printTable(blockData, {"Property", "Value"});
+            
+            // Broadcast to network
+            if (p2pNetwork_) {
+                p2pNetwork_->broadcastBlock(block);
+                printInfo("Block broadcasted to network");
+            }
+        } else {
+            printError("Block mining failed");
+            return 1;
+        }
+        
+        return 0;
+    } catch (const std::exception& e) {
+        hideSpinner();
+        handleCommandError("mine", e);
+        return 1;
+    }
+}
+
+int CLIInterface::cmdValidate(const std::vector<std::string>& args) {
+    if (!requiresComponent("Blockchain", blockchain_ != nullptr)) return 1;
+    
+    try {
+        bool deepValidation = hasFlag(args, "--deep");
+        bool repair = hasFlag(args, "--repair");
+        
+        printInfo(colorize("BLOCKCHAIN VALIDATION", Colors::BOLD + Colors::CYAN));
+        printSeparator('=', 50);
+        
+        showSpinner("Validating blockchain...");
+        bool isValid = blockchain_->isValidChain();
+        hideSpinner();
+        
+        if (isValid) {
+            printSuccess("✓ Blockchain is valid");
+        } else {
+            printError("✗ Blockchain validation failed");
+        }
+        
+        if (deepValidation) {
+            printInfo("Performing deep validation...");
+            
+            const auto& chain = blockchain_->getChain();
+            uint32_t validBlocks = 0;
+            
+            for (const auto& block : chain) {
+                if (block.isValidBlock()) {
+                    validBlocks++;
+                } else {
+                    printWarning("Block " + std::to_string(block.getIndex()) + " has validation issues");
+                }
+            }
+            
+            double validityPercentage = (static_cast<double>(validBlocks) / chain.size()) * 100.0;
+            
+            std::vector<std::vector<std::string>> validationData = {
+                {"Total Blocks", std::to_string(chain.size())},
+                {"Valid Blocks", std::to_string(validBlocks)},
+                {"Validity Percentage", std::to_string(static_cast<int>(validityPercentage)) + "%"},
+                {"Chain Height", std::to_string(blockchain_->getChainHeight())},
+                {"Genesis Block", chain.empty() ? "Missing" : "Present"}
+            };
+            
+            printTable(validationData, {"Metric", "Value"});
+        }
+        
+        if (repair && !isValid) {
+            printWarning("Repair functionality not yet implemented");
+        }
+        
+        return isValid ? 0 : 1;
+        
+    } catch (const std::exception& e) {
+        hideSpinner();
+        handleCommandError("validate", e);
+        return 1;
+    }
+}
+
+int CLIInterface::cmdListFiles(const std::vector<std::string>& args) {
+    if (!requiresComponent("FileBlockchain", blockchain_ != nullptr)) return 1;
+    
+    auto fileBlockchain = std::dynamic_pointer_cast<FileBlockchain>(blockchain_);
+    if (!fileBlockchain) {
+        printError("File blockchain not available");
+        return 1;
+    }
+    
+    try {
+        std::string userAddress = getFlagValue(args, "--user");
+        bool jsonFormat = hasFlag(args, "--json") || outputFormat_ == OutputFormat::JSON;
+        
+        auto files = fileBlockchain->listFiles(userAddress);
+        
+        if (files.empty()) {
+            printInfo("No files found");
+            return 0;
+        }
+        
+        if (jsonFormat) {
+            nlohmann::json filesJson = nlohmann::json::array();
+            for (const auto& file : files) {
+                filesJson.push_back(file.toJson());
+            }
+            printJson(filesJson);
+        } else {
+            printInfo(colorize("STORED FILES", Colors::BOLD + Colors::CYAN));
+            printSeparator('=', 80);
+            
+            std::vector<std::string> headers = {"File ID", "Name", "Size", "Upload Time", "Uploader"};
+            std::vector<std::vector<std::string>> fileData;
+            
+            for (const auto& file : files) {
+                fileData.push_back({
+                    file.fileId.substr(0, 16) + "...",
+                    file.originalName,
+                    formatBytes(file.fileSize),
+                    formatTimestamp(file.uploadTime),
+                    file.uploaderAddress.substr(0, 16) + "..."
+                });
+            }
+            
+            printTable(fileData, headers);
+            printInfo("Total files: " + std::to_string(files.size()));
+        }
+        
+        return 0;
+        
+    } catch (const std::exception& e) {
+        handleCommandError("files", e);
+        return 1;
+    }
+}
+
+int CLIInterface::cmdListThreats(const std::vector<std::string>& args) {
+    if (!requiresComponent("Security Manager", securityManager_ != nullptr)) return 1;
+    
+    try {
+        std::string levelFilter = getFlagValue(args, "--level");
+        
+        auto threats = securityManager_->getActiveThreats();
+        
+        if (threats.empty()) {
+            printSuccess("No active security threats detected");
+            return 0;
+        }
+        
+        printInfo(colorize("ACTIVE SECURITY THREATS", Colors::BOLD + Colors::YELLOW));
+        printSeparator('=', 60);
+        
+        for (const auto& threat : threats) {
+            // Filter by level if specified
+            if (!levelFilter.empty()) {
+                std::string threatLevelStr = threatLevelToString(threat.level);
+                std::transform(threatLevelStr.begin(), threatLevelStr.end(), threatLevelStr.begin(), ::tolower);
+                std::transform(levelFilter.begin(), levelFilter.end(), levelFilter.begin(), ::tolower);
+                
+                if (threatLevelStr != levelFilter) {
+                    continue;
+                }
+            }
+            
+            showSecurityAlert(threat);
+        }
+        
+        return 0;
+        
+    } catch (const std::exception& e) {
+        handleCommandError("threats", e);
+        return 1;
+    }
+}
+
+int CLIInterface::cmdConnectPeer(const std::vector<std::string>& args) {
+    if (!validateArgs(args, 3, 3)) {
+        showUsage("connect");
+        return 1;
+    }
+    
+    if (!requiresComponent("P2P Network", p2pNetwork_ != nullptr)) return 1;
+    
+    try {
+        std::string ip = args[1];
+        uint16_t port = static_cast<uint16_t>(std::stoul(args[2]));
+        
+        printInfo("Connecting to peer " + ip + ":" + std::to_string(port));
+        
+        bool success = p2pNetwork_->connectToPeer(ip, port);
+        
+        if (success) {
+            printSuccess("Successfully connected to peer");
+        } else {
+            printError("Failed to connect to peer");
+            return 1;
+        }
+        
+        return 0;
+        
+    } catch (const std::exception& e) {
+        handleCommandError("connect", e);
+        return 1;
+    }
+}
+
+int CLIInterface::cmdDiscoverPeers(const std::vector<std::string>& args) {
+    if (!requiresComponent("P2P Network", p2pNetwork_ != nullptr)) return 1;
+    
+    try {
+        printInfo("Starting peer discovery...");
+        
+        p2pNetwork_->discoverPeers();
+        
+        printSuccess("Peer discovery initiated");
+        printInfo("Use 'peers' command to see discovered peers");
+        
+        return 0;
+        
+    } catch (const std::exception& e) {
+        handleCommandError("discover", e);
+        return 1;
+    }
+}
+
+int CLIInterface::cmdHelp(const std::vector<std::string>& args) {
+    if (args.size() > 1) {
+        // Show help for specific command
+        std::string command = args[1];
+        auto it = commands_.find(command);
+        
+        if (it != commands_.end()) {
+            std::cout << colorize("COMMAND: " + command, Colors::BOLD + Colors::CYAN) << std::endl;
+            std::cout << "Description: " << it->second.description << std::endl;
+            std::cout << "Usage: " << it->second.usage << std::endl;
+            
+            if (!it->second.aliases.empty()) {
+                std::cout << "Aliases: ";
+                for (size_t i = 0; i < it->second.aliases.size(); ++i) {
+                    if (i > 0) std::cout << ", ";
+                    std::cout << it->second.aliases[i];
+                }
+                std::cout << std::endl;
+            }
+        } else {
+            printError("Unknown command: " + command);
+            return 1;
+        }
+    } else {
+        // Show general help
+        std::cout << colorize("BLOCKCHAIN CLI HELP", Colors::BOLD + Colors::CYAN) << std::endl;
+        printSeparator('=', 50);
+        
+        std::cout << "Available Commands:" << std::endl << std::endl;
+        
+        // Group commands by category
+        std::map<std::string, std::vector<std::pair<std::string, std::string>>> categories;
+        
+        for (const auto& [name, cmd] : commands_) {
+            if (name == cmd.name) { // Only show primary command names, not aliases
+                std::string category = "General";
+                if (name.find("file") != std::string::npos || 
+                    name == "upload" || name == "download" || name == "files") {
+                    category = "File Storage";
+                } else if (name.find("security") != std::string::npos || 
+                          name == "scan" || name == "threats" || name == "reorder") {
+                    category = "Security";
+                } else if (name.find("peer") != std::string::npos || 
+                          name == "connect" || name == "discover" || name == "peers") {
+                    category = "Network";
+                } else if (name == "mine" || name == "validate" || name == "status") {
+                    category = "Blockchain";
+                }
+                
+                categories[category].emplace_back(name, cmd.description);
+            }
+        }
+        
+        for (const auto& [category, commands] : categories) {
+            std::cout << colorize(category + ":", Colors::BOLD + Colors::YELLOW) << std::endl;
+            for (const auto& [name, desc] : commands) {
+                std::cout << "  " << std::left << std::setw(15) << name << " - " << desc << std::endl;
+            }
+            std::cout << std::endl;
+        }
+        
+        std::cout << "Use 'help <command>' for detailed information about a specific command." << std::endl;
+    }
+    
+    return 0;
+}
+
+// ========================
+// MISSING CLICONFIG METHODS
+// ========================
+
+nlohmann::json CLIInterface::CLIConfig::toJson() const {
+    nlohmann::json json;
+    json["defaultFormat"] = static_cast<int>(defaultFormat);
+    json["enableColors"] = enableColors;
+    json["showTimestamps"] = showTimestamps;
+    json["verboseOutput"] = verboseOutput;
+    json["logLevel"] = logLevel;
+    return json;
+}
+
+void CLIInterface::CLIConfig::fromJson(const nlohmann::json& json) {
+    if (json.contains("defaultFormat")) {
+        defaultFormat = static_cast<OutputFormat>(json["defaultFormat"]);
+    }
+    if (json.contains("enableColors")) {
+        enableColors = json["enableColors"];
+    }
+    if (json.contains("showTimestamps")) {
+        showTimestamps = json["showTimestamps"];
+    }
+    if (json.contains("verboseOutput")) {
+        verboseOutput = json["verboseOutput"];
+    }
+    if (json.contains("logLevel")) {
+        logLevel = json["logLevel"];
+    }
+}
+
+void CLIInterface::printSeparator(char ch, int length) {
+    std::cout << std::string(length, ch) << std::endl;
+}
