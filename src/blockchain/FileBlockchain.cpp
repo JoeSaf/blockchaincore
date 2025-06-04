@@ -1,10 +1,12 @@
 #include "blockchain/FileBlockchain.h"
+#include "security/SecurityManager.h"  // Now safe to include after forward declarations
 #include "utils/Crypto.h"
 #include "utils/Utils.h"
 #include <spdlog/spdlog.h>
-#include <fstream>
 #include <algorithm>
-#include <cmath>
+#include <random>
+#include <chrono>
+#include <fstream>
 #include <iomanip>
 #include <sstream>
 

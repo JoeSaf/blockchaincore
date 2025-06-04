@@ -13,10 +13,14 @@
 #include "../blockchain/FileBlockchain.h"
 #include "../security/SecurityManager.h"
 
+// Forward declarations to avoid circular dependencies
 class FileBlockchain;
 class SecurityManager;
+class MultiChainManager;
 enum class ThreatLevel;
 struct SecurityViolation;
+enum class ChainType;
+struct ChainConfig;
 
 // CLI command structure
 struct CLICommand {
@@ -37,7 +41,6 @@ enum class OutputFormat {
     DETAILED
 };
 
-
 // CLI color codes for output
 namespace Colors {
     const std::string RESET = "\033[0m";
@@ -50,8 +53,6 @@ namespace Colors {
     const std::string WHITE = "\033[37m";
     const std::string BOLD = "\033[1m";
 }
-
-
 
 class CLIInterface {
 public:
@@ -71,15 +72,12 @@ public:
     void setP2PNetwork(std::shared_ptr<P2PNetwork> network);
     void setApiServer(std::shared_ptr<RestApiServer> apiServer);
     void setSecurityManager(std::shared_ptr<SecurityManager> securityManager);
+    void setMultiChainManager(std::shared_ptr<MultiChainManager> manager);
     
     // CLI configuration
     void setOutputFormat(OutputFormat format) { outputFormat_ = format; }
     void enableColors(bool enable) { colorsEnabled_ = enable; }
     void setVerbose(bool verbose) { verbose_ = verbose; }
-
-    void setMultiChainManager(std::shared_ptr<MultiChainManager> manager) {
-        multiChainManager_ = manager;
-    }
 
 private:
     // Core components
@@ -87,7 +85,7 @@ private:
     std::shared_ptr<P2PNetwork> p2pNetwork_;
     std::shared_ptr<RestApiServer> apiServer_;
     std::shared_ptr<SecurityManager> securityManager_;
-    
+    std::shared_ptr<MultiChainManager> multiChainManager_;
     
     // CLI configuration
     OutputFormat outputFormat_;
@@ -164,6 +162,22 @@ private:
     int cmdMigrateData(const std::vector<std::string>& args);
     
     // ========================
+    // MULTI-CHAIN COMMANDS
+    // ========================
+    
+    int cmdMultiChain(const std::vector<std::string>& args);
+    int cmdMultiChainList(const std::vector<std::string>& args);
+    int cmdMultiChainCreate(const std::vector<std::string>& args);
+    int cmdMultiChainStart(const std::vector<std::string>& args);
+    int cmdMultiChainStop(const std::vector<std::string>& args);
+    int cmdMultiChainStatus(const std::vector<std::string>& args);
+    int cmdMultiChainTransfer(const std::vector<std::string>& args);
+    int cmdMultiChainBridge(const std::vector<std::string>& args);
+    int cmdMultiChainConsensus(const std::vector<std::string>& args);
+    
+    void showMultiChainHelp();
+    
+    // ========================
     // SYSTEM COMMANDS
     // ========================
     
@@ -235,21 +249,6 @@ private:
     std::string colorize(const std::string& text, const std::string& color);
     std::string threatLevelToString(ThreatLevel level) const;
     
-    std::shared_ptr<MultiChainManager> multiChainManager_;
-    
-    // Multi-chain command handlers
-    int cmdMultiChain(const std::vector<std::string>& args);
-    int cmdMultiChainList(const std::vector<std::string>& args);
-    int cmdMultiChainCreate(const std::vector<std::string>& args);
-    int cmdMultiChainStart(const std::vector<std::string>& args);
-    int cmdMultiChainStop(const std::vector<std::string>& args);
-    int cmdMultiChainStatus(const std::vector<std::string>& args);
-    int cmdMultiChainTransfer(const std::vector<std::string>& args);
-    int cmdMultiChainBridge(const std::vector<std::string>& args);
-    int cmdMultiChainConsensus(const std::vector<std::string>& args);
-    
-    void showMultiChainHelp();
-
     // Command parsing
     CLICommand* findCommand(const std::string& name);
     std::vector<std::string> getCommandSuggestions(const std::string& partial);
@@ -281,5 +280,4 @@ private:
     CLIConfig config_;
     bool loadConfig(const std::string& configFile = "cli_config.json");
     bool saveConfig(const std::string& configFile = "cli_config.json");
-    
 };

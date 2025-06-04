@@ -1,5 +1,7 @@
-#include "blockchain/FileBlockchain.h"
 #include "cli/CLIInterface.h"
+#include "blockchain/FileBlockchain.h"
+#include "security/SecurityManager.h"
+#include "multichain/MultiChainManager.h"
 #include "utils/Crypto.h"
 #include "utils/Utils.h"
 #include <iostream>

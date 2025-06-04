@@ -23,6 +23,7 @@
 #include "multichain/MultiChainManager.h"
 #include "utils/Crypto.h"
 
+
 // Global variables for clean shutdown - Enhanced with MultiChain
 std::shared_ptr<MultiChainManager> g_multiChainManager;
 std::shared_ptr<Blockchain> g_blockchain;
@@ -88,6 +89,7 @@ void setupSignalHandlers() {
     signal(SIGQUIT, signalHandler);
     #endif
 }
+
 
 void printStartupBanner() {
     std::cout << R"(

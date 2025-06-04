@@ -18,7 +18,7 @@
 #include "../blockchain/FileBlockchain.h"
 #include "../p2p/P2PNetwork.h"
 #include "../security/SecurityManager.h"
-#include <Crypto.h>
+#include "../utils/Crypto.h"
 
 // Chain types supported by the multi-chain system
 enum class ChainType {
