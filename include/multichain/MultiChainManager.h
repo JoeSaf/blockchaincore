@@ -1,7 +1,3 @@
-// =======================================================================================
-// MultiChainManager System - Complete Integration
-// =======================================================================================
-
 // include/multichain/MultiChainManager.h
 #pragma once
 
@@ -13,12 +9,13 @@
 #include <thread>
 #include <atomic>
 #include <functional>
-#include <nlohmann/json.hpp>
-#include "../blockchain/Blockchain.h"
-#include "../blockchain/FileBlockchain.h"
-#include "../p2p/P2PNetwork.h"
-#include "../security/SecurityManager.h"
-#include "../utils/Crypto.h"
+#include <third_party/nlohmann/json.hpp>
+
+// Forward declarations to avoid circular dependencies
+class Blockchain;
+class FileBlockchain;
+class P2PNetwork;
+class SecurityManager;
 
 // Chain types supported by the multi-chain system
 enum class ChainType {
@@ -198,7 +195,7 @@ public:
     // Security coordination
     void setGlobalSecurityManager(std::shared_ptr<SecurityManager> securityManager);
     bool performGlobalSecurityScan();
-    void handleSecurityThreat(const std::string& chainId, const SecurityViolation& threat);
+    void handleSecurityThreat(const std::string& chainId, const struct SecurityViolation& threat);
     void triggerGlobalPolymorphicReorder(const std::string& reason);
     
     // ========================
@@ -351,227 +348,3 @@ private:
     static ChainConfig getPrivateChainTemplate();
     static ChainConfig getTestChainTemplate();
 };
-
-// =======================================================================================
-// Implementation snippets (would be in separate .cpp files)
-// =======================================================================================
-
-// src/multichain/MultiChainManager.cpp (key methods)
-
-std::string MultiChainManager::createChain(const ChainConfig& config) {
-    std::lock_guard<std::mutex> lock(chainsMutex_);
-    
-    if (!validateChainConfig(config)) {
-        throw std::invalid_argument("Invalid chain configuration");
-    }
-    
-    std::string chainId = generateChainId(config.name, config.type);
-    
-    // Create the blockchain based on type
-    auto blockchain = ChainFactory::createChain(config.type, config);
-    if (!blockchain) {
-        throw std::runtime_error("Failed to create blockchain instance");
-    }
-    
-    // Create P2P network for the chain
-    auto p2pNetwork = std::make_shared<P2PNetwork>(config.p2pPort, config.p2pPort + 1);
-    
-    // Create security manager for the chain
-    auto securityManager = std::make_shared<SecurityManager>(blockchain);
-    
-    // Store all components
-    chains_[chainId] = blockchain;
-    chainConfigs_[chainId] = config;
-    chainNetworks_[chainId] = p2pNetwork;
-    chainSecurityManagers_[chainId] = securityManager;
-    
-    // Setup cross-chain bridges if needed
-    if (config.isPublic) {
-        for (const auto& [existingChainId, existingConfig] : chainConfigs_) {
-            if (existingConfig.isPublic && existingChainId != chainId) {
-                createBridge(chainId, existingChainId);
-                createBridge(existingChainId, chainId);
-            }
-        }
-    }
-    
-    // Trigger callback
-    if (chainCreatedCallback_) {
-        chainCreatedCallback_(chainId);
-    }
-    
-    spdlog::info("Created new chain: {} (Type: {}, ID: {})", 
-                 config.name, static_cast<int>(config.type), chainId);
-    
-    return chainId;
-}
-
-std::string MultiChainManager::initiateCrossChainTransfer(
-    const std::string& sourceChainId,
-    const std::string& targetChainId,
-    const std::string& fromAddress,
-    const std::string& toAddress,
-    double amount,
-    const nlohmann::json& payload) {
-    
-    std::lock_guard<std::mutex> lock(bridgesMutex_);
-    
-    // Get the bridge
-    auto bridge = getBridge(sourceChainId, targetChainId);
-    if (!bridge || !bridge->isEnabled()) {
-        throw std::runtime_error("Bridge not available between chains");
-    }
-    
-    // Create cross-chain transaction
-    CrossChainTransaction transaction;
-    transaction.transactionId = Crypto::generateRandomString(32);
-    transaction.sourceChainId = sourceChainId;
-    transaction.targetChainId = targetChainId;
-    transaction.sourceAddress = fromAddress;
-    transaction.targetAddress = toAddress;
-    transaction.amount = amount;
-    transaction.payload = payload;
-    transaction.timestamp = std::time(nullptr);
-    transaction.isConfirmed = false;
-    transaction.confirmations = 0;
-    
-    // Validate source chain has sufficient balance
-    auto sourceChain = getChain(sourceChainId);
-    if (!sourceChain) {
-        throw std::runtime_error("Source chain not found");
-    }
-    
-    double balance = sourceChain->getBalance(fromAddress);
-    if (balance < amount) {
-        throw std::runtime_error("Insufficient balance for cross-chain transfer");
-    }
-    
-    // Generate cryptographic proof
-    std::string proofData = transaction.transactionId + sourceChainId + targetChainId + 
-                           fromAddress + toAddress + std::to_string(amount);
-    transaction.proof = Crypto::sha256(proofData);
-    
-    // Store pending transaction
-    crossChainTransactions_[transaction.transactionId] = transaction;
-    
-    // Initiate transfer through bridge
-    bridge->initiateCrossChainTransfer(fromAddress, toAddress, amount, payload);
-    
-    // Trigger callback
-    if (crossChainTransactionCallback_) {
-        crossChainTransactionCallback_(transaction);
-    }
-    
-    spdlog::info("Initiated cross-chain transfer: {} -> {} (Amount: {}, TxID: {})",
-                 sourceChainId, targetChainId, amount, transaction.transactionId);
-    
-    return transaction.transactionId;
-}
-
-bool MultiChainManager::performGlobalConsensus() {
-    spdlog::info("Performing global consensus across all chains");
-    
-    std::vector<std::string> activeChains;
-    {
-        std::lock_guard<std::mutex> lock(chainsMutex_);
-        for (const auto& [chainId, config] : chainConfigs_) {
-            if (config.isActive) {
-                activeChains.push_back(chainId);
-            }
-        }
-    }
-    
-    bool consensusAchieved = consensusCoordinator_->validateCrossChainConsensus(activeChains);
-    
-    if (consensusAchieved) {
-        // Synchronize all chains
-        consensusCoordinator_->coordinateChainSynchronization();
-        
-        // Process pending cross-chain transactions
-        for (auto& [txId, transaction] : crossChainTransactions_) {
-            if (!transaction.isConfirmed) {
-                auto bridge = getBridge(transaction.sourceChainId, transaction.targetChainId);
-                if (bridge && bridge->verifyCrossChainProof(transaction)) {
-                    bridge->executeCrossChainTransaction(transaction);
-                    transaction.isConfirmed = true;
-                    transaction.confirmations = 1;
-                }
-            }
-        }
-    }
-    
-    if (globalConsensusCallback_) {
-        globalConsensusCallback_(consensusAchieved);
-    }
-    
-    return consensusAchieved;
-}
-
-// Integration with existing CLI (add to CLIInterface.cpp)
-int CLIInterface::cmdMultiChain(const std::vector<std::string>& args) {
-    if (!multiChainManager_) {
-        printError("MultiChainManager not available");
-        return 1;
-    }
-    
-    if (args.size() < 2) {
-        printError("Usage: multichain <command> [options]");
-        return 1;
-    }
-    
-    std::string command = args[1];
-    
-    if (command == "list") {
-        auto chainIds = multiChainManager_->getAllChainIds();
-        printInfo("Active Chains:");
-        for (const auto& chainId : chainIds) {
-            auto status = multiChainManager_->getChainStatus(chainId);
-            std::cout << "  " << chainId << " - Height: " << status["height"] 
-                     << " - Status: " << status["status"] << std::endl;
-        }
-    }
-    else if (command == "create") {
-        if (args.size() < 4) {
-            printError("Usage: multichain create <type> <name>");
-            return 1;
-        }
-        
-        std::string typeStr = args[2];
-        std::string name = args[3];
-        
-        ChainType type = ChainType::MAIN_CHAIN;
-        if (typeStr == "file") type = ChainType::FILE_CHAIN;
-        else if (typeStr == "identity") type = ChainType::IDENTITY_CHAIN;
-        else if (typeStr == "side") type = ChainType::SIDECHAIN;
-        else if (typeStr == "private") type = ChainType::PRIVATE_CHAIN;
-        else if (typeStr == "test") type = ChainType::TEST_CHAIN;
-        
-        auto config = ChainFactory::createDefaultConfig(type, name);
-        std::string chainId = multiChainManager_->createChain(config);
-        
-        printSuccess("Created chain: " + chainId);
-    }
-    else if (command == "transfer") {
-        if (args.size() < 7) {
-            printError("Usage: multichain transfer <source-chain> <target-chain> <from> <to> <amount>");
-            return 1;
-        }
-        
-        std::string sourceChain = args[2];
-        std::string targetChain = args[3];
-        std::string fromAddress = args[4];
-        std::string toAddress = args[5];
-        double amount = std::stod(args[6]);
-        
-        try {
-            std::string txId = multiChainManager_->initiateCrossChainTransfer(
-                sourceChain, targetChain, fromAddress, toAddress, amount);
-            printSuccess("Cross-chain transfer initiated: " + txId);
-        } catch (const std::exception& e) {
-            printError("Transfer failed: " + std::string(e.what()));
-            return 1;
-        }
-    }
-    
-    return 0;
-}

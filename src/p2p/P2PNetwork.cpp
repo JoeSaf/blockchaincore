@@ -83,29 +83,57 @@ bool P2PNetwork::start() {
     }
     
     try {
-        // Initialize ASIO components with proper socket options
+        // Initialize ASIO components with proper error handling
         tcpAcceptor_ = std::make_unique<tcp::acceptor>(ioContext_);
         udpSocket_ = std::make_unique<udp::socket>(ioContext_);
         
         // Configure TCP acceptor with reuse options
         tcp::endpoint tcpEndpoint(tcp::v4(), tcpPort_);
-        tcpAcceptor_->open(tcpEndpoint.protocol());
+        std::error_code ec;
+        
+        tcpAcceptor_->open(tcpEndpoint.protocol(), ec);
+        if (ec) {
+            spdlog::error("Failed to open TCP acceptor: {}", ec.message());
+            return false;
+        }
         
         // Enable socket reuse options
-        tcpAcceptor_->set_option(asio::socket_base::reuse_address(true));
-        tcpAcceptor_->set_option(asio::socket_base::linger(true, 0));
+        tcpAcceptor_->set_option(asio::socket_base::reuse_address(true), ec);
+        if (ec) {
+            spdlog::warn("Failed to set reuse_address: {}", ec.message());
+        }
         
         // Bind and listen
-        tcpAcceptor_->bind(tcpEndpoint);
-        tcpAcceptor_->listen();
+        tcpAcceptor_->bind(tcpEndpoint, ec);
+        if (ec) {
+            spdlog::error("Failed to bind TCP acceptor to port {}: {}", tcpPort_, ec.message());
+            if (ec == asio::error::address_in_use) {
+                spdlog::error("Port {} is already in use. Try a different port.", tcpPort_);
+            }
+            return false;
+        }
+        
+        tcpAcceptor_->listen(asio::socket_base::max_listen_connections, ec);
+        if (ec) {
+            spdlog::error("Failed to listen on TCP port {}: {}", tcpPort_, ec.message());
+            return false;
+        }
         
         // Configure UDP socket with reuse options
         udp::endpoint udpEndpoint(udp::v4(), udpPort_);
-        udpSocket_->open(udpEndpoint.protocol());
+        udpSocket_->open(udpEndpoint.protocol(), ec);
+        if (ec) {
+            spdlog::error("Failed to open UDP socket: {}", ec.message());
+            return false;
+        }
         
         // Enable socket reuse for UDP
-        udpSocket_->set_option(asio::socket_base::reuse_address(true));
-        udpSocket_->bind(udpEndpoint);
+        udpSocket_->set_option(asio::socket_base::reuse_address(true), ec);
+        udpSocket_->bind(udpEndpoint, ec);
+        if (ec) {
+            spdlog::error("Failed to bind UDP socket to port {}: {}", udpPort_, ec.message());
+            return false;
+        }
         
         running_ = true;
         
@@ -121,21 +149,6 @@ bool P2PNetwork::start() {
         spdlog::info("P2P Network started successfully on TCP:{} UDP:{}", tcpPort_, udpPort_);
         return true;
         
-    } catch (const std::system_error& e) {
-        spdlog::error("Failed to start P2P Network: {} (Error code: {})", e.what(), e.code().value());
-        
-        // Suggest alternative ports if bind fails
-        if (e.code() == asio::error::address_in_use) {
-            spdlog::warn("Ports {} (TCP) and {} (UDP) are in use", tcpPort_, udpPort_);
-            spdlog::info("Try running with different ports:");
-            spdlog::info("  ./blockchain_node --tcp-port 8334 --udp-port 8335");
-            spdlog::info("Or kill existing processes using these ports:");
-            spdlog::info("  sudo netstat -tulpn | grep :{}"); 
-            spdlog::info("  sudo netstat -tulpn | grep :{}", tcpPort_, udpPort_);
-        }
-        
-        running_ = false;
-        return false;
     } catch (const std::exception& e) {
         spdlog::error("Failed to start P2P Network: {}", e.what());
         running_ = false;
@@ -214,9 +227,23 @@ bool P2PNetwork::connectToPeer(const std::string& ipAddress, uint16_t port) {
     
     try {
         auto socket = std::make_shared<tcp::socket>(ioContext_);
-        tcp::endpoint endpoint(asio::ip::make_address(ipAddress), port);
         
-        socket->connect(endpoint);
+        // FIX: Use asio::ip::make_address instead of deprecated from_string
+        std::error_code ec;
+        auto addr = asio::ip::make_address(ipAddress, ec);
+        if (ec) {
+            spdlog::error("Invalid IP address: {}", ipAddress);
+            return false;
+        }
+        
+        tcp::endpoint endpoint(addr, port);
+        
+        // Use error_code version to avoid exceptions
+        socket->connect(endpoint, ec);
+        if (ec) {
+            spdlog::error("Failed to connect to {}:{} - {}", ipAddress, port, ec.message());
+            return false;
+        }
         
         // Generate peer ID and add to peers
         std::string peerId = generateNodeId();

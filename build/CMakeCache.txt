@@ -15,16 +15,13 @@
 ########################
 
 //Value Computed by CMake
-BlockchainNode_BINARY_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build
+BlockchainFileSystem_BINARY_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build
 
 //Value Computed by CMake
-BlockchainNode_IS_TOP_LEVEL:STATIC=ON
+BlockchainFileSystem_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-BlockchainNode_SOURCE_DIR:STATIC=/home/senjoe/Documents/p2pblockchain
-
-//Path to a program.
-CCACHE_PROGRAM:FILEPATH=CCACHE_PROGRAM-NOTFOUND
+BlockchainFileSystem_SOURCE_DIR:STATIC=/home/senjoe/Documents/p2pblockchain
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -32,11 +29,9 @@ CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
-//No help, variable specified on the command line.
-CMAKE_BUILD_TYPE:STRING=Debug
-
-//Enable/Disable color output during build.
-CMAKE_COLOR_MAKEFILE:BOOL=ON
+//Choose the type of build, options are: None Debug Release RelWithDebInfo
+// MinSizeRel ...
+CMAKE_BUILD_TYPE:STRING=Release
 
 //CXX compiler
 CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
@@ -50,7 +45,7 @@ CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar
 CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib
 
 //Flags used by the CXX compiler during all build types.
-CMAKE_CXX_FLAGS:STRING=
+CMAKE_CXX_FLAGS:STRING=-Wall -Wextra -O3 -Wno-dangling-reference -Wno-unused-parameter
 
 //Flags used by the CXX compiler during DEBUG builds.
 CMAKE_CXX_FLAGS_DEBUG:STRING=-g
@@ -63,6 +58,35 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
+
+//No help, variable specified on the command line.
+CMAKE_CXX_STANDARD:UNINITIALIZED=17
+
+//C compiler
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
+
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar
+
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib
+
+//Flags used by the C compiler during all build types.
+CMAKE_C_FLAGS:STRING=
+
+//Flags used by the C compiler during DEBUG builds.
+CMAKE_C_FLAGS_DEBUG:STRING=-g
+
+//Flags used by the C compiler during MINSIZEREL builds.
+CMAKE_C_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
+
+//Flags used by the C compiler during RELEASE builds.
+CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+
+//Flags used by the C compiler during RELWITHDEBINFO builds.
+CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //Path to a program.
 CMAKE_DLLTOOL:FILEPATH=CMAKE_DLLTOOL-NOTFOUND
@@ -82,8 +106,11 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//No help, variable specified on the command line.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
+//Enable/Disable output of build database during the build.
+CMAKE_EXPORT_BUILD_DATABASE:BOOL=
+
+//Enable/Disable output of compile commands during generation.
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/home/senjoe/Documents/p2pblockchain/build/CMakeFiles/pkgRedirects
@@ -94,8 +121,8 @@ CMAKE_INSTALL_PREFIX:PATH=/usr/local
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
 
-//Path to a program.
-CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
+//Program used to build from build.ninja files.
+CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/ninja
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -133,22 +160,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=BlockchainNode
-
-//Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=2.0.0
-
-//Value Computed by CMake
-CMAKE_PROJECT_VERSION_MAJOR:STATIC=2
-
-//Value Computed by CMake
-CMAKE_PROJECT_VERSION_MINOR:STATIC=0
-
-//Value Computed by CMake
-CMAKE_PROJECT_VERSION_PATCH:STATIC=0
-
-//Value Computed by CMake
-CMAKE_PROJECT_VERSION_TWEAK:STATIC=
+CMAKE_PROJECT_NAME:STATIC=BlockchainFileSystem
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -215,26 +227,6 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Directory under which to collect all populated content
-FETCHCONTENT_BASE_DIR:PATH=/home/senjoe/Documents/p2pblockchain/build/_deps
-
-//Disables all attempts to download or update content and assumes
-// source dirs already exist
-FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
-
-//Enables QUIET option for all content population
-FETCHCONTENT_QUIET:BOOL=ON
-
-//When not empty, overrides where to find pre-populated content
-// for nlohmann_json
-FETCHCONTENT_SOURCE_DIR_NLOHMANN_JSON:PATH=
-
-//Enables UPDATE_DISCONNECTED behavior for all content population
-FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
-
-//Enables UPDATE_DISCONNECTED behavior just for population of nlohmann_json
-FETCHCONTENT_UPDATES_DISCONNECTED_NLOHMANN_JSON:BOOL=OFF
-
 //Path to a library.
 OPENSSL_CRYPTO_LIBRARY:FILEPATH=/usr/lib/libcrypto.so
 
@@ -250,11 +242,17 @@ PKG_CONFIG_ARGN:STRING=
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
+//The directory containing a CMake configuration file for fmt.
+fmt_DIR:PATH=/usr/lib/cmake/fmt
+
 //Path to a library.
 pkgcfg_lib__OPENSSL_crypto:FILEPATH=/usr/lib/libcrypto.so
 
 //Path to a library.
 pkgcfg_lib__OPENSSL_ssl:FILEPATH=/usr/lib/libssl.so
+
+//The directory containing a CMake configuration file for spdlog.
+spdlog_DIR:PATH=/usr/lib/cmake/spdlog
 
 
 ########################
@@ -273,8 +271,6 @@ CMAKE_CACHE_MAJOR_VERSION:INTERNAL=4
 CMAKE_CACHE_MINOR_VERSION:INTERNAL=0
 //Patch version of cmake used to create the current loaded cache
 CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
-//ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
-CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=/usr/bin/cmake
 //Path to cpack program executable.
@@ -297,6 +293,22 @@ CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
 CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER
+CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_AR
+CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
+CMAKE_C_COMPILER_RANLIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS
+CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_DEBUG
+CMAKE_C_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_MINSIZEREL
+CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_RELEASE
+CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
+CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
 //Path to cache edit program executable.
@@ -313,10 +325,14 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXPORT_BUILD_DATABASE
+CMAKE_EXPORT_BUILD_DATABASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
+CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
-CMAKE_GENERATOR:INTERNAL=Unix Makefiles
+CMAKE_GENERATOR:INTERNAL=Ninja
 //Generator instance identifier.
 CMAKE_GENERATOR_INSTANCE:INTERNAL=
 //Name of generator platform.
@@ -396,6 +412,8 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenSSL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/lib/libcrypto.so][/usr/include][ ][v3.5.0()]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v2.4.3()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: OPENSSL_CRYPTO_LIBRARY

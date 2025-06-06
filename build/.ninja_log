@@ -1,0 +1,27 @@
+# ninja log v6
+4	14346	1749206086126869411	CMakeFiles/blockchain_cli.dir/src/cli_main.cpp.o	c87c9cdfc6f8381d
+4	15278	1749206086126743447	CMakeFiles/blockchain_node.dir/src/main.cpp.o	5f1a68f0621e29db
+1676	1709	1749206473948807334	libmultichain_lib.a	a4ea4a63330642c0
+2	10236	1749205387281994845	CMakeFiles/blockchain_lib.dir/src/blockchain/Blockchain.cpp.o	7e59c006d4f38996
+3	1676	1749206472275812945	CMakeFiles/multichain_lib.dir/src/multichain/ChainBridge.cpp.o	2b51290c7e6940a1
+3	11845	1749205387282605010	CMakeFiles/security_lib.dir/src/security/SecurityManager.cpp.o	b687441229cbab21
+4	21491	1749205387283755244	CMakeFiles/api_lib.dir/src/api/RestApiServer.cpp.o	c0774017f8217c4f
+201	264	1749206086322987850	libp2p_lib.a	a302b22e10ba9b99
+2	13101	1749205387282333512	CMakeFiles/blockchain_lib.dir/src/blockchain/FileBlockchain.cpp.o	ecfa65ebd26de93a
+3	149	1749206086124988374	libutils_lib.a	c125e8bd9b4a813b
+2	9177	1749205387282225718	CMakeFiles/blockchain_lib.dir/src/blockchain/TransactionPool.cpp.o	ff8afac777b3412a
+2	13944	1749205387280780232	CMakeFiles/utils_lib.dir/src/utils/Utils.cpp.o	ac6820a465b3f33b
+1709	1752	1749206473981807224	libcli_lib.a	8abae8b468b11b52
+2	8409	1749205387281850856	CMakeFiles/blockchain_lib.dir/src/blockchain/Block.cpp.o	bfaf1e98a0da35d6
+265	322	1749206086387827931	libweb_lib.a	3648a9664a1a0fb1
+2	8792	1749205387282097042	CMakeFiles/blockchain_lib.dir/src/blockchain/Transaction.cpp.o	a817ca20725ddb7a
+2	15658	1749205387282474672	CMakeFiles/p2p_lib.dir/src/p2p/P2PNetwork.cpp.o	c3f065e88cc5788c
+1	3622	1749205387279780231	CMakeFiles/utils_lib.dir/src/utils/Crypto.cpp.o	8c05592650421f4c
+202	257	1749206086323987847	libsecurity_lib.a	ad8f4fff546b3b6b
+3	6619	1749206086126099510	CMakeFiles/multichain_lib.dir/src/multichain/MultiChainManager.cpp.o	10afd046703d5efd
+3	2710	1749206086126218099	CMakeFiles/multichain_lib.dir/src/multichain/ChainFactory.cpp.o	b73e9bc67d957f24
+4	25589	1749205387283957533	CMakeFiles/web_lib.dir/src/web/WebInterface.cpp.o	49d3fa15cd726fe8
+265	337	1749206086386987680	libapi_lib.a	392cd0983433c333
+3	2033	1749206086126442366	CMakeFiles/multichain_lib.dir/src/multichain/ConsensusCoordinator.cpp.o	7dc521cf2823ad50
+149	201	1749206086270987987	libblockchain_lib.a	c46600d4f2d97597
+3	18522	1749206086126564597	CMakeFiles/cli_lib.dir/src/cli/CLIInterface.cpp.o	912a339fb3e3c5d7

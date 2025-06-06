@@ -1,5 +1,5 @@
 // =======================================================================================
-// src/multichain/ChainBridge.cpp
+// src/multichain/ChainBridge.cpp - Alternative Solution with Mutex
 // =======================================================================================
 
 #include "multichain/MultiChainManager.h"
@@ -29,9 +29,9 @@ std::string ChainBridge::initiateCrossChainTransfer(const std::string& fromAddre
     // Generate unique transfer ID
     std::string transferId = Crypto::generateRandomString(32);
     
-    // Update statistics
-    totalTransfers_++;
-    totalVolume_ += amount;
+    // Update statistics - SIMPLE FIX: Since we already have mutex lock, just use regular operations
+    totalTransfers_.fetch_add(1);  // This works for atomic<uint64_t>
+    totalVolume_.store(totalVolume_.load() + amount);  // Load current value, add amount, store back
     
     spdlog::info("Initiated cross-chain transfer: {} ({} -> {}, Amount: {})",
                  transferId, sourceChainId_, targetChainId_, amount);
@@ -66,4 +66,3 @@ bool ChainBridge::executeCrossChainTransaction(const CrossChainTransaction& tran
     
     return true;
 }
-
